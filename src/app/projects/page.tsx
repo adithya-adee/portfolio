@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     setProjects(projectsData);
   }, []);
 
-  // Memoize rendered project cards for optimization
+  // Use Memo project cards for optimization
   const projectCards = useMemo(
     () =>
       projects.map((project, idx) => (
@@ -34,18 +34,24 @@ export default function ProjectsPage() {
           <Card className="bg-neutral-900 border-neutral-800 shadow-lg transition p-0">
             <CardContent className="p-0">
               <Link href={`/projects/${project.slug}`} className="block group">
-                <div className="h-64 sm:h-80 bg-neutral-800 flex items-center justify-center rounded-t-xl overflow-hidden">
-                  {project.images &&
-                  project.images.length > 0 &&
-                  project.images[0] ? (
-                    <Image
-                      src={project.images[0]}
-                      alt={project.title}
-                      width={800}
-                      height={400}
-                      className="object-cover w-full h-full transition-transform group-hover:scale-105"
-                      priority={idx === 0}
-                    />
+                {/* Images: hidden on mobile, visible on sm+ */}
+                <div className="hidden sm:flex overflow-x-auto gap-4 p-4">
+                  {project.images && project.images.length > 0 ? (
+                    project.images.map((img, i) => (
+                      <div
+                        key={i}
+                        className="flex-shrink-0 w-[600px] h-[340px] bg-neutral-800 rounded-xl overflow-hidden"
+                      >
+                        <Image
+                          src={img}
+                          alt={`${project.title} screenshot ${i + 1}`}
+                          width={1200}
+                          height={680}
+                          className="object-cover w-full h-full"
+                          priority={idx === 0 && i === 0}
+                        />
+                      </div>
+                    ))
                   ) : (
                     <div className="text-gray-500 text-sm">No image</div>
                   )}
