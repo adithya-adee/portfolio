@@ -1,11 +1,13 @@
 "use client";
 
-import projects from "@/asset/projects.json";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import projects from "@/asset/projects.json";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 
 export default function ProjectSection() {
   const router = useRouter();

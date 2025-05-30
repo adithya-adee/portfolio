@@ -1,20 +1,22 @@
 "use client";
 
+// import { useRouter } from "next/navigation";
+
 import experience from "@/asset/experience.json";
+
 import { MdLocationOn } from "react-icons/md";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 
 export default function ExperienceSection() {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <section>
       <div className="flex justify-between">
         <h2 className="text-2xl font-semibold mb-8">Experience</h2>{" "}
-        <Button
+        {/* <Button
           variant="outline"
           className="border-neutral-700 text-gray-300 hover:text-white"
           onClick={() => router.push("/experience")}
@@ -23,7 +25,7 @@ export default function ExperienceSection() {
           <span aria-hidden className="ml-1">
             ↗
           </span>
-        </Button>
+        </Button> */}
       </div>
       {experience.map((exp, idx) => (
         <motion.div

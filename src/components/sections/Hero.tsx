@@ -95,23 +95,33 @@ export default function HeroSection() {
         transition={{ delay: 0.3 }}
       >
         <motion.a
-          href="mailto:johnsmith@gmail.com"
+          href="mailto:adithya25905@gmail.com"
           className="flex items-center text-gray-400 hover:text-white transition mb-3 md:mb-0"
           whileHover={{ scale: 1.05 }}
         >
           <HiOutlineMail className="mr-2" size={18} />
-          <span>johnsmith@gmail.com</span>
+          <span>adithya25905@gmail.com</span>
         </motion.a>
 
         <div className="flex items-center gap-6 mt-2 md:mt-0 md:gap-4">
           {[
-            { icon: <FaTwitter size={18} />, link: "#" },
-            { icon: <FaReddit size={18} />, link: "#" },
-            { icon: <FaLinkedin size={18} />, link: "#" },
+            {
+              icon: <FaTwitter size={18} />,
+              link: "https://x.com/AdithyaA593326",
+            },
+            {
+              icon: <FaReddit size={18} />,
+              link: "https://www.reddit.com/user/Glithcy_moon_69/",
+            },
+            {
+              icon: <FaLinkedin size={18} />,
+              link: "https://linkedin.com/in/adithya-a-8bb28128a",
+            },
           ].map((social, index) => (
             <motion.a
               key={index}
               href={social.link}
+              target="_blank"
               className="text-gray-400 hover:text-white transition"
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.95 }}

@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
+
 import skills from "@/asset/skills.json";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
-// Optionally, you can group skills by level for a more impressive layout
 const groupedSkills = [
   {
     level: "Advanced",

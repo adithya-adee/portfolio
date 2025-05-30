@@ -1,13 +1,15 @@
 "use client";
 
-import projects from "@/asset/projects.json";
+import Link from "next/link";
+import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
+
+import projects from "@/asset/projects.json";
+
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 export default function ProjectDetailPage() {

@@ -35,7 +35,7 @@ export default function AboutSection() {
           transition={{ delay: 0.6 }}
         >
           I am currently seeking a summer internship to further develop
-          user-centric web experiences.
+          user-centric web experiences. Now delving into the world of WEB3.
         </motion.p>
       </div>
     </div>

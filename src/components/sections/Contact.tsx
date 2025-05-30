@@ -89,7 +89,7 @@ export default function ContactUs() {
                 <div className="font-semibold text-white mb-1">Socials:</div>
                 <div className="flex flex-col gap-2 text-gray-300">
                   <a
-                    href="https://twitter.com/"
+                    href="https://x.com/AdithyaA593326"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-blue-400 transition-colors"
@@ -97,7 +97,7 @@ export default function ContactUs() {
                     <FaTwitter /> Twitter
                   </a>
                   <a
-                    href="https://reddit.com/"
+                    href="https://www.reddit.com/user/Glithcy_moon_69/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-orange-400 transition-colors"
@@ -105,7 +105,7 @@ export default function ContactUs() {
                     <FaReddit /> Reddit
                   </a>
                   <a
-                    href="https://linkedin.com/"
+                    href="https://linkedin.com/in/adithya-a-8bb28128a"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-blue-300 transition-colors"
