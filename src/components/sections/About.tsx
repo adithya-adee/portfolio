@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function About() {
+export default function AboutSection() {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-6">About me</h2>

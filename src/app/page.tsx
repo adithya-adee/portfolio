@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-// Import components
+// Import Page Sections
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
-// import Projects from "@/components/sections/Projects";
-// import Experience from "@/components/sections/Experience";
-// import Education from "@/components/sections/Education";
-// import Skills from "@/components/sections/Skills";
-// import Contact from "@/components/sections/Contact";
+import Projects from "@/components/sections/Projects";
+import Experience from "@/components/sections/Experience";
+import Education from "@/components/sections/Education";
+import Skills from "@/components/sections/Skills";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -48,29 +48,29 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        {/* <section id="projects" className="mb-24">
+        <section id="projects" className="mb-24">
           <Projects />
-        </section> */}
+        </section>
 
         {/* Experience Section */}
-        {/* <section id="experience" className="mb-24">
+        <section id="experience" className="mb-24">
           <Experience />
-        </section> */}
+        </section>
 
         {/* Education Section */}
-        {/* <section id="education" className="mb-24">
+        <section id="education" className="mb-24">
           <Education />
-        </section> */}
+        </section>
 
         {/* Skills/Stack Section */}
-        {/* <section id="stack" className="mb-24">
+        <section id="stack" className="mb-24">
           <Skills />
-        </section> */}
+        </section>
 
         {/* Contact Section */}
-        {/* <section id="contact" className="mb-24">
+        <section id="contact" className="mb-24">
           <Contact />
-        </section> */}
+        </section>
       </motion.div>
     </div>
   );
