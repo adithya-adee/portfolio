@@ -1,4 +1,6 @@
 import { MdLocationOn } from "react-icons/md";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const education = [
   {
@@ -13,23 +15,37 @@ const education = [
 export default function EducationSection() {
   return (
     <section>
-      <h2 className="text-2xl font-semibold mb-8">Education</h2>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-2xl font-semibold">Education</h2>
+      </div>
       {education.map((edu, idx) => (
-        <div
+        <motion.div
           key={idx}
-          className="bg-transparent border-l-2 border-neutral-700 pl-6 mb-10"
+          whileHover={{ scale: 1.03, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: idx * 0.1 }}
+          viewport={{ once: true }}
+          className="mb-10"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-            <div className="flex items-center gap-2 text-gray-400 text-sm mb-2 sm:mb-0">
-              <MdLocationOn className="inline-block" />
-              <span>{edu.location}</span>
-            </div>
-            <div className="text-gray-400 text-sm">{edu.duration}</div>
-          </div>
-          <div className="font-bold text-lg text-white">{edu.degree}</div>
-          <div className="text-gray-300 text-base mb-2">{edu.institution}</div>
-          <div className="text-gray-400 text-base">{edu.details}</div>
-        </div>
+          <Card className="bg-transparent border-0 border-l-4  border-neutral-800 shadow-lg transition">
+            <CardContent className="p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                <div className="flex items-center gap-2 text-gray-400 text-sm mb-2 sm:mb-0">
+                  <MdLocationOn className="inline-block" />
+                  <span>{edu.location}</span>
+                </div>
+                <div className="text-gray-400 text-sm">{edu.duration}</div>
+              </div>
+              <div className="font-bold text-lg text-white">{edu.degree}</div>
+              <div className="text-gray-300 text-base mb-2">
+                {edu.institution}
+              </div>
+              <div className="text-gray-400 text-base">{edu.details}</div>
+            </CardContent>
+          </Card>
+        </motion.div>
       ))}
     </section>
   );
