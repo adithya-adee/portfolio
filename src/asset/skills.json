@@ -1,0 +1,82 @@
+[
+  {
+    "name": "JavaScript",
+    "icon": "/icons/javascript.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "TypeScript",
+    "icon": "/icons/typescript.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "React.js",
+    "icon": "/icons/react.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "Next.js",
+    "icon": "/icons/nextjs.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "Node.js",
+    "icon": "/icons/nodejs.svg",
+    "level": "Advanced"
+  },
+  {
+    "name" : "MySQL",
+    "icon" : "/icons/mysql.svg",
+    "level" : "Advanced"
+  },
+  {
+    "name": "Express.js",
+    "icon": "/icons/expressjs.svg",
+    "level": "Intermediate"
+  },
+  {
+    "name": "NestJS",
+    "icon": "/icons/nestjs.svg",
+    "level": "Intermediate"
+  },
+  {
+    "name": "MongoDB",
+    "icon": "/icons/mongo.svg",
+    "level": "Intermediate"
+  },
+  {
+    "name": "PostgreSQL",
+    "icon": "/icons/postgresql.svg",
+    "level": "Intermediate"
+  },
+  {
+    "name": "Prisma ORM",
+    "icon": "/icons/prismaORM.svg",
+    "level": "Intermediate"
+  },
+  {
+    "name": "Redux",
+    "icon": "/icons/redux.svg",
+    "level": "Intermediate"
+  },
+  {
+    "name": "Tailwind CSS",
+    "icon": "/icons/tailwindcss.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "HTML5",
+    "icon": "/icons/html5.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "CSS3",
+    "icon": "/icons/css3.svg",
+    "level": "Advanced"
+  },
+  {
+    "name": "Git",
+    "icon": "/icons/git.svg",
+    "level": "Advanced"
+  }
+]
