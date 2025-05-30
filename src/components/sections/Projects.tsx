@@ -15,7 +15,7 @@ export default function ProjectSection() {
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold">Some of my projects</h2>
+        <h2 className="text-2xl font-semibold">My projects</h2>
         <Button
           variant="ghost"
           className="border-neutral-700 text-gray-300 hover:text-white"
