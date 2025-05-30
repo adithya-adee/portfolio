@@ -12,6 +12,7 @@ import Experience from "@/components/sections/Experience";
 import Education from "@/components/sections/Education";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
+import BlogSection from "@/components/sections/blog";
 
 export default function Home() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -47,6 +48,11 @@ export default function Home() {
           <About />
         </section>
 
+        {/* Skills/Stack Section */}
+        <section id="stack" className="mb-24">
+          <Skills />
+        </section>
+
         {/* Projects Section */}
         <section id="projects" className="mb-24">
           <Projects />
@@ -62,9 +68,9 @@ export default function Home() {
           <Education />
         </section>
 
-        {/* Skills/Stack Section */}
-        <section id="stack" className="mb-24">
-          <Skills />
+        {/* Education Section */}
+        <section id="blog" className="mb-24">
+          <BlogSection />
         </section>
 
         {/* Contact Section */}

@@ -1,16 +1,16 @@
 [
   {
+    "id":1,
     "title": "Breaking the CORS Puzzle: What Every Developer Must Know for Interviews",
     "url": "yoursite.url/blog/breaking-the-cors-puzzle-what-every-developer-must-know-for-interviews-45fe",
-    "image": "/images/blogs/cors-puzzle.png",
     "date": "2024-10-29",
     "posted_in": "Dev Community (Dev.to)",
     "category": "Tech",
     "description": "This talks about the major concept of web development and security CORS (Cross Origin Resource Sharing)."
   },  {
+    "id" : 2,
     "title": "Transform Your Text Analysis Journey: How KeyBERT is Changing the Game for Keyword Extraction!",
     "url": "yoursite.url/blog/breaking-the-cors-puzzle-what-every-developer-must-know-for-interviews-45fe",
-    "image": "/images/blogs/cors-puzzle.png",
     "date": "2024-10-5",
     "posted_in": "Dev Community (Dev.to)",
     "category": "Tech",
