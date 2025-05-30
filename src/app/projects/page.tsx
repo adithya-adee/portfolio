@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     setProjects(projectsData);
   }, []);
 
-  // Memoize rendered project cards for optimization
+  // Use Memo project cards for optimization
   const projectCards = useMemo(
     () =>
       projects.map((project, idx) => (

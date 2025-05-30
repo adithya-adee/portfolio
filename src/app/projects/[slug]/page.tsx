@@ -89,7 +89,7 @@ export default function ProjectDetailPage() {
                       src={img}
                       alt={`${project.name} screenshot ${i + 1}`}
                       width={900}
-                      height={0} // Height is not restricted
+                      height={0}
                       className="object-contain w-full h-auto"
                       priority={i === 0}
                     />

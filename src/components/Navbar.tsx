@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, X } from "lucide-react";
+import { Circle, X } from "lucide-react";
 
 interface NavbarProps {
   isNavExpanded: boolean;
@@ -35,14 +35,15 @@ export default function Navbar({
       <div className="relative">
         <motion.button
           onClick={toggleNav}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ type: "keyframes", duration: 0.2 }}
           className={`w-12 h-12 flex items-center justify-center text-xl rounded-full bg-neutral-800 shadow-lg z-10 ${
             isNavExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
           aria-label="Expand navigation"
         >
-          <Plus size={24} />
+          <Circle size={24} className="bg-transparent" />
         </motion.button>
 
         {/* AnimatePresence for smooth mounting/unmounting */}

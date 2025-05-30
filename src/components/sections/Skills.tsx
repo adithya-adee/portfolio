@@ -39,17 +39,6 @@ export default function SkillsSection() {
       >
         My Tech Stack & Skills
       </motion.h2>
-      <motion.p
-        className="text-gray-400 mb-8 max-w-2xl"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        I believe in mastering fundamentals and building with the right tools.
-        Here’s a snapshot of my strongest technologies and the tools I use to
-        ship robust, scalable products.
-      </motion.p>
       <div className="flex flex-col gap-8">
         {groupedSkills.map((group, i) => (
           <motion.div
@@ -152,7 +141,8 @@ export default function SkillsSection() {
         <span className="inline-block bg-neutral-800 px-4 py-2 rounded-lg border border-neutral-700">
           <span className="font-semibold text-white">Always learning:</span> I
           regularly explore new frameworks, libraries, and best practices to
-          stay ahead in the fast-evolving tech landscape.
+          stay ahead in the fast-evolving tech landscape. Currently, I have keen
+          interest in Web3 technology.
         </span>
       </motion.div>
     </section>
