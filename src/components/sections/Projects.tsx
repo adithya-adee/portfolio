@@ -40,7 +40,7 @@ export default function ProjectSection() {
           >
             <Card className="bg-neutral-900 border-neutral-800 shadow-lg transition p-0">
               <CardContent className="p-0">
-                {/* Project image or fallback */}
+                {/* Only first image */}
                 <div className="h-48 bg-neutral-800 flex items-center justify-center rounded-t-xl overflow-hidden">
                   {project.images &&
                   project.images.length > 0 &&

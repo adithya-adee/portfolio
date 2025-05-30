@@ -10,6 +10,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export default function HeroSection() {
+  function handleDownloadCV() {
+    const link = document.createElement("a");
+    link.href = "/cv.pdf";
+    link.download = "Adithya_Anand_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   return (
     <>
       <Card className="bg-transparent border-transparent">
@@ -55,11 +63,22 @@ export default function HeroSection() {
                   className="w-full md:w-auto"
                 >
                   <Button
+                    onClick={handleDownloadCV}
                     variant="outline"
-                    className="flex items-center justify-center gap-2 text-gray-300 border-gray-700 hover:bg-neutral-700 w-full md:w-auto"
+                    className="relative flex items-center justify-center gap-2 text-gray-300 border-gray-700 w-full md:w-auto
+    bg-neutral-900/80
+    transition-all duration-300
+    overflow-hidden
+    group"
+                    style={{ zIndex: 1 }}
                   >
-                    <FaDownload size={14} />
-                    <span>Download CV</span>
+                    {/* Glowing border effect */}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 rounded-md border-2 border-transparent transition-all duration-300"
+                    />
+                    <FaDownload size={14} className="relative z-10" />
+                    <span className="relative z-10">Download CV</span>
                   </Button>
                 </motion.div>
               </div>

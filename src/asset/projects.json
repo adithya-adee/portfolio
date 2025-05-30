@@ -7,7 +7,10 @@
         "category": "Personal Project",
         "year": 2025,
         "images": [
-            
+            "/projects/hackverse/events-dark.png",
+            "/projects/hackverse/events-light.png",
+            "/projects/hackverse/profile-dark.png",
+            "/projects/hackverse/profile-light.png"
         ],
         "preview_link": "https://github.com/adithya-adee/hackverse",
         "project_details": "Hackverse is a hackathon hosting platform. This project ensures my backend & frontend skills, the robust structure, and SOLID principles. And also the ability to solve new and creative problems.\n\n●​ Developing secure Role-Based Access Control (RBAC) using Passport.js, NestJS guards, and decorators to ensure robust user authentication and granular permission management.\n\n●​ Designing and optimising a highly normalised Neon (PostgreSQL) database schema using Prisma ORM for efficient data storage and retrieval.\n\n●​ Architecting a comprehensive full-stack application utilising PostgreSQL (via Neon), React (via Next.js), and Node.js (via NestJS) for a cohesive and scalable development process.\n\n●​ Implementing core backend functionalities with NestJS (using SOLID principles) and Neon to manage data and secure user access, integrating Redux for global state management across the application."
@@ -20,9 +23,26 @@
         "category": "Personal Project",
         "year": "2024",
         "images": [
-            
+            "/projects/medicare-simplified/admin-page.png",
+            "/projects/medicare-simplified/cart.png",
+            "/projects/medicare-simplified/category.png",
+            "/projects/medicare-simplified/hero.png",
+            "/projects/medicare-simplified/history.png"
         ],
-        "preview_link": "github.com/adithya-adee/medicare-simplified",
+        "preview_link": "https://github.com/adithya-adee/medicare-simplified",
         "project_details": "Medicare is an online e-commerce platform for medicine. I have used all the React skills there. Medicare is an online e-commerce platform for medicine. I have utilized all my React skills there.\n\n●​ Spearheaded the migration of a web application from React.js to Next.js, leveraging server-side rendering and API routing to enhance performance and SEO.\n\n●​ Developed and maintained both front-end and back-end components, ensuring seamless integration between Next.js, PostgreSQL, and extended with Supabase or Neon.\n\n●​ Implemented Role-Based Access Control (RBAC) using NextAuth.js and Prisma ORM, providing differentiated user experiences for admin and regular users.\n\n●​ Optimised application performance and user experience, resulting in improved load times and user engagement."
+    },
+    {
+        "title": "React Learn Project",
+        "name": "React Learn Project",
+        "slug": "react-learn",
+        "description": "This repo is just to brush my Frontend Skills using various libraries. Showcasing my unique design & fast learning pace.",
+        "category": "Frontend Development",
+        "year": "2024",
+        "images": [
+            "/projects/react-learn/hero.png"
+        ],
+        "preview_link": "https://github.com/adithya-adee/react-learn",
+        "project_details": "This repo is just to brush my Frontend Skills using various libraries. Showcasing my unique design & fast learning pace."
     }
 ]
