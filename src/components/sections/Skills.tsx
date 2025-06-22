@@ -1,128 +1,148 @@
 "use client";
 
-import Image from "next/image";
-
 import skills from "@/asset/skills.json";
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { BorderBeam } from "../magicui/border-beam";
+import { FaStackExchange } from "react-icons/fa";
 
-const groupedSkills = [
-  {
-    level: "Advanced",
-    color: "bg-green-600",
-    skills: skills.filter((s) => s.level === "Advanced"),
-    label: "Core Strengths",
-    description:
-      "Technologies I use daily and can architect, debug, and scale in production.",
-  },
-  {
-    level: "Intermediate",
-    color: "bg-blue-600",
-    skills: skills.filter((s) => s.level === "Intermediate"),
-    label: "Proficient",
-    description:
-      "Confidently build, integrate, and optimize using these tools.",
-  },
-];
+interface SkillJSONProps {
+  name: string;
+  level: "Advanced" | "Intermediate" | "Beginner";
+}
+
+interface SkillCategory {
+  category: string;
+  skills: SkillJSONProps[];
+}
+
+const levelColors: Record<string, string> = {
+  Advanced: "bg-amber-400/20 border-amber-400/50 text-amber-300",
+  Intermediate: "bg-blue-500/20 border-blue-500/50 text-blue-400",
+  Beginner: "bg-orange-600/20 border-orange-600/50 text-orange-400",
+};
+
+const levelDots: Record<string, number> = {
+  Advanced: 3,
+  Intermediate: 2,
+  Beginner: 1,
+};
 
 export default function SkillsSection() {
   return (
-    <section>
-      <motion.h2
-        className="text-2xl font-semibold mb-8"
+    <section className="py-16 px-4">
+      <motion.div
+        className="text-center mb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        My Tech Stack & Skills
-      </motion.h2>
-      <div className="flex flex-col gap-8">
-        {groupedSkills.map((group, i) => (
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <FaStackExchange className="w-8 h-8 text-purple-400" />
+            <div className="absolute inset-0 w-8 h-8 bg-purple-400/20 rounded-full blur-xl"></div>
+          </div>
+          <div>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+              Skills
+            </h2>
+            <p className="text-gray-400 text-sm mt-1">This is all ik</p>
+          </div>
+        </div>
+      </motion.div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        {(skills as SkillCategory[]).map((category, categoryIndex) => (
           <motion.div
-            key={group.level}
+            key={category.category}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + i * 0.1, duration: 0.6 }}
+            transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
             viewport={{ once: true }}
+            className="relative"
           >
-            <Card className="bg-neutral-900 border-neutral-800 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <span
-                    className={`w-3 h-3 rounded-full ${group.color}`}
-                  ></span>
-                  <span className="font-semibold text-lg text-white">
-                    {group.label}
-                  </span>
-                  <Badge
-                    variant="outline"
-                    className="ml-2 border-gray-700 text-xs text-gray-400"
-                  >
-                    {group.level}
-                  </Badge>
-                </div>
-                <div className="text-gray-400 text-sm mb-4">
-                  {group.description}
-                </div>
+            <Card className="h-auto bg-black/40 border-neutral-800 backdrop-blur-sm relative overflow-hidden">
+              <BorderBeam
+                size={100}
+                duration={8 + categoryIndex * 2}
+                delay={categoryIndex * 0.5}
+                colorFrom="#ffaa40"
+                colorTo="#9c40ff"
+              />
+
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl font-bold text-white">
+                  {category.category}
+                </CardTitle>
+              </CardHeader>
+
+              <CardContent className="pt-0">
                 <motion.div
-                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+                  className="flex flex-wrap gap-3"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={{
                     visible: {
                       transition: {
-                        staggerChildren: 0.07,
+                        staggerChildren: 0.08,
                       },
                     },
                   }}
                 >
-                  {group.skills.map((skill) => (
+                  {category.skills.map((skill: SkillJSONProps) => (
                     <motion.div
                       key={skill.name}
-                      className="flex flex-col items-center group"
-                      whileHover={{ scale: 1.08, y: -4 }}
                       variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0 },
+                        hidden: { opacity: 0, scale: 0.8 },
+                        visible: { opacity: 1, scale: 1 },
                       }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20,
-                      }}
+                      whileHover={{ scale: 1.05 }}
+                      className="relative group"
                     >
-                      <div className="relative mb-2">
-                        <Image
-                          src={skill.icon}
-                          alt={skill.name}
-                          width={48}
-                          height={48}
-                          className="rounded-full bg-neutral-800 border border-neutral-700 p-2 group-hover:shadow-lg transition"
-                        />
-                        {/* Animated ring for advanced skills */}
-                        {group.level === "Advanced" && (
-                          <motion.span
-                            className="absolute -inset-1 rounded-full border-2 border-green-600 opacity-40"
-                            animate={{
-                              scale: [1, 1.1, 1],
-                              opacity: [0.4, 0.7, 0.4],
-                            }}
-                            transition={{
-                              repeat: Infinity,
-                              duration: 2,
-                              ease: "easeInOut",
-                            }}
-                          />
-                        )}
+                      <div
+                        className={`
+                        px-4 py-3 rounded-xl border backdrop-blur-sm
+                        transition-all duration-300 cursor-pointer
+                        ${levelColors[skill.level]}
+                        hover:shadow-lg hover:shadow-current/20
+                        flex items-center gap-3
+                      `}
+                      >
+                        <span className="font-medium text-sm">
+                          {skill.name}
+                        </span>
+
+                        {/* Skill level dots */}
+                        <div className="flex gap-1">
+                          {Array.from({ length: 3 }).map(
+                            (_, dotIndex: number) => (
+                              <div
+                                key={dotIndex}
+                                className={`
+                                w-1.5 h-1.5 rounded-full transition-all duration-300
+                                ${
+                                  dotIndex < levelDots[skill.level]
+                                    ? "bg-current opacity-100"
+                                    : "bg-current opacity-20"
+                                }
+                              `}
+                              />
+                            )
+                          )}
+                        </div>
                       </div>
-                      <div className="text-white font-medium text-sm text-center">
-                        {skill.name}
+
+                      {/* Tooltip */}
+                      <div
+                        className="absolute -top-10 left-1/2 transform -translate-x-1/2 
+                                    opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                                    bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap
+                                    pointer-events-none z-10"
+                      >
+                        {skill.level}
                       </div>
-                      <div className="text-xs text-gray-400">{skill.level}</div>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -131,19 +151,45 @@ export default function SkillsSection() {
           </motion.div>
         ))}
       </div>
+
       <motion.div
-        className="mt-10 text-center text-gray-400 text-sm"
+        className="mt-16 text-center max-w-4xl mx-auto"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.7 }}
+        transition={{ delay: 0.5, duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <span className="inline-block bg-neutral-800 px-4 py-2 rounded-lg border border-neutral-700">
-          <span className="font-semibold text-white">Always learning:</span> I
-          regularly explore new frameworks, libraries, and best practices to
-          stay ahead in the fast-evolving tech landscape. Currently, I have keen
-          interest in Web3 technology.
-        </span>
+        <div className="relative">
+          <Card className="bg-black/20 border-neutral-800 backdrop-blur-sm">
+            <BorderBeam
+              size={80}
+              duration={12}
+              colorFrom="#60a5fa"
+              colorTo="#a855f7"
+            />
+            <CardContent className="p-8">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span className="font-semibold text-white">
+                  Always Learning
+                </span>
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-200"></div>
+              </div>
+              <p className="text-gray-300 leading-relaxed">
+                I regularly explore new technologies and frameworks to stay
+                current in the fast-evolving tech landscape. Currently exploring{" "}
+                <span className="text-purple-400 font-semibold">
+                  Web3 technologies
+                </span>{" "}
+                and{" "}
+                <span className="text-blue-400 font-semibold">
+                  AI/ML integration
+                </span>
+                .
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </motion.div>
     </section>
   );

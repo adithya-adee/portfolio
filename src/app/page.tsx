@@ -29,7 +29,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen py-8 px-4 max-w-4xl mx-auto">
-      {/* Navigation - Fixed at the top */}
       <div className="sticky top-4 z-50">
         <Navbar
           isNavExpanded={isNavExpanded}
@@ -48,9 +47,9 @@ export default function Home() {
           <About />
         </section>
 
-        {/* Skills/Stack Section */}
-        <section id="stack" className="mb-24">
-          <Skills />
+        {/* Experience Section */}
+        <section id="experience" className="mb-24">
+          <Experience />
         </section>
 
         {/* Projects Section */}
@@ -58,9 +57,9 @@ export default function Home() {
           <Projects />
         </section>
 
-        {/* Experience Section */}
-        <section id="experience" className="mb-24">
-          <Experience />
+        {/* Skills/Stack Section */}
+        <section id="stack" className="mb-24">
+          <Skills />
         </section>
 
         {/* Education Section */}
@@ -68,7 +67,7 @@ export default function Home() {
           <Education />
         </section>
 
-        {/* Education Section */}
+        {/* Blog Section */}
         <section id="blog" className="mb-24">
           <BlogSection />
         </section>

@@ -1,82 +1,115 @@
 [
   {
-    "name": "JavaScript",
-    "icon": "/icons/javascript.svg",
-    "level": "Advanced"
+    "category": "Programming Languages",
+    "skills": [
+      {
+        "name": "C++",
+        "level": "Intermediate",
+        "icon": "/public/icons/cpp.svg"
+      },
+      {
+        "name": "Rust",
+        "level": "Beginner",
+        "icon": "/public/icons/rust.svg"
+      },
+      {
+        "name": "JavaScript",
+        "level": "Advanced",
+        "icon": "/public/icons/javascript.svg"
+      },
+      {
+        "name": "TypeScript",
+        "level": "Intermediate",
+        "icon": "/public/icons/typescript.svg"
+      }
+    ]
   },
   {
-    "name": "TypeScript",
-    "icon": "/icons/typescript.svg",
-    "level": "Advanced"
+    "category": "Frontend",
+    "skills": [
+      {
+        "name": "React.js",
+        "level": "Advanced",
+        "icon": "/public/icons/react.svg"
+      },
+      {
+        "name": "Next.js",
+        "level": "Advanced",
+        "icon": "/public/icons/nextjs.svg"
+      },
+      {
+        "name": "HTML5",
+        "level": "Advanced",
+        "icon": "/public/icons/html5.svg"
+      },
+      { "name": "CSS3", "level": "Advanced", "icon": "/public/icons/css3.svg" },
+      {
+        "name": "Tailwind CSS",
+        "level": "Advanced",
+        "icon": "/public/icons/tailwindcss.svg"
+      },
+      {
+        "name": "Redux",
+        "level": "Intermediate",
+        "icon": "/public/icons/redux.svg"
+      }
+    ]
   },
   {
-    "name": "React.js",
-    "icon": "/icons/react.svg",
-    "level": "Advanced"
+    "category": "Backend",
+    "skills": [
+      {
+        "name": "Node.js",
+        "level": "Advanced",
+        "icon": "/public/icons/nodejs.svg"
+      },
+      {
+        "name": "Express.js",
+        "level": "Intermediate",
+        "icon": "/public/icons/express.svg"
+      },
+      {
+        "name": "NestJS",
+        "level": "Intermediate",
+        "icon": "/public/icons/nestjs.svg"
+      }
+    ]
   },
   {
-    "name": "Next.js",
-    "icon": "/icons/nextjs.svg",
-    "level": "Advanced"
+    "category": "Database",
+    "skills": [
+      {
+        "name": "MySQL",
+        "level": "Advanced",
+        "icon": "/public/icons/mysql.svg"
+      },
+      {
+        "name": "MongoDB",
+        "level": "Intermediate",
+        "icon": "/public/icons/mongodb.svg"
+      },
+      {
+        "name": "PostgreSQL",
+        "level": "Intermediate",
+        "icon": "/public/icons/postgresql.svg"
+      },
+      {
+        "name": "Prisma ORM",
+        "level": "Intermediate",
+        "icon": "/public/icons/prisma.svg"
+      }
+    ]
   },
   {
-    "name": "Node.js",
-    "icon": "/icons/nodejs.svg",
-    "level": "Advanced"
-  },
-  {
-    "name" : "MySQL",
-    "icon" : "/icons/mysql.svg",
-    "level" : "Advanced"
-  },
-  {
-    "name": "Express.js",
-    "icon": "/icons/expressjs.svg",
-    "level": "Intermediate"
-  },
-  {
-    "name": "NestJS",
-    "icon": "/icons/nestjs.svg",
-    "level": "Intermediate"
-  },
-  {
-    "name": "MongoDB",
-    "icon": "/icons/mongo.svg",
-    "level": "Intermediate"
-  },
-  {
-    "name": "PostgreSQL",
-    "icon": "/icons/postgresql.svg",
-    "level": "Intermediate"
-  },
-  {
-    "name": "Prisma ORM",
-    "icon": "/icons/prismaORM.svg",
-    "level": "Intermediate"
-  },
-  {
-    "name": "Redux",
-    "icon": "/icons/redux.svg",
-    "level": "Intermediate"
-  },
-  {
-    "name": "Tailwind CSS",
-    "icon": "/icons/tailwindcss.svg",
-    "level": "Advanced"
-  },
-  {
-    "name": "HTML5",
-    "icon": "/icons/html5.svg",
-    "level": "Advanced"
-  },
-  {
-    "name": "CSS3",
-    "icon": "/icons/css3.svg",
-    "level": "Advanced"
-  },
-  {
-    "name": "Git",
-    "icon": "/icons/git.svg",
-    "level": "Advanced"
+    "category": "Tools",
+    "skills": [
+      { "name": "Git", "level": "Advanced", "icon": "/public/icons/git.svg" },
+      {
+        "name": "Docker",
+        "level": "Beginner",
+        "icon": "/public/icons/docker.svg"
+      },
+      { "name": "Jest", "level": "Beginner", "icon": "/public/icons/jest.svg" }
+    ]
   }
 ]
