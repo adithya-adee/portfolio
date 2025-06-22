@@ -11,11 +11,9 @@ export function SmoothCursorWrapper() {
     setIsMounted(true);
 
     const checkDevice = () => {
-      // Check if it's a touch device
       const isTouchDevice =
         "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-      // Check screen size (desktop is typically > 1024px)
       const isLargeScreen = window.innerWidth > 1024;
 
       // Check user agent for mobile/tablet
@@ -24,13 +22,11 @@ export function SmoothCursorWrapper() {
           navigator.userAgent
         );
 
-      // Only show cursor on desktop (non-touch, large screen, not mobile UA)
       setIsDesktop(!isTouchDevice && isLargeScreen && !isMobileUA);
     };
 
     checkDevice();
 
-    // Re-check on resize
     window.addEventListener("resize", checkDevice);
 
     return () => window.removeEventListener("resize", checkDevice);

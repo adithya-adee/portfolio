@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShineBorder } from "../magicui/shine-border";
 
-export default function AboutSection() {
+export default function AboutSection({ isMobile }: { isMobile: boolean }) {
   const highlights = [
     "4-month MERN internship at YHills",
     "35% reduction in page load times",
@@ -20,7 +20,7 @@ export default function AboutSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center sm:mb-6 md:mb-10 lg:mb-12"
       >
         <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           About Me
@@ -29,10 +29,12 @@ export default function AboutSection() {
       </motion.div>
 
       <Card className="bg-white/5 border-white/10 backdrop-blur-sm relative overflow-hidden">
-        <ShineBorder
-          duration={5}
-          shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-        />
+        {!isMobile && (
+          <ShineBorder
+            duration={5}
+            shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+          />
+        )}
         <CardContent className="p-8 relative z-10">
           <motion.div
             initial={{ opacity: 0 }}

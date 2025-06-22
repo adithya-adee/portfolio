@@ -8,7 +8,7 @@ import { ExternalLink, Paperclip } from "lucide-react";
 
 export default function BlogSection() {
   return (
-    <section className="max-w-4xl mx-auto px-4 py-8">
+    <section className="max-w-4xl mx-auto px-4 py-2 my-2">
       <div className="flex items-center gap-3">
         <div className="relative">
           <Paperclip className="w-8 h-8 text-purple-400" />
