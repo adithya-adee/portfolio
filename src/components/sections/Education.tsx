@@ -40,7 +40,7 @@ export default function EducationSection() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <Card className="bg-transparent border-0 border-l-4  border-gray-300 shadow-lg transition">
+          <Card className="bg-transparent border-0 border-l-4  border-gray-300 hover:shadow-2xl hover:bg-gray-800 shadow-lg transition">
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
                 <div className="flex items-center gap-2 text-gray-400 text-sm mb-2 sm:mb-0">

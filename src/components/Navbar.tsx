@@ -31,11 +31,7 @@ export default function Navbar({
 
   return (
     <div className="relative mb-12 flex justify-center">
-      <div
-        className="relative"
-        onMouseEnter={toggleNav}
-        onMouseLeave={toggleNav}
-      >
+      <div className="relative" onClick={toggleNav}>
         <motion.button
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}

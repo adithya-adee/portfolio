@@ -4,6 +4,7 @@ import skills from "@/asset/skills.json";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { BorderBeam } from "../magicui/border-beam";
+import { FaStackExchange } from "react-icons/fa";
 
 interface SkillJSONProps {
   name: string;
@@ -16,9 +17,9 @@ interface SkillCategory {
 }
 
 const levelColors: Record<string, string> = {
-  Advanced: "bg-emerald-500/20 border-emerald-500/50 text-emerald-400",
+  Advanced: "bg-amber-400/20 border-amber-400/50 text-amber-300",
   Intermediate: "bg-blue-500/20 border-blue-500/50 text-blue-400",
-  Beginner: "bg-amber-500/20 border-amber-500/50 text-amber-400",
+  Beginner: "bg-orange-600/20 border-orange-600/50 text-orange-400",
 };
 
 const levelDots: Record<string, number> = {
@@ -37,9 +38,18 @@ export default function SkillsSection() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-          Experienced in
-        </h2>
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <FaStackExchange className="w-8 h-8 text-purple-400" />
+            <div className="absolute inset-0 w-8 h-8 bg-purple-400/20 rounded-full blur-xl"></div>
+          </div>
+          <div>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+              Skills
+            </h2>
+            <p className="text-gray-400 text-sm mt-1">This is all ik</p>
+          </div>
+        </div>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
@@ -52,7 +62,7 @@ export default function SkillsSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <Card className="bg-black/40 border-neutral-800 backdrop-blur-sm relative overflow-hidden">
+            <Card className="h-auto bg-black/40 border-neutral-800 backdrop-blur-sm relative overflow-hidden">
               <BorderBeam
                 size={100}
                 duration={8 + categoryIndex * 2}

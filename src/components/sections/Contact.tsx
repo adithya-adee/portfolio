@@ -207,11 +207,11 @@ export default function ContactUs() {
           transition={{ duration: 0.5, delay: 0.15 }}
           viewport={{ once: true }}
         >
-          <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+          <Card className="h-full pt-0 bg-white/5 border-white/10 backdrop-blur-sm">
             <CardContent className="p-6">
-              <h3 className="text-xl font-semibold text-white mb-6">
-                Send a Message
-              </h3>
+              <h4 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent mb-3">
+                Send a message
+              </h4>
 
               <form ref={form} onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

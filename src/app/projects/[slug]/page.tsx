@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
-import projects from "@/asset/projects.json";
+import projectsData from "@/asset/projects.json";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +32,12 @@ interface Project {
   project_details: string[];
 }
 
+interface CategoryProjects {
+  category: string;
+  name?: string;
+  projects: Project[];
+}
+
 export default function ProjectDetailPage() {
   const params = useParams();
   const slug =
@@ -41,7 +47,17 @@ export default function ProjectDetailPage() {
       ? params.slug[0]
       : "";
 
-  const project = projects.find((p) => p.slug === slug) as Project | undefined;
+  // Find the project in the nested structure
+  let project: Project | undefined;
+  const categoryData = projectsData as CategoryProjects[];
+
+  for (const categoryGroup of categoryData) {
+    const foundProject = categoryGroup.projects.find((p) => p.slug === slug);
+    if (foundProject) {
+      project = foundProject;
+      break;
+    }
+  }
 
   if (!project) return notFound();
 

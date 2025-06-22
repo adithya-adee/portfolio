@@ -1,82 +1,125 @@
 [
   {
-    "title": "Hackverse (Hackathon Organizing Platform)",
-    "name": "Hackverse (Under Development)",
-    "slug": "hackverse",
-    "description": "Hackverse is a scalable and secure hackathon hosting platform that demonstrates my proficiency in full-stack development and adherence to SOLID principles. The project posed several challenges, including implementing robust user authentication and designing a normalized database schema.",
-    "category": "Personal Project",
-    "year": 2025,
-    "tech_stack": [
-      "NestJS",
-      "Next.js",
-      "PostgreSQL (Neon)",
-      "Prisma ORM",
-      "Passport.js",
-      "Redux"
-    ],
-    "images": [
-      "/projects/hackverse/events-dark.png",
-      "/projects/hackverse/events-light.png",
-      "/projects/hackverse/profile-dark.png",
-      "/projects/hackverse/profile-light.png"
-    ],
-    "preview_link": "https://github.com/adithya-adee/hackverse",
-    "project_details": [
-      "Developed secure Role-Based Access Control (RBAC) using Passport.js, NestJS guards, and decorators, ensuring granular permission management and robust user authentication.",
-      "Designed and optimized a highly normalized PostgreSQL database schema using Prisma ORM, enhancing data storage efficiency and retrieval performance.",
-      "Architected a cohesive full-stack application utilizing PostgreSQL (via Neon), React (via Next.js), and Node.js (via NestJS), ensuring scalability and maintainability.",
-      "Implemented Redux for global state management, ensuring consistent state across the application and improving user experience."
+    "category": "Web Development",
+    "projects": [
+      {
+        "title": "Hackverse (Hackathon Organizing Platform)",
+        "name": "Hackverse (Under Development)",
+        "slug": "hackverse",
+        "description": "Hackverse is a scalable and secure hackathon hosting platform that demonstrates my proficiency in full-stack development and adherence to SOLID principles. The project posed several challenges, including implementing robust user authentication and designing a normalized database schema.",
+        "category": "Web Development",
+        "year": 2025,
+        "tech_stack": [
+          "NestJS",
+          "Next.js",
+          "PostgreSQL (Neon)",
+          "Prisma ORM",
+          "Passport.js",
+          "Redux"
+        ],
+        "images": [
+          "/projects/hackverse/events-dark.png",
+          "/projects/hackverse/events-light.png",
+          "/projects/hackverse/profile-dark.png",
+          "/projects/hackverse/profile-light.png"
+        ],
+        "preview_link": "https://github.com/adithya-adee/hackverse",
+        "github_url": "https://github.com/adithya-adee/hackverse",
+        "live_url": "https://hackverse-sandy.vercel.app",
+        "project_details": [
+          "Developed secure Role-Based Access Control (RBAC) using Passport.js, NestJS guards, and decorators, ensuring granular permission management and robust user authentication.",
+          "Designed and optimized a highly normalized PostgreSQL database schema using Prisma ORM, enhancing data storage efficiency and retrieval performance.",
+          "Architected a cohesive full-stack application utilizing PostgreSQL (via Neon), React (via Next.js), and Node.js (via NestJS), ensuring scalability and maintainability.",
+          "Implemented Redux for global state management, ensuring consistent state across the application and improving user experience."
+        ]
+      },
+      {
+        "title": "Medicare Simplified",
+        "name": "Medicare Simplified",
+        "slug": "medicare-simplified",
+        "description": "Medicare Simplified is an e-commerce platform for medicine that showcases my expertise in React and Next.js. The project involved migrating from React.js to Next.js, implementing server-side rendering, and integrating a secure authentication system.",
+        "category": "Web Development",
+        "year": 2024,
+        "tech_stack": [
+          "Next.js",
+          "PostgreSQL",
+          "Supabase",
+          "NextAuth.js",
+          "Prisma ORM"
+        ],
+        "images": [
+          "/projects/medicare-simplified/admin-page.png",
+          "/projects/medicare-simplified/cart.png",
+          "/projects/medicare-simplified/category.png",
+          "/projects/medicare-simplified/hero.png",
+          "/projects/medicare-simplified/history.png"
+        ],
+        "preview_link": "https://github.com/adithya-adee/medicare-simplified",
+        "github_url": "https://github.com/adithya-adee/medicare-simplified",
+        "live_url": "",
+        "project_details": [
+          "Spearheaded the migration of the web application from React.js to Next.js, leveraging server-side rendering and API routing to enhance performance and SEO.",
+          "Implemented Role-Based Access Control (RBAC) using NextAuth.js and Prisma ORM, providing differentiated user experiences for admin and regular users.",
+          "Developed and maintained both front-end and back-end components, ensuring seamless integration between Next.js, PostgreSQL, and extended with Supabase or Neon.",
+          "Optimized application performance and user experience, resulting in improved load times and user engagement."
+        ]
+      }
     ]
   },
   {
-    "title": "Medicare Simplified",
-    "name": "Medicare Simplified",
-    "slug": "medicare-simplified",
-    "description": "Medicare Simplified is an e-commerce platform for medicine that showcases my expertise in React and Next.js. The project involved migrating from React.js to Next.js, implementing server-side rendering, and integrating a secure authentication system.",
-    "category": "Personal Project",
-    "year": 2024,
-    "tech_stack": [
-      "Next.js",
-      "PostgreSQL",
-      "Supabase",
-      "NextAuth.js",
-      "Prisma ORM"
-    ],
-    "images": [
-      "/projects/medicare-simplified/admin-page.png",
-      "/projects/medicare-simplified/cart.png",
-      "/projects/medicare-simplified/category.png",
-      "/projects/medicare-simplified/hero.png",
-      "/projects/medicare-simplified/history.png"
-    ],
-    "preview_link": "https://github.com/adithya-adee/medicare-simplified",
-    "project_details": [
-      "Spearheaded the migration of the web application from React.js to Next.js, leveraging server-side rendering and API routing to enhance performance and SEO.",
-      "Implemented Role-Based Access Control (RBAC) using NextAuth.js and Prisma ORM, providing differentiated user experiences for admin and regular users.",
-      "Developed and maintained both front-end and back-end components, ensuring seamless integration between Next.js, PostgreSQL, and extended with Supabase or Neon.",
-      "Optimized application performance and user experience, resulting in improved load times and user engagement."
+    "category": "Rust",
+    "projects": [
+      {
+        "title": "Crab Clean",
+        "name": "Crab Clean",
+        "slug": "crab-clean",
+        "description": "Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
+        "category": "CLI Tools",
+        "year": 2024,
+        "tech_stack": ["Rust"],
+        "images": [
+          "/projects/crab-clean/duplicate-dry-run.png",
+          "/projects/crab-clean/duplicate-run.png",
+          "/projects/crab-clean/automatic-delete.png",
+          "/projects/crab-clean/unused-file.png"
+        ],
+        "preview_link": "https://crates.io/crates/crab-clean",
+        "github_url": "https://github.com/adithya-adee/crab-clean",
+        "live_url": "https://crates.io/crates/crab-clean",
+        "project_details": [
+          "Developed a CLI tool in Rust to efficiently scan and identify unused and duplicate files on the system.",
+          "Implemented file grouping functionality to organize files based on user-defined criteria.",
+          "Optimized performance for large-scale file systems, ensuring quick and accurate results."
+        ]
+      }
     ]
   },
   {
-    "title": "React Learn Project",
-    "name": "React Learn Project",
-    "slug": "react-learn",
-    "description": "The React Learn Project is a personal initiative to enhance my frontend skills using various libraries. The project focuses on showcasing unique design elements and rapid learning capabilities.",
-    "category": "Frontend Development",
-    "year": 2024,
-    "tech_stack": [
-      "React",
-      "Tailwind CSS",
-      "Vercel"
-    ],
-    "images": [
-      "/projects/react-learn/hero.png"
-    ],
-    "preview_link": "https://react-practice-three-ebon.vercel.app/",
-    "project_details": [
-      "Utilized React and Tailwind CSS to build responsive and visually appealing user interfaces, demonstrating proficiency in modern frontend development.",
-      "Showcased the ability to quickly learn and implement new libraries and frameworks, adapting to evolving frontend development trends.",
-      "Emphasized unique design elements, reflecting creativity and attention to user experience."
+    "category": "Web3",
+    "projects": [
+      {
+        "title": "Journal Application",
+        "name": "Journal Application",
+        "slug": "journal-app",
+        "description": "Journal Application is a decentralized Web3-based journaling platform that leverages blockchain technology for secure and immutable record-keeping.",
+        "category": "Web3",
+        "year": 2024,
+        "tech_stack": ["React", "Next.js", "Solidity", "Ethereum", "IPFS"],
+        "images": [
+          "/projects/journal-app/dashboard.png",
+          "/projects/journal-app/editor.png",
+          "/projects/journal-app/history.png"
+        ],
+        "preview_link": "https://github.com/adithya-adee/journal-app",
+        "github_url": "https://github.com/adithya-adee/journal-app",
+        "live_url": "",
+        "project_details": [
+          "Developed a decentralized journaling platform using Ethereum blockchain and IPFS for secure and immutable record-keeping.",
+          "Implemented smart contracts in Solidity to manage journal entries and ensure data integrity.",
+          "Integrated React and Next.js for a seamless and responsive user interface.",
+          "Optimized the application for Web3 interactions, including wallet integration and transaction handling."
+        ]
+      }
     ]
   }
 ]
