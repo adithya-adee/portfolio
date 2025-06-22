@@ -5,7 +5,7 @@
 
 :root {
   --radius: 0.625rem;
-  
+
   /* Setting dark theme colors by default */
   --background: oklch(0.13 0.028 261.692);
   --foreground: oklch(0.985 0.002 247.839);
@@ -38,7 +38,7 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
-  
+
   /* Custom dark theme variables */
   --accent-color: #3b82f6;
   --card-bg: #171717;
@@ -84,12 +84,40 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-}
+  --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
+  @keyframes background-position-spin {
+  0% {
+    background-position: top center;
+    }
+  100% {
+    background-position: bottom center;
+    }
+  }
+  --animate-shine: shine var(--duration) infinite linear
+;
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
+  }}
 
 body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  background-color: var(--background);
+  background: linear-gradient(135deg, 
+    var(--background) 0%, 
+    var(--card) 25%, 
+    var(--secondary) 50%, 
+    var(--accent) 75%, 
+    var(--background) 100%);
+  background-attachment: fixed;
   color: var(--foreground);
+  min-height: 100vh;
 }
 
 /* Force dark mode class */

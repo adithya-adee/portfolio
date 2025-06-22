@@ -4,13 +4,26 @@ import blogs from "@/asset/blog.json";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Paperclip } from "lucide-react";
 
 export default function BlogSection() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-8 text-white">Blog Posts</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="flex items-center gap-3">
+        <div className="relative">
+          <Paperclip className="w-8 h-8 text-purple-400" />
+          <div className="absolute inset-0 w-8 h-8 bg-purple-400/20 rounded-full blur-xl"></div>
+        </div>
+        <div>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+            Blog Posts
+          </h2>
+          <p className="text-gray-400 text-sm mt-1">
+            Written based on my Experience
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2">
         {blogs.map((blog, idx) => (
           <motion.a
             key={blog.id}
@@ -33,7 +46,7 @@ export default function BlogSection() {
             transition={{ duration: 0.6, delay: idx * 0.13, type: "spring" }}
             className="block"
           >
-            <Card className="bg-neutral-900 border-neutral-800 shadow-lg transition group h-full flex flex-col hover:border-purple-500">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full">
               <CardContent className="flex-1 flex flex-col p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Badge className="bg-purple-700/80 text-xs text-white">

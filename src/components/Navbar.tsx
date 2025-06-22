@@ -31,15 +31,19 @@ export default function Navbar({
 
   return (
     <div className="relative mb-12 flex justify-center">
-      {/* The "+" button is always rendered but hidden when menu is expanded */}
-      <div className="relative">
+      <div
+        className="relative"
+        onMouseEnter={toggleNav}
+        onMouseLeave={toggleNav}
+      >
         <motion.button
-          onClick={toggleNav}
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "keyframes", duration: 0.2 }}
           className={`w-12 h-12 flex items-center justify-center text-xl rounded-full bg-neutral-800 shadow-lg z-10 ${
-            isNavExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
+            isNavExpanded
+              ? "opacity-0 pointer-events-none"
+              : "opacity-100 cursor-pointer"
           }`}
           aria-label="Expand navigation"
         >
