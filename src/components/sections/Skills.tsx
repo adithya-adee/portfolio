@@ -81,37 +81,36 @@ export default function SkillsSection() {
                     },
                   }}
                 >
-                  {category.skills.map(
-                    (skill: SkillJSONProps, skillIndex: number) => (
-                      <motion.div
-                        key={skill.name}
-                        variants={{
-                          hidden: { opacity: 0, scale: 0.8 },
-                          visible: { opacity: 1, scale: 1 },
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                        className="relative group"
-                      >
-                        <div
-                          className={`
+                  {category.skills.map((skill: SkillJSONProps) => (
+                    <motion.div
+                      key={skill.name}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.8 },
+                        visible: { opacity: 1, scale: 1 },
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      className="relative group"
+                    >
+                      <div
+                        className={`
                         px-4 py-3 rounded-xl border backdrop-blur-sm
                         transition-all duration-300 cursor-pointer
                         ${levelColors[skill.level]}
                         hover:shadow-lg hover:shadow-current/20
                         flex items-center gap-3
                       `}
-                        >
-                          <span className="font-medium text-sm">
-                            {skill.name}
-                          </span>
+                      >
+                        <span className="font-medium text-sm">
+                          {skill.name}
+                        </span>
 
-                          {/* Skill level dots */}
-                          <div className="flex gap-1">
-                            {Array.from({ length: 3 }).map(
-                              (_, dotIndex: number) => (
-                                <div
-                                  key={dotIndex}
-                                  className={`
+                        {/* Skill level dots */}
+                        <div className="flex gap-1">
+                          {Array.from({ length: 3 }).map(
+                            (_, dotIndex: number) => (
+                              <div
+                                key={dotIndex}
+                                className={`
                                 w-1.5 h-1.5 rounded-full transition-all duration-300
                                 ${
                                   dotIndex < levelDots[skill.level]
@@ -119,24 +118,23 @@ export default function SkillsSection() {
                                     : "bg-current opacity-20"
                                 }
                               `}
-                                />
-                              )
-                            )}
-                          </div>
+                              />
+                            )
+                          )}
                         </div>
+                      </div>
 
-                        {/* Tooltip */}
-                        <div
-                          className="absolute -top-10 left-1/2 transform -translate-x-1/2 
+                      {/* Tooltip */}
+                      <div
+                        className="absolute -top-10 left-1/2 transform -translate-x-1/2 
                                     opacity-0 group-hover:opacity-100 transition-opacity duration-200
                                     bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap
                                     pointer-events-none z-10"
-                        >
-                          {skill.level}
-                        </div>
-                      </motion.div>
-                    )
-                  )}
+                      >
+                        {skill.level}
+                      </div>
+                    </motion.div>
+                  ))}
                 </motion.div>
               </CardContent>
             </Card>

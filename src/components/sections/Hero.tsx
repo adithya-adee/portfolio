@@ -104,7 +104,7 @@ export default function HeroSection() {
 
             <Button
               onClick={handleDownloadCV}
-              className="bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+              className="bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 group hover:border-2 hover:cursor-none"
               size="lg"
             >
               <FaDownload className="mr-2 group-hover:translate-y-0.5 transition-transform" />

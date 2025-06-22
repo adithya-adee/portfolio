@@ -123,6 +123,15 @@ body {
 /* Force dark mode class */
 html {
   color-scheme: dark;
+
+}
+
+* {
+    cursor: none;
+}
+
+*:hover {
+  cursor: none;
 }
 
 /* Removed navbar specific styling */

@@ -203,6 +203,7 @@ export function SmoothCursor({
       }}
     >
       {cursor}
+      {isMoving && <></>}
     </motion.div>
   );
 }

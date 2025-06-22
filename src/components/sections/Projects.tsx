@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { NeonGradientCard } from "../magicui/neon-gradient-card";
 import { ExternalLink, Github, Calendar, Code, Sparkles } from "lucide-react";
 
 interface Project {
@@ -101,7 +100,7 @@ export default function ProjectSection() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {projects.slice(0, 4).map((project: Project, index: number) => (
+        {projects.slice(0, 4).map((project: Project) => (
           <motion.div
             key={project.slug}
             variants={itemVariants}
@@ -262,8 +261,9 @@ export default function ProjectSection() {
               <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-300"></div>
             </div>
             <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              I'm constantly working on new projects and exploring innovative
-              technologies. Stay tuned for more exciting developments in{" "}
+              I&apos;m constantly working on new projects and exploring
+              innovative technologies. Stay tuned for more exciting developments
+              in{" "}
               <span className="text-blue-400 font-semibold">
                 full-stack development
               </span>

@@ -42,7 +42,7 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <p className="text-lg leading-relaxed text-gray-300">
-              I'm a passionate full-stack developer specializing in modern
+              I&apos;m a passionate full-stack developer specializing in modern
               JavaScript technologies. Currently exploring the exciting world of{" "}
               <span className="text-purple-400 font-semibold">Web3</span> while
               building scalable applications with React, Next.js, and Node.js.
