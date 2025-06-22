@@ -2,10 +2,14 @@
   {
     "category": "Programming Languages",
     "skills": [
-      { "name": "C++", "level": "Advanced", "icon": "/public/icons/cpp.svg" },
+      {
+        "name": "C++",
+        "level": "Intermediate",
+        "icon": "/public/icons/cpp.svg"
+      },
       {
         "name": "Rust",
-        "level": "Intermediate",
+        "level": "Beginner",
         "icon": "/public/icons/rust.svg"
       },
       {
@@ -15,7 +19,7 @@
       },
       {
         "name": "TypeScript",
-        "level": "Advanced",
+        "level": "Intermediate",
         "icon": "/public/icons/typescript.svg"
       }
     ]
@@ -104,7 +108,8 @@
         "name": "Docker",
         "level": "Beginner",
         "icon": "/public/icons/docker.svg"
-      }
+      },
+      { "name": "Jest", "level": "Beginner", "icon": "/public/icons/jest.svg" }
     ]
   }
 ]
