@@ -27,13 +27,8 @@ export default function HeroSection() {
   const socialLinks = [
     {
       icon: <FaGithub size={20} />,
-      link: "https://github.com/yourusername",
+      link: "https://github.com/adithya-adee",
       label: "GitHub",
-    },
-    {
-      icon: <FaLinkedin size={20} />,
-      link: "https://linkedin.com/in/adithya-a-8bb28128a",
-      label: "LinkedIn",
     },
     {
       icon: <FaTwitter size={20} />,
@@ -45,10 +40,15 @@ export default function HeroSection() {
       link: "https://www.reddit.com/user/Glithcy_moon_69/",
       label: "Reddit",
     },
+    {
+      icon: <FaLinkedin size={20} />,
+      link: "https://linkedin.com/in/adithya-a-8bb28128a",
+      label: "LinkedIn",
+    },
   ];
 
   return (
-    <section className="max-w-4xl mx-auto px-6 py-16">
+    <section className="max-w-4xl mx-auto px-6 py-2 my-2">
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
         {/* Avatar */}
         <motion.div

@@ -16,7 +16,7 @@ const education = [
 export default function EducationSection() {
   return (
     <section>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="relative">
             <School2Icon className="w-8 h-8 text-purple-400" />

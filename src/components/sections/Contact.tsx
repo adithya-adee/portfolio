@@ -85,7 +85,7 @@ export default function ContactUs() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center mb-4"
       >
         {/* <div className="flex items-center gap-3">
           <div className="relative">
@@ -209,7 +209,7 @@ export default function ContactUs() {
         >
           <Card className="h-full pt-0 bg-white/5 border-white/10 backdrop-blur-sm">
             <CardContent className="p-6">
-              <h4 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent mb-3">
+              <h4 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent mb-6">
                 Send a message
               </h4>
 

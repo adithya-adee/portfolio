@@ -28,7 +28,7 @@ const levelDots: Record<string, number> = {
   Beginner: 1,
 };
 
-export default function SkillsSection() {
+export default function SkillsSection({ isMobile }: { isMobile: boolean }) {
   return (
     <section className="py-16 px-4">
       <motion.div
@@ -63,13 +63,15 @@ export default function SkillsSection() {
             className="relative"
           >
             <Card className="h-auto bg-black/40 border-neutral-800 backdrop-blur-sm relative overflow-hidden">
-              <BorderBeam
-                size={100}
-                duration={8 + categoryIndex * 2}
-                delay={categoryIndex * 0.5}
-                colorFrom="#ffaa40"
-                colorTo="#9c40ff"
-              />
+              {!isMobile && (
+                <BorderBeam
+                  size={100}
+                  duration={8 + categoryIndex * 2}
+                  delay={categoryIndex * 0.5}
+                  colorFrom="#ffaa40"
+                  colorTo="#9c40ff"
+                />
+              )}
 
               <CardHeader className="pb-4">
                 <CardTitle className="text-2xl font-bold text-white">
@@ -161,12 +163,14 @@ export default function SkillsSection() {
       >
         <div className="relative">
           <Card className="bg-black/20 border-neutral-800 backdrop-blur-sm">
-            <BorderBeam
-              size={80}
-              duration={12}
-              colorFrom="#60a5fa"
-              colorTo="#a855f7"
-            />
+            {!isMobile && (
+              <BorderBeam
+                size={80}
+                duration={12}
+                colorFrom="#60a5fa"
+                colorTo="#a855f7"
+              />
+            )}
             <CardContent className="p-8">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>

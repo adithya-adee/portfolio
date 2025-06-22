@@ -15,7 +15,7 @@ export default function ExperienceSection() {
 
   return (
     <section>
-      <div className="flex justify-between lg:mb-8">
+      <div className="flex justify-between sm:my-4 md:my-6 lg:mb-8">
         <div className="flex items-center gap-3">
           <div className="relative">
             <HighlighterIcon className="w-8 h-8 text-purple-400" />
@@ -48,7 +48,7 @@ export default function ExperienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: idx * 0.1 }}
           viewport={{ once: true }}
-          className="mb-10"
+          className="my-10"
         >
           <Card className="bg-transparent border-0 border-l-4 border-gray-400  hover:shadow-2xl hover:bg-gray-800 shadow-lg transition-all duration-200">
             <CardContent className="p-6">

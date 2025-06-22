@@ -39,7 +39,7 @@
         "slug": "medicare-simplified",
         "description": "Medicare Simplified is an e-commerce platform for medicine that showcases my expertise in React and Next.js. The project involved migrating from React.js to Next.js, implementing server-side rendering, and integrating a secure authentication system.",
         "category": "Web Development",
-        "year": 2024,
+        "year": 2025,
         "tech_stack": [
           "Next.js",
           "PostgreSQL",
@@ -73,9 +73,9 @@
         "title": "Crab Clean",
         "name": "Crab Clean",
         "slug": "crab-clean",
-        "description": "Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
+        "description": "300 downloads!! Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
         "category": "CLI Tools",
-        "year": 2024,
+        "year": 2025,
         "tech_stack": ["Rust"],
         "images": [
           "/projects/crab-clean/duplicate-dry-run.png",
@@ -103,13 +103,9 @@
         "slug": "journal-app",
         "description": "Journal Application is a decentralized Web3-based journaling platform that leverages blockchain technology for secure and immutable record-keeping.",
         "category": "Web3",
-        "year": 2024,
+        "year": 2025,
         "tech_stack": ["React", "Next.js", "Solidity", "Ethereum", "IPFS"],
-        "images": [
-          "/projects/journal-app/dashboard.png",
-          "/projects/journal-app/editor.png",
-          "/projects/journal-app/history.png"
-        ],
+        "images": [],
         "preview_link": "https://github.com/adithya-adee/journal-app",
         "github_url": "https://github.com/adithya-adee/journal-app",
         "live_url": "",

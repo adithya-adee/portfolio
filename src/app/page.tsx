@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 // Import Page Sections
@@ -16,6 +16,7 @@ import BlogSection from "@/components/sections/blog";
 
 export default function Home() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   // Animation variants for sections
   const sectionVariants = {
@@ -26,6 +27,16 @@ export default function Home() {
       transition: { duration: 0.6 },
     },
   };
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+
+    // Listen for resize events
+    window.addEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <div className="min-h-screen py-8 px-4 max-w-4xl mx-auto">
@@ -44,7 +55,7 @@ export default function Home() {
 
         {/* About Section */}
         <section id="about" className="mb-24">
-          <About />
+          <About isMobile={isMobile} />
         </section>
 
         {/* Experience Section */}
@@ -54,12 +65,12 @@ export default function Home() {
 
         {/* Projects Section */}
         <section id="projects" className="mb-24">
-          <Projects />
+          <Projects isMobile={isMobile} />
         </section>
 
         {/* Skills/Stack Section */}
         <section id="stack" className="mb-24">
-          <Skills />
+          <Skills isMobile={isMobile} />
         </section>
 
         {/* Education Section */}
