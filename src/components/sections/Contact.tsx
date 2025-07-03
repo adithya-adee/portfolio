@@ -59,15 +59,15 @@ export default function ContactUs() {
       color: "hover:text-white",
     },
     {
-      icon: <FaLinkedin size={18} />,
-      href: "https://linkedin.com/in/adithya-a-8bb28128a",
-      label: "LinkedIn",
-      color: "hover:text-blue-400",
-    },
-    {
       icon: <FaTwitter size={18} />,
       href: "https://x.com/AdithyaA593326",
       label: "Twitter",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: <FaLinkedin size={18} />,
+      href: "https://linkedin.com/in/adithya-a-8bb28128a",
+      label: "LinkedIn",
       color: "hover:text-blue-400",
     },
     {

@@ -60,7 +60,7 @@ export default function Home() {
 
         {/* Experience Section */}
         <section id="experience" className="mb-24">
-          <Experience />
+          <Experience isMobile={isMobile} />
         </section>
 
         {/* Projects Section */}

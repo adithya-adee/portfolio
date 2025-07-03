@@ -13,8 +13,27 @@ import { IoLocationOutline } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
-export default function HeroSection() {
+// Move font declarations to module scope
+const montserrat = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["700", "800"],
+  variable: "--font-montserrat",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+interface HeroProps {
+  isMobile?: boolean;
+}
+
+export default function HeroSection({ isMobile }: HeroProps) {
   function handleDownloadCV() {
     const link = document.createElement("a");
     link.href = "/cv.pdf";
@@ -26,29 +45,33 @@ export default function HeroSection() {
 
   const socialLinks = [
     {
-      icon: <FaGithub size={20} />,
+      icon: <FaGithub size={isMobile ? 16 : 20} />,
       link: "https://github.com/adithya-adee",
       label: "GitHub",
     },
     {
-      icon: <FaTwitter size={20} />,
+      icon: <FaTwitter size={isMobile ? 16 : 20} />,
       link: "https://x.com/AdithyaA593326",
       label: "Twitter",
     },
     {
-      icon: <FaReddit size={20} />,
+      icon: <FaReddit size={isMobile ? 16 : 20} />,
       link: "https://www.reddit.com/user/Glithcy_moon_69/",
       label: "Reddit",
     },
     {
-      icon: <FaLinkedin size={20} />,
+      icon: <FaLinkedin size={isMobile ? 16 : 20} />,
       link: "https://linkedin.com/in/adithya-a-8bb28128a",
       label: "LinkedIn",
     },
   ];
 
   return (
-    <section className="max-w-4xl mx-auto px-6 py-2 my-2">
+    <section
+      className={`max-w-4xl mx-auto ${
+        isMobile ? "px-4 py-1" : "px-6 py-2"
+      } my-2`}
+    >
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
         {/* Avatar */}
         <motion.div
@@ -58,7 +81,11 @@ export default function HeroSection() {
           className="relative"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl blur-xl" />
-          <Avatar className="relative w-48 h-48 rounded-2xl border border-white/10 shadow-2xl">
+          <Avatar
+            className={`relative ${
+              isMobile ? "w-32 h-32" : "w-48 h-48"
+            } rounded-2xl border border-white/10 shadow-2xl`}
+          >
             <AvatarImage
               src="/profile_picture.jpg"
               alt="Adithya Anand"
@@ -77,16 +104,28 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h1
+              className={`${montserrat.className} ${
+                isMobile ? "text-3xl" : "text-4xl lg:text-5xl"
+              } font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent tracking-tight`}
+            >
               Adithya Anand
             </h1>
-            <p className="text-xl text-gray-400 mb-4">
+            <p
+              className={`${inter.className} ${
+                isMobile ? "text-lg" : "text-xl"
+              } text-gray-400 mb-4 font-light`}
+            >
               Full Stack Web Developer
             </p>
 
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-500 mb-6">
-              <IoLocationOutline size={18} />
-              <span>Karnataka, India</span>
+            <div
+              className={`${inter.className} flex items-center justify-center lg:justify-start gap-2 text-gray-500 mb-6`}
+            >
+              <IoLocationOutline size={isMobile ? 16 : 18} />
+              <span className={isMobile ? "text-sm" : "text-base"}>
+                Karnataka, India
+              </span>
             </div>
           </motion.div>
 
@@ -95,7 +134,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-col sm:flex-row items-center gap-4"
+            className={`flex flex-col ${
+              isMobile ? "gap-3" : "sm:flex-row items-center gap-4"
+            }`}
           >
             <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20 transition-colors">
               <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
@@ -104,10 +145,14 @@ export default function HeroSection() {
 
             <Button
               onClick={handleDownloadCV}
-              className="bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 group hover:border-2 hover:cursor-none"
-              size="lg"
+              className="bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 group hover:border-2"
+              size={isMobile ? "default" : "lg"}
             >
-              <FaDownload className="mr-2 group-hover:translate-y-0.5 transition-transform" />
+              <FaDownload
+                className={`${
+                  isMobile ? "mr-1.5" : "mr-2"
+                } group-hover:translate-y-0.5 transition-transform`}
+              />
               Download CV
             </Button>
           </motion.div>
@@ -117,15 +162,17 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="pt-6 border-t border-white/5"
+            className={`${isMobile ? "pt-4" : "pt-6"} border-t border-white/5`}
           >
             <a
               href="mailto:adithya25905@gmail.com"
-              className="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-6 group"
+              className={`inline-flex items-center text-gray-400 hover:text-white transition-colors ${
+                isMobile ? "mb-4 text-sm" : "mb-6"
+              } group`}
             >
               <HiOutlineMail
                 className="mr-2 group-hover:scale-110 transition-transform"
-                size={20}
+                size={isMobile ? 16 : 20}
               />
               adithya25905@gmail.com
             </a>
@@ -138,8 +185,10 @@ export default function HeroSection() {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  className={`${
+                    isMobile ? "p-2" : "p-3"
+                  } rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300`}
+                  whileHover={!isMobile ? { scale: 1.05, y: -2 } : undefined}
                   whileTap={{ scale: 0.95 }}
                   title={social.label}
                 >

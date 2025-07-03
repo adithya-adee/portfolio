@@ -1,18 +1,31 @@
 "use client";
 
-import blogs from "@/asset/blog.json";
+import blogsData from "@/asset/blog.json";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { ExternalLink, Paperclip } from "lucide-react";
+import { useMemo } from "react";
+
+interface BlogProps {
+  id: number;
+  title: string;
+  url: string;
+  category: string;
+  posted_in: string;
+  date: string;
+  description: string;
+}
 
 export default function BlogSection() {
+  const blogs = useMemo(() => blogsData as BlogProps[], []);
+
   return (
     <section className="max-w-4xl mx-auto px-4 py-2 my-2">
       <div className="flex items-center gap-3">
         <div className="relative">
           <Paperclip className="w-8 h-8 text-purple-400" />
-          <div className="absolute inset-0 w-8 h-8 bg-purple-400/20 rounded-full blur-xl"></div>
+          <div className="absolute inset-0 w-8 h-8 bg-purple-400/20 rounded-full blur-xl" />
         </div>
         <div>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
@@ -44,7 +57,7 @@ export default function BlogSection() {
             }}
             animate={{ opacity: 1, x: 0, rotate: 0 }}
             transition={{ duration: 0.6, delay: idx * 0.13, type: "spring" }}
-            className="block"
+            className="block group"
           >
             <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full">
               <CardContent className="flex-1 flex flex-col p-6">

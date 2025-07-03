@@ -2,12 +2,48 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothCursorWrapper } from "@/components/ui/smooth-cursor-wrapper";
+import StructuredData from "@/components/SEO";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Enhanced metadata
 export const metadata: Metadata = {
-  title: "Adithya A | Portfolio",
-  description: "Full Stack Web Developer",
+  title: "Adithya Anand | Full Stack Web Developer Portfolio",
+  description:
+    "Experienced Full Stack Web Developer specializing in React, Node.js, and modern web technologies. View my projects, skills and experience.",
+  keywords:
+    "full stack developer, web developer, react developer, node.js developer, javascript developer, portfolio",
+  authors: [{ name: "Adithya Anand" }],
+  creator: "Adithya Anand",
+  publisher: "Adithya Anand",
+  robots: "index, follow",
+  metadataBase: new URL("https://adithya-anand-portfolio.vercel.app/"),
+  alternates: {
+    canonical: "https://adithya-anand-portfolio.vercel.app/",
+  },
+  openGraph: {
+    title: "Adithya Anand | Full Stack Web Developer",
+    description:
+      "Portfolio showcasing my web development projects, skills, and experience",
+    url: "https://adithya-anand-portfolio.vercel.app/",
+    siteName: "Adithya Anand Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "https://your-domain.com/og-image.jpg", // Create an attractive OG image
+        width: 1200,
+        height: 630,
+        alt: "Adithya Anand - Full Stack Web Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Adithya Anand | Web Developer Portfolio",
+    description: "Check out my projects and skills in web development",
+    images: ["https://adithya-anand-portfolio.vercel.app/twitter-image.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -17,6 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body className={inter.className}>
         <div className="relative min-h-screen">
           {/* Background Pattern */}
