@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothCursorWrapper } from "@/components/ui/smooth-cursor-wrapper";
 import StructuredData from "@/components/SEO";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Enhanced metadata
 export const metadata: Metadata = {
   title: "Adithya Anand | Full Stack Web Developer Portfolio",
   description:
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://your-domain.com/og-image.jpg", // Create an attractive OG image
+        url: "https://adithya-anand-portfolio/profile_picture.jpg",
         width: 1200,
         height: 630,
         alt: "Adithya Anand - Full Stack Web Developer",
@@ -76,7 +76,7 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-blue-900/5" />
             <div className="absolute inset-0 bg-gradient-to-tl from-emerald-900/3 via-transparent to-pink-900/3" />
           </div>
-
+          <Analytics />
           <SmoothCursorWrapper />
           {children}
         </div>

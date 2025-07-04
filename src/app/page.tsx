@@ -50,7 +50,7 @@ export default function Home() {
       <motion.div initial="hidden" animate="visible" variants={sectionVariants}>
         {/* Hero Section (Profile) */}
         <section id="intro" className="mb-24">
-          <Hero />
+          <Hero isMobile={isMobile} />
         </section>
 
         {/* About Section */}

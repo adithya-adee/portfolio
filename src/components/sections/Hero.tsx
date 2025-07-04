@@ -14,8 +14,9 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { useEffect, useState } from "react";
+import LikeButton from "@/components/LikeButton";
 
-// Move font declarations to module scope
 const montserrat = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
@@ -99,36 +100,51 @@ export default function HeroSection({ isMobile }: HeroProps) {
 
         {/* Content */}
         <div className="flex-1 text-center lg:text-left space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <h1
-              className={`${montserrat.className} ${
-                isMobile ? "text-3xl" : "text-4xl lg:text-5xl"
-              } font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent tracking-tight`}
+          <div className="flex items-start justify-between">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="flex-1"
             >
-              Adithya Anand
-            </h1>
-            <p
-              className={`${inter.className} ${
-                isMobile ? "text-lg" : "text-xl"
-              } text-gray-400 mb-4 font-light`}
-            >
-              Full Stack Web Developer
-            </p>
+              <h1
+                className={`${montserrat.className} ${
+                  isMobile ? "text-3xl" : "text-4xl lg:text-5xl"
+                } font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent tracking-tight`}
+              >
+                Adithya Anand
+              </h1>
+              <p
+                className={`${inter.className} ${
+                  isMobile ? "text-lg" : "text-xl"
+                } text-gray-400 mb-4 font-light`}
+              >
+                Full Stack Web Developer
+              </p>
 
-            <div
-              className={`${inter.className} flex items-center justify-center lg:justify-start gap-2 text-gray-500 mb-6`}
-            >
-              <IoLocationOutline size={isMobile ? 16 : 18} />
-              <span className={isMobile ? "text-sm" : "text-base"}>
-                Karnataka, India
-              </span>
-            </div>
-          </motion.div>
+              <div
+                className={`${inter.className} flex items-center justify-center lg:justify-start gap-2 text-gray-500 mb-6`}
+              >
+                <IoLocationOutline size={isMobile ? 16 : 18} />
+                <span className={isMobile ? "text-sm" : "text-base"}>
+                  Karnataka, India
+                </span>
+              </div>
+            </motion.div>
 
+            {/* Like button for desktop - positioned in the top right */}
+            {!isMobile && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
+                <LikeButton isMobile={isMobile} />
+              </motion.div>
+            )}
+          </div>
+
+          {/* Like button positioned below avatar for mobile or next to it for desktop */}
           {/* Status & CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -157,6 +173,11 @@ export default function HeroSection({ isMobile }: HeroProps) {
             </Button>
           </motion.div>
 
+          {isMobile && (
+            <div className="mt-4 flex justify-center">
+              <LikeButton isMobile={isMobile} />
+            </div>
+          )}
           {/* Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
