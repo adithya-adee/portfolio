@@ -7,10 +7,11 @@ import { ShineBorder } from "../magicui/shine-border";
 
 export default function AboutSection({ isMobile }: { isMobile: boolean }) {
   const highlights = [
-    "4-month MERN internship at YHills",
-    "35% reduction in page load times",
-    "25% increase in user interaction efficiency",
-    "Expertise in JWT authentication & RBAC",
+    "400+ downloads for my 'Crab Clean' project on crates.io",
+    "Open-source contributor with impactful contributions to community projects",
+    "Proficient in building secure, fast, and optimized platforms in Web3",
+    "Strong problem-solving skills with a focus on scalable solutions",
+    "Currently learning Rust and Solana to deepen blockchain expertise",
   ];
 
   return (
@@ -59,10 +60,11 @@ export default function AboutSection({ isMobile }: { isMobile: boolean }) {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 * index, duration: 0.4 }}
                   viewport={{ once: true }}
+                  className="flex items-center"
                 >
                   <Badge
                     variant="outline"
-                    className="w-full justify-start p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20 text-gray-300"
+                    className="w-full justify-start p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20 text-gray-300 whitespace-normal break-words"
                   >
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 flex-shrink-0" />
                     {highlight}
@@ -79,8 +81,8 @@ export default function AboutSection({ isMobile }: { isMobile: boolean }) {
               className="pt-6 text-center"
             >
               <p className="text-gray-400">
-                🚀 Actively seeking summer internship opportunities to build
-                impactful web experiences
+                🚀 Actively seeking internship opportunities to build impactful
+                web experiences
               </p>
             </motion.div>
           </motion.div>

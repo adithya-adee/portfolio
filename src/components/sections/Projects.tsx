@@ -20,6 +20,7 @@ import {
 interface Project {
   title: string;
   name: string;
+  star: string;
   slug: string;
   description: string;
   category: string;
@@ -317,21 +318,19 @@ export default function ProjectsPage({ isMobile }: { isMobile: boolean }) {
           </div>
         </div>
 
-        {!isMobile && (
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              className="border-purple-500/50 text-purple-300 hover:text-white hover:bg-purple-500/10 backdrop-blur-sm transition-all duration-300 relative overflow-hidden"
-              onClick={handleViewAllProjects}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative flex items-center gap-2">
-                View all projects
-                <ExternalLink className="w-4 h-4 transition-transform hover:translate-x-1 hover:-translate-y-1" />
-              </span>
-            </Button>
-          </motion.div>
-        )}
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            variant="outline"
+            className="border-purple-500/50 text-purple-300 hover:text-white hover:bg-purple-500/10 backdrop-blur-sm transition-all duration-300 relative overflow-hidden"
+            onClick={handleViewAllProjects}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative flex items-center gap-2">
+              View all projects
+              <ExternalLink className="w-4 h-4 transition-transform hover:translate-x-1 hover:-translate-y-1" />
+            </span>
+          </Button>
+        </motion.div>
       </motion.div>
 
       {/* Tabs - Optimized for mobile */}
@@ -407,14 +406,17 @@ export default function ProjectsPage({ isMobile }: { isMobile: boolean }) {
                   : "grid-cols-1 lg:grid-cols-2 gap-8"
               }`}
             >
-              {allProjects.slice(0, 4).map((project, index) => (
-                <ProjectCard
-                  key={project.slug}
-                  project={project}
-                  index={index}
-                  isMobile={isMobile}
-                />
-              ))}
+              {allProjects
+                .slice(0, 4)
+                .filter((project) => project.star == "true")
+                .map((project, index) => (
+                  <ProjectCard
+                    key={project.slug}
+                    project={project}
+                    index={index}
+                    isMobile={isMobile}
+                  />
+                ))}
             </motion.div>
           </TabsContent>
 

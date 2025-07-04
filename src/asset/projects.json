@@ -5,6 +5,7 @@
       {
         "title": "Hackverse (Hackathon Organizing Platform)",
         "name": "Hackverse (Under Development)",
+        "star": "true",
         "slug": "hackverse",
         "description": "Hackverse is a scalable and secure hackathon hosting platform that demonstrates my proficiency in full-stack development and adherence to SOLID principles. The project posed several challenges, including implementing robust user authentication and designing a normalized database schema.",
         "category": "Web Development",
@@ -36,6 +37,7 @@
       {
         "title": "Medicare Simplified",
         "name": "Medicare Simplified",
+        "star": "true",
         "slug": "medicare-simplified",
         "description": "Medicare Simplified is an e-commerce platform for medicine that showcases my expertise in React and Next.js. The project involved migrating from React.js to Next.js, implementing server-side rendering, and integrating a secure authentication system.",
         "category": "Web Development",
@@ -72,6 +74,7 @@
       {
         "title": "Crab Clean",
         "name": "Crab Clean",
+        "star": "true",
         "slug": "crab-clean",
         "description": "300 downloads!! Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
         "category": "CLI Tools",
@@ -100,6 +103,7 @@
       {
         "title": "Journal Application",
         "name": "Journal Application",
+        "star": "true",
         "slug": "journal-app",
         "description": "Journal Application is a decentralized Web3-based journaling platform that leverages blockchain technology for secure and immutable record-keeping.",
         "category": "Web3",
