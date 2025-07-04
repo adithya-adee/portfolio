@@ -10,7 +10,7 @@ export async function GET() {
     return NextResponse.json({ likes }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch likes" },
+      { error: `Failed to fetch likes, ${error}` },
       { status: 500 }
     );
   }
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to update likes" },
+      { error: `Failed to update likes, ${error}` },
       { status: 500 }
     );
   }
