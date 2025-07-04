@@ -6,7 +6,10 @@ export async function GET() {
     const likes = (await kv.get("portfolio_likes")) || 0;
     return Response.json({ likes });
   } catch (error) {
-    return Response.json({ error: "Failed to fetch likes" }, { status: 500 });
+    return Response.json(
+      { error: `Failed to fetch likes, ${error}` },
+      { status: 500 }
+    );
   }
 }
 
@@ -28,6 +31,9 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: "Invalid action" }, { status: 400 });
     }
   } catch (error) {
-    return Response.json({ error: "Failed to update likes" }, { status: 500 });
+    return Response.json(
+      { error: `Failed to update likes, ${error}` },
+      { status: 500 }
+    );
   }
 }
