@@ -1,12 +1,15 @@
-import { kv } from "@vercel/kv";
-import { NextRequest } from "next/server";
+import { Redis } from "@upstash/redis";
+import { NextRequest, NextResponse } from "next/server";
+
+const redis = Redis.fromEnv();
+const LIKES_KEY = "portfolio:likes";
 
 export async function GET() {
   try {
-    const likes = (await kv.get("portfolio_likes")) || 0;
-    return Response.json({ likes });
+    const likes = (await redis.get(LIKES_KEY)) || 0;
+    return NextResponse.json({ likes }, { status: 200 });
   } catch (error) {
-    return Response.json(
+    return NextResponse.json(
       { error: `Failed to fetch likes, ${error}` },
       { status: 500 }
     );
@@ -15,23 +18,41 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { action } = await request.json();
-
-    if (action === "increment") {
-      const likes = await kv.incr("portfolio_likes");
-      return Response.json({ likes });
-    } else if (action === "decrement") {
-      const currentLikes = (await kv.get("portfolio_likes")) || 0;
-      const likes = await kv.set(
-        "portfolio_likes",
-        Math.max(0, Number(currentLikes) - 1)
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid request body" },
+        { status: 400 }
       );
-      return Response.json({ likes: likes });
-    } else {
-      return Response.json({ error: "Invalid action" }, { status: 400 });
     }
+
+    const { action } = body;
+
+    if (!action || (action !== "increment" && action !== "decrement")) {
+      return NextResponse.json({ error: "Invalid action" }, { status: 400 });
+    }
+
+    let likes;
+    if (action === "increment") {
+      likes = await redis.incr(LIKES_KEY);
+    } else {
+      const currentLikes = Number((await redis.get(LIKES_KEY)) || 0);
+      const newCount = Math.max(0, currentLikes - 1);
+      await redis.set(LIKES_KEY, newCount);
+      likes = newCount;
+    }
+
+    return NextResponse.json(
+      { likes },
+      {
+        status: 200,
+        headers: { "Cache-Control": "no-store, max-age=0" },
+      }
+    );
   } catch (error) {
-    return Response.json(
+    return NextResponse.json(
       { error: `Failed to update likes, ${error}` },
       { status: 500 }
     );
