@@ -126,14 +126,6 @@ html {
 
 }
 
-* {
-    cursor: none;
-}
-
-*:hover {
-  cursor: none;
-}
-
 /* Removed navbar specific styling */
 
 .profile-card {

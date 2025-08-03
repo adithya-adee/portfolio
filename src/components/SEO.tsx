@@ -18,14 +18,14 @@ export default function StructuredData() {
     description:
       "Full Stack Web Developer specializing in modern web technologies",
     knowsAbout: [
-      "Rust",
-      "Web3",
-      "Solana",
+      "Web Development",
       "JavaScript",
       "TypeScript",
       "React",
       "Node.js",
-      "Web Development",
+      "Rust",
+      "Web3",
+      "Solana",
     ],
   };
 

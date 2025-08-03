@@ -38,7 +38,6 @@ export default function LikeButton({ isMobile }: LikeButtonProps) {
     // Store user's like state
     localStorage.setItem("portfolio_liked", newLiked.toString());
 
-    // Update via our API endpoint
     fetch("/api/likes", {
       method: "POST",
       headers: {
@@ -67,16 +66,14 @@ export default function LikeButton({ isMobile }: LikeButtonProps) {
     >
       <button
         onClick={handleLike}
-        className={`relative transition-all duration-300 ${
-          isMobile ? "p-2" : "p-3"
-        } rounded-full overflow-hidden group`}
+        className={`relative transition-all duration-300 ${isMobile ? "p-2" : "p-3"
+          } rounded-full overflow-hidden group`}
         aria-label={liked ? "Unlike" : "Like"}
       >
         {/* Background glow effect */}
         <div
-          className={`absolute inset-0 rounded-full transition-opacity duration-300 ${
-            liked ? "bg-pink-500/20 opacity-100" : "opacity-0"
-          } group-hover:opacity-100`}
+          className={`absolute inset-0 rounded-full transition-opacity duration-300 ${liked ? "bg-pink-500/20 opacity-100" : "opacity-0"
+            } group-hover:opacity-100`}
         />
 
         {/* Heart icon */}
@@ -94,15 +91,13 @@ export default function LikeButton({ isMobile }: LikeButtonProps) {
           >
             {liked ? (
               <HeartPulseIcon
-                className={`${
-                  isMobile ? "w-6 h-6" : "w-8 h-8"
-                } fill-pink-500 text-pink-500`}
+                className={`${isMobile ? "w-6 h-6" : "w-8 h-8"
+                  } fill-pink-500 text-pink-500`}
               />
             ) : (
               <Heart
-                className={`${
-                  isMobile ? "w-6 h-6" : "w-8 h-8"
-                } text-neutral-300 group-hover:text-pink-400`}
+                className={`${isMobile ? "w-6 h-6" : "w-8 h-8"
+                  } text-neutral-300 group-hover:text-pink-400`}
               />
             )}
 
@@ -142,9 +137,8 @@ export default function LikeButton({ isMobile }: LikeButtonProps) {
 
       {/* Like counter */}
       <motion.div
-        className={`${liked ? "text-pink-400" : "text-neutral-400"} ${
-          isMobile ? "text-xs" : "text-sm"
-        } font-medium`}
+        className={`${liked ? "text-pink-400" : "text-neutral-400"} ${isMobile ? "text-xs" : "text-sm"
+          } font-medium`}
         animate={{ scale: isAnimating && liked ? [1, 1.2, 1] : 1 }}
       >
         {count >= 0 && <span>{count.toLocaleString()}</span>}
@@ -157,9 +151,8 @@ export default function LikeButton({ isMobile }: LikeButtonProps) {
             initial={{ opacity: 0, y: 5, height: 0 }}
             animate={{ opacity: 1, y: 0, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className={`text-pink-400 flex items-center gap-1 ${
-              isMobile ? "text-xs" : "text-sm"
-            }`}
+            className={`text-pink-400 flex items-center gap-1 ${isMobile ? "text-xs" : "text-sm"
+              }`}
           >
             <HeartHandshake className={`${isMobile ? "w-3 h-3" : "w-4 h-4"}`} />
             <span>Thanks!</span>

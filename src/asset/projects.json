@@ -3,6 +3,39 @@
     "category": "Web Development",
     "projects": [
       {
+        "title": "CodeSync Collaborative Code Editor",
+        "name": "CodeSync",
+        "star": "true",
+        "slug": "codesync",
+        "description": "CODESYNC is a real-time collaborative coding environment with an integrated whiteboard and AI chat. The project focuses on real-time synchronization and conflict resolution to create a seamless user experience.",
+        "category": "Web Development",
+        "year": 2025,
+        "tech_stack": [
+          "Next.js",
+          "Convex",
+          "Liveblocks",
+          "Monaco Editor",
+          "Gemini API",
+          "WebSocket"
+        ],
+        "images": [
+          "/projects/codesync/homepage.png",
+          "/projects/codesync/room.png",
+          "/projects/codesync/editor.png",
+          "/projects/codesync/colloborative-editor.png",
+          "/projects/codesync/colloborative-whiteboard.png"
+        ],
+        "preview_link": "https://github.com/adithya-adee/CodeSync",
+        "github_url": "https://github.com/devgambo/CodeSync",
+        "live_url": "https://code-sync-sepia.vercel.app/",
+        "project_details": [
+          "Built a real-time collaborative coding environment that integrates a whiteboard and an AI chat using the Gemini API.",
+          "Optimized synchronization latency by 30% using Liveblocks metrics and the Convex reactive database.",
+          "Implemented throttling and conflict-free resolution mechanisms, which reduced editing conflicts by 50%.",
+          "Designed a role-based permission system that enables room owners to manage user access and privileges."
+        ]
+      },
+      {
         "title": "Hackverse (Hackathon Organizing Platform)",
         "name": "Hackverse (Under Development)",
         "star": "true",
