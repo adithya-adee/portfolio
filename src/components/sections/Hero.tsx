@@ -153,7 +153,11 @@ export default function HeroSection({ isMobile }: HeroProps) {
               isMobile ? "gap-3" : "sm:flex-row items-center gap-4"
             }`}
           >
-            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20 transition-colors">
+            <Badge
+              className={`bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20 transition-colors ${
+                isMobile ? "text-sm" : "text-base"
+              } `}
+            >
               <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
               Available for work
             </Badge>

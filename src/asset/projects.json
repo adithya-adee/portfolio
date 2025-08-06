@@ -109,7 +109,7 @@
         "name": "Crab Clean",
         "star": "true",
         "slug": "crab-clean",
-        "description": "300 downloads!! Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
+        "description": "600+ downloads!! Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
         "category": "CLI Tools",
         "year": 2025,
         "tech_stack": ["Rust"],

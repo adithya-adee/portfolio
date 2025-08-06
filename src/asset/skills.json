@@ -111,5 +111,13 @@
       },
       { "name": "Jest", "level": "Beginner", "icon": "/public/icons/jest.svg" }
     ]
+  },
+  {
+    "category": "Deployement",
+    "skills": [
+      { "name": "AWS", "level": "Beginner" },
+      { "name": "Verce", "level": "Intermediate" },
+      { "name": "Github Actions", "level": "Beginner" }
+    ]
   }
 ]
