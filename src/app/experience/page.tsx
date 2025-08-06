@@ -4,7 +4,7 @@ import experienceData from "@/asset/experience.json";
 import { MdLocationOn } from "react-icons/md";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { ArrowLeft, HighlighterIcon } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 
