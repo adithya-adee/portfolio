@@ -7,11 +7,10 @@ import { ShineBorder } from "../magicui/shine-border";
 
 export default function AboutSection({ isMobile }: { isMobile: boolean }) {
   const highlights = [
-    "400+ downloads for my 'Crab Clean' project on crates.io",
-    "Open-source contributor with impactful contributions to community projects",
-    "Proficient in building secure, fast, and optimized platforms in Web3",
-    "Strong problem-solving skills with a focus on scalable solutions",
-    "Currently learning Rust and Solana to deepen blockchain expertise",
+    "Built and published 'Crab-Clean' Rust CLI (540+ downloads) with 90% faster SHA256 hashing.",
+    "Top 10% nationally in IEEE Summer of Code for impactful open-source work.",
+    "Led full-stack projects using MERN, Next.js, NestJS, and PostgreSQL.",
+    "Improved DB query speed by 35% and reduced sync latency by 30% through system optimization.",
   ];
 
   return (
@@ -64,7 +63,7 @@ export default function AboutSection({ isMobile }: { isMobile: boolean }) {
                 >
                   <Badge
                     variant="outline"
-                    className="w-full justify-start p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20 text-gray-300 whitespace-normal break-words"
+                    className="w-full justify-start p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20 text-gray-300 text-base whitespace-normal break-words"
                   >
                     <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 flex-shrink-0" />
                     {highlight}

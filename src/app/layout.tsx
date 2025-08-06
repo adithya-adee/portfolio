@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SmoothCursorWrapper } from "@/components/ui/smooth-cursor-wrapper";
 import StructuredData from "@/components/SEO";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -77,7 +76,6 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-gradient-to-tl from-emerald-900/3 via-transparent to-pink-900/3" />
           </div>
           <Analytics />
-          <SmoothCursorWrapper />
           {children}
         </div>
       </body>
