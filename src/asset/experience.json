@@ -1,38 +1,74 @@
 [
-    {
-        "company": "YHILLS Ed.Tech",
-        "position": "Web Developer Intern (Mentorship)",
-        "location": "Remote",
-        "startDate": "April 2024",
-        "endDate": "August 2024",
-        "duration": "4 months",
-        "description": "Worked as a web development intern focusing on MERN stack applications with an emphasis on restaurant discovery platforms.",
-        "responsibilities": [
-            "Architected & developed a MERN-stack restaurant discovery platform managing different cuisine categories and items.",
-            "Integrated search, filtering, optimisation via Express REST APIs and server-side rendering(SSR).",
-            "Achieved robust state management by using React Context and Reducer, resulting in a 25% increase in user interaction efficiency.",
-            "Implemented JWT-based authentication supporting secure log-in.",
-            "Collaborated in a team: led weekly code reviews, pair-programmed features, and managed version control with Git."
-        ],
-        "skills": [
-            "React.js",
-            "Node.js",
-            "Express.js",
-            "MongoDB",
-            "JWT Authentication",
-            "REST APIs",
-            "Server-Side Rendering",
-            "Git",
-            "Code Reviews",
-            "Team Collaboration"
-        ],
-        "highlights": [
-            "Led weekly code reviews",
-            "Reduced page load times by 35% using SSR",
-            "Increased user interaction efficiency by 25% with React Context",
-            "Implemented secure authentication system"
-        ],
-        "url": "https://yhills.com",
-        "logo": "/logos/yhills-logo.png"
-    }
+  {
+    "slug": "IEEESoC",
+    "company": "IEEE Summer of Code",
+    "position": "Open Source Contributor",
+    "location": "Remote",
+    "startDate": "May 2025",
+    "endDate": "June 2025",
+    "duration": "2 months",
+    "description": "Selected as an open source contributor in IEEE Summer of Code; contributed to multiple full-stack modules and codebase refactors.",
+    "responsibilities": [
+      "Ranked in the top 10% nationwide on a competitive open-source leader-board among 100+ contributors.",
+      "Migrated basic Rust modules to TypeScript for TensorZero LLM infrastructure platform",
+      "Built and deployed a full-stack education module for FinTechForge using Express.js, React, and PostgreSQL.",
+      "Architected scalable and maintainable foundational codebase for DebateMate platform following SOLID principles and clean code practices"
+    ],
+    "skills": [
+      "Rust",
+      "TypeScript",
+      "React.js",
+      "Express.js",
+      "PostgreSQL",
+      "CI/CD",
+      "Software Architecture",
+      "Open Source Collaboration",
+      "Agile Workflow"
+    ],
+    "highlights": [
+      "Ranked in the top 10% nationwide on a competitive open-source leader-board among 100+ contributors.",
+      "Migrated and refactored LLM modules for better maintainability",
+      "Built full-stack FinTech education module from scratch",
+      "Laid the architecture for a multi-user platform DebateMate"
+    ],
+    "url": "https://www.ieeesoc.xyz/",
+    "logo": "https://www.ieeesoc.xyz/assets/just%20logo-Df-J6RYp.png"
+  },
+  {
+    "slug": "YHills",
+    "company": "YHILLS Ed.Tech",
+    "position": "Full Stack Developer (Mentorship)",
+    "location": "Remote",
+    "startDate": "April 2024",
+    "endDate": "August 2024",
+    "duration": "4 months",
+    "description": "Worked as a web development intern focusing on MERN stack applications with an emphasis on restaurant discovery platforms.",
+    "responsibilities": [
+      "Architected & developed a MERN-stack restaurant discovery platform managing different cuisine categories and items.",
+      "Integrated search, filtering, optimisation via Express REST APIs and server-side rendering(SSR).",
+      "Achieved robust state management by using React Context and Reducer, resulting in a 25% increase in user interaction efficiency.",
+      "Implemented JWT-based authentication supporting secure log-in.",
+      "Collaborated in a team: led weekly code reviews, pair-programmed features, and managed version control with Git."
+    ],
+    "skills": [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT Authentication",
+      "REST APIs",
+      "Server-Side Rendering",
+      "Git",
+      "Code Reviews",
+      "Team Collaboration"
+    ],
+    "highlights": [
+      "Led weekly code reviews",
+      "Reduced page load times by 35% using SSR",
+      "Increased user interaction efficiency by 25% with React Context",
+      "Implemented secure authentication system"
+    ],
+    "url": "https://yhills.com",
+    "logo": "https://yhills.com/wp-content/uploads/2024/03/YHills-logo-main.webp"
+  }
 ]

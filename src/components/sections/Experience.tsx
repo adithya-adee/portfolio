@@ -4,24 +4,20 @@ import experienceData from "@/asset/experience.json";
 import { MdLocationOn } from "react-icons/md";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { HighlighterIcon } from "lucide-react";
+import { ExternalLink, HighlighterIcon } from "lucide-react";
 import { useMemo } from "react";
-
-interface ExperienceItem {
-  company: string;
-  position: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  responsibilities: string[];
-}
+import { ExperienceItem } from "@/app/experience/page";
+import { Button } from "../ui/button";
 
 interface ExperienceProps {
   isMobile?: boolean;
 }
 
 export default function ExperienceSection({ isMobile }: ExperienceProps) {
-  const experience = useMemo(() => experienceData as ExperienceItem[], []);
+  const experience = useMemo(
+    () => experienceData as unknown as ExperienceItem[],
+    []
+  );
 
   return (
     <section>
@@ -30,8 +26,8 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
           isMobile ? "my-4" : "sm:my-4 md:my-6 lg:mb-8"
         }`}
       >
-        <div className="flex items-center gap-3">
-          <div className="relative">
+        <div className="flex flex-start">
+          <div className="relative p-2">
             <HighlighterIcon
               className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} text-purple-400`}
             />
@@ -49,8 +45,27 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
             >
               Experience
             </h2>
+            <p
+              className={`text-gray-400 ${
+                isMobile ? "text-xs" : "text-sm"
+              } mt-1`}
+            ></p>
           </div>
         </div>
+
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            variant="outline"
+            className="w-full border-purple-500/50 text-purple-300 hover:text-white hover:bg-purple-500/10 backdrop-blur-sm transition-all duration-300"
+            onClick={() => window.location.replace("/experience")}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative flex items-center gap-2">
+              Detailed View
+              <ExternalLink className="w-4 h-4 transition-transform hover:translate-x-1 hover:-translate-y-1" />
+            </span>
+          </Button>
+        </motion.div>
       </div>
 
       {experience.map((exp, idx) => (
@@ -101,7 +116,7 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
                   isMobile ? "1" : "2"
                 } text-gray-300 ${isMobile ? "text-sm" : "text-md"}`}
               >
-                {exp.responsibilities.map((item, i) => (
+                {exp.highlights.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
