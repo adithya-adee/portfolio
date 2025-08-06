@@ -3,7 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["www.ieeesoc.xyz", "yhills.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.ieeesoc.xyz",
+      },
+      {
+        protocol: "https",
+        hostname: "yhills.com",
+      },
+    ],
   },
 };
 
