@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 // Import Page Sections
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
@@ -12,10 +11,10 @@ import Experience from "@/components/sections/Experience";
 import Education from "@/components/sections/Education";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
-import BlogSection from "@/components/sections/blog";
+import BlogTeaser from "@/components/BlogTeaser";
+import SmartNavbar from "@/components/SmartNavbar";
 
 export default function Home() {
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   // Animation variants for sections
@@ -41,10 +40,7 @@ export default function Home() {
   return (
     <div className="min-h-screen py-8 px-4 max-w-4xl mx-auto">
       <div className="sticky top-4 z-50">
-        <Navbar
-          isNavExpanded={isNavExpanded}
-          setIsNavExpanded={setIsNavExpanded}
-        />
+        <SmartNavbar />
       </div>
 
       <motion.div initial="hidden" animate="visible" variants={sectionVariants}>
@@ -55,7 +51,7 @@ export default function Home() {
 
         {/* About Section */}
         <section id="about" className="mb-24">
-          <About isMobile={isMobile} />
+          <About />
         </section>
 
         {/* Experience Section */}
@@ -70,7 +66,7 @@ export default function Home() {
 
         {/* Skills/Stack Section */}
         <section id="stack" className="mb-24">
-          <Skills isMobile={isMobile} />
+          <Skills />
         </section>
 
         {/* Education Section */}
@@ -78,9 +74,9 @@ export default function Home() {
           <Education />
         </section>
 
-        {/* Blog Section */}
+        {/* Blog Teaser Section */}
         <section id="blog" className="mb-24">
-          <BlogSection />
+          <BlogTeaser />
         </section>
 
         {/* Contact Section */}

@@ -3,7 +3,6 @@
 import skills from "@/asset/skills.json";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { BorderBeam } from "../magicui/border-beam";
 import { FaStackExchange } from "react-icons/fa";
 
 interface SkillJSONProps {
@@ -28,7 +27,7 @@ const levelDots: Record<string, number> = {
   Beginner: 1,
 };
 
-export default function SkillsSection({ isMobile }: { isMobile: boolean }) {
+export default function SkillsSection() {
   return (
     <section className="py-16 px-4">
       <motion.div
@@ -62,17 +61,7 @@ export default function SkillsSection({ isMobile }: { isMobile: boolean }) {
             viewport={{ once: true }}
             className="relative"
           >
-            <Card className="h-auto bg-black/40 border-neutral-800 backdrop-blur-sm relative overflow-hidden">
-              {!isMobile && (
-                <BorderBeam
-                  size={100}
-                  duration={8 + categoryIndex * 2}
-                  delay={categoryIndex * 0.5}
-                  colorFrom="#ffaa40"
-                  colorTo="#9c40ff"
-                />
-              )}
-
+            <Card className="h-auto bg-black/40 border-neutral-800 backdrop-blur-sm relative overflow-hidden hover:border-white/20 transition-all">
               <CardHeader className="pb-4">
                 <CardTitle className="text-2xl font-bold text-white">
                   {category.category}
@@ -162,15 +151,7 @@ export default function SkillsSection({ isMobile }: { isMobile: boolean }) {
         viewport={{ once: true }}
       >
         <div className="relative">
-          <Card className="bg-black/20 border-neutral-800 backdrop-blur-sm">
-            {!isMobile && (
-              <BorderBeam
-                size={80}
-                duration={12}
-                colorFrom="#60a5fa"
-                colorTo="#a855f7"
-              />
-            )}
+          <Card className="bg-black/20 border-neutral-800 backdrop-blur-sm hover:border-white/20 transition-all">
             <CardContent className="p-8">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>

@@ -3,29 +3,36 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Adithya Anand",
+    alternateName: "@glitchy_moon",
     url: "https://adithya-anand-portfolio.vercel.app/",
     image: "https://adithya-anand-portfolio.vercel.app/profile_picture.jpg",
     sameAs: [
       "https://github.com/adithya-adee",
       "https://linkedin.com/in/adithya-a-8bb28128a",
       "https://x.com/AdithyaA593326",
+      "https://www.reddit.com/user/Glithcy_moon_69/",
     ],
-    jobTitle: "Full Stack Web Developer",
-    // worksFor: {
-    //   "@type": "Organization",
-    //   name: "Your Current Company", // Update as needed
-    // },
+    jobTitle: "Backend Developer",
+    affiliation: {
+      "@type": "EducationalOrganization",
+      name: "NITK Surathkal",
+    },
     description:
-      "Full Stack Web Developer specializing in modern web technologies",
+      "3rd year student at NITK Surathkal. Backend Developer with 1 year of professional experience. Building scalable systems with Rust, Solana, and Web3 technologies. Exploring cryptography and blockchain development.",
     knowsAbout: [
-      "Web Development",
+      "Backend Development",
       "JavaScript",
       "TypeScript",
       "React",
+      "Next.js",
       "Node.js",
+      "NestJS",
+      "PostgreSQL",
       "Rust",
       "Web3",
       "Solana",
+      "Cryptography",
+      "Blockchain",
     ],
   };
 

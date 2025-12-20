@@ -1,6 +1,6 @@
 [
   {
-    "category": "Web Development",
+    "category": "Backend",
     "projects": [
       {
         "title": "CodeSync Collaborative Code Editor",
@@ -8,7 +8,7 @@
         "star": "true",
         "slug": "codesync",
         "description": "CODESYNC is a real-time collaborative coding environment with an integrated whiteboard and AI chat. The project focuses on real-time synchronization and conflict resolution to create a seamless user experience.",
-        "category": "Web Development",
+        "category": "Backend",
         "year": 2025,
         "tech_stack": [
           "Next.js",
@@ -41,7 +41,7 @@
         "star": "true",
         "slug": "hackverse",
         "description": "Hackverse is a scalable and secure hackathon hosting platform that demonstrates my proficiency in full-stack development and adherence to SOLID principles. The project posed several challenges, including implementing robust user authentication and designing a normalized database schema.",
-        "category": "Web Development",
+        "category": "Backend",
         "year": 2025,
         "tech_stack": [
           "NestJS",
@@ -73,7 +73,7 @@
         "star": "true",
         "slug": "medicare-simplified",
         "description": "Medicare Simplified is an e-commerce platform for medicine that showcases my expertise in React and Next.js. The project involved migrating from React.js to Next.js, implementing server-side rendering, and integrating a secure authentication system.",
-        "category": "Web Development",
+        "category": "Backend",
         "year": 2025,
         "tech_stack": [
           "Next.js",
@@ -102,7 +102,32 @@
     ]
   },
   {
-    "category": "Rust",
+    "category": "Blockchain",
+    "projects": [
+      {
+        "title": "Journal Application",
+        "name": "Journal Application",
+        "star": "true",
+        "slug": "journal-app",
+        "description": "Journal Application is a decentralized Web3-based journaling platform that leverages blockchain technology for secure and immutable record-keeping.",
+        "category": "Blockchain",
+        "year": 2025,
+        "tech_stack": ["React", "Next.js", "Solidity", "Ethereum", "IPFS"],
+        "images": [],
+        "preview_link": "https://github.com/adithya-adee/journal-app",
+        "github_url": "https://github.com/adithya-adee/journal-app",
+        "live_url": "",
+        "project_details": [
+          "Developed a decentralized journaling platform using Ethereum blockchain and IPFS for secure and immutable record-keeping.",
+          "Implemented smart contracts in Solidity to manage journal entries and ensure data integrity.",
+          "Integrated React and Next.js for a seamless and responsive user interface.",
+          "Optimized the application for Web3 interactions, including wallet integration and transaction handling."
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Open Source",
     "projects": [
       {
         "title": "Crab Clean",
@@ -110,7 +135,7 @@
         "star": "true",
         "slug": "crab-clean",
         "description": "600+ downloads!! Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
-        "category": "CLI Tools",
+        "category": "Open Source",
         "year": 2025,
         "tech_stack": ["Rust"],
         "images": [
@@ -126,31 +151,6 @@
           "Developed a CLI tool in Rust to efficiently scan and identify unused and duplicate files on the system.",
           "Implemented file grouping functionality to organize files based on user-defined criteria.",
           "Optimized performance for large-scale file systems, ensuring quick and accurate results."
-        ]
-      }
-    ]
-  },
-  {
-    "category": "Web3",
-    "projects": [
-      {
-        "title": "Journal Application",
-        "name": "Journal Application",
-        "star": "true",
-        "slug": "journal-app",
-        "description": "Journal Application is a decentralized Web3-based journaling platform that leverages blockchain technology for secure and immutable record-keeping.",
-        "category": "Web3",
-        "year": 2025,
-        "tech_stack": ["React", "Next.js", "Solidity", "Ethereum", "IPFS"],
-        "images": [],
-        "preview_link": "https://github.com/adithya-adee/journal-app",
-        "github_url": "https://github.com/adithya-adee/journal-app",
-        "live_url": "",
-        "project_details": [
-          "Developed a decentralized journaling platform using Ethereum blockchain and IPFS for secure and immutable record-keeping.",
-          "Implemented smart contracts in Solidity to manage journal entries and ensure data integrity.",
-          "Integrated React and Next.js for a seamless and responsive user interface.",
-          "Optimized the application for Web3 interactions, including wallet integration and transaction handling."
         ]
       }
     ]

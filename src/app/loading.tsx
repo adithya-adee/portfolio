@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BorderBeam } from "@/components/magicui/border-beam";
 import { useEffect, useState } from "react";
 
 export default function Loading() {
@@ -163,13 +162,6 @@ export default function Loading() {
 
       <div className="relative z-10">
         <div className="relative w-72 h-72">
-          <BorderBeam
-            size={140}
-            duration={3}
-            colorFrom="#60a5fa"
-            colorTo="#a855f7"
-          />
-
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm border border-neutral-800/50 rounded-xl flex flex-col items-center justify-center overflow-hidden">
             {/* Animated terminal cursor */}
             <motion.div

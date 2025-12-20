@@ -3,9 +3,8 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShineBorder } from "../magicui/shine-border";
 
-export default function AboutSection({ isMobile }: { isMobile: boolean }) {
+export default function AboutSection() {
   const highlights = [
     "Built and published 'Crab-Clean' Rust CLI (540+ downloads) with 90% faster SHA256 hashing.",
     "Top 10% nationally in IEEE Summer of Code for impactful open-source work.",
@@ -28,13 +27,7 @@ export default function AboutSection({ isMobile }: { isMobile: boolean }) {
         <div className="w-16 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto" />
       </motion.div>
 
-      <Card className="bg-white/5 border-white/10 backdrop-blur-sm relative overflow-hidden">
-        {!isMobile && (
-          <ShineBorder
-            duration={5}
-            shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-          />
-        )}
+      <Card className="bg-white/5 border-white/10 backdrop-blur-sm relative overflow-hidden hover:border-white/20 transition-all">
         <CardContent className="p-8 relative z-10">
           <motion.div
             initial={{ opacity: 0 }}

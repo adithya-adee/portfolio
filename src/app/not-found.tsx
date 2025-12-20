@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BorderBeam } from "@/components/magicui/border-beam";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -89,15 +88,6 @@ export default function NotFound() {
         className={`relative z-10 w-full ${isMobile ? "max-w-sm" : "max-w-lg"}`}
       >
         <div className="relative">
-          {!isMobile && (
-            <BorderBeam
-              size={120}
-              duration={6}
-              colorFrom="#f97316"
-              colorTo="#ef4444"
-            />
-          )}
-
           <div
             className={`bg-black/40 backdrop-blur-sm border border-neutral-800/50 rounded-xl ${
               isMobile ? "p-6" : "p-8"
