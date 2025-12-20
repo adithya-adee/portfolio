@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/SEO";
 import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Adithya Anand | Full Stack Web Developer",
-    description:
-      "Portfolio showcasing my web development projects, skills, and experience",
+    description: "Portfolio showcasing my web development projects, skills, and experience",
     url: "https://adithya-anand-portfolio.vercel.app/",
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
@@ -75,6 +75,7 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-blue-900/5" />
             <div className="absolute inset-0 bg-gradient-to-tl from-emerald-900/3 via-transparent to-pink-900/3" />
           </div>
+          <Toaster position="top-right" theme="dark" richColors />
           <Analytics />
           {children}
         </div>

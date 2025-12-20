@@ -33,28 +33,26 @@ export default function BlogPage() {
   const blogs = blogsData as BlogProps[];
 
   return (
-    <div className="min-h-screen bg-black text-white py-16 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-black px-4 py-16 text-white">
+      <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12">
           <Link
             href="/"
-            className="text-gray-400 hover:text-white transition-colors mb-4 inline-block"
+            className="mb-4 inline-block text-gray-400 transition-colors hover:text-white"
           >
             ← Back to Home
           </Link>
-          <h1
-            className={`${jetbrains.className} text-4xl md:text-5xl font-bold text-white mb-4`}
-          >
+          <h1 className={`${jetbrains.className} mb-4 text-4xl font-bold text-white md:text-5xl`}>
             Blog Posts
           </h1>
-          <p className={`${inter.className} text-gray-400 text-lg`}>
+          <p className={`${inter.className} text-lg text-gray-400`}>
             Thoughts, learnings, and experiences from my journey
           </p>
         </div>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {blogs.map((blog, index) => (
             <motion.a
               key={blog.id}
@@ -64,35 +62,35 @@ export default function BlogPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="group border border-white/10 rounded-lg p-6 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all"
+              className="group rounded-lg border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
             >
               {/* Category and Platform */}
-              <div className="flex items-center gap-3 mb-3">
-                <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full border border-purple-500/30">
+              <div className="mb-3 flex items-center gap-3">
+                <span className="rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-xs text-purple-300">
                   {blog.category}
                 </span>
-                <span className="text-gray-400 text-xs">{blog.posted_in}</span>
+                <span className="text-xs text-gray-400">{blog.posted_in}</span>
               </div>
 
               {/* Title */}
               <h3
-                className={`${jetbrains.className} text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors`}
+                className={`${jetbrains.className} mb-3 text-xl font-bold text-white transition-colors group-hover:text-purple-300`}
               >
                 {blog.title}
               </h3>
 
               {/* Description */}
-              <p className={`${inter.className} text-gray-300 text-sm mb-4 line-clamp-3`}>
+              <p className={`${inter.className} mb-4 line-clamp-3 text-sm text-gray-300`}>
                 {blog.description}
               </p>
 
               {/* Footer */}
-              <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                <div className="flex items-center gap-2 text-gray-400 text-xs">
+              <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                <div className="flex items-center gap-2 text-xs text-gray-400">
                   <Calendar size={14} />
                   <span>{new Date(blog.date).toLocaleDateString()}</span>
                 </div>
-                <div className="flex items-center gap-1 text-purple-400 text-sm group-hover:gap-2 transition-all">
+                <div className="flex items-center gap-1 text-sm text-purple-400 transition-all group-hover:gap-2">
                   Read more <ExternalLink size={14} />
                 </div>
               </div>

@@ -14,7 +14,7 @@ interface Project {
   github_url: string;
 }
 
-export default function ProjectsPage() {
+export default function ProjectsMinimal() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const projects = projectsData as Project[];
 

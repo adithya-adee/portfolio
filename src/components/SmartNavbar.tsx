@@ -49,28 +49,31 @@ export default function SmartNavbar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
+          className="fixed top-0 right-0 left-0 z-50 border-b border-neutral-800 bg-black/95 backdrop-blur-md"
+          style={{
+            boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)",
+          }}
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="mx-auto max-w-4xl px-4 py-3 sm:px-6 sm:py-4">
             <div className="flex items-center justify-between">
               {/* Brand */}
               <Link href="/">
                 <motion.div
-                  className="flex flex-col cursor-pointer"
+                  className="flex cursor-pointer flex-col"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-base sm:text-lg font-bold text-white">Adithya Anand</span>
+                  <span className="text-base font-bold text-white sm:text-lg">Adithya Anand</span>
                   <span className="text-xs text-gray-400">@glitchy_moon</span>
                 </motion.div>
               </Link>
 
               {/* Desktop Nav Links */}
-              <div className="hidden md:flex items-center gap-6 lg:gap-8">
+              <div className="hidden items-center gap-6 md:flex lg:gap-8">
                 {navLinks.map((link) => (
                   <Link key={link.name} href={link.href}>
                     <motion.span
-                      className="text-gray-400 hover:text-white transition-colors cursor-pointer text-sm font-medium"
+                      className="cursor-pointer text-sm font-medium text-gray-400 transition-colors hover:text-white"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -82,7 +85,7 @@ export default function SmartNavbar() {
 
               {/* Mobile Menu Button */}
               <button
-                className="md:hidden text-white p-2"
+                className="p-2 text-white md:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
@@ -98,16 +101,16 @@ export default function SmartNavbar() {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="md:hidden overflow-hidden"
+                  className="overflow-hidden md:hidden"
                 >
-                  <div className="flex flex-col gap-4 py-4 border-t border-white/10 mt-3">
+                  <div className="mt-3 flex flex-col gap-4 border-t border-white/10 py-4">
                     {navLinks.map((link) => (
                       <Link
                         key={link.name}
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <span className="text-gray-400 hover:text-white transition-colors text-sm font-medium block">
+                        <span className="block text-sm font-medium text-gray-400 transition-colors hover:text-white">
                           {link.name}
                         </span>
                       </Link>

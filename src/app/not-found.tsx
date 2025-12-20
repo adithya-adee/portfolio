@@ -26,8 +26,7 @@ export default function NotFound() {
       let glitched = "";
       for (let i = 0; i < originalText.length; i++) {
         if (Math.random() < 0.1) {
-          glitched +=
-            glitchChars[Math.floor(Math.random() * glitchChars.length)];
+          glitched += glitchChars[Math.floor(Math.random() * glitchChars.length)];
         } else {
           glitched += originalText[i];
         }
@@ -43,7 +42,7 @@ export default function NotFound() {
   }, [isMobile]);
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 p-4 relative overflow-hidden">
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 p-4">
       {/* Background grid - lighter on mobile */}
       <div
         className={`absolute inset-0 ${
@@ -54,72 +53,52 @@ export default function NotFound() {
       />
 
       {/* Floating error symbols - reduced on mobile */}
-      <div className="absolute inset-0 pointer-events-none">
-        {(isMobile ? ["×", "!"] : ["×", "!", "?", "⚠", "404"]).map(
-          (symbol, i) => (
-            <motion.div
-              key={i}
-              className={`absolute text-red-500/10 ${
-                isMobile ? "text-lg" : "text-2xl"
-              } font-bold`}
-              style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${20 + Math.random() * 60}%`,
-              }}
-              animate={{
-                y: [0, isMobile ? -30 : -50, 0],
-                rotate: [0, 180, 360],
-                opacity: [0.05, 0.15, 0.05],
-              }}
-              transition={{
-                duration: isMobile ? 6 : 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut",
-              }}
-            >
-              {symbol}
-            </motion.div>
-          )
-        )}
+      <div className="pointer-events-none absolute inset-0">
+        {(isMobile ? ["×", "!"] : ["×", "!", "?", "⚠", "404"]).map((symbol, i) => (
+          <motion.div
+            key={i}
+            className={`absolute text-red-500/10 ${isMobile ? "text-lg" : "text-2xl"} font-bold`}
+            style={{
+              left: `${20 + Math.random() * 60}%`,
+              top: `${20 + Math.random() * 60}%`,
+            }}
+            animate={{
+              y: [0, isMobile ? -30 : -50, 0],
+              rotate: [0, 180, 360],
+              opacity: [0.05, 0.15, 0.05],
+            }}
+            transition={{
+              duration: isMobile ? 6 : 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut",
+            }}
+          >
+            {symbol}
+          </motion.div>
+        ))}
       </div>
 
-      <div
-        className={`relative z-10 w-full ${isMobile ? "max-w-sm" : "max-w-lg"}`}
-      >
+      <div className={`relative z-10 w-full ${isMobile ? "max-w-sm" : "max-w-lg"}`}>
         <div className="relative">
           <div
-            className={`bg-black/40 backdrop-blur-sm border border-neutral-800/50 rounded-xl ${
+            className={`rounded-xl border border-neutral-800/50 bg-black/40 backdrop-blur-sm ${
               isMobile ? "p-6" : "p-8"
             } relative overflow-hidden`}
           >
             {/* Terminal header - simplified for mobile */}
             <div
-              className={`absolute top-0 left-0 right-0 ${
+              className={`absolute top-0 right-0 left-0 ${
                 isMobile ? "h-6" : "h-8"
-              } bg-neutral-900/50 border-b border-neutral-700/50 flex items-center px-4`}
+              } flex items-center border-b border-neutral-700/50 bg-neutral-900/50 px-4`}
             >
               <div className="flex gap-2">
-                <div
-                  className={`${
-                    isMobile ? "w-2 h-2" : "w-3 h-3"
-                  } bg-red-500 rounded-full`}
-                />
-                <div
-                  className={`${
-                    isMobile ? "w-2 h-2" : "w-3 h-3"
-                  } bg-yellow-500 rounded-full`}
-                />
-                <div
-                  className={`${
-                    isMobile ? "w-2 h-2" : "w-3 h-3"
-                  } bg-green-500 rounded-full`}
-                />
+                <div className={`${isMobile ? "h-2 w-2" : "h-3 w-3"} rounded-full bg-red-500`} />
+                <div className={`${isMobile ? "h-2 w-2" : "h-3 w-3"} rounded-full bg-yellow-500`} />
+                <div className={`${isMobile ? "h-2 w-2" : "h-3 w-3"} rounded-full bg-green-500`} />
               </div>
               {!isMobile && (
-                <div className="ml-4 text-xs text-neutral-400 font-mono">
-                  ~/error/404.tsx
-                </div>
+                <div className="ml-4 font-mono text-xs text-neutral-400">~/error/404.tsx</div>
               )}
             </div>
 
@@ -142,26 +121,22 @@ export default function NotFound() {
                 <h1
                   className={`${
                     isMobile ? "text-5xl" : "text-7xl"
-                  } font-bold text-transparent bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text mb-2 font-mono`}
+                  } mb-2 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text font-mono font-bold text-transparent`}
                 >
                   {glitchText}
                 </h1>
-                <h2
-                  className={`${
-                    isMobile ? "text-xl" : "text-2xl"
-                  } font-semibold text-white`}
-                >
+                <h2 className={`${isMobile ? "text-xl" : "text-2xl"} font-semibold text-white`}>
                   Page Not Found
                 </h2>
                 <div
                   className={`${
-                    isMobile ? "w-16 h-0.5" : "w-20 h-1"
-                  } bg-gradient-to-r from-orange-400 to-red-500 mt-2 rounded-full mx-auto`}
+                    isMobile ? "h-0.5 w-16" : "h-1 w-20"
+                  } mx-auto mt-2 rounded-full bg-gradient-to-r from-orange-400 to-red-500`}
                 />
               </motion.div>
 
               <motion.p
-                className={`text-neutral-300 mb-8 leading-relaxed text-center ${
+                className={`mb-8 text-center leading-relaxed text-neutral-300 ${
                   isMobile ? "text-sm" : "text-base"
                 }`}
                 initial={{ opacity: 0 }}
@@ -183,7 +158,7 @@ export default function NotFound() {
               >
                 <Link href="/" className="flex-1">
                   <Button
-                    className={`w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-medium ${
+                    className={`w-full bg-gradient-to-r from-orange-500 to-red-500 font-medium text-white hover:from-orange-600 hover:to-red-600 ${
                       isMobile ? "h-12 text-sm" : ""
                     }`}
                     size={isMobile ? "default" : "lg"}
@@ -207,18 +182,18 @@ export default function NotFound() {
             {/* Enhanced decorative elements - reduced on mobile */}
             <div
               className={`absolute -bottom-6 -left-6 ${
-                isMobile ? "w-20 h-20" : "w-32 h-32"
-              } bg-orange-500/5 rounded-full blur-2xl`}
+                isMobile ? "h-20 w-20" : "h-32 w-32"
+              } rounded-full bg-orange-500/5 blur-2xl`}
             />
             <div
               className={`absolute -top-6 -right-6 ${
-                isMobile ? "w-24 h-24" : "w-40 h-40"
-              } bg-red-500/5 rounded-full blur-2xl`}
+                isMobile ? "h-24 w-24" : "h-40 w-40"
+              } rounded-full bg-red-500/5 blur-2xl`}
             />
             <div
-              className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
-                isMobile ? "w-40 h-40" : "w-64 h-64"
-              } bg-gradient-to-r from-orange-500/5 to-red-500/5 rounded-full blur-3xl -z-10`}
+              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform ${
+                isMobile ? "h-40 w-40" : "h-64 w-64"
+              } -z-10 rounded-full bg-gradient-to-r from-orange-500/5 to-red-500/5 blur-3xl`}
             />
           </div>
         </div>
@@ -226,11 +201,9 @@ export default function NotFound() {
 
       {/* Enhanced code display - simplified for mobile */}
       <motion.div
-        className={`mt-${
-          isMobile ? "6" : "8"
-        } font-mono text-sm text-neutral-400 ${
+        className={`mt-${isMobile ? "6" : "8"} font-mono text-sm text-neutral-400 ${
           isMobile ? "p-4" : "p-6"
-        } bg-black/40 backdrop-blur-sm border border-neutral-800/50 rounded-lg ${
+        } rounded-lg border border-neutral-800/50 bg-black/40 backdrop-blur-sm ${
           isMobile ? "max-w-sm" : "max-w-lg"
         } w-full`}
         initial={{ opacity: 0 }}
@@ -238,18 +211,14 @@ export default function NotFound() {
         transition={{ delay: 0.6, duration: 0.8 }}
       >
         <div
-          className={`flex items-center gap-2 mb-3 ${
+          className={`mb-3 flex items-center gap-2 ${
             isMobile ? "text-xs" : "text-xs"
           } text-neutral-500`}
         >
-          <div className="w-2 h-2 bg-red-400 rounded-full" />
+          <div className="h-2 w-2 rounded-full bg-red-400" />
           <span>Error Log</span>
         </div>
-        <pre
-          className={`${
-            isMobile ? "text-xs" : "text-xs"
-          } leading-relaxed overflow-x-auto`}
-        >
+        <pre className={`${isMobile ? "text-xs" : "text-xs"} overflow-x-auto leading-relaxed`}>
           {isMobile
             ? `try {
   const page = await fetchPage(route);

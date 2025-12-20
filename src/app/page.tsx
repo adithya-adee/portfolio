@@ -1,22 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-// Import Page Sections
+// Import Minimal Components
+import SmartNavbar from "@/components/SmartNavbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
-import Experience from "@/components/sections/Experience";
-import Education from "@/components/sections/Education";
-import Skills from "@/components/sections/Skills";
-import Contact from "@/components/sections/Contact";
+import TechStack from "@/components/sections/TechStack";
 import BlogTeaser from "@/components/BlogTeaser";
-import SmartNavbar from "@/components/SmartNavbar";
+import Connect from "@/components/sections/Connect";
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
   // Animation variants for sections
   const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -27,62 +22,49 @@ export default function Home() {
     },
   };
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-
-    // Listen for resize events
-    window.addEventListener("resize", checkMobile);
-  }, []);
-
   return (
-    <div className="min-h-screen py-8 px-4 max-w-4xl mx-auto">
-      <div className="sticky top-4 z-50">
-        <SmartNavbar />
-      </div>
+    <div className="min-h-screen">
+      {/* Navbar */}
+      <SmartNavbar />
 
       <motion.div initial="hidden" animate="visible" variants={sectionVariants}>
-        {/* Hero Section (Profile) */}
-        <section id="intro" className="mb-24">
-          <Hero isMobile={isMobile} />
+        {/* Hero Section */}
+        <section id="intro" className="mb-8">
+          <Hero />
         </section>
 
         {/* About Section */}
-        <section id="about" className="mb-24">
+        <section id="about" className="mb-8">
           <About />
         </section>
 
-        {/* Experience Section */}
-        <section id="experience" className="mb-24">
-          <Experience isMobile={isMobile} />
-        </section>
-
         {/* Projects Section */}
-        <section id="projects" className="mb-24">
-          <Projects isMobile={isMobile} />
+        <section id="projects" className="mb-8">
+          <Projects />
         </section>
 
-        {/* Skills/Stack Section */}
-        <section id="stack" className="mb-24">
-          <Skills />
-        </section>
-
-        {/* Education Section */}
-        <section id="education" className="mb-24">
-          <Education />
+        {/* Tech Stack Section */}
+        <section id="stack" className="mb-8">
+          <TechStack />
         </section>
 
         {/* Blog Teaser Section */}
-        <section id="blog" className="mb-24">
+        <section id="blog" className="mb-8">
           <BlogTeaser />
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="mb-24">
-          <Contact />
+        {/* Connect with Me Section */}
+        <section id="contact" className="mb-8">
+          <Connect />
         </section>
+
+        {/* Footer */}
+        <footer className="mx-auto max-w-2xl border-t border-neutral-800/50 px-4 py-8 sm:px-6">
+          <div className="flex items-center justify-between text-xs text-gray-600">
+            <p>Sat, Dec 21, 2025</p>
+            <p>Asia/Calcutta</p>
+          </div>
+        </footer>
       </motion.div>
     </div>
   );

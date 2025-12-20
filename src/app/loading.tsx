@@ -38,15 +38,15 @@ export default function Loading() {
   // Mobile loading component
   if (isMobile) {
     return (
-      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden px-4">
+      <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 px-4">
         {/* Minimal background pattern for mobile */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:2rem_2rem]" />
 
         <div className="relative z-10 flex flex-col items-center">
           {/* Lightweight mobile spinner */}
-          <div className="relative w-20 h-20 mb-6">
+          <div className="relative mb-6 h-20 w-20">
             <motion.div
-              className="w-20 h-20 border-2 border-transparent border-t-blue-400 border-r-purple-500 rounded-full"
+              className="h-20 w-20 rounded-full border-2 border-transparent border-t-blue-400 border-r-purple-500"
               animate={{ rotate: 360 }}
               transition={{
                 duration: 1.5,
@@ -55,7 +55,7 @@ export default function Loading() {
               }}
             />
             <motion.div
-              className="absolute inset-2 border border-transparent border-t-purple-400/50 border-l-blue-400/50 rounded-full"
+              className="absolute inset-2 rounded-full border border-transparent border-t-purple-400/50 border-l-blue-400/50"
               animate={{ rotate: -360 }}
               transition={{
                 duration: 2,
@@ -67,7 +67,7 @@ export default function Loading() {
             {/* Center icon */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="text-xl font-mono font-bold text-transparent bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text"
+                className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text font-mono text-xl font-bold text-transparent"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{
                   duration: 2,
@@ -81,11 +81,11 @@ export default function Loading() {
           </div>
 
           {/* Loading dots */}
-          <div className="flex gap-1 mb-4">
+          <div className="mb-4 flex gap-1">
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
-                className="h-1.5 w-1.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+                className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
                 initial={{ scale: 0.8, opacity: 0.3 }}
                 animate={{
                   scale: [0.8, 1.2, 0.8],
@@ -103,7 +103,7 @@ export default function Loading() {
 
           {/* Loading text */}
           <motion.p
-            className="text-neutral-300 text-xs font-medium text-center"
+            className="text-center text-xs font-medium text-neutral-300"
             key={loadingText}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -113,9 +113,9 @@ export default function Loading() {
           </motion.p>
 
           {/* Minimal progress bar */}
-          <div className="mt-4 w-32 h-0.5 bg-neutral-800 rounded-full overflow-hidden">
+          <div className="mt-4 h-0.5 w-32 overflow-hidden rounded-full bg-neutral-800">
             <motion.div
-              className="h-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+              className="h-full rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{
@@ -132,7 +132,7 @@ export default function Loading() {
 
   // Desktop loading component (unchanged)
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Background grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
@@ -141,7 +141,7 @@ export default function Loading() {
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
+            className="absolute h-1 w-1 rounded-full bg-blue-400/20"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -161,11 +161,11 @@ export default function Loading() {
       </div>
 
       <div className="relative z-10">
-        <div className="relative w-72 h-72">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm border border-neutral-800/50 rounded-xl flex flex-col items-center justify-center overflow-hidden">
+        <div className="relative h-72 w-72">
+          <div className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden rounded-xl border border-neutral-800/50 bg-black/40 backdrop-blur-sm">
             {/* Animated terminal cursor */}
             <motion.div
-              className="text-5xl font-mono font-bold text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text bg-[length:200%_100%]"
+              className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-[length:200%_100%] bg-clip-text font-mono text-5xl font-bold text-transparent"
               animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
@@ -180,7 +180,7 @@ export default function Loading() {
 
             {/* Rotating loading ring */}
             <motion.div
-              className="absolute inset-4 border-2 border-transparent border-t-blue-400/50 border-r-purple-500/50 rounded-full"
+              className="absolute inset-4 rounded-full border-2 border-transparent border-t-blue-400/50 border-r-purple-500/50"
               animate={{ rotate: 360 }}
               transition={{
                 duration: 2,
@@ -197,7 +197,7 @@ export default function Loading() {
             {[0, 1, 2, 3].map((i) => (
               <motion.div
                 key={i}
-                className="h-2 w-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+                className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
                 initial={{ scale: 0.8, opacity: 0.3 }}
                 animate={{
                   scale: [0.8, 1.2, 0.8],
@@ -221,16 +221,14 @@ export default function Loading() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-            <p className="text-neutral-300 text-sm font-medium">
-              {loadingText}
-            </p>
+            <p className="text-sm font-medium text-neutral-300">{loadingText}</p>
           </motion.div>
         </div>
 
         {/* Progress bar */}
-        <div className="mt-6 w-64 h-1 bg-neutral-800 rounded-full overflow-hidden">
+        <div className="mt-6 h-1 w-64 overflow-hidden rounded-full bg-neutral-800">
           <motion.div
-            className="h-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+            className="h-full rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{

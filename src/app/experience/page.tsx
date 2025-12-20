@@ -24,10 +24,7 @@ export interface ExperienceItem {
 }
 
 export default function ExperienceSection() {
-  const experience = useMemo(
-    () => experienceData as unknown as ExperienceItem[],
-    []
-  );
+  const experience = useMemo(() => experienceData as unknown as ExperienceItem[], []);
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
@@ -44,30 +41,22 @@ export default function ExperienceSection() {
   };
 
   return (
-    <section
-      className={`max-w-4xl mx-auto ${
-        isMobile ? "px-4 py-1" : "px-6 py-2"
-      } my-2`}
-    >
-      <div
-        className={`flex justify-between ${
-          isMobile ? "my-4" : "sm:my-4 md:my-6 lg:mb-8"
-        }`}
-      >
+    <section className={`mx-auto max-w-4xl ${isMobile ? "px-4 py-1" : "px-6 py-2"} my-2`}>
+      <div className={`flex justify-between ${isMobile ? "my-4" : "sm:my-4 md:my-6 lg:mb-8"}`}>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`flex items-center gap-4 mb-8 ${isMobile ? "mb-6" : ""}`}
+          className={`mb-8 flex items-center gap-4 ${isMobile ? "mb-6" : ""}`}
         >
           <Button
             variant="ghost"
             onClick={() => {
               window.location.replace("/");
             }}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-400 transition-colors hover:text-white"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
         </motion.div>
@@ -88,33 +77,21 @@ export default function ExperienceSection() {
           className={isMobile ? "my-6" : "my-10"}
           onClick={() => handleDetailExperienceView(exp.slug)}
         >
-          <Card className="bg-transparent border-0 border-l-4 border-gray-400 hover:shadow-2xl hover:bg-gray-800 shadow-lg transition-all duration-200">
+          <Card className="border-0 border-l-4 border-gray-400 bg-transparent shadow-lg transition-all duration-200 hover:bg-gray-800 hover:shadow-2xl">
             <CardContent className={isMobile ? "p-4" : "p-6"}>
-              <div
-                className={`font-bold ${
-                  isMobile ? "text-base" : "text-xl"
-                } text-white`}
-              >
+              <div className={`font-bold ${isMobile ? "text-base" : "text-xl"} text-white`}>
                 {exp.company}
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <div className="flex items-center gap-2 text-gray-400 text-sm mb-2 sm:mb-0">
+              <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div className="mb-2 flex items-center gap-2 text-sm text-gray-400 sm:mb-0">
                   <MdLocationOn className="inline-block" />
                   <span>{exp.location}</span>
                 </div>
-                <div
-                  className={`text-gray-400 ${
-                    isMobile ? "text-xs" : "text-md"
-                  }`}
-                >
+                <div className={`text-gray-400 ${isMobile ? "text-xs" : "text-md"}`}>
                   {exp.startDate} - {exp.endDate}
                 </div>
               </div>
-              <div
-                className={`text-gray-300 ${
-                  isMobile ? "text-sm" : "text-base"
-                } mb-2`}
-              >
+              <div className={`text-gray-300 ${isMobile ? "text-sm" : "text-base"} mb-2`}>
                 {exp.position}
               </div>
             </CardContent>

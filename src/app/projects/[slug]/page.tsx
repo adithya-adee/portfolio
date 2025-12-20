@@ -8,14 +8,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  Calendar,
-  Globe,
-  Code2,
-} from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Calendar, Globe, Code2 } from "lucide-react";
 
 interface Project {
   title: string;
@@ -44,8 +37,8 @@ export default function ProjectDetailPage() {
     typeof params.slug === "string"
       ? params.slug
       : Array.isArray(params.slug)
-      ? params.slug[0]
-      : "";
+        ? params.slug[0]
+        : "";
 
   // Find the project in the nested structure
   let project: Project | undefined;
@@ -62,7 +55,7 @@ export default function ProjectDetailPage() {
   if (!project) return notFound();
 
   return (
-    <section className="max-w-4xl mx-auto px-6 py-16">
+    <section className="mx-auto max-w-4xl px-6 py-16">
       {/* Navigation */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -72,9 +65,9 @@ export default function ProjectDetailPage() {
       >
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
+          className="group inline-flex items-center gap-2 text-gray-400 transition-colors hover:text-white"
         >
-          <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           Back to Projects
         </Link>
       </motion.div>
@@ -86,35 +79,30 @@ export default function ProjectDetailPage() {
         className="space-y-8"
       >
         {/* Project Header */}
-        <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+        <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
           <CardContent className="p-8">
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <Badge
-                    variant="outline"
-                    className="border-blue-500/30 text-blue-400"
-                  >
+                <div className="mb-4 flex items-center gap-3">
+                  <Badge variant="outline" className="border-blue-500/30 text-blue-400">
                     {project.category}
                   </Badge>
                   <div className="flex items-center gap-2 text-gray-400">
-                    <Calendar className="w-4 h-4" />
+                    <Calendar className="h-4 w-4" />
                     <span className="text-sm">{project.year}</span>
                   </div>
                 </div>
 
-                <h1 className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text">
+                <h1 className="mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-3xl font-bold text-white">
                   {project.name}
                 </h1>
 
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  {project.description}
-                </p>
+                <p className="mb-6 leading-relaxed text-gray-300">{project.description}</p>
 
                 {/* Tech Stack */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-gray-400 mb-3 flex items-center gap-2">
-                    <Code2 className="w-4 h-4" />
+                  <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-400">
+                    <Code2 className="h-4 w-4" />
                     Technologies Used
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -122,7 +110,7 @@ export default function ProjectDetailPage() {
                       <Badge
                         key={index}
                         variant="secondary"
-                        className="bg-purple-500/10 text-purple-300 border-purple-500/20"
+                        className="border-purple-500/20 bg-purple-500/10 text-purple-300"
                       >
                         {tech}
                       </Badge>
@@ -136,14 +124,10 @@ export default function ProjectDetailPage() {
                 {project.live_url && (
                   <Button
                     asChild
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
                   >
-                    <a
-                      href={project.live_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Globe className="w-4 h-4 mr-2" />
+                    <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                      <Globe className="mr-2 h-4 w-4" />
                       Live Demo
                     </a>
                   </Button>
@@ -153,14 +137,10 @@ export default function ProjectDetailPage() {
                   <Button
                     asChild
                     variant="outline"
-                    className="bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/20"
+                    className="border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"
                   >
-                    <a
-                      href={project.github_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="w-4 h-4 mr-2" />
+                    <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
                       View Code
                     </a>
                   </Button>
@@ -170,14 +150,10 @@ export default function ProjectDetailPage() {
                   <Button
                     asChild
                     variant="outline"
-                    className="bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/20"
+                    className="border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"
                   >
-                    <a
-                      href={project.preview_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
+                    <a href={project.preview_link} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
                       Preview
                     </a>
                   </Button>
@@ -189,14 +165,12 @@ export default function ProjectDetailPage() {
 
         {/* Project Details */}
         {project.project_details && project.project_details.length > 0 && (
-          <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+          <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h2 className="text-xl font-bold text-white mb-4">
-                Project Details
-              </h2>
+              <h2 className="mb-4 text-xl font-bold text-white">Project Details</h2>
               <div className="prose prose-invert max-w-none">
                 {project.project_details.map((detail, index) => (
-                  <p key={index} className="text-gray-300 leading-relaxed mb-4">
+                  <p key={index} className="mb-4 leading-relaxed text-gray-300">
                     {detail}
                   </p>
                 ))}
@@ -207,11 +181,9 @@ export default function ProjectDetailPage() {
 
         {/* Project Images */}
         {project.images && project.images.length > 0 && (
-          <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+          <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h2 className="text-xl font-bold text-white mb-6">
-                Project Gallery
-              </h2>
+              <h2 className="mb-6 text-xl font-bold text-white">Project Gallery</h2>
               <div className="grid gap-6">
                 {project.images.slice(0, 6).map((img, i) => (
                   <motion.div
@@ -220,7 +192,7 @@ export default function ProjectDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative rounded-xl overflow-hidden bg-neutral-800 group cursor-pointer"
+                    className="group relative cursor-pointer overflow-hidden rounded-xl bg-neutral-800"
                     onClick={() => window.open(img, "_blank")}
                   >
                     <Image
@@ -228,12 +200,12 @@ export default function ProjectDetailPage() {
                       alt={`${project.name} screenshot ${i + 1}`}
                       width={900}
                       height={600}
-                      className="object-cover w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                      className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       priority={i === 0}
                     />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm">
-                        <ExternalLink className="w-6 h-6 text-white" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="rounded-full bg-white/10 p-3 backdrop-blur-sm">
+                        <ExternalLink className="h-6 w-6 text-white" />
                       </div>
                     </div>
                   </motion.div>
@@ -248,10 +220,10 @@ export default function ProjectDetailPage() {
           <Button
             asChild
             variant="outline"
-            className="bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/20"
+            className="border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"
           >
             <Link href="/projects">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="mr-2 h-4 w-4" />
               Back to All Projects
             </Link>
           </Button>

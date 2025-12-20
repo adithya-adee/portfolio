@@ -9,10 +9,7 @@ export async function GET() {
     const likes = (await redis.get(LIKES_KEY)) || 0;
     return NextResponse.json({ likes }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: `Failed to fetch likes, ${error}` },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: `Failed to fetch likes, ${error}` }, { status: 500 });
   }
 }
 
@@ -22,10 +19,7 @@ export async function POST(request: NextRequest) {
     try {
       body = await request.json();
     } catch {
-      return NextResponse.json(
-        { error: "Invalid request body" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
     }
 
     const { action } = body;
@@ -52,9 +46,6 @@ export async function POST(request: NextRequest) {
       }
     );
   } catch (error) {
-    return NextResponse.json(
-      { error: `Failed to update likes, ${error}` },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: `Failed to update likes, ${error}` }, { status: 500 });
   }
 }

@@ -1,148 +1,70 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect } from "react";
-import { FaTwitter, FaReddit, FaLinkedin, FaGithub } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { useEffect, useState } from "react";
 
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-jetbrains",
-});
+export default function HeroMinimal() {
+  const [currentTime, setCurrentTime] = useState("");
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-interface HeroProps {
-  isMobile?: boolean;
-}
-
-export default function HeroSection({ isMobile }: HeroProps) {
-  const socialLinks = [
-    {
-      icon: <FaGithub size={18} />,
-      link: "https://github.com/adithya-adee",
-      label: "GitHub",
-    },
-    {
-      icon: <FaTwitter size={18} />,
-      link: "https://x.com/AdithyaA593326",
-      label: "Twitter",
-    },
-    {
-      icon: <FaReddit size={18} />,
-      link: "https://www.reddit.com/user/Glithcy_moon_69/",
-      label: "Reddit",
-    },
-    {
-      icon: <FaLinkedin size={18} />,
-      link: "https://linkedin.com/in/adithya-a-8bb28128a",
-      label: "LinkedIn",
-    },
-  ];
-
-  // Keyboard shortcuts
+  // Update time every second
   useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      // Only trigger if not typing in an input field
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
-        return;
-      }
-
-      const key = e.key.toLowerCase();
-
-      if (key === "c") {
-        // Copy email to clipboard
-        navigator.clipboard.writeText("adithya25905@gmail.com");
-        // Optional: Show a toast notification here
-      } else if (key === "g") {
-        // Go to GitHub
-        window.open("https://github.com/adithya-adee", "_blank");
-      } else if (key === "x") {
-        // Go to Twitter/X
-        window.open("https://x.com/AdithyaA593326", "_blank");
-      }
+    const updateTime = () => {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "Asia/Kolkata",
+      });
+      setCurrentTime(timeString);
     };
 
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className={`max-w-4xl mx-auto ${isMobile ? "px-4 py-8" : "px-6 py-16"} mt-20`}>
+    <section className="mx-auto mt-16 max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="space-y-8"
+        className="space-y-4"
       >
-        {/* Brand Identifier */}
-        <div className="space-y-3">
-          <p className={`${inter.className} text-gray-400 text-sm uppercase tracking-wider`}>
-            @glitchy_moon
+        <div className="flex justify-between border-neutral-800/50">
+          {/* EST */}
+          <p className="text-xs tracking-wider text-gray-500 uppercase">EST. 2005</p>
+
+          {/* Time & Timezone */}
+          <p className="text-xs text-gray-500">
+            {currentTime} <span className="text-gray-600">IST (GMT+5:30)</span>
           </p>
-          <h1
-            className={`${jetbrains.className} ${
-              isMobile ? "text-4xl" : "text-5xl lg:text-6xl"
-            } font-bold text-white tracking-tight`}
-          >
+        </div>
+        {/* Name & Handle */}
+        <div className="space-y-1">
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Adithya Anand
           </h1>
-          <p className={`${inter.className} text-gray-400 ${isMobile ? "text-base" : "text-lg"} leading-relaxed`}>
-            3rd year @ NITK Surathkal | Backend Developer
-          </p>
+          <p className="text-sm text-gray-400">@glitchy_moon</p>
         </div>
 
-        {/* Bio */}
-        <div className={`${inter.className} space-y-4 text-gray-300 ${isMobile ? "text-sm" : "text-base"} max-w-2xl`}>
-          <p className="leading-relaxed">
-            I build scalable backend systems and explore cryptography. Currently learning Solana and building cool stuff with Rust and Web3 technologies.
+        {/* Subtitle */}
+        <p className="max-w-xl text-base leading-relaxed text-gray-300">
+          3rd year @ NITK Surathkal | Backend Developer
+        </p>
+
+        {/* Bio - Compressed */}
+        <div className="max-w-xl space-y-2 text-sm text-gray-400">
+          <p>
+            I build scalable backend systems and products. Passionate about cryptography,
+            blockchain, and creating efficient solutions that solve real problems.
           </p>
-          <p className="leading-relaxed">
-            I have 1 year of professional experience as a backend developer. I enjoy solving complex problems and creating efficient solutions.
+          <p>
+            Currently exploring Solana and Web3 tech while working on full-stack projects with Rust,
+            TypeScript, and modern frameworks.
           </p>
-        </div>
-
-        {/* Contact */}
-        <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
-          <a
-            href="mailto:adithya25905@gmail.com"
-            className={`${inter.className} inline-flex items-center text-gray-400 hover:text-white transition-colors group w-fit`}
-          >
-            <HiOutlineMail className="mr-2 group-hover:scale-110 transition-transform" size={20} />
-            adithya25905@gmail.com
-          </a>
-
-          {/* Keyboard Shortcuts */}
-          <div className={`${inter.className} text-gray-500 text-xs space-x-4`}>
-            <span>Press <kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-gray-400">C</kbd> to copy email</span>
-            <span>Press <kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-gray-400">G</kbd> for GitHub</span>
-            <span>Press <kbd className="px-1.5 py-0.5 bg-white/5 border border-white/10 rounded text-gray-400">X</kbd> for Twitter</span>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex gap-4">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-                whileHover={!isMobile ? { scale: 1.05, y: -2 } : undefined}
-                whileTap={{ scale: 0.95 }}
-                title={social.label}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </div>
         </div>
       </motion.div>
     </section>
