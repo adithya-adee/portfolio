@@ -68,28 +68,35 @@ export default function TechStack() {
   ];
 
   return (
-    <section className="mx-auto max-w-2xl px-4 sm:px-6">
-      <h2 className="mb-4 text-xl font-medium text-gray-400">Technology & Tools I Use</h2>
+    <section className="mx-auto max-w-3xl px-4 sm:px-6">
+      <h2 className="mb-4 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+        Technology & Tools I Use
+      </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {categories.map((category, categoryIndex) => (
-          <div key={categoryIndex} className="flex items-start gap-4">
+          <div
+            key={categoryIndex}
+            className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6"
+          >
             {/* Category Label */}
-            <p className="min-w-[80px] pt-2 text-xs uppercase tracking-wider text-gray-500">
+            <p className="min-w-[100px] text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
               {category.name}
             </p>
 
             {/* Tech Items */}
-            <div className="flex flex-1 flex-wrap gap-2">
+            <div className="flex flex-1 flex-wrap gap-3">
               {category.items.map((tech) => {
                 const Icon = tech.icon;
                 return (
                   <div
                     key={tech.name}
-                    className="flex items-center gap-2 rounded-md border border-transparent bg-neutral-700/30 px-3 py-2 transition-all duration-200 hover:border-neutral-700/50"
+                    className="flex items-center gap-2.5 rounded-md border border-transparent bg-neutral-700/30 px-3 py-2.5 transition-all duration-200 hover:border-neutral-700/50 sm:px-4"
                   >
                     <Icon className="text-base" style={{ color: tech.color }} />
-                    <span className="font-mono text-sm font-medium text-gray-300">{tech.name}</span>
+                    <span className="text-sm font-medium tracking-wide text-gray-300">
+                      {tech.name}
+                    </span>
                   </div>
                 );
               })}

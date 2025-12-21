@@ -1,7 +1,6 @@
 "use client";
 
 import blogsData from "@/asset/blog.json";
-import { motion } from "framer-motion";
 import { ExternalLink, Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -18,51 +17,52 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen">
-      <section className="mx-auto mt-20 max-w-2xl px-4 py-8 sm:px-6">
+      <section className="mx-auto mt-8 max-w-3xl px-4 py-6 sm:mt-12 sm:px-6 sm:py-8">
         {/* Back Button */}
         <Link
           href="/"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
+          className="mb-6 inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-colors hover:text-white"
         >
           <ArrowLeft size={16} />
-          Back
+          Back to Home
         </Link>
 
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="mb-2 text-2xl font-bold text-white">Blog Posts</h1>
-          <p className="text-sm text-gray-400">Thoughts on code, tech, and building products</p>
+        <div className="mb-6 space-y-1">
+          <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            Blog Posts
+          </h1>
+          <p className="text-sm tracking-wide text-gray-400 sm:text-base">
+            Thoughts on code, tech, and building products
+          </p>
         </div>
 
         {/* Blog List */}
-        <div className="space-y-3">
-          {blogs.map((blog, index) => (
-            <motion.article
+        <div className="space-y-2 sm:space-y-3">
+          {blogs.map((blog) => (
+            <article
               key={blog.title}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              className="group rounded-lg border border-neutral-800/50 bg-neutral-900/30 p-4 transition-colors hover:border-neutral-700/50"
+              className="group rounded-lg border border-neutral-800/50 bg-neutral-900/30 p-4 transition-colors hover:border-neutral-700/50 sm:p-5"
             >
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {/* Title and Date */}
-                <div className="flex items-start justify-between gap-4">
-                  <h2 className="text-base font-medium text-white transition-colors group-hover:text-gray-200">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                  <h2 className="text-base font-medium leading-snug tracking-wide text-white transition-colors group-hover:text-gray-200 sm:text-lg">
                     {blog.title}
                   </h2>
-                  <span className="flex shrink-0 items-center gap-1 text-xs text-gray-500">
-                    <Calendar size={12} />
+                  <span className="flex shrink-0 items-center gap-2 text-sm tracking-wide text-gray-500">
+                    <Calendar size={14} />
                     {blog.date}
                   </span>
                 </div>
 
                 {/* Category */}
-                <span className="inline-block rounded bg-neutral-800/50 px-2 py-0.5 text-xs text-gray-400">
+                <span className="inline-block rounded bg-neutral-800/50 px-3 py-1.5 text-xs uppercase tracking-wider text-gray-400">
                   {blog.category}
                 </span>
 
                 {/* Description */}
-                <p className="line-clamp-2 text-sm leading-relaxed text-gray-400">
+                <p className="line-clamp-2 text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
                   {blog.description}
                 </p>
 
@@ -71,12 +71,12 @@ export default function BlogPage() {
                   href={blog.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-500 transition-colors hover:text-white"
                 >
                   Read article → <ExternalLink size={14} />
                 </a>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>

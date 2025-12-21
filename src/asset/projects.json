@@ -1,7 +1,7 @@
 [
   {
     "name": "CodeSync",
-    "timeline": "Jan 2025",
+    "timeline": "July 2025",
     "short_description": "Real-time collaborative coding environment with integrated whiteboard and AI chat.",
     "detailed_description": [
       "Built real-time collaborative coding with whiteboard and AI chat using Gemini API",
@@ -14,7 +14,7 @@
   },
   {
     "name": "Hackverse",
-    "timeline": "Dec 2024 - Present",
+    "timeline": "April 2025 - May 2025",
     "short_description": "Scalable hackathon platform with secure RBAC and optimized database architecture.",
     "detailed_description": [
       "Developed secure RBAC using Passport.js, NestJS guards, and decorators",

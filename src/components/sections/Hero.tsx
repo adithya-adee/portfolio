@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function HeroMinimal() {
   const [currentTime, setCurrentTime] = useState("");
 
   const highlights = [
-    "Built and shipped Crab-Clean CLI tool (540+ downloads) with 90% faster SHA256 hashing",
-    "Top 10% nationally in IEEE Summer of Code for open-source contributions",
+    "Built and shipped Crab-Clean CLI tool (900+ downloads) with 90% faster SHA256 hashing",
+    "Top 11th across 500+ contributors in IEEE Summer of Code for open-source contributions",
     "Won 2 hackathons building scalable full-stack applications",
   ];
 
@@ -32,50 +32,59 @@ export default function HeroMinimal() {
   }, []);
 
   return (
-    <section className="mx-auto mt-16 max-w-2xl px-4 sm:px-3 sm:pt-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-2"
-      >
-        <div className="flex justify-between border-neutral-800/50">
-          {/* EST */}
-          <p className="text-sm uppercase tracking-wider text-gray-500">EST. 2005</p>
-
-          {/* Time & Timezone */}
-          <p className="text-sm text-gray-500">
+    <section className="mx-auto mt-8 max-w-3xl px-4 sm:mt-12 sm:px-6">
+      <div className="space-y-4 sm:space-y-5">
+        {/* Metadata Row */}
+        <div className="flex flex-col justify-between gap-1 border-b border-neutral-800/50 pb-2 sm:flex-row sm:gap-0">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-500 sm:text-sm">
+            EST. 2005
+          </p>
+          <p className="text-xs tracking-wide text-gray-500 sm:text-sm">
             {currentTime} <span className="text-gray-600">IST (GMT+5:30)</span>
           </p>
         </div>
-        {/* Name & Handle */}
-        <div className="space-y-1">
-          <p className="text-md font-bold tracking-tight text-white sm:text-4xl">Adithya Anand</p>
-          <p className="text-sm text-gray-400">@glitchy_moon</p>
+
+        {/* Name & Handle with Profile Image */}
+        <div className="flex items-center gap-4">
+          <Image
+            src="/profile.png"
+            alt="Adithya Anand"
+            width={64}
+            height={64}
+            className="rounded-full ring-2 ring-neutral-800"
+          />
+          <div className="space-y-1">
+            <h1 className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
+              Adithya Anand
+            </h1>
+            <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
+          </div>
         </div>
 
         {/* Subtitle */}
-        <p className="max-w-xl text-lg leading-relaxed text-gray-300">
+        <p className="text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
           Backend Developer | Building Solana Products
         </p>
 
-        {/* Bio*/}
-        <p className="text-md max-w-xl pt-2 leading-relaxed text-gray-400">
+        {/* Bio */}
+        <p className="max-w-2xl text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.
         </p>
 
         {/* Highlights */}
-        <div className="pt-2 text-base text-gray-400">
+        <div className="space-y-1">
           {highlights.map((highlight, index) => (
-            <span key={index}>
+            <p
+              key={index}
+              className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
+            >
               {highlight}
-              {index < highlights.length - 1 ? " • " : ""}
-            </span>
+            </p>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

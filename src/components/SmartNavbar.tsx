@@ -103,7 +103,7 @@ export default function SmartNavbar() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden md:hidden"
                 >
-                  <div className="mt-3 flex flex-col gap-4 border-t border-white/10 py-4">
+                  <div className="mt-3 flex flex-col gap-4 border-t border-white/10">
                     {navLinks.map((link) => (
                       <Link
                         key={link.name}
