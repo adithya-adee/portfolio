@@ -49,7 +49,7 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100"></div>
             <span className="relative flex items-center gap-2">
               Detailed View
-              <ExternalLink className="h-4 w-4 transition-transform hover:translate-x-1 hover:-translate-y-1" />
+              <ExternalLink className="h-4 w-4 transition-transform hover:-translate-y-1 hover:translate-x-1" />
             </span>
           </Button>
         </motion.div>

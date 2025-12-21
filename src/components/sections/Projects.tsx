@@ -19,8 +19,8 @@ export default function ProjectsPage() {
   const projects = projectsData as Project[];
 
   return (
-    <section className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <h2 className="mb-6 text-sm font-medium text-gray-400">Projects I&apos;ve Built</h2>
+    <section className="mx-auto max-w-2xl px-4 sm:px-6">
+      <h2 className="mb-6 text-xl font-medium text-gray-400">Projects I&apos;ve Built</h2>
 
       <div className="space-y-3">
         {projects.map((project, index) => (
@@ -42,6 +42,30 @@ export default function ProjectsPage() {
                   <span className="text-xs text-gray-500">{project.timeline}</span>
                 </div>
                 <p className="mt-1 text-sm text-gray-400">{project.short_description}</p>
+
+                {/* Links */}
+                <div className="mt-4 flex gap-4">
+                  {project.live_url && (
+                    <a
+                      href={project.live_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-white"
+                    >
+                      Visit <ExternalLink size={14} />
+                    </a>
+                  )}
+                  {project.github_url && (
+                    <a
+                      href={project.github_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-white"
+                    >
+                      GitHub <Github size={14} />
+                    </a>
+                  )}
+                </div>
               </div>
               <motion.div
                 animate={{ rotate: expandedIndex === index ? 180 : 0 }}
@@ -71,30 +95,6 @@ export default function ProjectsPage() {
                         </li>
                       ))}
                     </ul>
-
-                    {/* Links */}
-                    <div className="mt-4 flex gap-4">
-                      {project.live_url && (
-                        <a
-                          href={project.live_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-white"
-                        >
-                          Visit → <ExternalLink size={14} />
-                        </a>
-                      )}
-                      {project.github_url && (
-                        <a
-                          href={project.github_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-white"
-                        >
-                          GitHub <Github size={14} />
-                        </a>
-                      )}
-                    </div>
                   </div>
                 </motion.div>
               )}

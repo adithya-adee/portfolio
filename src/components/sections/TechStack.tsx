@@ -1,52 +1,100 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const techStack = [
-  { name: "JavaScript", color: "#F7DF1E", bg: "#33320" },
-  { name: "TypeScript", color: "#3178C6", bg: "#2D4257" },
-  { name: "React", color: "#61DAFB", bg: "#282C34" },
-  { name: "Next.js", color: "#FFFFFF", bg: "#000000" },
-  { name: "Node.js", color: "#339933", bg: "#1B3A1F" },
-  { name: "NestJS", color: "#E0234E", bg: "#2C1B20" },
-  { name: "PostgreSQL", color: "#4169E1", bg: "#1E2A3C" },
-  { name: "MongoDB", color: "#47A248", bg: "#1C2E1F" },
-  { name: "Rust", color: "#CE412B", bg: "#2E1D1A" },
-  { name: "Solana", color: "#9945FF", bg: "#1E1533" },
-  { name: "Prisma", color: "#2D3748", bg: "#1A202C" },
-  { name: "Redis", color: "#DC382D", bg: "#2C1C1A" },
-  { name: "Convex", color: "#FFA500", bg: "#332818" },
-  { name: "tRPC", color: "#2596BE", bg: "#1A2F38" },
-];
+import {
+  SiTypescript,
+  SiJavascript,
+  SiRust,
+  SiExpress,
+  SiNestjs,
+  SiApachekafka,
+  SiSocketdotio,
+  SiReact,
+  SiNextdotjs,
+  SiMongodb,
+  SiPostgresql,
+  SiPrisma,
+  SiRedis,
+  SiDocker,
+  SiGithubactions,
+  SiDatadog,
+  SiVercel,
+} from "react-icons/si";
 
 export default function TechStack() {
+  const categories = [
+    {
+      name: "Languages",
+      items: [
+        { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+        { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+        { name: "Rust", icon: SiRust, color: "#CE412B" },
+      ],
+    },
+    {
+      name: "Backend",
+      items: [
+        // { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+        { name: "Express.js", icon: SiExpress, color: "#FFFFFF" },
+        { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
+        { name: "Kafka", icon: SiApachekafka, color: "#231F20" },
+        { name: "WebSocket", icon: SiSocketdotio, color: "#010101" },
+      ],
+    },
+    {
+      name: "Frontend",
+      items: [
+        { name: "React", icon: SiReact, color: "#61DAFB" },
+        { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+      ],
+    },
+    {
+      name: "DBMS",
+      items: [
+        { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+        { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+        { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
+      ],
+    },
+    {
+      name: "DevOps",
+      items: [
+        { name: "Redis", icon: SiRedis, color: "#DC382D" },
+        { name: "Docker", icon: SiDocker, color: "#2496ED" },
+        { name: "CI/CD", icon: SiGithubactions, color: "#2088FF" },
+        { name: "Datadog", icon: SiDatadog, color: "#632CA6" },
+        { name: "Vercel", icon: SiVercel, color: "#000000" },
+      ],
+    },
+  ];
+
   return (
     <section className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <h2 className="mb-6 text-sm font-medium text-gray-400">Technology & Tools I Use</h2>
+      <h2 className="mb-4 text-sm font-medium text-gray-400">Technology & Tools I Use</h2>
 
-      <div className="flex flex-wrap gap-2">
-        {techStack.map((tech, index) => (
-          <motion.div
-            key={tech.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.05 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            className="cursor-pointer rounded-md border border-neutral-800/50 bg-neutral-900/30 px-3 py-1.5 transition-all hover:border-neutral-700"
-            style={{
-              boxShadow: "0 0 0 0 transparent",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `0 0 8px 0 ${tech.color}40`;
-              e.currentTarget.style.borderColor = `${tech.color}60`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 0 0 0 transparent";
-              e.currentTarget.style.borderColor = "rgba(38, 38, 38, 0.5)";
-            }}
-          >
-            <span className="text-sm font-medium text-gray-300">{tech.name}</span>
-          </motion.div>
+      <div className="space-y-4">
+        {categories.map((category, categoryIndex) => (
+          <div key={categoryIndex} className="flex items-start gap-4">
+            {/* Category Label */}
+            <p className="min-w-[80px] pt-2 text-xs uppercase tracking-wider text-gray-500">
+              {category.name}
+            </p>
+
+            {/* Tech Items */}
+            <div className="flex flex-1 flex-wrap gap-2">
+              {category.items.map((tech) => {
+                const Icon = tech.icon;
+                return (
+                  <div
+                    key={tech.name}
+                    className="flex items-center gap-2 rounded-md border border-neutral-800/50 bg-neutral-900/30 px-3 py-2"
+                  >
+                    <Icon className="text-base" style={{ color: tech.color }} />
+                    <span className="text-sm font-medium text-gray-300">{tech.name}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         ))}
       </div>
     </section>

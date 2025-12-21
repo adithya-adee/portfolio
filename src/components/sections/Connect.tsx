@@ -56,7 +56,7 @@ export default function ConnectWithMe() {
 
   return (
     <section className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <h2 className="mb-6 text-sm font-medium text-gray-400">Connect with Me</h2>
+      <h2 className="mb-6 text-xl font-medium text-gray-400">Connect with Me</h2>
 
       <div className="space-y-4">
         {/* Email with keyboard hint */}
