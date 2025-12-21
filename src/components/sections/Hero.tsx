@@ -59,15 +59,15 @@ export default function HeroMinimal() {
           Backend Developer | Building Solana Products
         </p>
 
-        {/* Bio - Ultra Compressed to 3 lines max */}
+        {/* Bio*/}
         <p className="max-w-xl pt-2 text-sm leading-relaxed text-gray-400">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.
         </p>
 
-        {/* Highlights - Compressed */}
-        <div className="pt-2 text-sm text-gray-300">
+        {/* Highlights */}
+        <div className="pt-2 text-sm text-gray-400">
           {highlights.map((highlight, index) => (
             <span key={index}>
               {highlight}

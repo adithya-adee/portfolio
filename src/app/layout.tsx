@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/SEO";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -71,12 +72,21 @@ export default function RootLayout({
               }}
             />
 
+            {/* Radial Gradient Glow */}
+            {/* <div
+              className="absolute inset-0"
+              style={{
+                background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(244, 114, 182, 0.25), transparent 70%), #000000",
+              }}
+            /> */}
+
             {/* Gradient Overlays */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-blue-900/5" />
             <div className="from-emerald-900/3 to-pink-900/3 absolute inset-0 bg-gradient-to-tl via-transparent" />
           </div>
           <Toaster position="top-right" theme="dark" richColors />
           <Analytics />
+          <SpeedInsights />
           {children}
         </div>
       </body>

@@ -19,7 +19,7 @@ body {
   color: hsl(var(--foreground));
   font-family: "Inter", Arial, Helvetica, sans-serif;
   min-height: 100vh;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
 }
 

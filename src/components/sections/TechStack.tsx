@@ -68,8 +68,8 @@ export default function TechStack() {
   ];
 
   return (
-    <section className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <h2 className="mb-4 text-sm font-medium text-gray-400">Technology & Tools I Use</h2>
+    <section className="mx-auto max-w-2xl px-4 sm:px-6">
+      <h2 className="mb-4 text-xl font-medium text-gray-400">Technology & Tools I Use</h2>
 
       <div className="space-y-4">
         {categories.map((category, categoryIndex) => (

@@ -18,9 +18,9 @@ export default function ExperienceCollapsed() {
   const experience = useMemo(() => experienceData as unknown as ExperienceItem[], []);
 
   return (
-    <section className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
+    <section className="mx-auto max-w-2xl px-4 sm:px-6">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-sm font-medium text-gray-400">Where I&apos;ve Worked</h2>
+        <h2 className="text-xl font-medium text-gray-400">Where I&apos;ve Worked</h2>
         <a
           href="/experience"
           className="flex items-center gap-1 text-xs text-gray-400 transition-colors hover:text-gray-200"
