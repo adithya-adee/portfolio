@@ -1,490 +1,184 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
-import Image from "next/image";
+import { useMemo, useState } from "react";
 import projectsData from "@/asset/projects.json";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  ExternalLink,
-  Github,
-  Calendar,
-  Code,
-  Folder,
-  Sparkles,
-} from "lucide-react";
+import { ChevronDown, ExternalLink, Filter } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 
 interface Project {
-  title: string;
   name: string;
-  star: string;
-  slug: string;
-  description: string;
+  timeline: string;
   category: string;
-  year: number;
-  tech_stack: string[];
-  images: string[];
-  preview_link?: string;
-  github_url?: string;
-  live_url?: string;
-  project_details: string[];
+  short_description: string;
+  detailed_description: string[];
+  live_url: string;
+  github_url: string;
 }
 
-interface CategoryProjects {
-  category: string;
-  projects: Project[];
-}
+type FilterCategory = "web3" | "full-stack";
 
-const ProjectCard = ({
-  project,
-  index,
-  isMobile,
-}: {
-  project: Project;
-  index: number;
-  isMobile: boolean;
-}) => {
-  const handleCardClick = useCallback(() => {
-    window.location.href = `/projects/${project.slug}`;
-  }, [project.slug]);
+const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3"];
 
-  const handleLinkClick = useCallback((e: React.MouseEvent, url: string) => {
-    e.stopPropagation();
-    window.open(url, "_blank");
-  }, []);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: isMobile ? 0.3 : 0.5,
-        delay: isMobile ? index * 0.05 : index * 0.1,
-      }}
-      className="group cursor-pointer"
-      onClick={handleCardClick}
-    >
-      <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden h-full">
-        <CardContent className="p-0">
-          {/* Project Image - Optimized for mobile */}
-          <div
-            className={`relative ${
-              isMobile ? "h-40" : "h-48"
-            } bg-gradient-to-br from-neutral-900 to-neutral-800 overflow-hidden`}
-          >
-            {project.images && project.images.length > 0 ? (
-              <Image
-                src={project.images[0]}
-                alt={project.title}
-                fill
-                sizes={
-                  isMobile
-                    ? "(max-width: 768px) 100vw"
-                    : "(max-width: 1200px) 50vw, 33vw"
-                }
-                className={`transition-transform duration-500 object-cover ${
-                  !isMobile && "group-hover:scale-105"
-                }`}
-                loading={index > 2 ? "lazy" : "eager"}
-                quality={isMobile ? 75 : 85}
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col justify-center items-center text-gray-500">
-                <Code
-                  className={`${
-                    isMobile ? "w-8 h-8" : "w-12 h-12"
-                  } mb-2 opacity-50`}
-                />
-                <span className={`${isMobile ? "text-xs" : "text-sm"}`}>
-                  Project Preview
-                </span>
-              </div>
-            )}
-
-            {/* Overlay - Simplified for mobile */}
-            {!isMobile && (
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="flex gap-2">
-                    {project.github_url && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
-                        onClick={(e) => handleLinkClick(e, project.github_url!)}
-                      >
-                        <Github className="w-4 h-4" />
-                      </Button>
-                    )}
-                    {project.live_url && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
-                        onClick={(e) => handleLinkClick(e, project.live_url!)}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Project Details - Optimized spacing for mobile */}
-          <div className={`${isMobile ? "p-4" : "p-6"}`}>
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex-1 min-w-0">
-                <h3
-                  className={`${
-                    isMobile ? "text-lg" : "text-xl"
-                  } font-bold text-white mb-1 group-hover:text-purple-300 transition-colors truncate`}
-                >
-                  {project.name}
-                </h3>
-                <Badge
-                  variant="outline"
-                  className="border-blue-500/30 text-blue-400 text-xs"
-                >
-                  {project.category}
-                </Badge>
-              </div>
-              <div className="flex items-center gap-2 text-gray-400 ml-2">
-                <Calendar className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm">{project.year}</span>
-              </div>
-            </div>
-
-            <p
-              className={`text-gray-300 ${
-                isMobile ? "text-xs" : "text-sm"
-              } leading-relaxed mb-4 line-clamp-3`}
-            >
-              {project.description?.slice(0, isMobile ? 80 : 120)}...
-            </p>
-
-            {/* Tech Stack - Reduced for mobile */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech_stack
-                ?.slice(0, isMobile ? 3 : 4)
-                .map((tech, techIndex) => (
-                  <Badge
-                    key={techIndex}
-                    variant="secondary"
-                    className="bg-white/5 text-gray-400 border-white/10 text-xs"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
-              {project.tech_stack?.length > (isMobile ? 3 : 4) && (
-                <Badge
-                  variant="secondary"
-                  className="bg-purple-500/20 text-purple-300 border-purple-500/30 text-xs"
-                >
-                  +{project.tech_stack.length - (isMobile ? 3 : 4)}
-                </Badge>
-              )}
-            </div>
-
-            {/* Mobile action buttons */}
-            {isMobile && (
-              <div className="flex gap-2 mb-4">
-                {project.github_url && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 bg-white/5 border-white/20 text-white text-xs"
-                    onClick={(e) => handleLinkClick(e, project.github_url!)}
-                  >
-                    <Github className="w-3 h-3 mr-1" />
-                    Code
-                  </Button>
-                )}
-                {project.live_url && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 bg-white/5 border-white/20 text-white text-xs"
-                    onClick={(e) => handleLinkClick(e, project.live_url!)}
-                  >
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    Live
-                  </Button>
-                )}
-              </div>
-            )}
-
-            {/* View Details */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-              <span
-                className={`${isMobile ? "text-xs" : "text-sm"} text-gray-400`}
-              >
-                {isMobile ? "Tap to view" : "Click to view details"}
-              </span>
-              <div className="flex items-center gap-2 text-purple-400 group-hover:text-purple-300">
-                <span
-                  className={`${isMobile ? "text-xs" : "text-sm"} font-medium`}
-                >
-                  {isMobile ? "View" : "View Project"}
-                </span>
-                <ExternalLink
-                  className={`${
-                    isMobile ? "w-3 h-3" : "w-4 h-4"
-                  } transition-transform ${
-                    !isMobile &&
-                    "group-hover:translate-x-1 group-hover:-translate-y-1"
-                  }`}
-                />
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
+const getCategoryLabel = (category: FilterCategory): string => {
+  return category === "web3" ? "Web3" : "Full Stack";
 };
 
-export default function ProjectsPage({ isMobile }: { isMobile: boolean }) {
-  const [activeTab, setActiveTab] = useState("all");
+const getCategoryStyles = (category: string) => {
+  return category === "web3"
+    ? "bg-red-500/10 text-red-200 border border-red-500/30"
+    : "bg-sky-500/10 text-sky-400 border border-sky-500/30";
+};
 
-  // Memoized data processing
-  const { projectsByCategory, allProjects } = useMemo(() => {
-    const categoryData = projectsData as CategoryProjects[];
-    const allProjectsList: Project[] = [];
+export default function ProjectsPage() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>("full-stack");
 
-    categoryData.forEach((categoryGroup) => {
-      categoryGroup.projects.forEach((project) => {
-        allProjectsList.push(project);
-      });
-    });
+  const projects = projectsData as Project[];
 
-    return {
-      projectsByCategory: categoryData,
-      allProjects: allProjectsList,
-    };
-  }, []);
-
-  const handleViewAllProjects = useCallback(() => {
-    window.location.href = "/projects";
-  }, []);
+  // Use useMemo to avoid unnecessary recalculations
+  const filteredProjects = useMemo(
+    () => projects.filter((project) => project.category === activeFilter),
+    [activeFilter, projects]
+  );
 
   return (
-    <section
-      className={`max-w-6xl mx-auto ${isMobile ? "px-4 py-12" : "px-6 py-16"}`}
-    >
-      {/* Header - Optimized for mobile */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`mb-12 ${
-          isMobile ? "text-center" : "flex items-center justify-between"
-        }`}
-      >
-        <div
-          className={`flex items-center ${
-            isMobile ? "justify-center" : ""
-          } gap-4 ${isMobile ? "mb-6" : ""}`}
-        >
-          <div className="relative">
-            <Sparkles
-              className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} text-purple-400`}
-            />
-            <div
-              className={`absolute inset-0 ${
-                isMobile ? "w-6 h-6" : "w-8 h-8"
-              } bg-purple-400/20 rounded-full blur-xl`}
-            />
-          </div>
-          <div>
-            <h2
-              className={`${
-                isMobile ? "text-2xl" : "text-4xl"
-              } font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent`}
-            >
-              Featured Projects
-            </h2>
-            <p
-              className={`text-gray-400 ${
-                isMobile ? "text-xs" : "text-sm"
-              } mt-1`}
-            >
-              Crafted with passion and precision
-            </p>
-          </div>
+    <section className="mx-auto max-w-3xl px-4 sm:px-6">
+      <h2 className="mb-6 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+        Projects I&apos;ve Built
+      </h2>
+
+      {/* Filter Buttons */}
+      <div className="mb-6 flex flex-wrap items-center gap-3">
+        <div className="flex items-center gap-2 text-sm text-gray-500">
+          <Filter size={16} />
+          <span className="hidden sm:inline">Filter:</span>
         </div>
 
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Button
-            variant="outline"
-            className="border-purple-500/50 text-purple-300 hover:text-white hover:bg-purple-500/10 backdrop-blur-sm transition-all duration-300 relative overflow-hidden"
-            onClick={handleViewAllProjects}
+        {FILTER_OPTIONS.map((category) => (
+          <button
+            key={category}
+            onClick={() => setActiveFilter(category)}
+            className={`relative overflow-hidden rounded-lg px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 ease-out ${
+              activeFilter === category
+                ? "border border-neutral-600/50 bg-gradient-to-r from-neutral-700/60 to-neutral-800/60 text-white shadow-lg shadow-neutral-900/50"
+                : "border border-neutral-800/50 bg-neutral-900/30 text-gray-400 hover:border-neutral-700/50 hover:bg-neutral-800/40 hover:text-gray-300"
+            } `}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-            <span className="relative flex items-center gap-2">
-              View all projects
-              <ExternalLink className="w-4 h-4 transition-transform hover:translate-x-1 hover:-translate-y-1" />
-            </span>
-          </Button>
-        </motion.div>
-      </motion.div>
+            <span className="relative z-10">{getCategoryLabel(category)}</span>
+            {activeFilter === category && (
+              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-neutral-600/20 to-transparent" />
+            )}
+          </button>
+        ))}
 
-      {/* Tabs - Optimized for mobile */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mb-16"
-      >
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {/* Mobile-optimized TabsList */}
-          <div className="flex justify-center mb-8">
-            <TabsList
-              className={`bg-white/5 border border-white/10 p-1 h-auto ${
-                isMobile ? "w-full overflow-x-auto" : ""
-              }`}
+        <span className="ml-auto hidden text-xs text-gray-600 sm:block">
+          {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}
+        </span>
+      </div>
+
+      {/* Projects List */}
+      <div className="space-y-4 sm:space-y-6">
+        {filteredProjects.map((project, index) => (
+          <div
+            key={project.name}
+            className="group overflow-hidden rounded-lg border border-dashed border-zinc-800 bg-neutral-900/30 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-neutral-700/50 hover:shadow-xl hover:shadow-neutral-900/30"
+            style={{
+              animationDelay: `${index * 50}ms`,
+              animation: "fadeIn 0.5s ease-out forwards",
+            }}
+          >
+            {/* Collapsed View */}
+            <button
+              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+              className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
             >
-              <div className={`flex ${isMobile ? "min-w-max" : ""}`}>
-                <TabsTrigger
-                  value="all"
-                  className={`data-[state=active]:bg-gray-200 data-[state=active]:text-white text-gray-300 ${
-                    isMobile ? "py-2 px-4 text-sm" : "py-4 px-6 text-base"
-                  } font-medium border-0 rounded-full border-white/10 whitespace-nowrap`}
-                >
-                  <Folder
-                    className={`${isMobile ? "w-4 h-4 mr-1" : "w-5 h-5 mr-2"}`}
-                  />
-                  <span>{isMobile ? "All" : "All Projects"}</span>
-                  <span
-                    className={`ml-2 px-2 py-0.5 bg-white/10 rounded-full ${
-                      isMobile ? "text-xs" : "text-sm"
-                    }`}
-                  >
-                    {allProjects.length}
-                  </span>
-                </TabsTrigger>
-
-                {projectsByCategory.map((category, index) => (
-                  <div key={category.category + index}>
-                    {!isMobile ? (
-                      <TabsTrigger
-                        key={category.category + index}
-                        value={category.category}
-                        className={`data-[state=active]:bg-gray-200 data-[state=active]:text-white text-gray-300 ${
-                          isMobile ? "py-2 px-4 text-sm" : "py-4 px-6 text-base"
-                        } font-medium border-0 border-white/10 rounded-full whitespace-nowrap mx-1`}
-                      >
-                        <span>{category.category}</span>
-                        <span
-                          className={`ml-2 px-2 py-0.5 bg-white/10 rounded-full ${
-                            isMobile ? "text-xs" : "text-sm"
-                          }`}
-                        >
-                          {category.projects.length}
-                        </span>
-                      </TabsTrigger>
-                    ) : null}
+              <div className="flex-1 space-y-3">
+                <div className="flex flex-col gap-2 sm:flex-row justify-between sm:items-baseline sm:gap-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
+                      {project.name}
+                    </h3>
+                    {/* Category Badge */}
+                    <span className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
+                        project.category
+                      )}`}
+                    >
+                      {getCategoryLabel(project.category as FilterCategory)}
+                    </span>
                   </div>
-                ))}
+                  <span className="whitespace-nowrap text-xs uppercase tracking-wider text-gray-500 sm:text-sm">
+                    {project.timeline}
+                  </span>
+                </div>
+                <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+                  {project.short_description}
+                </p>
+
+                {/* Links */}
+                <div className="flex flex-wrap gap-4 pt-2 sm:gap-6">
+                  {project.live_url && (
+                    <a
+                      href={project.live_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
+                    >
+                      Visit <ExternalLink size={14} />
+                    </a>
+                  )}
+                  {project.github_url && (
+                    <a
+                      href={project.github_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
+                    >
+                      GitHub <SiGithub size={14} />
+                    </a>
+                  )}
+                </div>
               </div>
-            </TabsList>
-          </div>
-
-          {/* All Projects Tab */}
-          <TabsContent value="all" className="mt-0">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className={`grid ${
-                isMobile
-                  ? "grid-cols-1 gap-6"
-                  : "grid-cols-1 lg:grid-cols-2 gap-8"
-              }`}
-            >
-              {allProjects
-                .slice(0, 4)
-                .filter((project) => project.star == "true")
-                .map((project, index) => (
-                  <ProjectCard
-                    key={project.slug}
-                    project={project}
-                    index={index}
-                    isMobile={isMobile}
-                  />
-                ))}
-            </motion.div>
-          </TabsContent>
-
-          {/* Category-specific Tabs */}
-          {projectsByCategory.map((categoryGroup, index) => (
-            <TabsContent
-              key={categoryGroup.category + index}
-              value={categoryGroup.category}
-              className="mt-0"
-            >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className={`grid ${
-                  isMobile
-                    ? "grid-cols-1 gap-6"
-                    : "grid-cols-1 lg:grid-cols-2 gap-8"
+              <div
+                className={`ml-4 transition-all duration-300 ease-in-out sm:ml-6 ${
+                  expandedIndex === index ? "rotate-180" : "rotate-0"
                 }`}
               >
-                {categoryGroup.projects.map((project, index) => (
-                  <ProjectCard
-                    key={project.slug}
-                    project={project}
-                    index={index}
-                    isMobile={isMobile}
-                  />
-                ))}
-              </motion.div>
+                <ChevronDown className="h-5 w-5 text-gray-500 transition-colors duration-200 group-hover:text-gray-300" />
+              </div>
+            </button>
 
-              {categoryGroup.projects.length === 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center py-16"
-                >
-                  <Code className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-400 mb-2">
-                    No projects found
-                  </h3>
-                  <p className="text-gray-500">
-                    No projects available in this category yet.
-                  </p>
-                </motion.div>
-              )}
-            </TabsContent>
-          ))}
-        </Tabs>
-      </motion.div>
-
-      {/* Mobile View All Button */}
-      {isMobile && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
-          <Button
-            variant="outline"
-            className="w-full border-purple-500/50 text-purple-300 hover:text-white hover:bg-purple-500/10 backdrop-blur-sm transition-all duration-300"
-            onClick={handleViewAllProjects}
-          >
-            View all projects
-            <ExternalLink className="w-4 h-4 ml-2" />
-          </Button>
-        </motion.div>
-      )}
+            {/* Expanded View */}
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
+                <ul className="space-y-3">
+                  {project.detailed_description.map((point, i) => (
+                    <li
+                      key={i}
+                      className={`flex gap-3 transition-all duration-300 ${
+                        expandedIndex === index
+                          ? "translate-x-0 opacity-100"
+                          : "-translate-x-4 opacity-0"
+                      }`}
+                      style={{ transitionDelay: `${i * 50}ms` }}
+                    >
+                      <span className="mt-2 text-gray-600">•</span>
+                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
+                        {point}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

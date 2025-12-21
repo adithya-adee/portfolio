@@ -1,158 +1,58 @@
 [
   {
-    "category": "Web Development",
-    "projects": [
-      {
-        "title": "CodeSync Collaborative Code Editor",
-        "name": "CodeSync",
-        "star": "true",
-        "slug": "codesync",
-        "description": "CODESYNC is a real-time collaborative coding environment with an integrated whiteboard and AI chat. The project focuses on real-time synchronization and conflict resolution to create a seamless user experience.",
-        "category": "Web Development",
-        "year": 2025,
-        "tech_stack": [
-          "Next.js",
-          "Convex",
-          "Liveblocks",
-          "Monaco Editor",
-          "Gemini API",
-          "WebSocket"
-        ],
-        "images": [
-          "/projects/codesync/homepage.png",
-          "/projects/codesync/room.png",
-          "/projects/codesync/editor.png",
-          "/projects/codesync/colloborative-editor.png",
-          "/projects/codesync/colloborative-whiteboard.png"
-        ],
-        "preview_link": "https://github.com/adithya-adee/CodeSync",
-        "github_url": "https://github.com/devgambo/CodeSync",
-        "live_url": "https://code-sync-sepia.vercel.app/",
-        "project_details": [
-          "Built a real-time collaborative coding environment that integrates a whiteboard and an AI chat using the Gemini API.",
-          "Optimized synchronization latency by 30% using Liveblocks metrics and the Convex reactive database.",
-          "Implemented throttling and conflict-free resolution mechanisms, which reduced editing conflicts by 50%.",
-          "Designed a role-based permission system that enables room owners to manage user access and privileges."
-        ]
-      },
-      {
-        "title": "Hackverse (Hackathon Organizing Platform)",
-        "name": "Hackverse (Under Development)",
-        "star": "true",
-        "slug": "hackverse",
-        "description": "Hackverse is a scalable and secure hackathon hosting platform that demonstrates my proficiency in full-stack development and adherence to SOLID principles. The project posed several challenges, including implementing robust user authentication and designing a normalized database schema.",
-        "category": "Web Development",
-        "year": 2025,
-        "tech_stack": [
-          "NestJS",
-          "Next.js",
-          "PostgreSQL (Neon)",
-          "Prisma ORM",
-          "Passport.js",
-          "Redux"
-        ],
-        "images": [
-          "/projects/hackverse/events-dark.png",
-          "/projects/hackverse/events-light.png",
-          "/projects/hackverse/profile-dark.png",
-          "/projects/hackverse/profile-light.png"
-        ],
-        "preview_link": "https://github.com/adithya-adee/hackverse",
-        "github_url": "https://github.com/adithya-adee/hackverse",
-        "live_url": "https://hackverse-sandy.vercel.app",
-        "project_details": [
-          "Developed secure Role-Based Access Control (RBAC) using Passport.js, NestJS guards, and decorators, ensuring granular permission management and robust user authentication.",
-          "Designed and optimized a highly normalized PostgreSQL database schema using Prisma ORM, enhancing data storage efficiency and retrieval performance.",
-          "Architected a cohesive full-stack application utilizing PostgreSQL (via Neon), React (via Next.js), and Node.js (via NestJS), ensuring scalability and maintainability.",
-          "Implemented Redux for global state management, ensuring consistent state across the application and improving user experience."
-        ]
-      },
-      {
-        "title": "Medicare Simplified",
-        "name": "Medicare Simplified",
-        "star": "true",
-        "slug": "medicare-simplified",
-        "description": "Medicare Simplified is an e-commerce platform for medicine that showcases my expertise in React and Next.js. The project involved migrating from React.js to Next.js, implementing server-side rendering, and integrating a secure authentication system.",
-        "category": "Web Development",
-        "year": 2025,
-        "tech_stack": [
-          "Next.js",
-          "PostgreSQL",
-          "Supabase",
-          "NextAuth.js",
-          "Prisma ORM"
-        ],
-        "images": [
-          "/projects/medicare-simplified/admin-page.png",
-          "/projects/medicare-simplified/cart.png",
-          "/projects/medicare-simplified/category.png",
-          "/projects/medicare-simplified/hero.png",
-          "/projects/medicare-simplified/history.png"
-        ],
-        "preview_link": "https://github.com/adithya-adee/medicare-simplified",
-        "github_url": "https://github.com/adithya-adee/medicare-simplified",
-        "live_url": "",
-        "project_details": [
-          "Spearheaded the migration of the web application from React.js to Next.js, leveraging server-side rendering and API routing to enhance performance and SEO.",
-          "Implemented Role-Based Access Control (RBAC) using NextAuth.js and Prisma ORM, providing differentiated user experiences for admin and regular users.",
-          "Developed and maintained both front-end and back-end components, ensuring seamless integration between Next.js, PostgreSQL, and extended with Supabase or Neon.",
-          "Optimized application performance and user experience, resulting in improved load times and user engagement."
-        ]
-      }
-    ]
+    "name": "CodeSync",
+    "timeline": "June 2025 - July 2025",
+    "category": "full-stack",
+    "short_description": "Real-time collaborative coding environment with integrated whiteboard and AI chat.",
+    "detailed_description": [
+      "Built real-time collaborative coding with whiteboard and AI chat using Gemini API",
+      "Optimized sync latency by 30% using Liveblocks and Convex reactive database",
+      "Implemented conflict-free resolution, reducing editing conflicts by 50%",
+      "Designed role-based permissions for room owners to manage user access"
+    ],
+    "live_url": "https://code-sync-sepia.vercel.app/",
+    "github_url": "https://github.com/devgambo/CodeSync"
   },
   {
-    "category": "Rust",
-    "projects": [
-      {
-        "title": "Crab Clean",
-        "name": "Crab Clean",
-        "star": "true",
-        "slug": "crab-clean",
-        "description": "600+ downloads!! Crab Clean is a CLI tool used to declutter your system by identifying unused and duplicate files, as well as grouping files for better organization.",
-        "category": "CLI Tools",
-        "year": 2025,
-        "tech_stack": ["Rust"],
-        "images": [
-          "/projects/crab-clean/duplicate-dry-run.png",
-          "/projects/crab-clean/duplicate-run.png",
-          "/projects/crab-clean/automatic-delete.png",
-          "/projects/crab-clean/unused-file.png"
-        ],
-        "preview_link": "https://crates.io/crates/crab-clean",
-        "github_url": "https://github.com/adithya-adee/crab-clean",
-        "live_url": "https://crates.io/crates/crab-clean",
-        "project_details": [
-          "Developed a CLI tool in Rust to efficiently scan and identify unused and duplicate files on the system.",
-          "Implemented file grouping functionality to organize files based on user-defined criteria.",
-          "Optimized performance for large-scale file systems, ensuring quick and accurate results."
-        ]
-      }
-    ]
+    "name": "Hackverse",
+    "timeline": "April 2025 - May 2025",
+    "category": "full-stack",
+    "short_description": "Scalable hackathon platform with secure RBAC and optimized database architecture.",
+    "detailed_description": [
+      "Developed secure RBAC using Passport.js, NestJS guards, and decorators",
+      "Designed normalized PostgreSQL schema with Prisma ORM for efficient data storage",
+      "Built full-stack app with PostgreSQL, Next.js, and NestJS for scalability",
+      "Implemented Redux for consistent global state management"
+    ],
+    "live_url": "https://hackverse-sandy.vercel.app",
+    "github_url": "https://github.com/adithya-adee/hackverse"
   },
   {
-    "category": "Web3",
-    "projects": [
-      {
-        "title": "Journal Application",
-        "name": "Journal Application",
-        "star": "true",
-        "slug": "journal-app",
-        "description": "Journal Application is a decentralized Web3-based journaling platform that leverages blockchain technology for secure and immutable record-keeping.",
-        "category": "Web3",
-        "year": 2025,
-        "tech_stack": ["React", "Next.js", "Solidity", "Ethereum", "IPFS"],
-        "images": [],
-        "preview_link": "https://github.com/adithya-adee/journal-app",
-        "github_url": "https://github.com/adithya-adee/journal-app",
-        "live_url": "",
-        "project_details": [
-          "Developed a decentralized journaling platform using Ethereum blockchain and IPFS for secure and immutable record-keeping.",
-          "Implemented smart contracts in Solidity to manage journal entries and ensure data integrity.",
-          "Integrated React and Next.js for a seamless and responsive user interface.",
-          "Optimized the application for Web3 interactions, including wallet integration and transaction handling."
-        ]
-      }
-    ]
+    "name": "SolidKYC",
+    "timeline": "December 2025",
+    "category": "web3",
+    "short_description": "Privacy-preserving on-chain KYC verification system using Solana and Zero-Knowledge Proofs.",
+    "detailed_description": [
+      "Designed and implemented a decentralized KYC system where users prove identity validity without revealing personal data using Zero-Knowledge Proofs.",
+      "Built Solana smart contracts using Anchor to verify zk-SNARK proofs on-chain and manage verification state.",
+      "Integrated Circom and snarkjs to generate and verify cryptographic proofs for off-chain identity validation.",
+      "Implemented wallet-based authentication and transaction signing using Solana Wallet Adapter.",
+      "Developed a React-based frontend to handle proof generation, wallet interaction, and on-chain verification flow.",
+      "Ensured non-custodial identity ownership by allowing users to control credentials locally while only submitting proofs to the blockchain."
+    ],
+    "live_url": "https://solidkyc.vercel.app",
+    "github_url": "https://github.com/adithya-adee/SolidKYC"
+  },
+  {
+    "name": "AMM Uniswap V2",
+    "timeline": "November 2025",
+    "category": "web3",
+    "short_description": "From-scratch implementation of a Uniswap V2-style Automated Market Maker to understand DEX internals.",
+    "detailed_description": [
+      "Implemented core Uniswap V2 AMM mechanics including constant product formula (x*y=k), liquidity pools, swaps, and LP token minting.",
+      "Built swap, add liquidity, and remove liquidity flows to understand pricing, slippage, and pool balance invariants."
+    ],
+    "live_url": "",
+    "github_url": "https://github.com/adithya-adee/amm_uniswap"
   }
 ]
