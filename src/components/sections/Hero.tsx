@@ -9,7 +9,7 @@ export default function HeroMinimal() {
   const highlights = [
     "Built and shipped Crab-Clean CLI tool (900+ downloads) with 90% faster SHA256 hashing",
     "Top 11th across 500+ contributors in IEEE Summer of Code for open-source contributions",
-    "Won 2 hackathons building scalable full-stack applications",
+    // "Won 2 hackathons building scalable full-stack applications",
   ];
 
   // Update time every second
@@ -35,29 +35,32 @@ export default function HeroMinimal() {
     <section className="mx-auto mt-8 max-w-3xl px-4 sm:mt-12 sm:px-6">
       <div className="space-y-4 sm:space-y-5">
         {/* Metadata Row */}
-        <div className="flex flex-col justify-between gap-1 border-b border-neutral-800/50 pb-2 sm:flex-row sm:gap-0">
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-500 sm:text-sm">
-            EST. 2005
-          </p>
-          <p className="text-xs tracking-wide text-gray-500 sm:text-sm">
-            {currentTime} <span className="text-gray-600">IST (GMT+5:30)</span>
-          </p>
-        </div>
 
         {/* Name & Handle with Profile Image */}
-        <div className="flex items-center gap-4">
-          <Image
-            src="/profile.png"
-            alt="Adithya Anand"
-            width={64}
-            height={64}
-            className="rounded-full ring-2 ring-neutral-800"
-          />
-          <div className="space-y-1">
-            <h1 className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
-              Adithya Anand
-            </h1>
-            <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/profile.png"
+              alt="Adithya Anand"
+              width={64}
+              height={64}
+              className="rounded-full ring-2 ring-neutral-800"
+            />
+            <div className="space-y-1">
+              <h1 className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
+                Adithya Anand
+              </h1>
+              <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1 sm:gap-0">
+            <p className="m-0 text-xs font-medium uppercase tracking-[0.15em] text-gray-500 sm:text-sm">
+              {currentTime}
+            </p>
+            <div className="my-2 border-b border-neutral-800/50" />
+            <p className="text-xs tracking-wide text-gray-500 sm:text-sm">
+              <span className="text-gray-600">IST (GMT+5:30)</span>
+            </p>
           </div>
         </div>
 

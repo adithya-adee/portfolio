@@ -6,7 +6,6 @@ import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
 import ExperienceCollapsed from "@/components/sections/ExperienceCollapsed";
 import Connect from "@/components/sections/Connect";
-import Loading from "./loading";
 
 export default function Home() {
   return (

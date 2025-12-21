@@ -1,7 +1,8 @@
 [
   {
     "name": "CodeSync",
-    "timeline": "July 2025",
+    "timeline": "June 2025 - July 2025",
+    "category": "full-stack",
     "short_description": "Real-time collaborative coding environment with integrated whiteboard and AI chat.",
     "detailed_description": [
       "Built real-time collaborative coding with whiteboard and AI chat using Gemini API",
@@ -15,6 +16,7 @@
   {
     "name": "Hackverse",
     "timeline": "April 2025 - May 2025",
+    "category": "full-stack",
     "short_description": "Scalable hackathon platform with secure RBAC and optimized database architecture.",
     "detailed_description": [
       "Developed secure RBAC using Passport.js, NestJS guards, and decorators",
@@ -24,5 +26,33 @@
     ],
     "live_url": "https://hackverse-sandy.vercel.app",
     "github_url": "https://github.com/adithya-adee/hackverse"
+  },
+  {
+    "name": "SolidKYC",
+    "timeline": "December 2025",
+    "category": "web3",
+    "short_description": "Privacy-preserving on-chain KYC verification system using Solana and Zero-Knowledge Proofs.",
+    "detailed_description": [
+      "Designed and implemented a decentralized KYC system where users prove identity validity without revealing personal data using Zero-Knowledge Proofs.",
+      "Built Solana smart contracts using Anchor to verify zk-SNARK proofs on-chain and manage verification state.",
+      "Integrated Circom and snarkjs to generate and verify cryptographic proofs for off-chain identity validation.",
+      "Implemented wallet-based authentication and transaction signing using Solana Wallet Adapter.",
+      "Developed a React-based frontend to handle proof generation, wallet interaction, and on-chain verification flow.",
+      "Ensured non-custodial identity ownership by allowing users to control credentials locally while only submitting proofs to the blockchain."
+    ],
+    "live_url": "https://solidkyc.vercel.app",
+    "github_url": "https://github.com/adithya-adee/SolidKYC"
+  },
+  {
+    "name": "AMM Uniswap V2",
+    "timeline": "November 2025",
+    "category": "web3",
+    "short_description": "From-scratch implementation of a Uniswap V2-style Automated Market Maker to understand DEX internals.",
+    "detailed_description": [
+      "Implemented core Uniswap V2 AMM mechanics including constant product formula (x*y=k), liquidity pools, swaps, and LP token minting.",
+      "Built swap, add liquidity, and remove liquidity flows to understand pricing, slippage, and pool balance invariants."
+    ],
+    "live_url": "",
+    "github_url": "https://github.com/adithya-adee/amm_uniswap"
   }
 ]

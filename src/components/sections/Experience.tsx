@@ -73,7 +73,7 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
         </div>
       </div>
 
-      {experience.map((exp, idx) => (
+      {experience.map((exp) => (
         <div key={exp.company} className={isMobile ? "my-4 sm:my-6" : "my-6 sm:my-8 md:my-10"}>
           <Card className="border-0 border-l-4 border-gray-400 bg-transparent shadow-lg transition-all duration-200 hover:bg-gray-800 hover:shadow-2xl">
             <CardContent className={isMobile ? "p-3 sm:p-4" : "p-4 sm:p-6"}>

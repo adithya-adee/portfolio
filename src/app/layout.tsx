@@ -17,41 +17,90 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Adithya Anand | Full Stack Web Developer Portfolio",
+  title: "Adithya Anand | Backend Developer | Web3 & Full Stack Engineer",
   description:
-    "Experienced Full Stack Web Developer specializing in React, Node.js, and modern web technologies. View my projects, skills and experience.",
-  keywords:
-    "full stack developer, web developer, react developer, node.js developer, javascript developer, portfolio",
-  authors: [{ name: "Adithya Anand" }],
+    "Backend Developer specializing in Node.js, NestJS, Rust (Axum), and Web3 technologies. Building scalable systems with PostgreSQL, Redis, Solana blockchain, and zero-knowledge proofs. View my projects and experience.",
+  keywords: [
+    // Primary skills
+    "backend developer",
+    "full stack developer",
+    "web3 developer",
+    "rust developer",
+    "node.js developer",
+    
+    // Technologies
+    "typescript",
+    "javascript",
+    "nestjs",
+    "express.js",
+    "axum",
+    "postgresql",
+    "mongodb",
+    "redis",
+    "docker",
+    
+    // Web3 & Blockchain
+    "solana developer",
+    "blockchain developer",
+    "zero knowledge proofs",
+    "smart contracts",
+    "anchor framework",
+    
+    // General
+    "portfolio",
+    "software engineer",
+    "nitk surathkal",
+  ],
+  authors: [{ name: "Adithya Anand", url: "https://github.com/adithya-adee" }],
   creator: "Adithya Anand",
   publisher: "Adithya Anand",
-  robots: "index, follow",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   metadataBase: new URL("https://adithya-anand-portfolio.vercel.app/"),
   alternates: {
-    canonical: "https://adithya-anand-portfolio.vercel.app/",
+    canonical: "/",
   },
   openGraph: {
-    title: "Adithya Anand | Full Stack Web Developer",
-    description: "Portfolio showcasing my web development projects, skills, and experience",
+    title: "Adithya Anand | Backend Developer & Web3 Engineer",
+    description:
+      "Building scalable backend systems with Node.js, Rust, and Web3 technologies. Specialized in distributed systems, blockchain development, and zero-knowledge proofs.",
     url: "https://adithya-anand-portfolio.vercel.app/",
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://adithya-anand-portfolio/profile_picture.jpg",
+        url: "/profile.jpg",
         width: 1200,
         height: 630,
-        alt: "Adithya Anand - Full Stack Web Developer",
+        alt: "Adithya Anand - Backend Developer specializing in Node.js, Rust, and Web3",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adithya Anand | Web Developer Portfolio",
-    description: "Check out my projects and skills in web development",
-    images: ["https://adithya-anand-portfolio.vercel.app/twitter-image.jpg"],
+    title: "Adithya Anand | Backend & Web3 Developer",
+    description:
+      "Backend Developer building with Node.js, Rust (Axum), Solana blockchain, and zero-knowledge proofs. Check out my projects!",
+    creator: "@AdithyaA593326",
+    images: ["/profile.jpg"],
   },
+  verification: {
+    // Add your verification tokens here when available
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
