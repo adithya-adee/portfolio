@@ -1,48 +1,49 @@
 "use client";
 
-import { Github, Linkedin, Mail, Twitter, FileText, Briefcase } from "lucide-react";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import Link from "next/link";
+import { SiGithub, SiLinkedin, SiX, SiGmail, SiPeerlist } from "react-icons/si";
+import { HiDocumentText, HiBriefcase } from "react-icons/hi2";
 
 const socialLinks = [
   {
     name: "LinkedIn",
-    icon: <Linkedin size={18} />,
+    icon: <SiLinkedin size={18} />,
     url: "https://linkedin.com/in/adithya-a-8bb28128a",
   },
   {
     name: "GitHub",
-    icon: <Github size={18} />,
+    icon: <SiGithub size={18} />,
     url: "https://github.com/adithya-adee",
   },
   {
-    name: "Twitter",
-    icon: <Twitter size={18} />,
+    name: "X (Twitter)",
+    icon: <SiX size={18} />,
     url: "https://x.com/AdithyaA593326",
   },
   {
     name: "Email",
-    icon: <Mail size={18} />,
+    icon: <SiGmail size={18} />,
     url: "mailto:adithya25905@gmail.com",
   },
   {
     name: "Peerlist",
-    icon: <span className="text-sm font-semibold">P</span>,
-    url: "#", // Add your Peerlist URL
+    icon: <SiPeerlist size={18} />,
+    url: "https://peerlist.io/glitchy_moon",
   },
 ];
 
 const navigationLinks = [
   {
     name: "Blog",
-    icon: <FileText size={18} />,
+    icon: <HiDocumentText size={18} />,
     url: "/blog",
     description: "Read my thoughts on tech and development",
   },
   {
     name: "Archive",
-    icon: <Briefcase size={18} />,
+    icon: <HiBriefcase size={18} />,
     url: "/archive",
     description: "Full work experience details",
   },
