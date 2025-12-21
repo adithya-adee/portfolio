@@ -88,7 +88,7 @@ export default function NotFound() {
           >
             {/* Terminal header - simplified for mobile */}
             <div
-              className={`absolute top-0 right-0 left-0 ${
+              className={`absolute left-0 right-0 top-0 ${
                 isMobile ? "h-6" : "h-8"
               } flex items-center border-b border-neutral-700/50 bg-neutral-900/50 px-4`}
             >
@@ -104,7 +104,7 @@ export default function NotFound() {
 
             {/* Error code in corner - hidden on mobile */}
             {!isMobile && (
-              <div className="absolute top-12 right-0 p-4 opacity-10">
+              <div className="absolute right-0 top-12 p-4 opacity-10">
                 <pre className="font-mono text-xs text-red-400">
                   {`HTTP/1.1 404 Not Found\nContent-Type: text/html\nServer: nginx/1.18.0`}
                 </pre>
@@ -186,12 +186,12 @@ export default function NotFound() {
               } rounded-full bg-orange-500/5 blur-2xl`}
             />
             <div
-              className={`absolute -top-6 -right-6 ${
+              className={`absolute -right-6 -top-6 ${
                 isMobile ? "h-24 w-24" : "h-40 w-40"
               } rounded-full bg-red-500/5 blur-2xl`}
             />
             <div
-              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform ${
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ${
                 isMobile ? "h-40 w-40" : "h-64 w-64"
               } -z-10 rounded-full bg-gradient-to-r from-orange-500/5 to-red-500/5 blur-3xl`}
             />

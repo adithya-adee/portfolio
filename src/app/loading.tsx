@@ -46,7 +46,7 @@ export default function Loading() {
           {/* Lightweight mobile spinner */}
           <div className="relative mb-6 h-20 w-20">
             <motion.div
-              className="h-20 w-20 rounded-full border-2 border-transparent border-t-blue-400 border-r-purple-500"
+              className="h-20 w-20 rounded-full border-2 border-transparent border-r-purple-500 border-t-blue-400"
               animate={{ rotate: 360 }}
               transition={{
                 duration: 1.5,
@@ -55,7 +55,7 @@ export default function Loading() {
               }}
             />
             <motion.div
-              className="absolute inset-2 rounded-full border border-transparent border-t-purple-400/50 border-l-blue-400/50"
+              className="absolute inset-2 rounded-full border border-transparent border-l-blue-400/50 border-t-purple-400/50"
               animate={{ rotate: -360 }}
               transition={{
                 duration: 2,
@@ -180,7 +180,7 @@ export default function Loading() {
 
             {/* Rotating loading ring */}
             <motion.div
-              className="absolute inset-4 rounded-full border-2 border-transparent border-t-blue-400/50 border-r-purple-500/50"
+              className="absolute inset-4 rounded-full border-2 border-transparent border-r-purple-500/50 border-t-blue-400/50"
               animate={{ rotate: 360 }}
               transition={{
                 duration: 2,

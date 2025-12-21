@@ -5,16 +5,15 @@ import { motion } from "framer-motion";
 // Import Minimal Components
 import SmartNavbar from "@/components/SmartNavbar";
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
-import BlogTeaser from "@/components/BlogTeaser";
+import ExperienceCollapsed from "@/components/sections/ExperienceCollapsed";
 import Connect from "@/components/sections/Connect";
 
 export default function Home() {
   // Animation variants for sections
   const sectionVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
@@ -29,13 +28,13 @@ export default function Home() {
 
       <motion.div initial="hidden" animate="visible" variants={sectionVariants}>
         {/* Hero Section */}
-        <section id="intro" className="mb-8">
+        <section id="about" className="mb-8">
           <Hero />
         </section>
 
-        {/* About Section */}
-        <section id="about" className="mb-8">
-          <About />
+        {/* Experience Section - Collapsed */}
+        <section id="experience" className="mb-8">
+          <ExperienceCollapsed />
         </section>
 
         {/* Projects Section */}
@@ -46,11 +45,6 @@ export default function Home() {
         {/* Tech Stack Section */}
         <section id="stack" className="mb-8">
           <TechStack />
-        </section>
-
-        {/* Blog Teaser Section */}
-        <section id="blog" className="mb-8">
-          <BlogTeaser />
         </section>
 
         {/* Connect with Me Section */}
