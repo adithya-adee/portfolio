@@ -73,7 +73,7 @@ export default function RootLayout({
 
             {/* Gradient Overlays */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-blue-900/5" />
-            <div className="absolute inset-0 bg-gradient-to-tl from-emerald-900/3 via-transparent to-pink-900/3" />
+            <div className="from-emerald-900/3 to-pink-900/3 absolute inset-0 bg-gradient-to-tl via-transparent" />
           </div>
           <Toaster position="top-right" theme="dark" richColors />
           <Analytics />
