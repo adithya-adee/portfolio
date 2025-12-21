@@ -55,19 +55,19 @@ export default function HeroMinimal() {
         </div>
 
         {/* Subtitle */}
-        <p className="max-w-xl text-base leading-relaxed text-gray-300">
+        <p className="max-w-xl text-lg leading-relaxed text-gray-300">
           Backend Developer | Building Solana Products
         </p>
 
         {/* Bio*/}
-        <p className="max-w-xl pt-2 text-sm leading-relaxed text-gray-400">
+        <p className="text-md max-w-xl pt-2 leading-relaxed text-gray-400">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.
         </p>
 
         {/* Highlights */}
-        <div className="pt-2 text-sm text-gray-400">
+        <div className="pt-2 text-base text-gray-400">
           {highlights.map((highlight, index) => (
             <span key={index}>
               {highlight}

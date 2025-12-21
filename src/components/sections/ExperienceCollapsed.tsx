@@ -34,15 +34,17 @@ export default function ExperienceCollapsed() {
         {experience.map((exp) => (
           <div
             key={exp.company}
-            className="flex items-center justify-between rounded-md border border-neutral-800/50 bg-neutral-900/30 px-4 py-3"
+            className="flex items-center justify-between rounded-md border border-dashed border-zinc-800 bg-neutral-900/30 px-4 py-3 transition-all duration-200 hover:border-neutral-700/50"
           >
             <div>
-              <a href={exp.url} target="_blank" className="text-gray-201 text-sm font-medium">
-                {exp.company}
+              <a href={exp.url} target="_blank" className="text-base font-medium text-white">
+                <h3 className="font-mono text-base font-medium text-white">{exp.company}</h3>
               </a>
               <p className="text-xs text-gray-500">{exp.position}</p>
             </div>
-            <span className="text-xs text-gray-500">{exp.duration}</span>
+            <span className="text-xs text-gray-500">
+              {exp.startDate} - {exp.endDate}
+            </span>
           </div>
         ))}
       </div>

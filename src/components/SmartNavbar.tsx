@@ -49,7 +49,7 @@ export default function SmartNavbar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed left-0 right-0 top-0 z-50 border-b border-neutral-800 bg-black/95 backdrop-blur-md"
+          className="fixed left-0 right-0 top-0 z-50 border-b border-neutral-700/50 bg-zinc-950/80 backdrop-blur-sm"
           style={{
             boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)",
           }}

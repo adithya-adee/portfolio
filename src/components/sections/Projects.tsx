@@ -29,7 +29,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="overflow-hidden rounded-lg border border-neutral-800/50 bg-neutral-900/30 transition-colors hover:border-neutral-700/50"
+            className="overflow-hidden rounded-lg border border-dashed border-zinc-800 bg-neutral-900/30 transition-colors hover:border-neutral-700/50"
           >
             {/* Collapsed View */}
             <button

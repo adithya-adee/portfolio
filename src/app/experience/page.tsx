@@ -1,23 +1,9 @@
 "use client";
 
 import SmartNavbar from "@/components/SmartNavbar";
-import ExperienceSection from "@/components/sections/Experience";
+import ExperienceSection, { ExperienceItem } from "@/components/sections/Experience";
 
-export interface ExperienceItem {
-  slug: string;
-  company: string;
-  position: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  duration: string;
-  description: string;
-  responsibilities: string[];
-  skills: string[];
-  highlights: string[];
-  url: string;
-  logo: string;
-}
+export type { ExperienceItem };
 
 export default function ExperiencePage() {
   return (

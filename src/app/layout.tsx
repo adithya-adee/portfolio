@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/SEO";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"] });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Adithya Anand | Full Stack Web Developer Portfolio",
@@ -56,33 +64,34 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className={inter.className}>
+      <body className={`${jetbrainsMono.variable} ${inter.variable}`}>
         <div className="relative min-h-screen">
           {/* Background Pattern */}
-          <div className="fixed inset-0 -z-10">
-            {/* Grid Pattern */}
+          <div className="fixed inset-0 -z-10 bg-zinc-800/20">
+            {/* Film Grain Texture - CSS Based */}
             <div
-              className="absolute inset-0 opacity-[0.03]"
+              className="grain-overlay pointer-events-none absolute inset-0"
               style={{
-                backgroundImage: `
-                  linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                `,
-                backgroundSize: "50px 50px",
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                opacity: 0.06,
+                mixBlendMode: "overlay",
               }}
             />
 
-            {/* Radial Gradient Glow */}
-            {/* <div
-              className="absolute inset-0"
+            {/* Subtle Grid Pattern */}
+            <div
+              className="absolute inset-0 opacity-[0.015]"
               style={{
-                background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(244, 114, 182, 0.25), transparent 70%), #000000",
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+                `,
+                backgroundSize: "64px 64px",
               }}
-            /> */}
+            />
 
-            {/* Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-blue-900/5" />
-            <div className="from-emerald-900/3 to-pink-900/3 absolute inset-0 bg-gradient-to-tl via-transparent" />
+            {/* Gradient Overlays for Depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-transparent to-transparent" />
           </div>
           <Toaster position="top-right" theme="dark" richColors />
           <Analytics />

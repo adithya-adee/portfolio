@@ -6,8 +6,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ExternalLink, HighlighterIcon } from "lucide-react";
 import { useMemo } from "react";
-import { ExperienceItem } from "@/app/experience/page";
 import { Button } from "../ui/button";
+
+export interface ExperienceItem {
+  slug: string;
+  company: string;
+  position: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  duration: string;
+  description: string;
+  responsibilities: string[];
+  skills: string[];
+  highlights: string[];
+  url: string;
+  logo: string;
+}
 
 interface ExperienceProps {
   isMobile?: boolean;

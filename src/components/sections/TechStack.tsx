@@ -36,7 +36,7 @@ export default function TechStack() {
         // { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
         { name: "Express.js", icon: SiExpress, color: "#FFFFFF" },
         { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
-        { name: "Kafka", icon: SiApachekafka, color: "#231F20" },
+        { name: "Kafka", icon: SiApachekafka, color: "#FFFFFF" },
         { name: "WebSocket", icon: SiSocketdotio, color: "#010101" },
       ],
     },
@@ -86,10 +86,10 @@ export default function TechStack() {
                 return (
                   <div
                     key={tech.name}
-                    className="flex items-center gap-2 rounded-md border border-neutral-800/50 bg-neutral-900/30 px-3 py-2"
+                    className="flex items-center gap-2 rounded-md border border-transparent bg-neutral-700/30 px-3 py-2 transition-all duration-200 hover:border-neutral-700/50"
                   >
                     <Icon className="text-base" style={{ color: tech.color }} />
-                    <span className="text-sm font-medium text-gray-300">{tech.name}</span>
+                    <span className="font-mono text-sm font-medium text-gray-300">{tech.name}</span>
                   </div>
                 );
               })}
