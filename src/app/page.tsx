@@ -6,6 +6,7 @@ import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
 import ExperienceCollapsed from "@/components/sections/ExperienceCollapsed";
 import Connect from "@/components/sections/Connect";
+import VisitorCounter from "@/components/VisitorCounter";
 
 export default function Home() {
   return (
@@ -35,6 +36,9 @@ export default function Home() {
         <section id="contact">
           <Connect />
         </section>
+
+        {/* Visitor Counter */}
+        <VisitorCounter />
 
         {/* Footer */}
         <footer className="mx-auto max-w-3xl border-t border-neutral-800/50 px-4 py-8 sm:px-6">
