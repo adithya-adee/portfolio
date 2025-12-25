@@ -99,7 +99,7 @@ export default function VisitorCounter() {
         {/* Counter */}
         <div className="flex items-baseline gap-1.5">
           <span className="font-mono text-sm font-semibold tracking-tight text-neutral-100 sm:text-base">
-          <span className="text-sm text-neutral-500">You are the reason we hit</span> {" "}
+          <span className="text-sm text-neutral-500">You are the reason we hit </span>
              {displayCount.toLocaleString()}
           </span>
           <span className="text-sm text-neutral-500">visits</span>
