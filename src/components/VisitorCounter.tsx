@@ -27,9 +27,7 @@ export default function VisitorCounter() {
 
         if (hasBeenCounted) {
           // Just fetch current count, don't increment
-          const response = await fetch("/api/visits", {
-            method: "GET",
-          });
+          const response = await fetch("/api/visits");
           data = await response.json();
         } else {
           // First visit in this tab - increment counter
