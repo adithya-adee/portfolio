@@ -35,7 +35,7 @@ export default function Blogs() {
         {highlightedBlogs.map((blog) => (
           <div
             key={blog.id}
-            className="rounded-lg border border-dashed border-zinc-800 bg-neutral-900/30 px-4 py-3 transition-all duration-200 hover:border-neutral-700/50 sm:px-6 sm:py-4"
+            className="rounded-lg border border-dashed border-zinc-700/40 bg-neutral-900/30 px-4 py-3 transition-all duration-200 hover:border-neutral-700/50 sm:px-6 sm:py-4"
           >
             <div className="space-y-2">
               {/* Title, Category, and Date on same line */}

@@ -81,7 +81,7 @@ export default function ProjectsPage() {
         {filteredProjects.map((project, index) => (
           <div
             key={project.name}
-            className="group overflow-hidden rounded-lg border border-dashed border-zinc-800 bg-neutral-900/30 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-neutral-700/50 hover:shadow-xl hover:shadow-neutral-900/30"
+            className="group overflow-hidden rounded-lg border border-dashed border-zinc-700/40 bg-neutral-900/30 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-neutral-700/50 hover:shadow-xl hover:shadow-neutral-900/30"
             style={{
               animationDelay: `${index * 50}ms`,
               animation: "fadeIn 0.5s ease-out forwards",
