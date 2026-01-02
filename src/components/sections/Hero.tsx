@@ -48,7 +48,7 @@ export default function HeroMinimal() {
               className="rounded-full ring-2 ring-neutral-800"
             />
             <div className="space-y-1">
-              <h1 className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
+              <h1 className="font-mono text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
                 Adithya Anand
               </h1>
               <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
@@ -64,7 +64,7 @@ export default function HeroMinimal() {
 
         {/* Subtitle */}
         <p className="text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
-          Backend Developer | Building Solana Products
+          Backend Dev by day | Solana dev by night
         </p>
 
         {/* Bio */}
@@ -79,7 +79,7 @@ export default function HeroMinimal() {
           {highlights.map((highlight, index) => (
             <p
               key={index}
-              className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
+              className="font-mono text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
             >
               {highlight}
             </p>

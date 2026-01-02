@@ -75,7 +75,7 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
 
       {experience.map((exp) => (
         <div key={exp.company} className={isMobile ? "my-4 sm:my-6" : "my-6 sm:my-8 md:my-10"}>
-          <Card className="border-0 border-l-4 border-gray-400 bg-transparent shadow-lg transition-all duration-200 hover:bg-gray-800 hover:shadow-2xl">
+          <Card className="group relative border-0 border-l-4 border-l-transparent bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-rose-500/20 bg-clip-padding shadow-lg transition-all duration-300 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-purple-500 before:via-pink-500 before:to-rose-500 hover:shadow-2xl hover:shadow-purple-500/20">
             <CardContent className={isMobile ? "p-3 sm:p-4" : "p-4 sm:p-6"}>
               <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-2 text-xs text-gray-400 sm:text-sm">
@@ -87,7 +87,7 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
                 </div>
               </div>
               <div
-                className={`font-bold ${isMobile ? "text-sm" : "text-base sm:text-lg"} text-white`}
+                className={`font-bold ${isMobile ? "text-sm" : "text-base sm:text-lg"} bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent`}
               >
                 {exp.company}
               </div>

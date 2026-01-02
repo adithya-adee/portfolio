@@ -102,7 +102,7 @@ export default function ConnectWithMe() {
               <Link
                 key={link.name}
                 href={link.url}
-                className="flex items-center gap-2.5 rounded-lg border border-zinc-700/40 bg-neutral-900/30 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all hover:border-neutral-700 hover:text-white"
+                className="flex items-center gap-2.5 rounded-lg border-2 border-zinc-600/60 bg-neutral-900/40 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:border-purple-500/60 hover:text-white hover:shadow-lg hover:shadow-purple-500/20"
               >
                 {link.icon}
                 <span>{link.name}</span>
@@ -121,7 +121,7 @@ export default function ConnectWithMe() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-lg border border-zinc-700/40 bg-neutral-900/30 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all hover:border-neutral-700 hover:text-white"
+                className="flex items-center gap-2.5 rounded-lg border-2 border-zinc-600/60 bg-neutral-900/40 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:border-purple-500/60 hover:text-white hover:shadow-lg hover:shadow-purple-500/20"
               >
                 {link.icon}
                 <span>{link.name}</span>

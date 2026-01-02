@@ -35,13 +35,13 @@ export default function Blogs() {
         {highlightedBlogs.map((blog) => (
           <div
             key={blog.id}
-            className="rounded-lg border border-dashed border-zinc-700/40 bg-neutral-900/30 px-4 py-3 transition-all duration-200 hover:border-neutral-700/50 sm:px-6 sm:py-4"
+            className="group rounded-lg border-2 border-dashed border-zinc-600/60 bg-neutral-900/40 px-4 py-3 transition-all duration-300 hover:border-solid hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 sm:px-6 sm:py-4"
           >
             <div className="space-y-2">
-              {/* Title, Category, and Date on same line */}
+              {/* Title and Date on same line */}
               <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-medium tracking-wide text-white sm:text-lg">
+                  <h3 className="text-base font-medium tracking-wide text-white transition-colors group-hover:text-purple-200 sm:text-lg">
                     {blog.title}
                   </h3>
                 </div>
@@ -61,7 +61,7 @@ export default function Blogs() {
                 href={blog.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm tracking-wide text-gray-400 transition-colors hover:text-white"
+                className="inline-flex items-center gap-1.5 text-sm tracking-wide text-purple-400 transition-all hover:text-purple-300 hover:underline hover:underline-offset-4"
               >
                 Read Article <ExternalLink size={14} />
               </a>
