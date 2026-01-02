@@ -93,13 +93,14 @@ export default function ProjectsPage() {
               className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
             >
               <div className="flex-1 space-y-3">
-                <div className="flex flex-col gap-2 sm:flex-row justify-between sm:items-baseline sm:gap-4">
+                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
                       {project.name}
                     </h3>
                     {/* Category Badge */}
-                    <span className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
+                    <span
+                      className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
                         project.category
                       )}`}
                     >
