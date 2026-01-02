@@ -68,7 +68,7 @@ export default function HeroMinimal() {
         </p>
 
         {/* Bio */}
-        <p className="font-sans max-w-2xl text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+        <p className="max-w-2xl font-sans text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.

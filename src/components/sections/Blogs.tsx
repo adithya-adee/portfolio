@@ -1,7 +1,7 @@
 "use client";
 
 import blogsData from "@/asset/blog.json";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 interface Blog {
   id: number;
@@ -26,9 +26,18 @@ export default function Blogs() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <h2 className="mb-4 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
-        Recent Articles
-      </h2>
+      <div className="mb-4 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+        <h2 className="mb-4 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+          Recent Articles
+        </h2>
+        <a
+          href="/blog"
+          className="flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-colors hover:text-gray-200"
+        >
+          View All
+          <ArrowUpRight className="h-4 w-4" />
+        </a>
+      </div>
 
       {/* Blogs List */}
       <div className="space-y-2 sm:space-y-3">
@@ -61,7 +70,7 @@ export default function Blogs() {
                 href={blog.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm tracking-wide text-purple-400 transition-all hover:text-purple-300 hover:underline hover:underline-offset-4"
+                className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
               >
                 Read Article <ExternalLink size={14} />
               </a>

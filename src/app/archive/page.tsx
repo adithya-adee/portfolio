@@ -89,7 +89,9 @@ export default function ArchivePage() {
               {/* Expanded View */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  expandedIndex === experience.indexOf(exp) ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+                  expandedIndex === experience.indexOf(exp)
+                    ? "max-h-[2000px] opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
                 <div className="border-t border-neutral-800/50 px-5 pb-6 pt-5 sm:px-6">
