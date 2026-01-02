@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "web3 developer",
     "rust developer",
     "node.js developer",
-    
+
     // Technologies
     "typescript",
     "javascript",
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     "mongodb",
     "redis",
     "docker",
-    
+
     // Web3 & Blockchain
     "solana developer",
     "blockchain developer",
     "zero knowledge proofs",
     "smart contracts",
     "anchor framework",
-    
+
     // General
     "portfolio",
     "software engineer",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://adithya-anand-portfolio.vercel.app/"),
+  metadataBase: new URL("https://glitchymoon.vercel.app/"),
   alternates: {
     canonical: "/",
   },
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: "Adithya Anand | Backend Developer & Web3 Engineer",
     description:
       "Building scalable backend systems with Node.js, Rust, and Web3 technologies. Specialized in distributed systems, blockchain development, and zero-knowledge proofs.",
-    url: "https://adithya-anand-portfolio.vercel.app/",
+    url: "https://glitchymoon.vercel.app/",
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
     type: "website",

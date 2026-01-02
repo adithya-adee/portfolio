@@ -11,6 +11,21 @@
   --font-jetbrains-mono: "JetBrains Mono", monospace;
   --font-inter: "Inter", sans-serif;
 
+  /* Vibrant Color Palette */
+  --purple-500: #8b5cf6;
+  --purple-600: #7c3aed;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --teal-500: #14b8a6;
+  --pink-500: #ec4899;
+  --rose-500: #f43f5e;
+  --amber-500: #f59e0b;
+  --orange-500: #f97316;
+  --emerald-500: #10b981;
+  --green-500: #22c55e;
+
   /* Consistent Spacing System - Reduced by Half */
   --spacing-xs: 0.25rem; /* 4px */
   --spacing-sm: 0.5rem; /* 8px */
@@ -44,7 +59,7 @@
 }
 
 * {
-  border-color: hsl(var(--border) / 0.5);
+  border-color: hsl(var(--border) / 0.7);
 }
 
 body {

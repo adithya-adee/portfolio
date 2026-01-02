@@ -35,7 +35,7 @@ export default function VisitorCounter() {
             method: "POST",
           });
           data = await response.json();
-          
+
           // Mark this tab as counted
           sessionStorage.setItem(VISIT_COUNTED_KEY, "true");
         }
@@ -99,8 +99,8 @@ export default function VisitorCounter() {
         {/* Counter */}
         <div className="flex items-baseline gap-1.5">
           <span className="font-mono text-sm font-semibold tracking-tight text-neutral-100 sm:text-base">
-          <span className="text-sm text-neutral-500">You are the reason we hit </span>
-             {displayCount.toLocaleString()}
+            <span className="text-sm text-neutral-500">You are the reason we hit </span>
+            {displayCount.toLocaleString()}
           </span>
           <span className="text-sm text-neutral-500">visits</span>
         </div>
@@ -111,4 +111,3 @@ export default function VisitorCounter() {
     </div>
   );
 }
-

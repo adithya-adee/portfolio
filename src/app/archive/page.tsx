@@ -87,45 +87,57 @@ export default function ArchivePage() {
               </button>
 
               {/* Expanded View */}
-              {expandedIndex === experience.indexOf(exp) && (
-                <div className="overflow-hidden">
-                  <div className="border-t border-neutral-800/50 px-5 pb-6 pt-5 sm:px-6">
-                    {/* Highlights */}
-                    <div className="space-y-4">
-                      <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
-                        Highlights
-                      </p>
-                      <ul className="space-y-3">
-                        {exp.highlights.map((highlight, i) => (
-                          <li key={i} className="flex gap-3">
-                            <span className="mt-2 text-gray-600">•</span>
-                            <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
-                              {highlight}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Skills */}
-                    {exp.skills && exp.skills.length > 0 && (
-                      <div className="mt-6 space-y-3">
-                        <p className="text-sm tracking-wide text-gray-500">Skills</p>
-                        <div className="flex flex-wrap gap-2.5">
-                          {exp.skills.map((skill, i) => (
-                            <span
-                              key={i}
-                              className="rounded-md bg-neutral-800/50 px-3 py-1.5 text-sm tracking-wide text-gray-400"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedIndex === experience.indexOf(exp)
+                    ? "max-h-[2000px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="border-t border-neutral-800/50 px-5 pb-6 pt-5 sm:px-6">
+                  {/* Highlights */}
+                  <div className="space-y-4">
+                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
+                      Highlights
+                    </p>
+                    <ul className="space-y-3">
+                      {exp.highlights.map((highlight, i) => (
+                        <li
+                          key={i}
+                          className={`flex gap-3 transition-all duration-300 ${
+                            expandedIndex === experience.indexOf(exp)
+                              ? "translate-x-0 opacity-100"
+                              : "-translate-x-4 opacity-0"
+                          }`}
+                          style={{ transitionDelay: `${i * 50}ms` }}
+                        >
+                          <span className="mt-2 text-gray-600">•</span>
+                          <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
+                            {highlight}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
+
+                  {/* Skills */}
+                  {exp.skills && exp.skills.length > 0 && (
+                    <div className="mt-6 space-y-3">
+                      <p className="text-sm tracking-wide text-gray-500">Skills</p>
+                      <div className="flex flex-wrap gap-2.5">
+                        {exp.skills.map((skill, i) => (
+                          <span
+                            key={i}
+                            className="rounded-md bg-neutral-800/50 px-3 py-1.5 text-sm tracking-wide text-gray-400"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>

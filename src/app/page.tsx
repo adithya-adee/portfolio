@@ -4,6 +4,7 @@
 import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
+import Blogs from "@/components/sections/Blogs";
 import ExperienceCollapsed from "@/components/sections/ExperienceCollapsed";
 import Connect from "@/components/sections/Connect";
 import VisitorCounter from "@/components/VisitorCounter";
@@ -30,6 +31,11 @@ export default function Home() {
         {/* Tech Stack Section */}
         <section id="stack">
           <TechStack />
+        </section>
+
+        {/* Blogs Section */}
+        <section id="blogs">
+          <Blogs />
         </section>
 
         {/* Connect with Me Section */}

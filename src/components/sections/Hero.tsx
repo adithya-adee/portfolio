@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Clock10 } from "lucide-react";
 
 export default function HeroMinimal() {
   const [currentTime, setCurrentTime] = useState("");
@@ -46,31 +47,28 @@ export default function HeroMinimal() {
               height={64}
               className="rounded-full ring-2 ring-neutral-800"
             />
-            <div className="space-y-1">
-              <h1 className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
+            <div className="space-y-0.5">
+              <h1 className="font-mono text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
                 Adithya Anand
               </h1>
               <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
             </div>
           </div>
-          <div className="flex flex-col gap-1 sm:gap-0">
-            <p className="m-0 text-xs font-medium uppercase tracking-[0.15em] text-gray-500 sm:text-sm">
-              {currentTime}
-            </p>
-            <div className="my-2 border-b border-neutral-800/50" />
-            <p className="text-xs tracking-wide text-gray-500 sm:text-sm">
-              <span className="text-gray-600">IST (GMT+5:30)</span>
+          <div className="flex items-center gap-2 rounded-md border border-zinc-700/40 bg-neutral-900/40 px-3 py-1.5">
+            <Clock10 className="h-3.5 w-3.5 text-gray-400 sm:h-4 sm:w-4" />
+            <p className="m-0 text-xs font-medium tracking-wide text-gray-300 sm:text-sm">
+              {currentTime} GMT+5:30
             </p>
           </div>
         </div>
 
         {/* Subtitle */}
-        <p className="text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
-          Backend Developer | Building Solana Products
+        <p className="font-sans text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
+          Backend Dev by day | Solana dev by night
         </p>
 
         {/* Bio */}
-        <p className="max-w-2xl text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+        <p className="max-w-2xl font-sans text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.
@@ -81,7 +79,7 @@ export default function HeroMinimal() {
           {highlights.map((highlight, index) => (
             <p
               key={index}
-              className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
+              className="font-mono text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
             >
               {highlight}
             </p>

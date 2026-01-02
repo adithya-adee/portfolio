@@ -92,7 +92,16 @@ export default function TechStack() {
                 return (
                   <div
                     key={tech.name}
-                    className="group flex items-center gap-2.5 rounded-md border border-neutral-700/20 bg-neutral-700/30 px-3 py-2.5 transition-all duration-300 ease-in-out hover:scale-105 hover:border-neutral-700/50 hover:bg-neutral-700/50 hover:shadow-lg hover:shadow-neutral-900/50 sm:px-4"
+                    className="group relative flex items-center gap-2.5 rounded-md border-2 border-zinc-600/60 bg-gradient-to-br from-neutral-800/60 to-neutral-900/60 px-3 py-2.5 transition-all duration-300 ease-in-out hover:scale-105 hover:border-purple-500/50 hover:shadow-lg sm:px-4"
+                    style={{
+                      boxShadow: `0 0 0 0 ${tech.color}20`,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = `0 0 20px 2px ${tech.color}40`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = `0 0 0 0 ${tech.color}20`;
+                    }}
                   >
                     <Icon
                       className="text-base transition-all duration-300 group-hover:scale-110"

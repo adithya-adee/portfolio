@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "highlight": true,
     "title": "Breaking the CORS Puzzle: What Every Developer Must Know for Interviews",
     "url": "https://dev.to/adithya_a_508b89c3885ee40/breaking-the-cors-puzzle-what-every-developer-must-know-for-interviews-45fe",
     "date": "2024-10-29",
@@ -10,6 +11,7 @@
   },
   {
     "id": 2,
+    "highlight": true,
     "title": "Transform Your Text Analysis Journey: How KeyBERT is Changing the Game for Keyword Extraction!",
     "url": "https://dev.to/adithya_a_508b89c3885ee40/transform-your-text-analysis-journey-how-keybert-is-changing-the-game-for-keyword-extraction-56pn",
     "date": "2024-10-5",

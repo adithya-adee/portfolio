@@ -60,8 +60,8 @@ export default function ProjectsPage() {
             onClick={() => setActiveFilter(category)}
             className={`relative overflow-hidden rounded-lg px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 ease-out ${
               activeFilter === category
-                ? "border border-neutral-600/50 bg-gradient-to-r from-neutral-700/60 to-neutral-800/60 text-white shadow-lg shadow-neutral-900/50"
-                : "border border-neutral-800/50 bg-neutral-900/30 text-gray-400 hover:border-neutral-700/50 hover:bg-neutral-800/40 hover:text-gray-300"
+                ? "border border-neutral-600/50 bg-gradient-to-r from-neutral-700/60 to-neutral-800/60 text-white shadow-lg shadow-neutral-900/50 hover:border-purple-500/60 hover:shadow-purple-500/20"
+                : "border border-neutral-800/50 bg-neutral-900/30 text-gray-400 hover:border-purple-500/60 hover:bg-neutral-800/40 hover:text-gray-300 hover:shadow-lg hover:shadow-purple-500/20"
             } `}
           >
             <span className="relative z-10">{getCategoryLabel(category)}</span>
@@ -81,7 +81,7 @@ export default function ProjectsPage() {
         {filteredProjects.map((project, index) => (
           <div
             key={project.name}
-            className="group overflow-hidden rounded-lg border border-dashed border-zinc-800 bg-neutral-900/30 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-neutral-700/50 hover:shadow-xl hover:shadow-neutral-900/30"
+            className="group overflow-hidden rounded-lg border-2 border-dashed border-zinc-600/60 bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-solid hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/20"
             style={{
               animationDelay: `${index * 50}ms`,
               animation: "fadeIn 0.5s ease-out forwards",
@@ -93,13 +93,14 @@ export default function ProjectsPage() {
               className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
             >
               <div className="flex-1 space-y-3">
-                <div className="flex flex-col gap-2 sm:flex-row justify-between sm:items-baseline sm:gap-4">
+                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
                       {project.name}
                     </h3>
                     {/* Category Badge */}
-                    <span className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
+                    <span
+                      className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
                         project.category
                       )}`}
                     >

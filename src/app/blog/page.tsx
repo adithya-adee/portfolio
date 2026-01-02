@@ -73,7 +73,8 @@ export default function BlogPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-500 transition-colors hover:text-white"
                 >
-                  Read article → <ExternalLink size={14} />
+                  Read article
+                  <ExternalLink size={14} />
                 </a>
               </div>
             </article>
