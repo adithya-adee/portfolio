@@ -47,7 +47,7 @@ export default function HeroMinimal() {
               height={64}
               className="rounded-full ring-2 ring-neutral-800"
             />
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <h1 className="font-mono text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
                 Adithya Anand
               </h1>
@@ -63,12 +63,12 @@ export default function HeroMinimal() {
         </div>
 
         {/* Subtitle */}
-        <p className="text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
+        <p className="font-sans text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
           Backend Dev by day | Solana dev by night
         </p>
 
         {/* Bio */}
-        <p className="max-w-2xl text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+        <p className="font-sans max-w-2xl text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.

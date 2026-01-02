@@ -38,6 +38,46 @@
     "logo": "https://okiedokiepay.com/favicon.ico"
   },
   {
+    "slug": "FootballSolana",
+    "company": "Football Solana (Freelance)",
+    "position": "Blockchain Developer",
+    "location": "Dubai, UAE (Remote)",
+    "startDate": "December 2024",
+    "endDate": "January 2025",
+    "duration": "2 months",
+    "display": true,
+    "description": "Developed a complete token presale and staking platform on Solana blockchain for a Dubai-based client, handling smart contracts, frontend integration, and backend infrastructure.",
+    "responsibilities": [
+      "Architected and deployed production-grade Solana smart contracts using Anchor framework for token presale, staking, and referral systems with multi-tier APY calculations.",
+      "Built full-stack web application integrating Solana wallet adapters (Phantom, Solflare) with React and Next.js for seamless Web3 user experience.",
+      "Implemented backend treasury management system using Helius RPC for real-time transaction monitoring and presale token distribution.",
+      "Designed and executed secure token economics including vesting schedules, tier-based bonuses, and referral reward mechanisms.",
+      "Deployed and managed smart contracts on Solana devnet and mainnet, handling program initialization and PDA account management."
+    ],
+    "skills": [
+      "Solana",
+      "Anchor Framework",
+      "Rust",
+      "Smart Contracts",
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Wallet Integration",
+      "Helius RPC",
+      "Web3.js",
+      "Treasury Management",
+      "Token Economics"
+    ],
+    "highlights": [
+      "Deployed production smart contracts managing token presale and staking on Solana mainnet",
+      "Integrated multiple Solana wallet providers for seamless user onboarding",
+      "Built automated treasury management system for presale token distribution",
+      "Implemented complex staking logic with dynamic APY calculations and tier multipliers"
+    ],
+    "url": "https://www.footballsolana.com/",
+    "logo": "https://www.footballsolana.com/favicon.ico"
+  },
+  {
     "slug": "IEEESoC",
     "company": "IEEE Summer of Code",
     "position": "Open Source Contributor",
