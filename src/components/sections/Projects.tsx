@@ -158,7 +158,7 @@ export default function ProjectsPage() {
               }`}
             >
               <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {project.detailed_description.map((point, i) => (
                     <li
                       key={i}

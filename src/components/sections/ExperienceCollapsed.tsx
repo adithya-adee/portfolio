@@ -2,7 +2,7 @@
 
 import experienceData from "@/asset/experience.json";
 import { useState } from "react";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export interface ExperienceItem {
   slug: string;
@@ -68,9 +68,9 @@ export default function Experience() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-2 text-sm leading-relaxed tracking-wide text-gray-400 transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4 sm:text-base"
+                    className="text-sm leading-relaxed tracking-wide text-gray-400 transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4 sm:text-base"
                   >
-                    {exp.company} <ExternalLink size={14} />
+                    {exp.company}
                   </a>
                 ) : (
                   <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
@@ -98,7 +98,7 @@ export default function Experience() {
             >
               <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
                 {/* Highlights */}
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {exp.highlights?.map((highlight, i) => (
                     <li
                       key={i}
