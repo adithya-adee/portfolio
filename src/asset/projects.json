@@ -27,7 +27,7 @@
     "live_url": "https://crates.io/crates/solana-indexer-sdk",
     "github_url": "https://github.com/adithya-adee/solana-indexer",
     "video_url": "",
-    "skills": ["Rust", "Solana RPC","Open Telemetry", "Solana SDK", "Tokio", "WebSockets"]
+    "skills": ["Rust", "Solana RPC", "Open Telemetry", "Solana SDK", "Tokio", "WebSockets"]
   },
   {
     "name": "ShadowLend",
