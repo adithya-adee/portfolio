@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-   --background: 220 15% 4%;
- /* --background: 220 15% 4%; */
+  --background: 220 15% 4%;
+  /* --background: 220 15% 4%; */
   --foreground: 0 0% 98%;
   --card: 220 15% 4%;
   --card-foreground: 0 0% 98%;

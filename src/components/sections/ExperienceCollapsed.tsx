@@ -39,7 +39,7 @@ export default function ExperienceCollapsed() {
           .map((exp) => (
             <div
               key={exp.company}
-              className="group flex flex-col justify-between gap-3 rounded-lg border-2 border-dashed border-zinc-600/60 bg-neutral-900/40 px-4 py-4 transition-all duration-300 hover:border-solid hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 sm:flex-row sm:items-center sm:gap-6 sm:px-6 sm:py-5"
+              className="card-accent group flex flex-col justify-between gap-3 rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-4 transition-all duration-300 hover:bg-neutral-800/50 hover:shadow-lg hover:shadow-purple-500/10 sm:flex-row sm:items-center sm:gap-6 sm:px-6 sm:py-5"
             >
               <div className="space-y-1">
                 <a

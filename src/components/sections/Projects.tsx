@@ -15,18 +15,22 @@ interface Project {
   github_url: string;
 }
 
-type FilterCategory = "web3" | "full-stack";
+type FilterCategory = "web3" | "full-stack" | "open-source";
 
-const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3"];
+const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3", "open-source"];
 
 const getCategoryLabel = (category: FilterCategory): string => {
-  return category === "web3" ? "Web3" : "Full Stack";
+  if (category === "web3") return "Web3";
+  if (category === "open-source") return "Open Source";
+  return "Full Stack";
 };
 
 const getCategoryStyles = (category: string) => {
-  return category === "web3"
-    ? "bg-red-500/10 text-red-200 border border-red-500/30"
-    : "bg-sky-500/10 text-sky-400 border border-sky-500/30";
+  if (category === "web3")
+    return "bg-purple-500/10 text-purple-400 ring-1 ring-inset ring-purple-500/20";
+  if (category === "open-source")
+    return "bg-emerald-500/10 text-emerald-400 ring-1 ring-inset ring-emerald-500/20";
+  return "bg-blue-500/10 text-blue-400 ring-1 ring-inset ring-blue-500/20";
 };
 
 export default function ProjectsPage() {
@@ -66,7 +70,7 @@ export default function ProjectsPage() {
           >
             <span className="relative z-10">{getCategoryLabel(category)}</span>
             {activeFilter === category && (
-              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-neutral-600/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-transparent" />
             )}
           </button>
         ))}
@@ -81,11 +85,7 @@ export default function ProjectsPage() {
         {filteredProjects.map((project, index) => (
           <div
             key={project.name}
-            className="group overflow-hidden rounded-lg border-2 border-dashed border-zinc-600/60 bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-solid hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/20"
-            style={{
-              animationDelay: `${index * 50}ms`,
-              animation: "fadeIn 0.5s ease-out forwards",
-            }}
+            className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
           >
             {/* Collapsed View */}
             <button
