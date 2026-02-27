@@ -149,6 +149,41 @@ p {
   color: rgb(156 163 175);
 }
 
+/**
+ * .body-text — canonical body copy style used across hero bio,
+ * experience highlights, project bullets, and blog descriptions.
+ * Applied via className="body-text" to keep all prose consistent.
+ */
+.body-text {
+  font-size: var(--text-base); /* 16px */
+  line-height: var(--leading-relaxed); /* 1.5 */
+  letter-spacing: var(--tracking-wide);
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+/**
+ * .subtitle-text — slightly larger than body, used for
+ * section-level description lines (e.g. Hero's "Backend Dev…").
+ */
+.subtitle-text {
+  font-size: var(--text-lg); /* equals base – explicitly one notch above small */
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-wide);
+  color: rgb(209 213 219); /* gray-300 */
+}
+
+/**
+ * .gradient-text — inline gradient for highlighted keywords.
+ * Gradient: violet → cyan (more distinctive than purple → indigo).
+ */
+.gradient-text {
+  background: linear-gradient(90deg, #a78bfa 0%, #22d3ee 100%); /* violet-400 → cyan-400 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* Code syntax highlighting */
 h3 code {
   font-size: var(--text-lg);

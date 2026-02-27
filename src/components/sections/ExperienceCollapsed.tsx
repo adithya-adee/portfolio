@@ -23,9 +23,7 @@ export interface ExperienceItem {
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
-  const experience = (experienceData as ExperienceItem[]).filter(
-    (exp) => exp.display !== false
-  );
+  const experience = (experienceData as ExperienceItem[]).filter((exp) => exp.display !== false);
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -41,9 +39,7 @@ export default function Experience() {
           >
             {/* Collapsed View */}
             <button
-              onClick={() =>
-                setExpandedIndex(expandedIndex === index ? null : index)
-              }
+              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
               className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
             >
               <div className="flex-1 space-y-3">
@@ -68,14 +64,12 @@ export default function Experience() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="text-sm leading-relaxed tracking-wide text-gray-400 transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4 sm:text-base"
+                    className="body-text transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4"
                   >
                     {exp.company}
                   </a>
                 ) : (
-                  <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-                    {exp.company}
-                  </p>
+                  <p className="body-text">{exp.company}</p>
                 )}
               </div>
 
@@ -91,9 +85,7 @@ export default function Experience() {
             {/* Expanded View */}
             <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedIndex === index
-                  ? "max-h-[2000px] opacity-100"
-                  : "max-h-0 opacity-0"
+                expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
               }`}
             >
               <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
@@ -110,9 +102,7 @@ export default function Experience() {
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       <span className="mt-2 text-gray-600">•</span>
-                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
-                        {highlight}
-                      </span>
+                      <span className="body-text">{highlight}</span>
                     </li>
                   ))}
                 </ul>

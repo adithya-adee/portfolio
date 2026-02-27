@@ -112,9 +112,7 @@ export default function ProjectsPage() {
                     {project.timeline}
                   </span>
                 </div>
-                <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-                  {project.short_description}
-                </p>
+                <p className="body-text">{project.short_description}</p>
 
                 {/* Links */}
                 <div className="flex flex-wrap gap-4 pt-2 sm:gap-6">
@@ -170,9 +168,7 @@ export default function ProjectsPage() {
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       <span className="mt-2 text-gray-600">•</span>
-                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
-                        {point}
-                      </span>
+                      <span className="body-text">{point}</span>
                     </li>
                   ))}
                 </ul>

@@ -57,7 +57,7 @@ export default function Blogs() {
                   >
                     {blog.category}
                   </span>
-                  <h3 className="text-base font-medium tracking-wide text-white transition-colors group-hover:text-gray-200 sm:text-lg">
+                  <h3 className="font-base font-medium leading-relaxed tracking-wide text-white transition-colors group-hover:text-gray-200">
                     {blog.title}
                   </h3>
                 </div>

@@ -56,12 +56,8 @@ export default function HeroMinimal() {
               <h1 className="font-mono text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
                 Adithya Anand
               </h1>
-              <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-3">
+              <div className="flex flex-col items-start sm:flex-row sm:items-center">
                 <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
-                <div className="flex -translate-y-[1px] items-center gap-1.5 rounded-full bg-green-500/10 px-2.5 py-[3px] text-[11px] font-medium tracking-wide text-green-400 ring-1 ring-inset ring-green-500/20 sm:translate-y-0 sm:text-xs">
-                  <div className="h-1.5 w-1.5 flex-none rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                  Available for work
-                </div>
               </div>
             </div>
           </div>
@@ -74,18 +70,15 @@ export default function HeroMinimal() {
         </div>
 
         {/* Subtitle */}
-        <div className="flex flex-wrap items-center gap-2 font-sans text-base leading-relaxed tracking-wide sm:text-lg">
-          <span className="text-gray-300">
-            <span className="font-semibold text-white">Backend Dev</span> by day {" | "}
-            <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text font-semibold text-transparent">
-              Solana Dev
-            </span>{" "}
-            by night
-          </span>
+        <div className="subtitle-text font-sans font-medium">
+          <span className="font-semibold text-white">Backend Dev</span>
+          {" | "}
+          <span className="gradient-text font-semibold">Solana Dev</span>
+          {" by night"}
         </div>
 
         {/* Bio */}
-        <p className="max-w-2xl font-sans text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+        <p className="body-text max-w-2xl font-sans">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.
@@ -94,11 +87,8 @@ export default function HeroMinimal() {
         {/* Highlights */}
         <div className="space-y-1.5">
           {highlights.map((highlight, index) => (
-            <div
-              key={index}
-              className="flex items-start gap-2.5 font-mono text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
-            >
-              <span className="mt-1 text-xs text-purple-400/80">→</span>
+            <div key={index} className="body-text flex items-start gap-2.5 font-mono">
+              <span className="mt-1 text-xs text-violet-400/80">→</span>
               <span>{highlight}</span>
             </div>
           ))}
