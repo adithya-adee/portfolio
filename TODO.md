@@ -1,9 +1,14 @@
-- RamCodes website example
-- Video Support (research and find the best) -> For projects section : Clear description + Video (no need of view all)
-- Improve view all page for work ex(DO I NEED VIEW ALL PAGE??)
-- CONCLUDE - NO VIEW ALL PAGE (IMPROVE THE CONTENT)
--> I dont think anyone would go again to different page
--> Remove view all and make it expandable
-<!-- - Top Blogs in the same page (VIEW ALL NEEDED) - Write some more blogs -->
-- Improve SEO
-- Add github activity (IF NEEDED)
+# Portfolio TODOs
+
+- [x] Improve view all page for work ex
+  - Removed "View All" page entirely
+  - Merged into home page with an expandable accordion implementation
+- [x] Video Support for Projects
+  - Added support for 16:9 YouTube iframe embeds inside expanded project cards
+- [x] Improve SEO
+  - Refined layout.tsx metadata
+  - Added sitemap.xml and robots.txt
+  - Added specific metadata for /blog page
+- [ ] Add specific YouTube URLs to `projects.json` `video_url` property
+- [ ] Add top blogs to the home page
+- [ ] Write more blogs

@@ -1,8 +1,12 @@
-"use client";
-
+import { Metadata } from "next";
 import blogsData from "@/asset/blog.json";
 import { ExternalLink, Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Blog | Adithya Anand",
+  description: "Read my latest thoughts on code, tech, and building scalable products.",
+};
 
 interface Blog {
   title: string;

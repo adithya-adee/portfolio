@@ -13,6 +13,7 @@ interface Project {
   detailed_description: string[];
   live_url: string;
   github_url: string;
+  video_url?: string;
 }
 
 type FilterCategory = "web3" | "full-stack" | "open-source";
@@ -176,6 +177,22 @@ export default function ProjectsPage() {
                   ))}
                 </ul>
               </div>
+
+              {/* Video Embed */}
+              {expandedIndex === index && project.video_url && (
+                <div className="border-t border-neutral-800/50 bg-neutral-900/40 p-4 sm:p-6">
+                  <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700/50 shadow-lg">
+                    <iframe
+                      src={project.video_url}
+                      title={`${project.name} video overview`}
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

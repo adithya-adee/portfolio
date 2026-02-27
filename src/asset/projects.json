@@ -10,7 +10,8 @@
       "Published and distributed via Crates.io with 926 active downloads."
     ],
     "live_url": "https://crates.io/crates/crab-clean",
-    "github_url": "https://github.com/adithya-adee/crab-clean"
+    "github_url": "https://github.com/adithya-adee/crab-clean",
+    "video_url": ""
   },
   {
     "name": "solana-indexer",
@@ -23,7 +24,8 @@
       "Features a modular architecture with IDL-based type generation, providing a decoupled SDK for custom instruction decoding and type-safe event handling."
     ],
     "live_url": "https://crates.io/crates/solana-indexer-sdk",
-    "github_url": "https://github.com/adithya-adee/solana-indexer"
+    "github_url": "https://github.com/adithya-adee/solana-indexer",
+    "video_url": ""
   },
   {
     "name": "ShadowLend",
@@ -36,7 +38,8 @@
       "Implemented risk calculation logic (Interest, Health Factor) directly inside Arcium MXEs (Trusted Execution Environments) to secure borrowing positions."
     ],
     "live_url": "",
-    "github_url": "https://github.com/adithya-adee/ShadowLend"
+    "github_url": "https://github.com/adithya-adee/ShadowLend",
+    "video_url": ""
   },
   {
     "name": "CodeSync",
@@ -50,7 +53,8 @@
       "Designed role-based permissions for room owners to manage user access"
     ],
     "live_url": "https://code-sync-sepia.vercel.app/",
-    "github_url": "https://github.com/devgambo/CodeSync"
+    "github_url": "https://github.com/devgambo/CodeSync",
+    "video_url": ""
   },
   {
     "name": "Hackverse",
@@ -64,7 +68,8 @@
       "Implemented Redux for consistent global state management"
     ],
     "live_url": "https://hackverse-sandy.vercel.app",
-    "github_url": "https://github.com/adithya-adee/hackverse"
+    "github_url": "https://github.com/adithya-adee/hackverse",
+    "video_url": ""
   },
   {
     "name": "SolidKYC",
@@ -80,7 +85,8 @@
       "Ensured non-custodial identity ownership by allowing users to control credentials locally while only submitting proofs to the blockchain."
     ],
     "live_url": "https://solidkyc.vercel.app",
-    "github_url": "https://github.com/adithya-adee/SolidKYC"
+    "github_url": "https://github.com/adithya-adee/SolidKYC",
+    "video_url": ""
   },
   {
     "name": "AMM Uniswap V2",
@@ -92,6 +98,7 @@
       "Built swap, add liquidity, and remove liquidity flows to understand pricing, slippage, and pool balance invariants."
     ],
     "live_url": "",
-    "github_url": "https://github.com/adithya-adee/amm_uniswap"
+    "github_url": "https://github.com/adithya-adee/amm_uniswap",
+    "video_url": ""
   }
 ]
