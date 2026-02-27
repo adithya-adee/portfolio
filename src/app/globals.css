@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: 210 11.1% 3.53%;
+   --background: 220 15% 4%;
+ /* --background: 220 15% 4%; */
   --foreground: 0 0% 98%;
-  --card: 210 11.1% 3.53%;
+  --card: 220 15% 4%;
   --card-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
+  --border: 0 0% 12%;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
   --font-inter: "Inter", sans-serif;
 
@@ -314,4 +315,34 @@ a {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Accessibility & UX Guards */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (hover: none) {
+  .group:hover {
+    transform: none !important;
+  }
+  * {
+    transform: none !important;
+  }
+}
+
+/* Custom Card Accent */
+.card-accent {
+  border-left-width: 2px !important;
+  border-left-color: transparent !important;
+  transition: border-color 0.3s ease;
+}
+
+.card-accent:hover {
+  border-left-color: var(--purple-500) !important;
 }

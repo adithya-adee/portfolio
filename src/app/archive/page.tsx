@@ -51,7 +51,7 @@ export default function ArchivePage() {
           {experience.map((exp) => (
             <div
               key={exp.company}
-              className="overflow-hidden rounded-lg border border-neutral-800/50 bg-neutral-900/30 transition-colors hover:border-neutral-700/50"
+              className="overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-lg"
             >
               {/* Collapsed View */}
               <button
