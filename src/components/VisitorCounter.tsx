@@ -90,7 +90,7 @@ export default function VisitorCounter() {
   return (
     <div className="mx-auto mb-8 flex max-w-3xl items-center justify-center px-4 sm:px-6">
       <div
-        className="group flex items-center gap-2.5 rounded-full border border-neutral-800/50 bg-neutral-900/90 px-4 py-2.5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-neutral-700/60 hover:bg-neutral-900/95 hover:shadow-xl sm:gap-3 sm:px-5 sm:py-3"
+        className="group flex items-center gap-2.5 rounded-full border border-neutral-700/40 bg-neutral-900/90 px-4 py-2.5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-900/95 hover:shadow-xl sm:gap-3 sm:px-5 sm:py-3"
         title={`${visitData.totalVisits} total visits`}
       >
         {/* Eye Icon */}
