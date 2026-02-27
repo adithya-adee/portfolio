@@ -11,7 +11,8 @@
     ],
     "live_url": "https://crates.io/crates/crab-clean",
     "github_url": "https://github.com/adithya-adee/crab-clean",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["Rust", "Rayon", "CLI Tools"]
   },
   {
     "name": "solana-indexer",
@@ -25,7 +26,8 @@
     ],
     "live_url": "https://crates.io/crates/solana-indexer-sdk",
     "github_url": "https://github.com/adithya-adee/solana-indexer",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["Rust", "Solana RPC","Open Telemetry", "Solana SDK", "Tokio", "WebSockets"]
   },
   {
     "name": "ShadowLend",
@@ -39,7 +41,8 @@
     ],
     "live_url": "",
     "github_url": "https://github.com/adithya-adee/ShadowLend",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["Solana", "Anchor", "Arcium TEE", "Cryptography"]
   },
   {
     "name": "CodeSync",
@@ -54,7 +57,8 @@
     ],
     "live_url": "https://code-sync-sepia.vercel.app/",
     "github_url": "https://github.com/devgambo/CodeSync",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["Next.js", "Liveblocks", "Convex", "Gemini AI"]
   },
   {
     "name": "Hackverse",
@@ -69,7 +73,8 @@
     ],
     "live_url": "https://hackverse-sandy.vercel.app",
     "github_url": "https://github.com/adithya-adee/hackverse",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["NestJS", "PostgreSQL", "Prisma ORM", "Next.js", "Redux"]
   },
   {
     "name": "SolidKYC",
@@ -86,7 +91,8 @@
     ],
     "live_url": "https://solidkyc.vercel.app",
     "github_url": "https://github.com/adithya-adee/SolidKYC",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["Solana", "Anchor", "zk-SNARKs", "Circom", "React"]
   },
   {
     "name": "AMM Uniswap V2",
@@ -99,6 +105,7 @@
     ],
     "live_url": "",
     "github_url": "https://github.com/adithya-adee/amm_uniswap",
-    "video_url": ""
+    "video_url": "",
+    "skills": ["Solana", "Anchor", "DeFi", "Smart Contracts", "AMM"]
   }
 ]

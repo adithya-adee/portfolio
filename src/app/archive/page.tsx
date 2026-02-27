@@ -41,7 +41,9 @@ export default function ArchivePage() {
           <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Work Experience
           </h1>
-          <p className="body-text">My professional journey and contributions</p>
+          <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+            My professional journey and contributions
+          </p>
         </div>
 
         {/* Experience List */}
@@ -53,9 +55,7 @@ export default function ArchivePage() {
             >
               {/* Collapsed View */}
               <button
-                onClick={() =>
-                  setExpandedIndex(expandedIndex === index ? null : index)
-                }
+                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                 className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
               >
                 <div className="flex-1 space-y-3">
@@ -79,12 +79,14 @@ export default function ArchivePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="body-text transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4"
+                      className="text-sm leading-relaxed tracking-wide text-gray-400 transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4 sm:text-base"
                     >
                       {exp.company}
                     </a>
                   ) : (
-                    <p className="body-text">{exp.company}</p>
+                    <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+                      {exp.company}
+                    </p>
                   )}
                 </div>
 
@@ -100,9 +102,7 @@ export default function ArchivePage() {
               {/* Expanded View */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  expandedIndex === index
-                    ? "max-h-[2000px] opacity-100"
-                    : "max-h-0 opacity-0"
+                  expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
                 <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
@@ -119,7 +119,9 @@ export default function ArchivePage() {
                         style={{ transitionDelay: `${i * 50}ms` }}
                       >
                         <span className="mt-2 text-gray-600">•</span>
-                        <span className="body-text">{highlight}</span>
+                        <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
+                          {highlight}
+                        </span>
                       </li>
                     ))}
                   </ul>

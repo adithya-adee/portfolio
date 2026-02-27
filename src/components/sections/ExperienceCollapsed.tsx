@@ -64,12 +64,14 @@ export default function Experience() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="body-text transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4"
+                    className="text-sm leading-relaxed tracking-wide text-gray-400 transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4 sm:text-base"
                   >
                     {exp.company}
                   </a>
                 ) : (
-                  <p className="body-text">{exp.company}</p>
+                  <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+                    {exp.company}
+                  </p>
                 )}
               </div>
 
@@ -102,7 +104,9 @@ export default function Experience() {
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       <span className="mt-2 text-gray-600">•</span>
-                      <span className="body-text">{highlight}</span>
+                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
+                        {highlight}
+                      </span>
                     </li>
                   ))}
                 </ul>

@@ -14,6 +14,7 @@ interface Project {
   live_url: string;
   github_url: string;
   video_url?: string;
+  skills?: string[];
 }
 
 type FilterCategory = "web3" | "full-stack" | "open-source";
@@ -112,7 +113,9 @@ export default function ProjectsPage() {
                     {project.timeline}
                   </span>
                 </div>
-                <p className="body-text">{project.short_description}</p>
+                <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+                  {project.short_description}
+                </p>
 
                 {/* Links */}
                 <div className="flex flex-wrap gap-4 pt-2 sm:gap-6">
@@ -168,10 +171,31 @@ export default function ProjectsPage() {
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       <span className="mt-2 text-gray-600">•</span>
-                      <span className="body-text">{point}</span>
+                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
+                        {point}
+                      </span>
                     </li>
                   ))}
                 </ul>
+
+                {/* Skills */}
+                {project.skills && project.skills.length > 0 && (
+                  <div className="mt-5 space-y-3 border-t border-neutral-800/50 pt-4">
+                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
+                      Skills
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.skills.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="rounded-md bg-neutral-800/50 px-3 py-1.5 text-xs tracking-wide text-gray-400 ring-1 ring-inset ring-neutral-700/40"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Video Embed */}

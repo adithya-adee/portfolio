@@ -40,25 +40,18 @@ export default function HeroMinimal() {
         {/* Name & Handle with Profile Image */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <Image
-                src="/profile.png"
-                alt="Adithya Anand"
-                width={64}
-                height={64}
-                className="rounded-full ring-2 ring-neutral-800"
-              />
-              <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-neutral-900">
-                <div className="h-2.5 w-2.5 rounded-full bg-green-500" title="Available for work" />
-              </div>
-            </div>
-            <div className="space-y-1 sm:space-y-0.5">
+            <Image
+              src="/profile.png"
+              alt="Adithya Anand"
+              width={64}
+              height={64}
+              className="rounded-full ring-2 ring-neutral-800"
+            />
+            <div className="space-y-0.5">
               <h1 className="font-mono text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
                 Adithya Anand
               </h1>
-              <div className="flex flex-col items-start sm:flex-row sm:items-center">
-                <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
-              </div>
+              <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
             </div>
           </div>
           <div className="flex items-center gap-2 rounded-md border border-zinc-700/40 bg-neutral-900/40 px-3 py-1.5">
@@ -70,27 +63,26 @@ export default function HeroMinimal() {
         </div>
 
         {/* Subtitle */}
-        <div className="subtitle-text font-sans font-medium">
-          <span className="font-semibold text-white">Backend Dev</span>
-          {" | "}
-          <span className="gradient-text font-semibold">Solana Dev</span>
-          {" by night"}
-        </div>
+        <p className="font-sans text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
+          Backend Dev by day | Solana dev by night
+        </p>
 
         {/* Bio */}
-        <p className="body-text max-w-2xl font-sans">
+        <p className="max-w-2xl font-sans text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
           Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
           about cryptography, blockchain, and creating efficient solutions. Currently exploring
           Solana and Web3 while shipping full-stack products.
         </p>
 
         {/* Highlights */}
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           {highlights.map((highlight, index) => (
-            <div key={index} className="body-text flex items-start gap-2.5 font-mono">
-              <span className="mt-1 text-xs text-violet-400/80">→</span>
-              <span>{highlight}</span>
-            </div>
+            <p
+              key={index}
+              className="font-mono text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
+            >
+              {highlight}
+            </p>
           ))}
         </div>
       </div>

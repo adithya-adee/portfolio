@@ -116,13 +116,13 @@ export default function RootLayout({
       <body className={`${jetbrainsMono.variable} ${inter.variable}`}>
         <div className="relative min-h-screen">
           {/* Background Pattern */}
-          <div className="fixed inset-0 -z-10">
+          <div className="fixed inset-0 -z-10 bg-zinc-800/20">
             {/* Film Grain Texture - CSS Based */}
             <div
               className="grain-overlay pointer-events-none absolute inset-0"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                opacity: 0.03,
+                opacity: 0.06,
                 mixBlendMode: "overlay",
               }}
             />
@@ -140,8 +140,7 @@ export default function RootLayout({
             />
 
             {/* Gradient Overlays for Depth */}
-            <div className="absolute inset-x-0 top-0 h-[500px] bg-gradient-to-b from-neutral-950/30 via-transparent to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-[500px] bg-gradient-to-t from-neutral-950/30 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-transparent to-transparent" />
           </div>
           <Toaster position="top-right" theme="dark" richColors />
           <Analytics />
