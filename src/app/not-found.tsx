@@ -60,11 +60,11 @@ export default function NotFound() {
 
             <div className="pt-6 sm:pt-8">
               <div className="mb-6 text-center">
-                <h1 className="mb-2 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
+                <h1 className="mb-2 bg-gradient-to-r from-purple-400 via-violet-500 to-blue-500 bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
                   {glitchText}
                 </h1>
                 <h2 className="text-xl font-semibold text-white sm:text-2xl">Page Not Found</h2>
-                <div className="mx-auto mt-2 h-0.5 w-16 rounded-full bg-gradient-to-r from-orange-400 to-red-500 sm:h-1 sm:w-20" />
+                <div className="mx-auto mt-2 h-0.5 w-16 rounded-full bg-gradient-to-r from-purple-400 to-blue-500 sm:h-1 sm:w-20" />
               </div>
 
               <p className="mb-8 text-center text-sm leading-relaxed text-neutral-300 sm:text-base">
@@ -73,7 +73,7 @@ export default function NotFound() {
 
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <Link href="/" className="flex-1">
-                  <Button className="h-12 w-full bg-gradient-to-r from-orange-500 to-red-500 text-sm font-medium text-white hover:from-orange-600 hover:to-red-600 sm:text-base">
+                  <Button className="h-12 w-full bg-gradient-to-r from-purple-500 to-blue-500 text-sm font-medium text-white hover:from-purple-600 hover:to-blue-600 sm:text-base">
                     ← Back to Home
                   </Button>
                 </Link>
@@ -88,27 +88,11 @@ export default function NotFound() {
             </div>
 
             {/* Decorative elements */}
-            <div className="absolute -bottom-6 -left-6 h-20 w-20 rounded-full bg-orange-500/5 blur-2xl sm:h-32 sm:w-32" />
-            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-red-500/5 blur-2xl sm:h-40 sm:w-40" />
-            <div className="absolute left-1/2 top-1/2 -z-10 h-40 w-40 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-gradient-to-r from-orange-500/5 to-red-500/5 blur-3xl sm:h-64 sm:w-64" />
+            <div className="absolute -bottom-6 -left-6 h-20 w-20 rounded-full bg-purple-500/10 blur-2xl sm:h-32 sm:w-32" />
+            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl sm:h-40 sm:w-40" />
+            <div className="absolute left-1/2 top-1/2 -z-10 h-40 w-40 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 blur-3xl sm:h-64 sm:w-64" />
           </div>
         </div>
-      </div>
-
-      {/* Code display */}
-      <div className="mt-6 w-full max-w-sm rounded-lg border border-neutral-800/50 bg-black/40 p-4 font-mono text-sm text-neutral-400 backdrop-blur-sm sm:mt-8 sm:max-w-lg sm:p-6">
-        <div className="mb-3 flex items-center gap-2 text-xs text-neutral-500">
-          <div className="h-2 w-2 rounded-full bg-red-400" />
-          <span>Error Log</span>
-        </div>
-        <pre className="overflow-x-auto text-xs leading-relaxed">
-          {`try {\n  const page = await fetchPage(route);\n} catch (error) {\n  throw new Error('404 - Page not found');\n}`}
-        </pre>
-      </div>
-
-      {/* Mobile-specific indicator */}
-      <div className="mt-4 text-center sm:hidden">
-        <div className="text-xs text-neutral-500">• • •</div>
       </div>
     </div>
   );

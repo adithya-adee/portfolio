@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import projectsData from "@/asset/projects.json";
 import { ChevronDown, ExternalLink, Filter } from "lucide-react";
 import { SiGithub } from "react-icons/si";
@@ -54,6 +55,14 @@ const getCategoryStyles = (category: string) => {
 export default function ProjectsPage() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("full-stack");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const projects = projectsData as Project[];
 
@@ -100,138 +109,145 @@ export default function ProjectsPage() {
 
       {/* Projects List */}
       <div className="space-y-4 sm:space-y-6">
-        {filteredProjects.map((project, index) => (
-          <div
-            key={project.name}
-            className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
-          >
-            {/* Collapsed View */}
-            <button
-              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-              className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              layout={!isMobile}
+              initial={!isMobile ? { opacity: 0, scale: 0.95 } : undefined}
+              animate={!isMobile ? { opacity: 1, scale: 1 } : undefined}
+              exit={!isMobile ? { opacity: 0, scale: 0.95 } : undefined}
+              transition={{ duration: 0.3, type: "spring", bounce: 0 }}
+              key={project.name}
+              className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
             >
-              <div className="flex-1 space-y-3">
-                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
-                      {project.name}
-                    </h3>
-                    {/* Category Badge */}
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
-                        project.category
-                      )}`}
-                    >
-                      {getCategoryLabel(project.category as FilterCategory)}
+              {/* Collapsed View */}
+              <button
+                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
+              >
+                <div className="flex-1 space-y-3">
+                  <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
+                        {project.name}
+                      </h3>
+                      {/* Category Badge */}
+                      <span
+                        className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
+                          project.category
+                        )}`}
+                      >
+                        {getCategoryLabel(project.category as FilterCategory)}
+                      </span>
+                    </div>
+                    <span className="whitespace-nowrap text-xs uppercase tracking-wider text-gray-500 sm:text-sm">
+                      {project.timeline}
                     </span>
                   </div>
-                  <span className="whitespace-nowrap text-xs uppercase tracking-wider text-gray-500 sm:text-sm">
-                    {project.timeline}
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-                  {project.short_description}
-                </p>
+                  <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+                    {project.short_description}
+                  </p>
 
-                {/* Links */}
-                <div className="flex flex-wrap gap-4 pt-2 sm:gap-6">
-                  {project.live_url && (
-                    <a
-                      href={project.live_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
-                    >
-                      Visit <ExternalLink size={14} />
-                    </a>
-                  )}
-                  {project.github_url && (
-                    <a
-                      href={project.github_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
-                    >
-                      GitHub <SiGithub size={14} />
-                    </a>
-                  )}
+                  {/* Links */}
+                  <div className="flex flex-wrap gap-4 pt-2 sm:gap-6">
+                    {project.live_url && (
+                      <a
+                        href={project.live_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
+                      >
+                        Visit <ExternalLink size={14} />
+                      </a>
+                    )}
+                    {project.github_url && (
+                      <a
+                        href={project.github_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
+                      >
+                        GitHub <SiGithub size={14} />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
+                <div
+                  className={`ml-4 transition-all duration-300 ease-in-out sm:ml-6 ${
+                    expandedIndex === index ? "rotate-180" : "rotate-0"
+                  }`}
+                >
+                  <ChevronDown className="h-5 w-5 text-gray-500 transition-colors duration-200 group-hover:text-gray-300" />
+                </div>
+              </button>
+
+              {/* Expanded View */}
               <div
-                className={`ml-4 transition-all duration-300 ease-in-out sm:ml-6 ${
-                  expandedIndex === index ? "rotate-180" : "rotate-0"
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <ChevronDown className="h-5 w-5 text-gray-500 transition-colors duration-200 group-hover:text-gray-300" />
-              </div>
-            </button>
-
-            {/* Expanded View */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-              }`}
-            >
-              <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
-                <ul className="space-y-2">
-                  {project.detailed_description.map((point, i) => (
-                    <li
-                      key={i}
-                      className={`flex gap-3 transition-all duration-300 ${
-                        expandedIndex === index
-                          ? "translate-x-0 opacity-100"
-                          : "-translate-x-4 opacity-0"
-                      }`}
-                      style={{ transitionDelay: `${i * 50}ms` }}
-                    >
-                      <span className="mt-2 text-gray-600">•</span>
-                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
-                        {point}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Skills */}
-                {project.skills && project.skills.length > 0 && (
-                  <div className="mt-5 space-y-3 border-t border-neutral-800/50 pt-4">
-                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
-                      Skills
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
-                        >
-                          {skill}
+                <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
+                  <ul className="space-y-2">
+                    {project.detailed_description.map((point, i) => (
+                      <li
+                        key={i}
+                        className={`flex gap-3 transition-all duration-300 ${
+                          expandedIndex === index
+                            ? "translate-x-0 opacity-100"
+                            : "-translate-x-4 opacity-0"
+                        }`}
+                        style={{ transitionDelay: `${i * 50}ms` }}
+                      >
+                        <span className="mt-2 text-gray-600">•</span>
+                        <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
+                          {point}
                         </span>
-                      ))}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Skills */}
+                  {project.skills && project.skills.length > 0 && (
+                    <div className="mt-5 space-y-3 border-t border-neutral-800/50 pt-4">
+                      <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
+                        Skills
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.skills.map((skill, i) => (
+                          <span
+                            key={i}
+                            className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Video Embed */}
+                {expandedIndex === index && project.video_url && (
+                  <div className="border-t border-neutral-800/50 bg-neutral-900/40 p-4 sm:p-6">
+                    <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700/50 shadow-lg">
+                      <iframe
+                        src={getYoutubeEmbedUrl(project.video_url)}
+                        title={`${project.name} video overview`}
+                        className="h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        loading="lazy"
+                      ></iframe>
                     </div>
                   </div>
                 )}
               </div>
-
-              {/* Video Embed */}
-              {expandedIndex === index && project.video_url && (
-                <div className="border-t border-neutral-800/50 bg-neutral-900/40 p-4 sm:p-6">
-                  <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700/50 shadow-lg">
-                    <iframe
-                      src={getYoutubeEmbedUrl(project.video_url)}
-                      title={`${project.name} video overview`}
-                      className="h-full w-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      loading="lazy"
-                    ></iframe>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );
