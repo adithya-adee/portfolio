@@ -1,8 +1,12 @@
-"use client";
-
+import { Metadata } from "next";
 import blogsData from "@/asset/blog.json";
 import { ExternalLink, Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Blog | Adithya Anand",
+  description: "Read my latest thoughts on code, tech, and building scalable products.",
+};
 
 interface Blog {
   title: string;
@@ -42,7 +46,7 @@ export default function BlogPage() {
           {blogs.map((blog) => (
             <article
               key={blog.title}
-              className="group rounded-lg border border-neutral-800/50 bg-neutral-900/30 p-4 transition-colors hover:border-neutral-700/50 sm:p-5"
+              className="group rounded-lg border border-neutral-700/40 bg-neutral-900/50 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-lg sm:p-5"
             >
               <div className="space-y-3">
                 {/* Title and Date */}

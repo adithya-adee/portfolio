@@ -70,7 +70,7 @@ export default function TechStack() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <h2 className="mb-4 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+      <h2 className="mb-4 border-l-2 border-emerald-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
         Technology & Tools I Use
       </h2>
 
@@ -92,16 +92,8 @@ export default function TechStack() {
                 return (
                   <div
                     key={tech.name}
-                    className="group relative flex items-center gap-2.5 rounded-md border-2 border-zinc-600/60 bg-gradient-to-br from-neutral-800/60 to-neutral-900/60 px-3 py-2.5 transition-all duration-300 ease-in-out hover:scale-105 hover:border-purple-500/50 hover:shadow-lg sm:px-4"
-                    style={{
-                      boxShadow: `0 0 0 0 ${tech.color}20`,
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = `0 0 20px 2px ${tech.color}40`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = `0 0 0 0 ${tech.color}20`;
-                    }}
+                    className="group relative flex items-center gap-2.5 rounded-md border border-neutral-700/40 bg-neutral-800/50 px-3 py-2.5 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-neutral-600/60 hover:shadow-[0_0_20px_2px_var(--hover-color)] sm:px-4"
+                    style={{ "--hover-color": `${tech.color}40` } as React.CSSProperties}
                   >
                     <Icon
                       className="text-base transition-all duration-300 group-hover:scale-110"

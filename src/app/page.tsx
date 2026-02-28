@@ -47,10 +47,18 @@ export default function Home() {
         <VisitorCounter />
 
         {/* Footer */}
-        <footer className="mx-auto max-w-3xl border-t border-neutral-800/50 px-4 py-8 sm:px-6">
-          <div className="flex flex-col items-center justify-between gap-2 text-sm tracking-wide text-gray-500 sm:flex-row sm:gap-4">
-            <p>Sat, Dec 21, 2025</p>
-            <p>Asia/Calcutta</p>
+        <footer className="mx-auto mt-16 max-w-3xl px-4 pb-8 sm:px-6">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
+          <div className="mt-8 flex flex-col items-center justify-between gap-2 text-sm tracking-wide text-gray-500 sm:flex-row sm:gap-4">
+            <p suppressHydrationWarning>
+              {new Date().toLocaleDateString("en-US", {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </p>
+            <p suppressHydrationWarning>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
           </div>
         </footer>
       </div>

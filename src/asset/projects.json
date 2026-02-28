@@ -1,7 +1,52 @@
 [
   {
+    "name": "crab-clean",
+    "timeline": "JUN 2025",
+    "category": "open-source",
+    "short_description": "A Rust-powered command-line tool that automates smart grouping and safe deletion to keep workspaces lean.",
+    "detailed_description": [
+      "Built a high-performance system cleaning utility leveraging Rust's zero-cost abstractions for fast duplicate and unused file cleanup.",
+      "Designed a multi-threaded scanning architecture using Rayon, achieving 90% faster file hashing via optimized SHA-256 and parallel disk I/O.",
+      "Published and distributed via Crates.io with 926 active downloads."
+    ],
+    "live_url": "https://crates.io/crates/crab-clean",
+    "github_url": "https://github.com/adithya-adee/crab-clean",
+    "video_url": "",
+    "skills": ["Rust", "Rayon", "CLI Tools"]
+  },
+  {
+    "name": "solana-indexer",
+    "timeline": "Active",
+    "category": "open-source",
+    "short_description": "A lightweight, customizable SDK for indexing data from the Solana blockchain with automatic reorg handling.",
+    "detailed_description": [
+      "Engineered a scalable data pipeline to efficiently index block, transaction, and account activity on Solana.",
+      "Built on tokio for asynchronous processing, allowing seamless backfilling and real-time updates via RPC polling, WebSockets, or Helius Webhooks.",
+      "Features a modular architecture with IDL-based type generation, providing a decoupled SDK for custom instruction decoding and type-safe event handling."
+    ],
+    "live_url": "https://crates.io/crates/solana-indexer-sdk",
+    "github_url": "https://github.com/adithya-adee/solana-indexer",
+    "video_url": "",
+    "skills": ["Rust", "Solana RPC", "Open Telemetry", "Solana SDK", "Tokio", "WebSockets"]
+  },
+  {
+    "name": "ShadowLend",
+    "timeline": "JAN 2026",
+    "category": "web3",
+    "short_description": "A privacy-preserving lending protocol on Solana protecting user balances from predatory liquidation using Arcium TEEs.",
+    "detailed_description": [
+      "Designed a hybrid privacy architecture protecting user deposit and borrow balances using client-side encryption and Ed25519 signatures.",
+      "Developed Solana smart contracts in Anchor for secure asset custody, validating off-chain Arcium execution attestations.",
+      "Implemented risk calculation logic (Interest, Health Factor) directly inside Arcium MXEs (Trusted Execution Environments) to secure borrowing positions."
+    ],
+    "live_url": "",
+    "github_url": "https://github.com/adithya-adee/ShadowLend",
+    "video_url": "",
+    "skills": ["Solana", "Anchor", "Arcium TEE", "Cryptography"]
+  },
+  {
     "name": "CodeSync",
-    "timeline": "June 2025 - July 2025",
+    "timeline": "JUN 2025 - JUL 2025",
     "category": "full-stack",
     "short_description": "Real-time collaborative coding environment with integrated whiteboard and AI chat.",
     "detailed_description": [
@@ -11,11 +56,13 @@
       "Designed role-based permissions for room owners to manage user access"
     ],
     "live_url": "https://code-sync-sepia.vercel.app/",
-    "github_url": "https://github.com/devgambo/CodeSync"
+    "github_url": "https://github.com/devgambo/CodeSync",
+    "video_url": "",
+    "skills": ["Next.js", "Liveblocks", "Convex", "Gemini AI"]
   },
   {
     "name": "Hackverse",
-    "timeline": "April 2025 - May 2025",
+    "timeline": "APR 2025 - MAY 2025",
     "category": "full-stack",
     "short_description": "Scalable hackathon platform with secure RBAC and optimized database architecture.",
     "detailed_description": [
@@ -25,11 +72,13 @@
       "Implemented Redux for consistent global state management"
     ],
     "live_url": "https://hackverse-sandy.vercel.app",
-    "github_url": "https://github.com/adithya-adee/hackverse"
+    "github_url": "https://github.com/adithya-adee/hackverse",
+    "video_url": "",
+    "skills": ["NestJS", "PostgreSQL", "Prisma ORM", "Next.js", "Redux"]
   },
   {
     "name": "SolidKYC",
-    "timeline": "December 2025",
+    "timeline": "DEC 2025",
     "category": "web3",
     "short_description": "Privacy-preserving on-chain KYC verification system using Solana and Zero-Knowledge Proofs.",
     "detailed_description": [
@@ -41,11 +90,13 @@
       "Ensured non-custodial identity ownership by allowing users to control credentials locally while only submitting proofs to the blockchain."
     ],
     "live_url": "https://solidkyc.vercel.app",
-    "github_url": "https://github.com/adithya-adee/SolidKYC"
+    "github_url": "https://github.com/adithya-adee/SolidKYC",
+    "video_url": "",
+    "skills": ["Solana", "Anchor", "zk-SNARKs", "Circom", "React"]
   },
   {
     "name": "AMM Uniswap V2",
-    "timeline": "November 2025",
+    "timeline": "NOV 2025",
     "category": "web3",
     "short_description": "From-scratch implementation of a Uniswap V2-style Automated Market Maker to understand DEX internals.",
     "detailed_description": [
@@ -53,6 +104,8 @@
       "Built swap, add liquidity, and remove liquidity flows to understand pricing, slippage, and pool balance invariants."
     ],
     "live_url": "",
-    "github_url": "https://github.com/adithya-adee/amm_uniswap"
+    "github_url": "https://github.com/adithya-adee/amm_uniswap",
+    "video_url": "",
+    "skills": ["Solana", "Anchor", "DeFi", "Smart Contracts", "AMM"]
   }
 ]

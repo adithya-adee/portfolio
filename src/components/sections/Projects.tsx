@@ -13,20 +13,42 @@ interface Project {
   detailed_description: string[];
   live_url: string;
   github_url: string;
+  video_url?: string;
+  skills?: string[];
 }
 
-type FilterCategory = "web3" | "full-stack";
+type FilterCategory = "web3" | "full-stack" | "open-source";
 
-const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3"];
+const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3", "open-source"];
+
+const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
+
+const getYoutubeEmbedUrl = (url: string): string => {
+  if (url.includes("youtube.com/watch")) {
+    try {
+      const urlObj = new URL(url);
+      const videoId = urlObj.searchParams.get("v");
+      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+    } catch (e) {
+      console.log(e);
+      // ignore invalid URLs
+    }
+  }
+  return url;
+};
 
 const getCategoryLabel = (category: FilterCategory): string => {
-  return category === "web3" ? "Web3" : "Full Stack";
+  if (category === "web3") return "Web3";
+  if (category === "open-source") return "Open Source";
+  return "Full Stack";
 };
 
 const getCategoryStyles = (category: string) => {
-  return category === "web3"
-    ? "bg-red-500/10 text-red-200 border border-red-500/30"
-    : "bg-sky-500/10 text-sky-400 border border-sky-500/30";
+  if (category === "web3")
+    return "bg-purple-500/10 text-purple-400 ring-1 ring-inset ring-purple-500/20";
+  if (category === "open-source")
+    return "bg-emerald-500/10 text-emerald-400 ring-1 ring-inset ring-emerald-500/20";
+  return "bg-blue-500/10 text-blue-400 ring-1 ring-inset ring-blue-500/20";
 };
 
 export default function ProjectsPage() {
@@ -43,7 +65,7 @@ export default function ProjectsPage() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <h2 className="mb-6 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+      <h2 className="mb-6 border-l-2 border-blue-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
         Projects I&apos;ve Built
       </h2>
 
@@ -66,7 +88,7 @@ export default function ProjectsPage() {
           >
             <span className="relative z-10">{getCategoryLabel(category)}</span>
             {activeFilter === category && (
-              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-neutral-600/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-transparent" />
             )}
           </button>
         ))}
@@ -81,11 +103,7 @@ export default function ProjectsPage() {
         {filteredProjects.map((project, index) => (
           <div
             key={project.name}
-            className="group overflow-hidden rounded-lg border-2 border-dashed border-zinc-600/60 bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:border-solid hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/20"
-            style={{
-              animationDelay: `${index * 50}ms`,
-              animation: "fadeIn 0.5s ease-out forwards",
-            }}
+            className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
           >
             {/* Collapsed View */}
             <button
@@ -157,7 +175,7 @@ export default function ProjectsPage() {
               }`}
             >
               <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {project.detailed_description.map((point, i) => (
                     <li
                       key={i}
@@ -175,7 +193,42 @@ export default function ProjectsPage() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Skills */}
+                {project.skills && project.skills.length > 0 && (
+                  <div className="mt-5 space-y-3 border-t border-neutral-800/50 pt-4">
+                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
+                      Skills
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.skills.map((skill, i) => (
+                        <span
+                          key={i}
+                          className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
+
+              {/* Video Embed */}
+              {expandedIndex === index && project.video_url && (
+                <div className="border-t border-neutral-800/50 bg-neutral-900/40 p-4 sm:p-6">
+                  <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700/50 shadow-lg">
+                    <iframe
+                      src={getYoutubeEmbedUrl(project.video_url)}
+                      title={`${project.name} video overview`}
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

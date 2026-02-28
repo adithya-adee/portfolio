@@ -50,16 +50,16 @@ const navigationLinks = [
 ];
 
 export default function ConnectWithMe() {
-  // Email copy shortcut
+  // Email yank shortcut
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
 
-      if (e.key.toLowerCase() === "c") {
+      if (e.key.toLowerCase() === "y") {
         navigator.clipboard.writeText("adithya25905@gmail.com");
-        toast.success("Email copied to clipboard!", {
+        toast.success("Email yanked to clipboard!", {
           description: "adithya25905@gmail.com",
           duration: 2000,
         });
@@ -72,7 +72,7 @@ export default function ConnectWithMe() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-4 sm:px-6 sm:py-6">
-      <h2 className="mb-4 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+      <h2 className="mb-4 border-l-2 border-blue-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
         Connect with Me
       </h2>
 
@@ -88,9 +88,9 @@ export default function ConnectWithMe() {
           <p className="text-sm tracking-wide text-gray-500">
             Press{" "}
             <kbd className="rounded border border-neutral-700/50 bg-neutral-800/50 px-2 tracking-wider text-gray-400">
-              C
+              Y
             </kbd>{" "}
-            to copy my email
+            to yank my email
           </p>
         </div>
 
@@ -102,7 +102,7 @@ export default function ConnectWithMe() {
               <Link
                 key={link.name}
                 href={link.url}
-                className="flex items-center gap-2.5 rounded-lg border-2 border-zinc-600/60 bg-neutral-900/40 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:border-purple-500/60 hover:text-white hover:shadow-lg hover:shadow-purple-500/20"
+                className="flex items-center gap-2.5 rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:text-white hover:shadow-lg hover:shadow-blue-500/10"
               >
                 {link.icon}
                 <span>{link.name}</span>
@@ -121,7 +121,7 @@ export default function ConnectWithMe() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-lg border-2 border-zinc-600/60 bg-neutral-900/40 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:border-purple-500/60 hover:text-white hover:shadow-lg hover:shadow-purple-500/20"
+                className="flex items-center gap-2.5 rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:text-white hover:shadow-lg hover:shadow-blue-500/10"
               >
                 {link.icon}
                 <span>{link.name}</span>

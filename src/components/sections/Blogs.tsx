@@ -27,7 +27,7 @@ export default function Blogs() {
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
       <div className="mb-4 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-        <h2 className="mb-4 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+        <h2 className="mb-4 border-l-2 border-sky-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
           Recent Articles
         </h2>
         <a
@@ -44,13 +44,20 @@ export default function Blogs() {
         {highlightedBlogs.map((blog) => (
           <div
             key={blog.id}
-            className="group rounded-lg border-2 border-dashed border-zinc-600/60 bg-neutral-900/40 px-4 py-3 transition-all duration-300 hover:border-solid hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 sm:px-6 sm:py-4"
+            className="card-accent group rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800/50 hover:shadow-lg hover:shadow-sky-500/10 sm:px-6 sm:py-4"
           >
             <div className="space-y-2">
               {/* Title and Date on same line */}
               <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-medium tracking-wide text-white transition-colors group-hover:text-purple-200 sm:text-lg">
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${getCategoryStyles(
+                      blog.category
+                    )}`}
+                  >
+                    {blog.category}
+                  </span>
+                  <h3 className="font-base font-medium leading-relaxed tracking-wide text-white transition-colors group-hover:text-gray-200">
                     {blog.title}
                   </h3>
                 </div>

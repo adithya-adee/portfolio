@@ -45,10 +45,10 @@ export default function HeroMinimal() {
               alt="Adithya Anand"
               width={64}
               height={64}
-              className="rounded-full ring-2 ring-neutral-800"
+              className="rounded-full ring-2 ring-purple-500/30"
             />
             <div className="space-y-0.5">
-              <h1 className="font-mono text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-2xl">
+              <h1 className="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text font-mono text-2xl font-semibold leading-tight tracking-tight text-transparent sm:text-3xl md:text-2xl">
                 Adithya Anand
               </h1>
               <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
@@ -64,7 +64,7 @@ export default function HeroMinimal() {
 
         {/* Subtitle */}
         <p className="font-sans text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
-          Backend Dev by day | Solana dev by night
+          Backend Dev by day | <span className="text-purple-400">Solana dev by night</span>
         </p>
 
         {/* Bio */}
