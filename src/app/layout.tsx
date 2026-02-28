@@ -139,6 +139,10 @@ export default function RootLayout({
               }}
             />
 
+            {/* Ambient color blobs */}
+            <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-purple-600/70 opacity-[0.07] blur-[120px]" />
+            <div className="absolute -left-40 top-1/2 h-[400px] w-[400px] rounded-full bg-blue-600/70 opacity-[0.07] blur-[120px]" />
+
             {/* Gradient Overlays for Depth */}
             <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-transparent to-transparent" />
           </div>

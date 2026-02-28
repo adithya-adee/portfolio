@@ -27,7 +27,7 @@ export default function Experience() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <h2 className="mb-6 text-xl font-medium tracking-wide text-gray-400 sm:text-2xl">
+      <h2 className="mb-6 border-l-2 border-purple-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
         Where I&apos;ve Worked
       </h2>
 

@@ -1,7 +1,7 @@
 [
   {
     "name": "crab-clean",
-    "timeline": "June 2025",
+    "timeline": "JUN 2025",
     "category": "open-source",
     "short_description": "A Rust-powered command-line tool that automates smart grouping and safe deletion to keep workspaces lean.",
     "detailed_description": [
@@ -31,7 +31,7 @@
   },
   {
     "name": "ShadowLend",
-    "timeline": "January 2026",
+    "timeline": "JAN 2026",
     "category": "web3",
     "short_description": "A privacy-preserving lending protocol on Solana protecting user balances from predatory liquidation using Arcium TEEs.",
     "detailed_description": [
@@ -46,7 +46,7 @@
   },
   {
     "name": "CodeSync",
-    "timeline": "June 2025 - July 2025",
+    "timeline": "JUN 2025 - JUL 2025",
     "category": "full-stack",
     "short_description": "Real-time collaborative coding environment with integrated whiteboard and AI chat.",
     "detailed_description": [
@@ -62,7 +62,7 @@
   },
   {
     "name": "Hackverse",
-    "timeline": "April 2025 - May 2025",
+    "timeline": "APR 2025 - MAY 2025",
     "category": "full-stack",
     "short_description": "Scalable hackathon platform with secure RBAC and optimized database architecture.",
     "detailed_description": [
@@ -73,12 +73,12 @@
     ],
     "live_url": "https://hackverse-sandy.vercel.app",
     "github_url": "https://github.com/adithya-adee/hackverse",
-    "video_url": "",
+    "video_url": "https://www.youtube.com/watch?v=N1s-GN1SWqY&list=RDN1s-GN1SWqY&start_radio=1",
     "skills": ["NestJS", "PostgreSQL", "Prisma ORM", "Next.js", "Redux"]
   },
   {
     "name": "SolidKYC",
-    "timeline": "December 2025",
+    "timeline": "DEC 2025",
     "category": "web3",
     "short_description": "Privacy-preserving on-chain KYC verification system using Solana and Zero-Knowledge Proofs.",
     "detailed_description": [
@@ -96,7 +96,7 @@
   },
   {
     "name": "AMM Uniswap V2",
-    "timeline": "November 2025",
+    "timeline": "NOV 2025",
     "category": "web3",
     "short_description": "From-scratch implementation of a Uniswap V2-style Automated Market Maker to understand DEX internals.",
     "detailed_description": [
