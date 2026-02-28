@@ -73,7 +73,7 @@
     ],
     "live_url": "https://hackverse-sandy.vercel.app",
     "github_url": "https://github.com/adithya-adee/hackverse",
-    "video_url": "https://www.youtube.com/watch?v=N1s-GN1SWqY&list=RDN1s-GN1SWqY&start_radio=1",
+    "video_url": "",
     "skills": ["NestJS", "PostgreSQL", "Prisma ORM", "Next.js", "Redux"]
   },
   {

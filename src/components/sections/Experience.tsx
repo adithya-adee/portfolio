@@ -7,6 +7,8 @@ import { ExternalLink, HighlighterIcon } from "lucide-react";
 import { useMemo } from "react";
 import { Button } from "../ui/button";
 
+const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
+
 export interface ExperienceItem {
   slug: string;
   company: string;
@@ -99,12 +101,28 @@ export default function ExperienceSection({ isMobile }: ExperienceProps) {
               <ul
                 className={`list-disc pl-5 space-y-${
                   isMobile ? "1" : "2"
-                } text-gray-300 ${isMobile ? "text-xs" : "text-sm sm:text-base"}`}
+                } text-gray-300 marker:text-purple-500 ${isMobile ? "text-xs" : "text-sm sm:text-base"}`}
               >
                 {exp.highlights.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
+
+              {/* Skills */}
+              {exp.skills && exp.skills.length > 0 && (
+                <div
+                  className={`mt-4 flex flex-wrap gap-2 ${isMobile ? "pt-2" : "pt-4"} border-t border-neutral-800/50`}
+                >
+                  {exp.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className={`rounded-md px-2.5 py-1 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>

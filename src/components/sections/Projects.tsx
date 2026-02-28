@@ -21,6 +21,22 @@ type FilterCategory = "web3" | "full-stack" | "open-source";
 
 const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3", "open-source"];
 
+const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
+
+const getYoutubeEmbedUrl = (url: string): string => {
+  if (url.includes("youtube.com/watch")) {
+    try {
+      const urlObj = new URL(url);
+      const videoId = urlObj.searchParams.get("v");
+      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+    } catch (e) {
+      console.log(e);
+      // ignore invalid URLs
+    }
+  }
+  return url;
+};
+
 const getCategoryLabel = (category: FilterCategory): string => {
   if (category === "web3") return "Web3";
   if (category === "open-source") return "Open Source";
@@ -188,7 +204,7 @@ export default function ProjectsPage() {
                       {project.skills.map((skill, i) => (
                         <span
                           key={i}
-                          className="rounded-md bg-neutral-800/50 px-3 py-1.5 text-xs tracking-wide text-gray-400 ring-1 ring-inset ring-neutral-700/40"
+                          className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
                         >
                           {skill}
                         </span>
@@ -203,7 +219,7 @@ export default function ProjectsPage() {
                 <div className="border-t border-neutral-800/50 bg-neutral-900/40 p-4 sm:p-6">
                   <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700/50 shadow-lg">
                     <iframe
-                      src={project.video_url}
+                      src={getYoutubeEmbedUrl(project.video_url)}
                       title={`${project.name} video overview`}
                       className="h-full w-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

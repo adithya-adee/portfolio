@@ -4,6 +4,8 @@ import experienceData from "@/asset/experience.json";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
+
 export interface ExperienceItem {
   slug: string;
   company: string;
@@ -121,7 +123,7 @@ export default function Experience() {
                       {exp.skills.map((skill, i) => (
                         <span
                           key={i}
-                          className="rounded-md bg-neutral-800/50 px-3 py-1.5 text-xs tracking-wide text-gray-400 ring-1 ring-inset ring-neutral-700/40"
+                          className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
                         >
                           {skill}
                         </span>
