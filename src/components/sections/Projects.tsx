@@ -56,12 +56,10 @@ export default function ProjectsPage() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("full-stack");
   const [isMobile, setIsMobile] = useState(true);
-  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
     handleResize(); // Initial check
-    setHasMounted(true);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

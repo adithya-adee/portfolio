@@ -25,12 +25,10 @@ export interface ExperienceItem {
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
   const [isMobile, setIsMobile] = useState(true);
-  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
     handleResize(); // Initial check
-    setHasMounted(true);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
