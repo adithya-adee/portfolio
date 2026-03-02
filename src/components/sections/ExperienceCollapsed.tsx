@@ -1,7 +1,7 @@
 "use client";
 
 import experienceData from "@/asset/experience.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
@@ -24,6 +24,16 @@ export interface ExperienceItem {
 
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [isMobile, setIsMobile] = useState(true);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize(); // Initial check
+    setHasMounted(true);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const experience = (experienceData as ExperienceItem[]).filter((exp) => exp.display !== false);
 
@@ -88,8 +98,14 @@ export default function Experience() {
 
             {/* Expanded View */}
             <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+              className={`overflow-hidden ${
+                isMobile
+                  ? expandedIndex === index
+                    ? "max-h-none opacity-100"
+                    : "max-h-0 opacity-0"
+                  : expandedIndex === index
+                    ? "max-h-[2000px] opacity-100 transition-all duration-500 ease-in-out"
+                    : "max-h-0 opacity-0 transition-all duration-500 ease-in-out"
               }`}
             >
               <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
@@ -103,7 +119,7 @@ export default function Experience() {
                           ? "translate-x-0 opacity-100"
                           : "-translate-x-4 opacity-0"
                       }`}
-                      style={{ transitionDelay: `${i * 50}ms` }}
+                      style={{ transitionDelay: isMobile ? "0ms" : `${i * 50}ms` }}
                     >
                       <span className="mt-2 text-gray-600">•</span>
                       <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">

@@ -55,11 +55,13 @@ const getCategoryStyles = (category: string) => {
 export default function ProjectsPage() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("full-stack");
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
     handleResize(); // Initial check
+    setHasMounted(true);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -113,10 +115,10 @@ export default function ProjectsPage() {
           {filteredProjects.map((project, index) => (
             <motion.div
               layout={!isMobile}
-              initial={!isMobile ? { opacity: 0, scale: 0.95 } : undefined}
-              animate={!isMobile ? { opacity: 1, scale: 1 } : undefined}
-              exit={!isMobile ? { opacity: 0, scale: 0.95 } : undefined}
-              transition={{ duration: 0.3, type: "spring", bounce: 0 }}
+              initial={!isMobile ? { opacity: 0, y: 10 } : undefined}
+              animate={!isMobile ? { opacity: 1, y: 0 } : undefined}
+              exit={!isMobile ? { opacity: 0, y: -10 } : undefined}
+              transition={!isMobile ? { duration: 0.25, ease: "easeOut" } : { duration: 0 }}
               key={project.name}
               className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
             >
@@ -185,8 +187,14 @@ export default function ProjectsPage() {
 
               {/* Expanded View */}
               <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  expandedIndex === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+                className={`overflow-hidden ${
+                  isMobile
+                    ? expandedIndex === index
+                      ? "max-h-none opacity-100"
+                      : "max-h-0 opacity-0"
+                    : expandedIndex === index
+                      ? "max-h-[2000px] opacity-100 transition-all duration-500 ease-in-out"
+                      : "max-h-0 opacity-0 transition-all duration-500 ease-in-out"
                 }`}
               >
                 <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
@@ -199,7 +207,7 @@ export default function ProjectsPage() {
                             ? "translate-x-0 opacity-100"
                             : "-translate-x-4 opacity-0"
                         }`}
-                        style={{ transitionDelay: `${i * 50}ms` }}
+                        style={{ transitionDelay: isMobile ? "0ms" : `${i * 50}ms` }}
                       >
                         <span className="mt-2 text-gray-600">•</span>
                         <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">

@@ -330,9 +330,6 @@ a {
   .group:hover {
     transform: none !important;
   }
-  * {
-    transform: none !important;
-  }
 }
 
 /* Custom Card Accent */
