@@ -18,7 +18,10 @@ import {
   SiGithubactions,
   SiDatadog,
   SiVercel,
+  SiSolana,
+  SiAmazonwebservices,
 } from "react-icons/si";
+import { TbMathFunction } from "react-icons/tb";
 
 export default function TechStack() {
   const categories = [
@@ -33,7 +36,6 @@ export default function TechStack() {
     {
       name: "Backend",
       items: [
-        // { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
         { name: "Express.js", icon: SiExpress, color: "#FFFFFF" },
         { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
         { name: "Axum", icon: SiRust, color: "#CE412B" },
@@ -49,6 +51,15 @@ export default function TechStack() {
       ],
     },
     {
+      name: "Web3 / ZK",
+      items: [
+        { name: "Solana", icon: SiSolana, color: "#9945FF" },
+        { name: "Anchor", icon: SiRust, color: "#CE412B" },
+        { name: "Circom", icon: TbMathFunction, color: "#A78BFA" },
+        { name: "snarkjs", icon: TbMathFunction, color: "#60A5FA" },
+      ],
+    },
+    {
       name: "DBMS",
       items: [
         { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
@@ -59,6 +70,7 @@ export default function TechStack() {
     {
       name: "DevOps",
       items: [
+        { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
         { name: "Redis", icon: SiRedis, color: "#DC382D" },
         { name: "Docker", icon: SiDocker, color: "#2496ED" },
         { name: "CI/CD", icon: SiGithubactions, color: "#2088FF" },

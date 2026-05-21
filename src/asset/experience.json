@@ -1,12 +1,53 @@
 [
   {
+    "slug": "UmbraPrivacy",
+    "company": "Umbra Privacy",
+    "position": "Backend Developer",
+    "location": "Remote",
+    "startDate": "APR 2026",
+    "endDate": "Present",
+    "duration": "Ongoing",
+    "display": true,
+    "description": "Backend engineer building privacy-preserving infrastructure. Designing zero-knowledge proof systems and secure cross-chain primitives for production-grade privacy products.",
+    "responsibilities": [
+      "Building the Private Bridge for web applications — a privacy-preserving cross-chain bridge using zk-SNARKs to hide source, destination, and amount metadata.",
+      "Engineering the ZKP Phase 2 trusted-setup ceremony — circuit-specific contribution flow, transcript verification, and Powers-of-Tau toxic-waste handling.",
+      "Writing and reviewing Rust services with Axum for the prover, relayer, and indexer layers; designing async pipelines for proof generation and submission.",
+      "Authoring Circom circuits and Groth16 proving keys with snarkjs for note creation, membership proofs, and burn verification.",
+      "Operating production infrastructure on AWS — IAM/KMS-scoped roles, attested cryptographic workflows, and observability for the prover and relayer services."
+    ],
+    "skills": [
+      "Rust",
+      "Axum",
+      "Circom",
+      "snarkjs",
+      "Zero-Knowledge Proofs",
+      "Groth16",
+      "Cryptography",
+      "Solana",
+      "Anchor Framework",
+      "AWS",
+      "PostgreSQL",
+      "TypeScript",
+      "Docker"
+    ],
+    "highlights": [
+      "Lead backend engineer on the Private Bridge for web applications — privacy-preserving cross-chain infrastructure.",
+      "Engineering the ZKP Phase 2 trusted-setup ceremony for the privacy protocol.",
+      "Shipping production Rust (Axum) services and authoring Circom circuits backing the prover.",
+      "Running secure AWS infrastructure for zero-knowledge prover and relayer services."
+    ],
+    "url": "https://umbraprivacy.com",
+    "logo": ""
+  },
+  {
     "slug": "ODPay",
     "company": "ODPay (OkieDokie)",
     "position": "Backend Developer Intern",
     "location": "Remote",
-    "startDate": "AUG 2024",
-    "endDate": "Present",
-    "duration": "Ongoing",
+    "startDate": "AUG 2025",
+    "endDate": "APR 2026",
+    "duration": "8 months",
     "display": true,
     "description": "Backend developer intern building and scaling production systems for a campus automation and payments platform, with a strong focus on performance, reliability, and observability.",
     "responsibilities": [

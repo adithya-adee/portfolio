@@ -26,17 +26,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
+      lastModified: blogs.length > 0 ? new Date(blogs[0].date) : new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/archive`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
-
-  // If blogs ever get individual pages (/blog/[slug]), add them here.
-  // For now they live on /blog, so we track last blog date as the page's lastModified.
-  if (blogs.length > 0) {
-    staticRoutes[1].lastModified = new Date(blogs[0].date);
-  }
 
   return staticRoutes;
 }

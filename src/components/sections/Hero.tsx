@@ -8,9 +8,9 @@ export default function HeroMinimal() {
   const [currentTime, setCurrentTime] = useState("--:--:--");
 
   const highlights = [
-    "Built and shipped Crab-Clean CLI tool (900+ downloads) with 90% faster SHA256 hashing",
-    "Top 11th across 500+ contributors in IEEE Summer of Code for open-source contributions",
-    // "Won 2 hackathons building scalable full-stack applications",
+    "Backend Developer at Umbra Privacy — building the Private Bridge for web apps & engineering the ZKP Phase 2 trusted-setup ceremony",
+    "Shipped crab-clean (Rust CLI, 900+ downloads on crates.io) & solana-indexer SDK with reorg-safe block ingestion",
+    "Top 10% across 100+ contributors in IEEE Summer of Code 2025 — refactored TensorZero LLM infra and led a FinTech module",
   ];
 
   // Update time every second
@@ -67,14 +67,18 @@ export default function HeroMinimal() {
 
         {/* Subtitle */}
         <p className="font-sans text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
-          Backend Dev by day | <span className="text-purple-400">Solana dev by night</span>
+          Backend &amp; ZK Engineer <span className="text-gray-500">·</span>{" "}
+          <span className="text-purple-400">Umbra Privacy</span>
         </p>
 
         {/* Bio */}
         <p className="max-w-2xl font-sans text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-          Building scalable backend systems with Rust, TypeScript, and modern frameworks. Passionate
-          about cryptography, blockchain, and creating efficient solutions. Currently exploring
-          Solana and Web3 while shipping full-stack products.
+          I build privacy-preserving backend systems with <span className="text-gray-300">Rust (Axum)</span>,{" "}
+          <span className="text-gray-300">Circom</span>, and <span className="text-gray-300">Solana</span>.
+          Currently shipping the <span className="text-purple-300">Private Bridge for web apps</span> and the{" "}
+          <span className="text-purple-300">ZKP Phase 2 trusted-setup ceremony</span> at Umbra Privacy.
+          Comfortable across the stack — APIs, distributed systems, smart contracts, and the cryptography
+          that underpins them.
         </p>
 
         {/* Highlights */}
