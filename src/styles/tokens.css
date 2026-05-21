@@ -1,0 +1,88 @@
+/**
+ * V5.1 design tokens.
+ *
+ * Single source of truth for the layered-motion redesign. Consumed by
+ * tailwind.config.js (via theme.extend) and by raw CSS in globals.css.
+ *
+ * Naming:
+ *   --surface-N  → background layers (0 = page, 3 = popover-most)
+ *   --border-*   → border alpha tiers (hairline = quietest)
+ *   --gradient-* → signature gradients
+ *   --dur-*      → motion durations
+ *   --ease-*     → motion easings
+ *   --text-*     → fluid type scale
+ *   --elev-*     → elevation shadows (purple-tinted)
+ */
+
+:root {
+  /* ─── Surfaces ─────────────────────────────────────────────── */
+  --surface-0: hsl(210 11% 3.5%);
+  --surface-1: hsl(220 9% 7% / 0.65);
+  --surface-2: hsl(220 9% 10% / 0.75);
+  --surface-3: hsl(220 9% 13% / 0.92);
+
+  /* ─── Borders ──────────────────────────────────────────────── */
+  --border-hairline: hsl(0 0% 100% / 0.06);
+  --border-soft: hsl(0 0% 100% / 0.12);
+  --border-strong: hsl(0 0% 100% / 0.22);
+
+  /* ─── Aurora — the signature gradient ──────────────────────── */
+  --aurora-1: #a78bfa; /* violet-400 */
+  --aurora-2: #60a5fa; /* blue-400 */
+  --aurora-3: #22d3ee; /* cyan-400 */
+  --gradient-aurora: linear-gradient(
+    115deg,
+    var(--aurora-1) 0%,
+    var(--aurora-2) 55%,
+    var(--aurora-3) 100%
+  );
+  --gradient-aurora-soft: linear-gradient(
+    115deg,
+    hsl(258 90% 76% / 0.18) 0%,
+    hsl(213 94% 68% / 0.14) 55%,
+    hsl(189 94% 53% / 0.12) 100%
+  );
+
+  /* ─── Motion ──────────────────────────────────────────────── */
+  --dur-fast: 180ms;
+  --dur-base: 280ms;
+  --dur-slow: 520ms;
+  --dur-xslow: 900ms;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ─── Type scale (fluid) ──────────────────────────────────── */
+  --text-display-1: clamp(2.5rem, 6vw, 4.25rem); /* 40–68 */
+  --text-display-2: clamp(2rem, 4.5vw, 3rem); /* 32–48 */
+  --text-h1: clamp(1.625rem, 3vw, 2rem); /* 26–32 */
+  --text-h2: clamp(1.25rem, 2.2vw, 1.5rem); /* 20–24 */
+  --text-h3: clamp(1.0625rem, 1.6vw, 1.125rem); /* 17–18 */
+  --text-body-1: 1rem; /* 16 */
+  --text-body-2: 0.9375rem; /* 15 */
+  --text-label: 0.8125rem; /* 13 */
+  --text-mono: 0.875rem; /* 14 */
+
+  /* ─── Elevation (purple-tinted) ───────────────────────────── */
+  --elev-1: 0 1px 2px hsl(0 0% 0% / 0.4), 0 0 0 1px var(--border-hairline);
+  --elev-2:
+    0 4px 12px -2px hsl(0 0% 0% / 0.5),
+    0 0 24px -8px hsl(258 90% 66% / 0.15),
+    0 0 0 1px var(--border-soft);
+  --elev-3:
+    0 12px 32px -8px hsl(0 0% 0% / 0.6),
+    0 0 48px -12px hsl(258 90% 66% / 0.22),
+    0 0 0 1px var(--border-strong);
+}
+
+/* OS-level reduced motion: zero out tokenized durations so anything
+   driven off these vars (CSS or JS-via-var) becomes instant. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-xslow: 0ms;
+  }
+}

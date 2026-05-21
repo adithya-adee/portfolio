@@ -5,6 +5,8 @@ import StructuredData from "@/components/SEO";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
+import { ViewTransitions } from "next-view-transitions";
+import { AuroraBackdrop, SoftCursor, SmoothScroll } from "@/components/motion";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -129,49 +131,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <StructuredData />
-      </head>
-      <body className={`${jetbrainsMono.variable} ${inter.variable}`}>
-        <div className="relative min-h-screen">
-          {/* Background Pattern */}
-          <div className="fixed inset-0 -z-10 bg-zinc-800/20">
-            {/* Film Grain Texture - CSS Based */}
-            <div
-              className="grain-overlay pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                opacity: 0.06,
-                mixBlendMode: "overlay",
-              }}
-            />
-
-            {/* Subtle Grid Pattern */}
-            <div
-              className="absolute inset-0 opacity-[0.015]"
-              style={{
-                backgroundImage: `
-                  linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
-                `,
-                backgroundSize: "64px 64px",
-              }}
-            />
-
-            {/* Ambient color blobs */}
-            <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-purple-600/70 opacity-[0.07] blur-[120px]" />
-            <div className="absolute -left-40 top-1/2 h-[400px] w-[400px] rounded-full bg-blue-600/70 opacity-[0.07] blur-[120px]" />
-
-            {/* Gradient Overlays for Depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-transparent to-transparent" />
-          </div>
+    <ViewTransitions>
+      <html lang="en" className="dark" suppressHydrationWarning>
+        <head>
+          <StructuredData />
+        </head>
+        <body className={`${jetbrainsMono.variable} ${inter.variable}`}>
+          <AuroraBackdrop />
+          <SoftCursor />
+          <SmoothScroll />
           <Toaster position="top-right" theme="dark" richColors />
           <Analytics />
           <SpeedInsights />
-          {children}
-        </div>
-      </body>
-    </html>
+          <main className="relative min-h-screen">{children}</main>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
