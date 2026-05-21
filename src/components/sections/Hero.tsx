@@ -1,97 +1,132 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Clock10 } from "lucide-react";
+import { Reveal, ScrambleText, TiltCard } from "@/components/motion";
 
-export default function HeroMinimal() {
+const ROLE_PHRASES = [
+  "Building Private Bridge for web apps",
+  "Engineering ZKP Phase 2 ceremony",
+  "Shipping production Rust services",
+];
+
+const HIGHLIGHTS = [
+  "Currently building Private Bridge & ZKP Phase 2 ceremony at Umbra Privacy",
+  "Shipped crab-clean (Rust CLI, 900+ downloads) & solana-indexer SDK on crates.io",
+  "Top 10% across 100+ contributors in IEEE Summer of Code 2025",
+];
+
+export default function Hero() {
   const [currentTime, setCurrentTime] = useState("--:--:--");
 
-  const highlights = [
-    "Backend Developer at Umbra Privacy — building the Private Bridge for web apps & engineering the ZKP Phase 2 trusted-setup ceremony",
-    "Shipped crab-clean (Rust CLI, 900+ downloads on crates.io) & solana-indexer SDK with reorg-safe block ingestion",
-    "Top 10% across 100+ contributors in IEEE Summer of Code 2025 — refactored TensorZero LLM infra and led a FinTech module",
-  ];
-
-  // Update time every second
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const timeString = now.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-        timeZone: "Asia/Kolkata",
-      });
-      setCurrentTime(timeString);
+      setCurrentTime(
+        now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+          timeZone: "Asia/Kolkata",
+        })
+      );
     };
-
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="mx-auto mt-8 max-w-3xl px-4 sm:mt-12 sm:px-6">
-      <div className="space-y-4 sm:space-y-5">
-        {/* Metadata Row */}
+    <section className="mx-auto mt-10 max-w-3xl px-4 sm:mt-16 sm:px-6">
+      <div className="space-y-6 sm:space-y-7">
+        {/* Profile row */}
+        <div className="flex items-start justify-between gap-4">
+          <Reveal y={12} className="flex items-center gap-4">
+            <TiltCard max={10} className="shrink-0">
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-full bg-aurora opacity-50 blur-md" />
+                <Image
+                  src="/profile.png"
+                  alt="Adithya Anand"
+                  width={72}
+                  height={72}
+                  priority
+                  className="relative rounded-full ring-1 ring-white/15"
+                />
+              </div>
+            </TiltCard>
 
-        {/* Name & Handle with Profile Image */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Image
-              src="/profile.png"
-              alt="Adithya Anand"
-              width={64}
-              height={64}
-              className="rounded-full ring-2 ring-purple-500/30"
-            />
-            <div className="space-y-0.5">
-              <h1 className="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text font-mono text-2xl font-semibold leading-tight tracking-tight text-transparent sm:text-3xl md:text-2xl">
+            <div className="space-y-1">
+              <h1 className="bg-aurora animate-aurora-sweep bg-clip-text font-mono text-display-2 font-semibold text-transparent [background-size:200%_100%]">
                 Adithya Anand
               </h1>
-              <p className="text-sm tracking-wide text-gray-400 sm:text-base">@glitchy_moon</p>
+              <p className="font-mono text-mono text-gray-500">@glitchy_moon_</p>
             </div>
-          </div>
-          <div 
-            className="flex items-center gap-2 rounded-md border border-zinc-700/40 bg-neutral-900/40 px-3 py-1.5"
-            style={{ fontVariantNumeric: "tabular-nums" }}
-          >
-            <Clock10 className="h-3.5 w-3.5 text-gray-400 sm:h-4 sm:w-4" />
-            <p className="m-0 text-xs font-medium tracking-wide text-gray-300 sm:text-sm" suppressHydrationWarning>
-              {currentTime} GMT+5:30
-            </p>
-          </div>
+          </Reveal>
+
+          <Reveal y={12} delay={0.1}>
+            <div
+              className="flex items-center gap-2 rounded-md border border-soft bg-surface-1 px-3 py-1.5 shadow-elev-1 backdrop-blur-sm"
+              style={{ fontVariantNumeric: "tabular-nums" }}
+            >
+              <Clock10
+                aria-hidden="true"
+                className="h-3.5 w-3.5 text-gray-400 sm:h-4 sm:w-4"
+              />
+              <p
+                className="m-0 text-label font-medium text-gray-300"
+                suppressHydrationWarning
+              >
+                {currentTime} <span className="text-gray-500">IST</span>
+              </p>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Subtitle */}
-        <p className="font-sans text-base leading-relaxed tracking-wide text-gray-300 sm:text-lg">
-          Backend &amp; ZK Engineer <span className="text-gray-500">·</span>{" "}
-          <span className="text-purple-400">Umbra Privacy</span>
-        </p>
+        {/* Tagline + scramble line */}
+        <Reveal y={14} delay={0.18}>
+          <p className="text-body-1 leading-relaxed text-gray-200 sm:text-h2">
+            Backend &amp; ZK Engineer at{" "}
+            <span className="bg-aurora bg-clip-text font-medium text-transparent">
+              Umbra Privacy
+            </span>
+          </p>
+          <p className="mt-1 font-mono text-mono text-gray-500">
+            <span className="text-gray-600">›</span>{" "}
+            <ScrambleText phrases={ROLE_PHRASES} className="text-gray-400" />
+          </p>
+        </Reveal>
 
         {/* Bio */}
-        <p className="max-w-2xl font-sans text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-          I build privacy-preserving backend systems with <span className="text-gray-300">Rust (Axum)</span>,{" "}
-          <span className="text-gray-300">Circom</span>, and <span className="text-gray-300">Solana</span>.
-          Currently shipping the <span className="text-purple-300">Private Bridge for web apps</span> and the{" "}
-          <span className="text-purple-300">ZKP Phase 2 trusted-setup ceremony</span> at Umbra Privacy.
-          Comfortable across the stack — APIs, distributed systems, smart contracts, and the cryptography
-          that underpins them.
-        </p>
+        <Reveal y={14} delay={0.28}>
+          <p className="max-w-2xl text-body-2 leading-relaxed text-gray-400">
+            I build privacy-preserving backend systems with{" "}
+            <span className="text-gray-200">Rust (Axum)</span>,{" "}
+            <span className="text-gray-200">Circom</span>, and{" "}
+            <span className="text-gray-200">Solana</span>. Comfortable across the stack — APIs,
+            distributed systems, smart contracts, and the cryptography that underpins them.
+          </p>
+        </Reveal>
 
-        {/* Highlights */}
-        <div className="space-y-1">
-          {highlights.map((highlight, index) => (
-            <p
-              key={index}
-              className="font-mono text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base"
+        {/* Highlights — staggered bullet reveals */}
+        <ul className="space-y-1.5">
+          {HIGHLIGHTS.map((highlight, i) => (
+            <Reveal
+              key={highlight}
+              as="li"
+              y={10}
+              delay={0.38 + i * 0.08}
+              className="flex gap-3 font-mono text-mono leading-relaxed text-gray-400"
             >
-              {highlight}
-            </p>
+              <span aria-hidden="true" className="select-none text-purple-400/70">
+                ▸
+              </span>
+              <span>{highlight}</span>
+            </Reveal>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
