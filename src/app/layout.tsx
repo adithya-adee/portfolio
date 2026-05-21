@@ -16,44 +16,69 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const SITE_URL = "https://glitchymoon.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Adithya Anand | Backend Developer | Web3 & Full Stack Engineer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Adithya Anand | Backend Developer · Zero-Knowledge & Web3 Engineer",
+    template: "%s | Adithya Anand",
+  },
   description:
-    "Backend Developer specializing in Node.js, NestJS, Rust (Axum), and Web3 technologies. Building scalable systems with PostgreSQL, Redis, Solana blockchain, and zero-knowledge proofs. View my projects and experience.",
+    "Backend Developer at Umbra Privacy building zero-knowledge proof systems — Private Bridge for web apps and the ZKP Phase 2 trusted-setup ceremony. Production Rust (Axum), Circom, Solana (Anchor), Node.js, NestJS, PostgreSQL, Redis, and AWS infrastructure. See projects, work history, and writing.",
+  applicationName: "Adithya Anand Portfolio",
+  authors: [{ name: "Adithya Anand", url: "https://github.com/adithya-adee" }],
+  creator: "Adithya Anand",
+  publisher: "Adithya Anand",
   keywords: [
-    // Primary skills
+    // Identity
+    "Adithya Anand",
+    "glitchy_moon",
     "backend developer",
     "full stack developer",
-    "web3 developer",
-    "rust developer",
-    "node.js developer",
 
-    // Technologies
-    "typescript",
-    "javascript",
+    // Current focus
+    "zero-knowledge proofs developer",
+    "zk-SNARK engineer",
+    "Circom developer",
+    "snarkjs",
+    "Groth16",
+    "trusted setup ceremony",
+    "Phase 2 ceremony",
+    "privacy engineering",
+    "Umbra Privacy",
+    "private bridge",
+    "cross-chain bridge",
+
+    // Backend / languages
+    "rust developer",
+    "axum framework",
+    "node.js developer",
     "nestjs",
     "express.js",
-    "axum",
+    "typescript",
+    "javascript",
+
+    // Web3
+    "solana developer",
+    "anchor framework",
+    "blockchain developer",
+    "smart contracts",
+
+    // Infra
     "postgresql",
     "mongodb",
     "redis",
     "docker",
-
-    // Web3 & Blockchain
-    "solana developer",
-    "blockchain developer",
-    "zero knowledge proofs",
-    "smart contracts",
-    "anchor framework",
+    "aws",
+    "kafka",
+    "ci/cd",
 
     // General
-    "portfolio",
     "software engineer",
+    "portfolio",
     "nitk surathkal",
   ],
-  authors: [{ name: "Adithya Anand", url: "https://github.com/adithya-adee" }],
-  creator: "Adithya Anand",
-  publisher: "Adithya Anand",
   robots: {
     index: true,
     follow: true,
@@ -65,40 +90,35 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://glitchymoon.vercel.app/"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Adithya Anand | Backend Developer & Web3 Engineer",
+    title: "Adithya Anand | Backend Developer · Zero-Knowledge & Web3 Engineer",
     description:
-      "Building scalable backend systems with Node.js, Rust, and Web3 technologies. Specialized in distributed systems, blockchain development, and zero-knowledge proofs.",
-    url: "https://glitchymoon.vercel.app/",
+      "Backend Developer at Umbra Privacy. Building the Private Bridge for web apps and engineering the ZKP Phase 2 trusted-setup ceremony with Rust (Axum), Circom, Solana, and AWS.",
+    url: SITE_URL,
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/profile.jpg",
+        url: "/profile.png",
         width: 1200,
         height: 630,
-        alt: "Adithya Anand - Backend Developer specializing in Node.js, Rust, and Web3",
-        type: "image/jpeg",
+        alt: "Adithya Anand — Backend Developer building zero-knowledge proof systems with Rust, Circom, and Solana",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adithya Anand | Backend & Web3 Developer",
+    title: "Adithya Anand | Backend & ZK Engineer",
     description:
-      "Backend Developer building with Node.js, Rust (Axum), Solana blockchain, and zero-knowledge proofs. Check out my projects!",
-    creator: "@AdithyaA593326",
-    images: ["/profile.jpg"],
-  },
-  verification: {
-    // Add your verification tokens here when available
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
+      "Backend Developer at Umbra Privacy. Private Bridge for web apps · ZKP Phase 2 ceremony · Rust (Axum) · Circom · Solana · AWS.",
+    creator: "@glitchy_moon_",
+    site: "@glitchy_moon_",
+    images: ["/profile.png"],
   },
   category: "technology",
 };

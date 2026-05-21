@@ -1,11 +1,13 @@
 /**
  * SEO Component with JSON-LD Structured Data
- * Implements schema.org best practices for search engine optimization
+ * Implements schema.org best practices for search engine optimization.
+ *
+ * Canonical site URL is `https://glitchymoon.vercel.app` — every URL emitted here
+ * must use that host so JSON-LD, OG, and the Next metadata API agree.
  */
 export default function StructuredData() {
-  const baseUrl = "https://adithya-anand-portfolio.vercel.app";
+  const baseUrl = "https://glitchymoon.vercel.app";
 
-  // Multiple structured data objects for comprehensive SEO
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -15,20 +17,21 @@ export default function StructuredData() {
     url: baseUrl,
     image: {
       "@type": "ImageObject",
-      url: `${baseUrl}/profile.jpg`,
+      url: `${baseUrl}/profile.png`,
       width: "400",
       height: "400",
     },
-    email: "mailto:adithyaa.211cs103@nitk.edu.in",
+    email: "mailto:adithya25905@gmail.com",
     jobTitle: "Backend Developer",
     description:
-      "3rd-year Computer Science student at NITK Surathkal and Backend Developer with professional experience building scalable backend systems, Web3 integrations on Solana, and zero-knowledge proof workflows.",
+      "Backend Developer at Umbra Privacy building zero-knowledge proof systems — the Private Bridge for web applications and the ZKP Phase 2 trusted-setup ceremony. Computer Science student at NITK Surathkal with production experience in Rust (Axum), Circom, Solana (Anchor), Node.js, NestJS, and AWS.",
 
     // Professional profiles
     sameAs: [
       "https://github.com/adithya-adee",
       "https://www.linkedin.com/in/adithya-a-8bb28128a",
-      "https://x.com/AdithyaA593326",
+      "https://x.com/glitchy_moon_",
+      "https://peerlist.io/glitchy_moon",
       "https://www.reddit.com/user/Glithcy_moon_69/",
     ],
 
@@ -43,13 +46,13 @@ export default function StructuredData() {
     // Current employer
     worksFor: {
       "@type": "Organization",
-      name: "OkieDokie",
-      alternateName: "ODPay",
-      url: "https://okiedokiepay.com/",
-      description: "Campus automation and payments platform",
+      name: "Umbra Privacy",
+      url: "https://umbraprivacy.com",
+      description:
+        "Privacy infrastructure company building zero-knowledge proof systems for web applications — Private Bridge and ZKP Phase 2 ceremony.",
     },
 
-    // Professional memberships
+    // Past affiliations and communities
     memberOf: [
       {
         "@type": "Organization",
@@ -75,18 +78,26 @@ export default function StructuredData() {
       "Express.js",
       "Rust",
       "Axum",
+      "Tokio",
       "React",
       "Next.js",
       "PostgreSQL",
       "MongoDB",
       "Redis",
+      "Kafka",
       "Web3 Development",
       "Solana Blockchain",
       "Anchor Framework",
       "Cryptography",
       "Zero-Knowledge Proofs",
+      "zk-SNARKs",
+      "Groth16",
       "Circom",
       "snarkjs",
+      "Trusted Setup Ceremony",
+      "Privacy Engineering",
+      "Cross-Chain Bridges",
+      "AWS",
       "Docker",
       "CI/CD",
       "Testing",
@@ -100,14 +111,27 @@ export default function StructuredData() {
     hasOccupation: [
       {
         "@type": "Occupation",
+        name: "Backend Developer",
+        occupationLocation: {
+          "@type": "Place",
+          name: "Umbra Privacy",
+        },
+        skills:
+          "Rust, Axum, Circom, snarkjs, Groth16, Zero-Knowledge Proofs, Solana, Anchor, AWS, PostgreSQL, TypeScript, Cryptography",
+        description:
+          "Designing and shipping privacy-preserving infrastructure — the Private Bridge for web applications and the ZKP Phase 2 trusted-setup ceremony. Writing production Rust services with Axum, authoring Circom circuits, and operating AWS infrastructure for prover and relayer services.",
+      },
+      {
+        "@type": "Occupation",
         name: "Backend Developer Intern",
         occupationLocation: {
           "@type": "Place",
           name: "OkieDokie (ODPay)",
         },
-        skills: "REST API Development, Redis, CI/CD, Testing, Observability",
+        skills:
+          "Node.js, Express.js, MongoDB, Redis, REST APIs, CI/CD, Testing (Jest, Supertest), Datadog APM, AWS SNS",
         description:
-          "Engineered 50+ REST APIs, improved latency with Redis and aggregation pipelines, implemented CI/CD, testing, and observability for a campus automation and payments platform.",
+          "Engineered 50+ REST APIs, improved latency 50–80% with Redis and aggregation pipelines, and built CI/CD, testing, and observability for a campus automation and payments platform serving 10k+ users (Aug 2025 – Apr 2026).",
         estimatedSalary: {
           "@type": "MonetaryAmountDistribution",
           name: "Internship",
@@ -117,18 +141,15 @@ export default function StructuredData() {
     ],
   };
 
-  // Website/WebPage schema
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${baseUrl}/#website`,
     url: baseUrl,
-    name: "Adithya Anand - Backend Developer Portfolio",
+    name: "Adithya Anand — Backend Developer Portfolio",
     description:
-      "Professional portfolio showcasing backend development projects, Web3 applications, and full-stack engineering work",
-    publisher: {
-      "@id": `${baseUrl}/#person`,
-    },
+      "Portfolio of Adithya Anand — Backend Developer specializing in zero-knowledge proofs, Rust (Axum), Solana, and full-stack engineering.",
+    publisher: { "@id": `${baseUrl}/#person` },
     inLanguage: "en-US",
     potentialAction: {
       "@type": "SearchAction",
@@ -137,61 +158,98 @@ export default function StructuredData() {
     },
   };
 
-  // Portfolio/CreativeWork schema for projects
+  // ProfilePage hint — improves Google's "About this result" surface for personal sites.
+  const profilePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${baseUrl}/#profilepage`,
+    url: baseUrl,
+    mainEntity: { "@id": `${baseUrl}/#person` },
+    dateModified: new Date().toISOString().slice(0, 10),
+  };
+
+  // Featured work — mix of personal OSS projects and current employer products.
   const portfolioSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Featured Projects",
-    description: "Portfolio of web development and blockchain projects",
+    name: "Featured Work",
+    description: "Selected projects, open-source contributions, and shipped products.",
     itemListElement: [
       {
         "@type": "CreativeWork",
         position: 1,
-        name: "SolidKYC",
-        url: "https://github.com/adithya-adee/SolidKYC",
+        name: "Umbra Privacy — Private Bridge for Web Apps",
+        url: "https://umbraprivacy.com",
         description:
-          "Privacy-preserving on-chain KYC verification system using Solana blockchain and Zero-Knowledge Proofs (Circom/snarkjs)",
+          "Privacy-preserving cross-chain bridge using zk-SNARKs to hide source, destination, and amount metadata. Backend engineer building the prover, relayer, and indexer infrastructure with Rust (Axum) and Circom.",
         author: { "@id": `${baseUrl}/#person` },
-        keywords: ["Solana", "Web3", "Zero-Knowledge Proofs", "Blockchain", "Cryptography"],
-        programmingLanguage: ["TypeScript", "Rust", "Circom"],
+        keywords: [
+          "Zero-Knowledge Proofs",
+          "Cross-Chain Bridge",
+          "Privacy",
+          "Cryptography",
+          "Rust",
+        ],
+        programmingLanguage: ["Rust", "Circom", "TypeScript"],
       },
       {
         "@type": "CreativeWork",
         position: 2,
-        name: "AMM Uniswap V2 Implementation",
-        url: "https://github.com/adithya-adee/amm_uniswap",
+        name: "ZKP Phase 2 Trusted-Setup Ceremony",
+        url: "https://umbraprivacy.com",
         description:
-          "From-scratch implementation of Uniswap V2-style Automated Market Maker with constant-product formula, liquidity pools, and LP token mechanics",
+          "Phase 2 trusted-setup ceremony for the Umbra privacy protocol — circuit-specific contribution flow, transcript verification, and Powers-of-Tau toxic-waste handling.",
         author: { "@id": `${baseUrl}/#person` },
-        keywords: ["DeFi", "AMM", "Smart Contracts", "Blockchain"],
-        programmingLanguage: ["Solidity", "JavaScript"],
+        keywords: ["Trusted Setup", "Groth16", "Phase 2 Ceremony", "snarkjs", "Circom"],
+        programmingLanguage: ["Rust", "Circom", "TypeScript"],
       },
       {
         "@type": "CreativeWork",
         position: 3,
-        name: "CodeSync",
-        url: "https://github.com/devgambo/CodeSync",
+        name: "ShadowLend",
+        url: "https://github.com/adithya-adee/ShadowLend",
         description:
-          "Real-time collaborative coding environment with integrated whiteboard, AI chat powered by Gemini API, and optimized sync using Liveblocks",
+          "Privacy-preserving lending protocol on Solana — protects user deposit and borrow balances using client-side encryption, Ed25519 signatures, and Arcium Trusted Execution Environments (TEEs). Risk computation (Health Factor, interest) runs inside Arcium MXEs.",
         author: { "@id": `${baseUrl}/#person` },
-        keywords: ["Real-time Collaboration", "WebSockets", "AI Integration", "React"],
-        programmingLanguage: ["TypeScript", "React", "Node.js"],
+        keywords: ["Privacy", "DeFi", "Solana", "Arcium TEE", "Anchor", "Cryptography"],
+        programmingLanguage: ["Rust", "TypeScript"],
       },
       {
         "@type": "CreativeWork",
         position: 4,
-        name: "Hackverse",
-        url: "https://github.com/adithya-adee/hackverse",
+        name: "SolidKYC",
+        url: "https://github.com/adithya-adee/SolidKYC",
         description:
-          "Scalable hackathon management platform with role-based access control, normalized PostgreSQL schema, and NestJS backend architecture",
+          "Privacy-preserving on-chain KYC verification system on Solana using zero-knowledge proofs (Circom / snarkjs). Users prove identity validity without revealing personal data; Anchor program verifies zk-SNARK proofs on-chain.",
         author: { "@id": `${baseUrl}/#person` },
-        keywords: ["Full Stack", "NestJS", "PostgreSQL", "RBAC"],
-        programmingLanguage: ["TypeScript", "PostgreSQL"],
+        keywords: ["Zero-Knowledge Proofs", "Solana", "Anchor", "Circom", "snarkjs", "Privacy"],
+        programmingLanguage: ["TypeScript", "Rust", "Circom"],
+      },
+      {
+        "@type": "CreativeWork",
+        position: 5,
+        name: "crab-clean",
+        url: "https://crates.io/crates/crab-clean",
+        description:
+          "Rust CLI for safe duplicate-file cleanup. Multi-threaded scanning via Rayon, 90% faster SHA-256 hashing through parallel disk I/O. Published on crates.io with 900+ downloads.",
+        author: { "@id": `${baseUrl}/#person` },
+        keywords: ["Rust", "CLI", "Open Source", "Performance", "Rayon"],
+        programmingLanguage: ["Rust"],
+      },
+      {
+        "@type": "CreativeWork",
+        position: 6,
+        name: "solana-indexer-sdk",
+        url: "https://crates.io/crates/solana-indexer-sdk",
+        description:
+          "Lightweight, customizable Rust SDK for indexing Solana block, transaction, and account activity. Async (tokio) pipeline with reorg handling, RPC polling, WebSocket and Helius-Webhook sources, and IDL-based type-safe event decoding.",
+        author: { "@id": `${baseUrl}/#person` },
+        keywords: ["Rust", "Solana", "Indexer", "Tokio", "Open Source", "WebSockets"],
+        programmingLanguage: ["Rust"],
       },
     ],
   };
 
-  // Breadcrumb schema
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -205,26 +263,21 @@ export default function StructuredData() {
     ],
   };
 
-  // Combine all schemas into a graph
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [personSchema, websiteSchema, portfolioSchema, breadcrumbSchema],
+    "@graph": [
+      personSchema,
+      websiteSchema,
+      profilePageSchema,
+      portfolioSchema,
+      breadcrumbSchema,
+    ],
   };
 
   return (
-    <>
-      {/* Main structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
-
-      {/* Additional meta tags for better SEO */}
-      <meta name="author" content="Adithya Anand" />
-      <meta name="generator" content="Next.js" />
-      <link rel="canonical" href={baseUrl} />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
   );
 }

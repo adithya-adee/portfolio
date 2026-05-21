@@ -20,7 +20,7 @@ const socialLinks = [
   {
     name: "X (Twitter)",
     icon: <SiX size={18} />,
-    url: "https://x.com/AdithyaA593326",
+    url: "https://x.com/glitchy_moon_",
   },
   {
     name: "Email",

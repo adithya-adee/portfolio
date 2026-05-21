@@ -4,8 +4,17 @@ import { ExternalLink, Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Blog | Adithya Anand",
-  description: "Read my latest thoughts on code, tech, and building scalable products.",
+  title: "Blog",
+  description:
+    "Adithya Anand's writing on backend engineering, zero-knowledge proofs, Rust, and shipping privacy-preserving systems.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Blog | Adithya Anand",
+    description:
+      "Writing on backend engineering, zero-knowledge proofs, Rust, and shipping privacy-preserving systems.",
+    url: "/blog",
+    type: "website",
+  },
 };
 
 interface Blog {
