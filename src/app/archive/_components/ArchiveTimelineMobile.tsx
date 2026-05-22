@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/motion";
 import { cn } from "@/lib/utils";
-import { getYearGroups, isCurrentRole } from "./timeline-data";
+import { getYearGroups, isCurrentRole, isPrimaryRole } from "./timeline-data";
 
 const SKILL_CHIP =
   "rounded-md bg-surface-2 px-3 py-1 text-label tracking-wide text-primary/80 ring-1 ring-inset ring-soft";
@@ -47,6 +47,7 @@ export function ArchiveTimelineMobile() {
           <div className="space-y-3 sm:space-y-4">
             {group.entries.map((exp, entryIndex) => {
               const isCurrent = isCurrentRole(exp);
+              const isPrimary = isPrimaryRole(exp);
               const cardId = `m-${exp.slug}-${entryIndex}`;
               const isOpen = expandedId === cardId;
 
@@ -118,11 +119,16 @@ export function ArchiveTimelineMobile() {
                         </span>
                       </div>
 
-                      {/* Location + active badge */}
+                      {/* Location + type (non-primary only) + active badge */}
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">
                           {exp.location}
                         </span>
+                        {!isPrimary ? (
+                          <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 font-mono text-label font-semibold uppercase tracking-wider text-tertiary ring-1 ring-inset ring-soft">
+                            {exp.type}
+                          </span>
+                        ) : null}
                         {isCurrent ? (
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-label font-medium text-accent ring-1 ring-inset ring-accent/30">
                             <span className="relative flex h-1.5 w-1.5">

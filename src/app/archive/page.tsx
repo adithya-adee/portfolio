@@ -10,7 +10,7 @@ const experienceCount = (experienceData as unknown[]).length;
 export default function ArchivePage() {
   return (
     <div className="min-h-screen">
-      <section className="mx-auto mt-10 max-w-3xl px-4 py-6 sm:mt-16 sm:px-6 sm:py-8">
+      <section className="mx-auto mt-10 max-w-4xl px-4 py-6 sm:mt-16 sm:px-6 sm:py-8">
         {/* Back link */}
         <Reveal y={8} className="mb-8">
           <Link
