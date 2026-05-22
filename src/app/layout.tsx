@@ -6,7 +6,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { ViewTransitions } from "next-view-transitions";
-import { AuroraBackdrop, SoftCursor, SmoothScroll } from "@/components/motion";
+import { AuroraBackdrop, SoftCursor, SmoothScroll, ThemeToggle } from "@/components/motion";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -139,20 +140,23 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en" className="dark" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <head>
           <StructuredData />
         </head>
         <body
           className={`${jetbrainsMono.variable} ${inter.variable} ${instrumentSerif.variable}`}
         >
-          <AuroraBackdrop />
-          <SoftCursor />
-          <SmoothScroll />
-          <Toaster position="top-right" theme="dark" richColors />
-          <Analytics />
-          <SpeedInsights />
-          <main className="relative min-h-screen">{children}</main>
+          <ThemeProvider>
+            <AuroraBackdrop />
+            <SoftCursor />
+            <SmoothScroll />
+            <ThemeToggle />
+            <Toaster position="top-right" richColors />
+            <Analytics />
+            <SpeedInsights />
+            <main className="relative min-h-screen">{children}</main>
+          </ThemeProvider>
         </body>
       </html>
     </ViewTransitions>

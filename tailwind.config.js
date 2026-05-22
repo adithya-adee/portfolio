@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: ["selector", '[data-theme="dark"]'],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,11 +9,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cream: "var(--text-cream)",
-        crimson: {
-          DEFAULT: "var(--crimson)",
-          bright: "var(--crimson-bright)",
-          deep: "var(--crimson-deep)",
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
+        tertiary: "var(--text-tertiary)",
+        muted: "var(--text-muted)",
+        accent: {
+          DEFAULT: "var(--accent)",
+          bright: "var(--accent-bright)",
+          deep: "var(--accent-deep)",
         },
       },
       backgroundColor: {
@@ -21,26 +24,23 @@ module.exports = {
         "surface-1": "var(--surface-1)",
         "surface-2": "var(--surface-2)",
         "surface-3": "var(--surface-3)",
-        "crimson-soft": "var(--crimson-soft)",
+        "accent-soft": "var(--accent-soft)",
       },
       borderColor: {
         hairline: "var(--border-hairline)",
         soft: "var(--border-soft)",
         strong: "var(--border-strong)",
-        crimson: "var(--crimson)",
+        accent: "var(--accent)",
       },
       backgroundImage: {
         aurora: "var(--gradient-aurora)",
         "aurora-soft": "var(--gradient-aurora-soft)",
-        crimson: "var(--gradient-crimson)",
+        accent: "var(--gradient-accent)",
       },
       boxShadow: {
         "elev-1": "var(--elev-1)",
         "elev-2": "var(--elev-2)",
         "elev-3": "var(--elev-3)",
-      },
-      fontFamily: {
-        serif: ["var(--font-instrument-serif)", "Georgia", "serif"],
       },
       transitionTimingFunction: {
         "out-soft": "var(--ease-out-soft)",
@@ -52,6 +52,9 @@ module.exports = {
         base: "var(--dur-base)",
         slow: "var(--dur-slow)",
         xslow: "var(--dur-xslow)",
+      },
+      fontFamily: {
+        serif: ["var(--font-instrument-serif)", "Georgia", "serif"],
       },
       fontSize: {
         "display-1": ["var(--text-display-1)", { lineHeight: "1.02", letterSpacing: "-0.025em" }],

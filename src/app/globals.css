@@ -61,12 +61,12 @@
 }
 
 * {
-  border-color: hsl(var(--border) / 0.7);
+  border-color: var(--border-soft);
 }
 
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background-color: var(--surface-0);
+  color: var(--text-primary);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   min-height: 100vh;
   font-size: var(--text-base);
@@ -76,8 +76,21 @@ body {
 }
 
 html {
-  color-scheme: dark;
   scroll-behavior: smooth;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Custom selection — uses the active theme's soft accent tint. */
+::selection {
+  background-color: var(--accent-soft);
+  color: var(--text-primary);
 }
 
 section {
