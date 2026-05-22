@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Reveal, ScrambleText, useReducedMotionSafe } from "@/components/motion";
+import { Reveal, ScrambleText, ThemeToggle, useReducedMotionSafe } from "@/components/motion";
 
 const ROLE_PHRASES = [
   "building Private Bridge for web apps",
@@ -53,32 +53,42 @@ export default function Hero() {
             </span>
           </Reveal>
 
-          <Reveal y={6} delay={0.05}>
+          <Reveal y={6} delay={0.05} className="flex items-center gap-2">
             <div
               className="flex items-center gap-2 rounded-sm border border-soft bg-surface-1 px-3 py-1.5 shadow-elev-1 backdrop-blur-sm"
               style={{ fontVariantNumeric: "tabular-nums" }}
             >
               {/* Recording light — pulses like a real REC indicator */}
-              <span
-                aria-hidden="true"
-                className="relative flex h-1.5 w-1.5"
-              >
+              <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
-              <span className="font-mono text-label font-semibold uppercase tracking-[0.15em] text-accent">
-                Rec
+
+              {/* REC label + separator — desktop only (drops on mobile to make room for the theme toggle in the same group) */}
+              <span className="hidden items-center gap-2 sm:inline-flex">
+                <span className="font-mono text-label font-semibold uppercase tracking-[0.15em] text-accent">
+                  Rec
+                </span>
+                <span aria-hidden="true" className="text-tertiary">
+                  ·
+                </span>
               </span>
-              <span aria-hidden="true" className="text-tertiary">
-                ·
-              </span>
+
               <p
                 className="m-0 font-mono text-label font-medium text-primary/85"
                 suppressHydrationWarning
               >
-                {currentTime} <span className="text-primary/40">IST</span>
+                {/* Short clock (HH:MM) on mobile, full clock with seconds on desktop */}
+                <span className="sm:hidden">{currentTime.slice(0, 5)}</span>
+                <span className="hidden sm:inline">{currentTime}</span>
+                <span className="text-primary/40"> IST</span>
               </p>
             </div>
+
+            {/* Theme toggle sits inline with the clock so they read as one
+                control group at the top of the Hero. On subpages the fixed
+                ThemeToggle in layout.tsx takes over. */}
+            <ThemeToggle placement="inline" />
           </Reveal>
         </div>
 
