@@ -2,8 +2,9 @@
 
 import { Command } from "cmdk";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import {
   ArrowUpRight,
   Briefcase,
@@ -11,7 +12,7 @@ import {
   Copy,
   CornerDownLeft,
   FileText,
-  Mail,
+  Home,
   MoonStar,
   Search,
   User,
@@ -74,6 +75,8 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
   const [open, setOpen] = useState(initialOpen);
   const { resolvedTheme, setTheme } = useTheme();
   const router = useRouter();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   // Global keyboard shortcut (active once the palette has lazy-loaded — the
   // mount wrapper owns the pre-load listener).
@@ -101,6 +104,19 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
   const commands: CommandEntry[] = useMemo(
     () => [
       // ─── Navigation ──────────────────────────────────────────
+      // "Home" only when we're somewhere else — redundant on /.
+      ...(isHome
+        ? []
+        : [
+            {
+              id: "nav-home",
+              label: "Home",
+              icon: <Home aria-hidden="true" size={14} />,
+              type: "route",
+              target: "/",
+              keywords: "back start landing",
+            } as NavCommand,
+          ]),
       {
         id: "nav-about",
         label: "About",
@@ -173,23 +189,13 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
         shortcut: "Y",
         icon: <Copy aria-hidden="true" size={14} />,
         type: "action",
-        keywords: "yank clipboard mail contact",
+        keywords: "yank clipboard mail contact send mailto",
         perform: () => {
           navigator.clipboard.writeText(EMAIL);
           toast.success("Email yanked to clipboard!", {
             description: EMAIL,
             duration: 2000,
           });
-        },
-      },
-      {
-        id: "act-mailto",
-        label: "Send email",
-        icon: <Mail aria-hidden="true" size={14} />,
-        type: "action",
-        keywords: "compose write mailto",
-        perform: () => {
-          window.location.href = `mailto:${EMAIL}`;
         },
       },
       {
@@ -230,7 +236,7 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
         keywords: "twitter social glitchy_moon",
       },
     ],
-    []
+    [isHome]
   );
 
   const handleSelect = useCallback(
@@ -239,8 +245,14 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
       switch (entry.type) {
         case "anchor":
           close();
-          // Defer so the dialog unmount doesn't fight the smooth scroll.
-          requestAnimationFrame(() => scrollToAnchor(entry.target));
+          if (isHome) {
+            // On the home page — scroll to the section.
+            requestAnimationFrame(() => scrollToAnchor(entry.target));
+          } else {
+            // Elsewhere — route to "/#anchor" so the browser picks up the
+            // section after the page hydrates.
+            router.push(`/${entry.target}`);
+          }
           break;
         case "route":
           close();
@@ -256,7 +268,7 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
           break;
       }
     },
-    [close, resolvedTheme, router, scrollToAnchor, setTheme]
+    [close, isHome, resolvedTheme, router, scrollToAnchor, setTheme]
   );
 
   const groups = useMemo(
@@ -282,6 +294,13 @@ export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}
         "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
       )}
     >
+      {/* Radix Dialog requires a Title child for screen-reader labelling.
+          We register one here visually hidden so the chrome stays clean. */}
+      <DialogPrimitive.Title className="sr-only">Command palette</DialogPrimitive.Title>
+      <DialogPrimitive.Description className="sr-only">
+        Jump between sections, copy contact info, toggle theme, or open social links.
+      </DialogPrimitive.Description>
+
       {/* Input row */}
       <div className="flex items-center gap-3 border-b border-soft px-4 py-3">
         <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-tertiary" />
