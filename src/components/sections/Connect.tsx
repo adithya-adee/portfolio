@@ -93,13 +93,15 @@ export default function Connect() {
               </a>
             </MagneticButton>
             {/* Mobile gets a tap-friendly copy button; desktop keeps the
-                keyboard shortcut hint since there's a physical Y key there. */}
+                keyboard shortcut hint since there's a physical Y key there.
+                `flex` (not inline-flex) so the button always lands on its
+                own line below the email rather than flowing inline next to it. */}
             <button
               type="button"
               onClick={copyEmail}
               aria-label="Copy email to clipboard"
               title="Copy email"
-              className="mt-3 inline-flex h-9 w-9 items-center justify-center rounded-md border border-soft bg-surface-2 text-secondary transition-colors duration-base ease-out-soft hover:border-strong hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1 sm:hidden"
+              className="mt-5 flex h-9 w-9 items-center justify-center rounded-md border border-soft bg-surface-2 text-secondary transition-colors duration-base ease-out-soft hover:border-strong hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1 sm:hidden"
             >
               <Copy aria-hidden="true" size={16} />
             </button>
