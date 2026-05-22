@@ -1,9 +1,8 @@
 "use client";
 
 import blogsData from "@/asset/blog.json";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { Link } from "next-view-transitions";
-import { Reveal, SectionTitle, MagneticButton } from "@/components/motion";
+import { ExternalLink } from "lucide-react";
+import { Reveal, SectionTitle, SectionNavLink, MagneticButton } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 interface Blog {
@@ -31,15 +30,7 @@ export default function Blogs() {
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
       <SectionTitle
         index={4}
-        meta={
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 text-label uppercase tracking-wider text-tertiary transition-colors hover:text-primary"
-          >
-            View all
-            <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
-          </Link>
-        }
+        meta={<SectionNavLink href="/blog">my articles</SectionNavLink>}
       >
         Recent Articles
       </SectionTitle>

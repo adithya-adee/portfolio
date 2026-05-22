@@ -3,7 +3,7 @@
 import experienceData from "@/asset/experience.json";
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
-import { Reveal, SectionTitle } from "@/components/motion";
+import { Reveal, SectionNavLink, SectionTitle } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 const SKILL_CHIP =
@@ -40,7 +40,10 @@ export default function ExperienceCollapsed() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <SectionTitle index={1} meta={`${experience.length} roles`}>
+      <SectionTitle
+        index={1}
+        meta={<SectionNavLink href="/archive">my timeline</SectionNavLink>}
+      >
         Where I&apos;ve Worked
       </SectionTitle>
 
