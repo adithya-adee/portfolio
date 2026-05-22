@@ -66,10 +66,19 @@ export function ArchiveTimelineDesktop() {
 
   return (
     <div className="relative">
-      {/* Central rail — vertical hairline running the full height */}
+      {/* Central rail — vertical accent-tinted line running the full height.
+          Top/bottom fade out via a linear-gradient mask so the rail doesn't
+          end abruptly; mid-section is bg-accent/40 — visibly threads the dots
+          together while staying subtler than the dots themselves. */}
       <motion.span
         aria-hidden="true"
-        className="absolute left-1/2 top-0 h-full w-px origin-top -translate-x-1/2 bg-soft"
+        className="absolute left-1/2 top-0 h-full w-px origin-top -translate-x-1/2 bg-accent/40"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%)",
+        }}
         initial={reduced ? { scaleY: 1 } : { scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
         viewport={{ once: true, amount: 0.05 }}
