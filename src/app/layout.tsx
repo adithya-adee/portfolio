@@ -34,11 +34,11 @@ const SITE_URL = "https://glitchymoon.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Adithya Anand | Backend Developer · Zero-Knowledge & Web3 Engineer",
+    default: "Adithya Anand | Backend & Blockchain Engineer",
     template: "%s | Adithya Anand",
   },
   description:
-    "Backend Developer at Umbra Privacy building zero-knowledge proof systems — Private Bridge for web apps and the ZKP Phase 2 trusted-setup ceremony. Production Rust (Axum), Circom, Solana (Anchor), Node.js, NestJS, PostgreSQL, Redis, and AWS infrastructure. See projects, work history, and writing.",
+    "Backend & Blockchain Engineer at Umbra Privacy, contributing to privacy infrastructure — Private Bridge for web apps and the ZKP Phase 2 trusted-setup ceremony. Production Rust (Axum), Solana (Anchor), Node.js, NestJS, PostgreSQL, Redis, and AWS. See projects, work history, and writing.",
   applicationName: "Adithya Anand Portfolio",
   authors: [{ name: "Adithya Anand", url: "https://github.com/adithya-adee" }],
   creator: "Adithya Anand",
@@ -107,9 +107,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Adithya Anand | Backend Developer · Zero-Knowledge & Web3 Engineer",
+    title: "Adithya Anand | Backend & Blockchain Engineer",
     description:
-      "Backend Developer at Umbra Privacy. Building the Private Bridge for web apps and engineering the ZKP Phase 2 trusted-setup ceremony with Rust (Axum), Circom, Solana, and AWS.",
+      "Backend & Blockchain Engineer at Umbra Privacy. Contributing to Private Bridge for web apps and the ZKP Phase 2 trusted-setup ceremony with Rust (Axum), Solana, and AWS.",
     url: SITE_URL,
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
@@ -119,9 +119,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adithya Anand | Backend & ZK Engineer",
+    title: "Adithya Anand | Backend & Blockchain Engineer",
     description:
-      "Backend Developer at Umbra Privacy. Private Bridge for web apps · ZKP Phase 2 ceremony · Rust (Axum) · Circom · Solana · AWS.",
+      "Backend & Blockchain Engineer at Umbra Privacy. Private Bridge for web apps · ZKP Phase 2 ceremony · Rust (Axum) · Solana · AWS.",
     creator: "@glitchy_moon_",
     site: "@glitchy_moon_",
     // Twitter image inherits from openGraph (Next reuses the OG image route).

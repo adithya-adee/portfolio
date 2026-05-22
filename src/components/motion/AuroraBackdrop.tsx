@@ -77,11 +77,13 @@ export function AuroraBackdrop() {
         }}
       />
 
-      {/* Spotlight blob — color pulled from theme tokens */}
+      {/* Spotlight blob — color pulled from theme tokens.
+          Mobile gets a smaller blob with lighter blur because filter:blur(140px)
+          on a 600×600 element is the heaviest paint on the page on touch GPUs. */}
       <motion.div
         aria-hidden="true"
         className={
-          "absolute -top-[8%] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full blur-[140px] " +
+          "absolute -top-[6%] left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full blur-[70px] sm:-top-[8%] sm:h-[600px] sm:w-[600px] sm:blur-[140px] " +
           (reduced ? "" : "animate-aurora-drift")
         }
         style={{

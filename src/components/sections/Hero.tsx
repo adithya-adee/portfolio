@@ -146,8 +146,10 @@ export default function Hero() {
         {/* Role + scramble line */}
         <Reveal y={10} delay={1.1}>
           <p className="text-h2 leading-snug text-primary/90">
-            Backend &amp; ZK Engineer at{" "}
-            <span className="font-serif italic text-accent">Umbra Privacy</span>
+            Backend &amp; Blockchain Engineer at{" "}
+            <span className="whitespace-nowrap font-serif italic text-accent">
+              Umbra Privacy
+            </span>
           </p>
           <p className="mt-2 font-mono text-mono text-primary/55">
             <span className="text-accent">›</span>{" "}
@@ -174,7 +176,7 @@ export default function Hero() {
               as="li"
               y={8}
               delay={1.3 + i * 0.08}
-              className="grid grid-cols-[auto_1fr] items-baseline gap-4 sm:grid-cols-[auto_auto_1fr] sm:gap-6"
+              className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 gap-y-1.5 sm:grid-cols-[auto_auto_1fr] sm:gap-x-6 sm:gap-y-0"
             >
               <span aria-hidden="true" className="block h-2 w-2 bg-accent" />
               <span className="font-mono text-label font-semibold uppercase tracking-[0.18em] text-accent">
