@@ -62,11 +62,13 @@ export function AuroraBackdrop() {
         }}
       />
 
-      {/* Hairline grid — visible in both themes at low opacity */}
+      {/* Hairline grid — visible in both themes. Opacity tokenized so the
+          light-mode ink lines on cream get enough alpha to actually register. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.018]"
+        className="absolute inset-0"
         style={{
+          opacity: "var(--backdrop-grid-opacity)",
           backgroundImage: `
             linear-gradient(var(--text-primary) 1px, transparent 1px),
             linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)
