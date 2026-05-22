@@ -47,7 +47,7 @@ export function ThemeToggle() {
     return (
       <div
         aria-hidden="true"
-        className="fixed right-4 top-4 z-50 h-[34px] w-[34px] rounded-sm border border-soft bg-surface-1 shadow-elev-1 backdrop-blur-sm sm:right-6 sm:top-6 sm:w-[124px]"
+        className="fixed right-4 top-4 z-50 h-10 w-10 rounded-sm border border-soft bg-surface-1 shadow-elev-1 backdrop-blur-sm sm:right-6 sm:top-6 sm:h-[34px] sm:w-[124px]"
       />
     );
   }
@@ -68,17 +68,17 @@ export function ThemeToggle() {
       title="Cmd/Ctrl + Shift + L"
       className={cn(
         buttonBase,
-        // Mobile: square icon button. Desktop: full chip.
-        "h-[34px] w-[34px] justify-center sm:w-auto sm:gap-2 sm:px-3 sm:py-1.5"
+        // Mobile: 40×40 icon button (meets minimum touch-target). Desktop: chip.
+        "h-10 w-10 justify-center sm:h-[34px] sm:w-auto sm:gap-2 sm:px-3 sm:py-1.5"
       )}
     >
       {/* Mobile icon — Sun in light mode (showing what you'll switch FROM),
           Moon in dark mode. Pattern matches GitHub/most apps. */}
       <span aria-hidden="true" className="sm:hidden">
         {isDark ? (
-          <Moon className="h-4 w-4 text-primary" />
+          <Moon className="h-5 w-5 text-primary" />
         ) : (
-          <Sun className="h-4 w-4 text-accent" />
+          <Sun className="h-5 w-5 text-accent" />
         )}
       </span>
 

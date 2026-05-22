@@ -84,8 +84,9 @@ export default function Hero() {
 
         {/* Profile + name block — single row on every viewport. The display-1
             type token scales down to 30px on narrow screens (see tokens.css)
-            so the name fits next to the avatar without wrapping. */}
-        <div className="flex flex-row items-end gap-4 sm:gap-8">
+            so the name fits next to the avatar without wrapping. Avatar is
+            vertically centered against the name+handle stack. */}
+        <div className="flex flex-row items-center gap-4 sm:gap-8">
           <Reveal y={10} className="shrink-0">
             <div className="relative h-14 w-14 sm:h-[84px] sm:w-[84px]">
               <div className="absolute -inset-0.5 rounded-full bg-accent opacity-30 blur-md" />
