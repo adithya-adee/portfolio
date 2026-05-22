@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/motion";
 import { cn } from "@/lib/utils";
+import { DateCapsule } from "./DateCapsule";
 import { getYearGroups, isCurrentRole, isPrimaryRole } from "./timeline-data";
 
 const SKILL_CHIP =
@@ -76,47 +77,50 @@ export function ArchiveTimelineMobile() {
                     className="flex w-full items-start justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
                   >
                     <div className="flex-1 space-y-3">
-                      {/* Title row */}
-                      <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-                          {/* Bullet dot — accent, pulses if current role */}
-                          <span
-                            aria-hidden="true"
-                            className="relative inline-flex h-2 w-2 shrink-0 self-center"
-                          >
-                            {isCurrent ? (
-                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                            ) : null}
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-                          </span>
-
-                          {exp.url ? (
-                            <a
-                              href={exp.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="transition-opacity hover:opacity-80"
+                      {/* Title row — bullet + company name on line 1, role on
+                          line 2, date capsule on the right of the title block. */}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-baseline gap-2.5">
+                            {/* Bullet dot — accent, pulses if current role */}
+                            <span
+                              aria-hidden="true"
+                              className="relative inline-flex h-2 w-2 shrink-0 self-center"
                             >
-                              <h3 className="text-h2 font-semibold tracking-tight text-primary">
+                              {isCurrent ? (
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                              ) : null}
+                              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                            </span>
+
+                            {exp.url ? (
+                              <a
+                                href={exp.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-block transition-opacity hover:opacity-80"
+                              >
+                                <h3 className="text-h2 font-semibold leading-tight tracking-tight text-primary">
+                                  {exp.company}
+                                </h3>
+                              </a>
+                            ) : (
+                              <h3 className="text-h2 font-semibold leading-tight tracking-tight text-primary">
                                 {exp.company}
                               </h3>
-                            </a>
-                          ) : (
-                            <h3 className="text-h2 font-semibold tracking-tight text-primary">
-                              {exp.company}
-                            </h3>
-                          )}
-                          <span aria-hidden="true" className="text-tertiary">
-                            ·
-                          </span>
-                          <span className="text-body-2 font-medium tracking-wide text-secondary">
+                            )}
+                          </div>
+                          <p className="mt-1.5 pl-[18px] text-body-2 font-medium tracking-wide text-secondary">
                             {exp.position}
-                          </span>
+                          </p>
                         </div>
-                        <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
-                          {exp.startDate} – {exp.endDate}
-                        </span>
+
+                        <DateCapsule
+                          startDate={exp.startDate}
+                          endDate={exp.endDate}
+                          isCurrent={isCurrent}
+                        />
                       </div>
 
                       {/* Location + type (non-primary only) + active badge */}
