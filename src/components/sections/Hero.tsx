@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Clock10 } from "lucide-react";
 import { Reveal, ScrambleText, useReducedMotionSafe } from "@/components/motion";
 
 const ROLE_PHRASES = [
@@ -59,10 +58,20 @@ export default function Hero() {
               className="flex items-center gap-2 rounded-sm border border-soft bg-surface-1 px-3 py-1.5 shadow-elev-1 backdrop-blur-sm"
               style={{ fontVariantNumeric: "tabular-nums" }}
             >
-              <Clock10
+              {/* Recording light — pulses like a real REC indicator */}
+              <span
                 aria-hidden="true"
-                className="h-3.5 w-3.5 text-primary/60"
-              />
+                className="relative flex h-1.5 w-1.5"
+              >
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+              </span>
+              <span className="font-mono text-label font-semibold uppercase tracking-[0.15em] text-accent">
+                Rec
+              </span>
+              <span aria-hidden="true" className="text-tertiary">
+                ·
+              </span>
               <p
                 className="m-0 font-mono text-label font-medium text-primary/85"
                 suppressHydrationWarning
