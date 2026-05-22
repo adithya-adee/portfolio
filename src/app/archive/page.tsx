@@ -78,45 +78,56 @@ export default function ArchivePage() {
                   onClick={() => setExpandedIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                   aria-controls={`archive-panel-${index}`}
-                  className="flex w-full items-center justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
+                  className="flex w-full items-start justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
                 >
-                  <div className="flex-1 space-y-2.5">
-                    <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="text-h2 font-semibold tracking-tight text-primary">
-                          {exp.position}
-                        </h3>
-                        <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">
-                          {exp.location}
+                  <div className="flex-1 space-y-3">
+                    {/* Company · Role + dates row */}
+                    <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                        {exp.url ? (
+                          <a
+                            href={exp.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="transition-opacity hover:opacity-80"
+                          >
+                            <h3 className="text-h2 font-semibold tracking-tight text-primary">
+                              {exp.company}
+                            </h3>
+                          </a>
+                        ) : (
+                          <h3 className="text-h2 font-semibold tracking-tight text-primary">
+                            {exp.company}
+                          </h3>
+                        )}
+                        <span aria-hidden="true" className="text-tertiary">
+                          ·
                         </span>
-                        {isCurrent ? (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-label font-medium text-accent ring-1 ring-inset ring-accent/30">
-                            <span className="relative flex h-1.5 w-1.5">
-                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-                            </span>
-                            Active
-                          </span>
-                        ) : null}
+                        <span className="text-body-2 font-medium tracking-wide text-secondary">
+                          {exp.position}
+                        </span>
                       </div>
                       <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
                         {exp.startDate} – {exp.endDate}
                       </span>
                     </div>
 
-                    {exp.url ? (
-                      <a
-                        href={exp.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-body-2 font-medium tracking-wide text-accent transition-opacity hover:opacity-80"
-                      >
-                        {exp.company}
-                      </a>
-                    ) : (
-                      <p className="text-body-2 tracking-wide text-primary/80">{exp.company}</p>
-                    )}
+                    {/* Location + active badge row */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">
+                        {exp.location}
+                      </span>
+                      {isCurrent ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-label font-medium text-accent ring-1 ring-inset ring-accent/30">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                          </span>
+                          Active
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div

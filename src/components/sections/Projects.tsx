@@ -76,6 +76,19 @@ export default function Projects() {
   }, [activeFilter]);
 
   const projects = projectsData as Project[];
+  const projectCounts = useMemo(() => {
+    const counts: Record<FilterCategory, number> = {
+      web3: 0,
+      "full-stack": 0,
+      "open-source": 0,
+    };
+    for (const project of projects) {
+      if (project.category in counts) {
+        counts[project.category as FilterCategory] += 1;
+      }
+    }
+    return counts;
+  }, [projects]);
   const filteredProjects = useMemo(
     () => projects.filter((project) => project.category === activeFilter),
     [activeFilter, projects]
@@ -115,7 +128,17 @@ export default function Projects() {
                     : "border-soft bg-surface-1 text-secondary hover:border-strong hover:text-primary"
                 )}
               >
-                <span className="relative z-10">{getCategoryLabel(category)}</span>
+                <span className="relative z-10 inline-flex items-baseline gap-1.5">
+                  {getCategoryLabel(category)}
+                  <span
+                    className={cn(
+                      "font-mono text-[11px] tracking-normal",
+                      isActive ? "text-accent" : "text-tertiary"
+                    )}
+                  >
+                    ({projectCounts[category]})
+                  </span>
+                </span>
                 {isActive ? (
                   <span
                     aria-hidden="true"
