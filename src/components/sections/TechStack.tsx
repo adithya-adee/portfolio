@@ -47,18 +47,18 @@ const categories: Category[] = [
   {
     name: "Backend",
     items: [
-      { name: "Express.js", icon: SiExpress, color: "#FFFFFF" },
+      { name: "Express.js", icon: SiExpress, color: "var(--text-primary)" },
       { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
       { name: "Axum", icon: SiRust, color: "#CE412B" },
-      { name: "Kafka", icon: SiApachekafka, color: "#FFFFFF" },
-      { name: "WebSocket", icon: SiSocketdotio, color: "#010101" },
+      { name: "Kafka", icon: SiApachekafka, color: "var(--text-primary)" },
+      { name: "WebSocket", icon: SiSocketdotio, color: "var(--text-primary)" },
     ],
   },
   {
     name: "Frontend",
     items: [
       { name: "React", icon: SiReact, color: "#61DAFB" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+      { name: "Next.js", icon: SiNextdotjs, color: "var(--text-primary)" },
     ],
   },
   {
@@ -76,7 +76,7 @@ const categories: Category[] = [
     items: [
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
       { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-      { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
+      { name: "Prisma", icon: SiPrisma, color: "var(--text-primary)" },
     ],
   },
   {
@@ -87,7 +87,7 @@ const categories: Category[] = [
       { name: "Docker", icon: SiDocker, color: "#2496ED" },
       { name: "CI/CD", icon: SiGithubactions, color: "#2088FF" },
       { name: "Datadog", icon: SiDatadog, color: "#632CA6" },
-      { name: "Vercel", icon: SiVercel, color: "#000000" },
+      { name: "Vercel", icon: SiVercel, color: "var(--text-primary)" },
     ],
   },
 ];
@@ -118,7 +118,17 @@ export default function TechStack() {
                   <div
                     key={tech.name}
                     className="group/chip relative flex items-center gap-2 rounded-lg border border-soft bg-surface-2 px-3 py-2 transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:shadow-[0_0_20px_2px_var(--hover-color)]"
-                    style={{ "--hover-color": `${tech.color}33` } as React.CSSProperties}
+                    style={
+                      {
+                        // Brand hex colours append `33` for 20% alpha; the theme-
+                        // adaptive ones (var(--text-primary)) fall back to the
+                        // accent glow so the hover shadow stays visible in both
+                        // light and dark modes.
+                        "--hover-color": tech.color.startsWith("#")
+                          ? `${tech.color}33`
+                          : "var(--accent-glow)",
+                      } as React.CSSProperties
+                    }
                   >
                     <Icon
                       className="text-base transition-transform duration-base ease-out-soft group-hover/chip:scale-110"

@@ -7,6 +7,7 @@ export { SoftCursor } from "./SoftCursor";
 export { CountUp } from "./CountUp";
 export { SmoothScroll } from "./SmoothScroll";
 export { SectionTitle } from "./SectionTitle";
+export { SectionNavLink } from "./SectionNavLink";
 export { ThemeToggle } from "./ThemeToggle";
 export { CommandPalette } from "./CommandPalette";
 export { useReducedMotionSafe } from "./useReducedMotionSafe";
