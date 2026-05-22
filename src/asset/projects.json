@@ -93,19 +93,5 @@
     "github_url": "https://github.com/adithya-adee/SolidKYC",
     "video_url": "",
     "skills": ["Solana", "Anchor", "zk-SNARKs", "Circom", "React"]
-  },
-  {
-    "name": "AMM Uniswap V2",
-    "timeline": "NOV 2025",
-    "category": "web3",
-    "short_description": "From-scratch implementation of a Uniswap V2-style Automated Market Maker to understand DEX internals.",
-    "detailed_description": [
-      "Implemented core Uniswap V2 AMM mechanics including constant product formula (x*y=k), liquidity pools, swaps, and LP token minting.",
-      "Built swap, add liquidity, and remove liquidity flows to understand pricing, slippage, and pool balance invariants."
-    ],
-    "live_url": "",
-    "github_url": "https://github.com/adithya-adee/amm_uniswap",
-    "video_url": "",
-    "skills": ["Solana", "Anchor", "DeFi", "Smart Contracts", "AMM"]
   }
 ]

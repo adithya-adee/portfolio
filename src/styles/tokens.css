@@ -148,7 +148,10 @@
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* ─── Type scale (theme-agnostic) ───────────────────────────── */
-  --text-display-1: clamp(2.75rem, 7vw, 5rem);
+  /* display-1 min lowered to 30px so the Hero name fits next to the
+     profile picture on a 320px-wide viewport while still scaling up to 80px
+     on desktop via the 7vw middle term. */
+  --text-display-1: clamp(1.875rem, 7vw, 5rem);
   --text-display-2: clamp(2.25rem, 5vw, 3.25rem);
   --text-h1: clamp(1.75rem, 3.2vw, 2.25rem);
   --text-h2: clamp(1.375rem, 2.4vw, 1.625rem);
