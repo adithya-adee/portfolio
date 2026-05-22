@@ -81,7 +81,7 @@ export default function BlogPage() {
               <div className="space-y-3">
                 {/* Header row: title + date */}
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <h2 className="font-serif text-h2 font-normal leading-snug tracking-tight text-primary transition-colors">
+                  <h2 className="text-h2 font-semibold leading-snug tracking-tight text-primary transition-colors">
                     {blog.title}
                   </h2>
                   <span className="flex shrink-0 items-center gap-2 font-mono text-label uppercase tracking-wider text-tertiary">
