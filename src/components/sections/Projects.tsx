@@ -3,10 +3,12 @@
 import { useMemo, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import projectsData from "@/asset/projects.json";
-import { ChevronDown, ExternalLink, Filter } from "lucide-react";
+import { ChevronDown, ChevronsDown, ChevronsUp, ExternalLink, Filter } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { MagneticButton, Reveal, SectionTitle, TiltCard } from "@/components/motion";
 import { cn } from "@/lib/utils";
+
+const VISIBLE_PROJECT_COUNT = 3;
 
 interface Project {
   name: string;
@@ -57,6 +59,7 @@ const getCategoryBadgeStyles = (category: string) => {
 export default function Projects() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("web3");
+  const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
@@ -66,11 +69,22 @@ export default function Projects() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Collapse + reset expanded card whenever the filter changes.
+  useEffect(() => {
+    setShowAll(false);
+    setExpandedIndex(null);
+  }, [activeFilter]);
+
   const projects = projectsData as Project[];
   const filteredProjects = useMemo(
     () => projects.filter((project) => project.category === activeFilter),
     [activeFilter, projects]
   );
+  const visibleProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, VISIBLE_PROJECT_COUNT);
+  const hasMore = filteredProjects.length > VISIBLE_PROJECT_COUNT;
+  const hiddenCount = filteredProjects.length - VISIBLE_PROJECT_COUNT;
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -117,7 +131,7 @@ export default function Projects() {
       {/* Projects list */}
       <div className="space-y-4 sm:space-y-5">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => {
+          {visibleProjects.map((project, index) => {
             const isOpen = expandedIndex === index;
             return (
               <motion.div
@@ -151,7 +165,7 @@ export default function Projects() {
                       <div className="flex-1 space-y-2.5">
                         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
                           <div className="flex flex-wrap items-center gap-3">
-                            <h3 className="font-serif text-h2 font-normal tracking-tight text-primary">
+                            <h3 className="text-h2 font-semibold tracking-tight text-primary">
                               {project.name}
                             </h3>
                             <span
@@ -285,6 +299,42 @@ export default function Projects() {
           })}
         </AnimatePresence>
       </div>
+
+      {/* Show all / show less */}
+      {hasMore ? (
+        <div className="mt-6 flex justify-center">
+          <MagneticButton strength={0.2}>
+            <button
+              type="button"
+              onClick={() => {
+                setShowAll((prev) => !prev);
+                setExpandedIndex(null);
+              }}
+              className="group/expand inline-flex items-center gap-2 rounded-full border border-soft bg-surface-1 px-5 py-2.5 font-mono text-label uppercase tracking-[0.18em] text-secondary shadow-elev-1 transition-colors duration-base ease-out-soft hover:border-strong hover:bg-surface-2 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+            >
+              {showAll ? (
+                <>
+                  <ChevronsUp
+                    aria-hidden="true"
+                    size={14}
+                    className="text-accent transition-transform group-hover/expand:-translate-y-0.5"
+                  />
+                  Show less
+                </>
+              ) : (
+                <>
+                  <ChevronsDown
+                    aria-hidden="true"
+                    size={14}
+                    className="text-accent transition-transform group-hover/expand:translate-y-0.5"
+                  />
+                  Show {hiddenCount} more
+                </>
+              )}
+            </button>
+          </MagneticButton>
+        </div>
+      ) : null}
     </section>
   );
 }

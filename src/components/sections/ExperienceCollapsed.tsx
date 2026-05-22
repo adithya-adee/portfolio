@@ -75,7 +75,7 @@ export default function ExperienceCollapsed() {
                 <div className="flex-1 space-y-2.5">
                   <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
                     <div className="flex flex-wrap items-center gap-3">
-                      <h3 className="font-serif text-h2 font-normal tracking-tight text-primary">
+                      <h3 className="text-h2 font-semibold tracking-tight text-primary">
                         {exp.position}
                       </h3>
                       <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">

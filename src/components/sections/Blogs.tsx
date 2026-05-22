@@ -72,7 +72,7 @@ export default function Blogs() {
                   >
                     {blog.category}
                   </span>
-                  <h3 className="font-serif text-h2 font-normal tracking-tight text-primary">
+                  <h3 className="text-h2 font-semibold tracking-tight text-primary">
                     {blog.title}
                   </h3>
                 </div>

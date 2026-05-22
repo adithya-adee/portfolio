@@ -6,7 +6,9 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { ViewTransitions } from "next-view-transitions";
-import { AuroraBackdrop, SoftCursor, SmoothScroll, ThemeToggle } from "@/components/motion";
+// SoftCursor temporarily unmounted — the dot felt like it was chasing the native
+// cursor. Keep the component file for an easy revert if we want it back.
+import { AuroraBackdrop, SmoothScroll, ThemeToggle } from "@/components/motion";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -149,7 +151,6 @@ export default function RootLayout({
         >
           <ThemeProvider>
             <AuroraBackdrop />
-            <SoftCursor />
             <SmoothScroll />
             <ThemeToggle />
             <Toaster position="top-right" richColors />

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { Link } from "next-view-transitions";
-import { SiGithub, SiLinkedin, SiX, SiGmail, SiPeerlist } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiX, SiGmail } from "react-icons/si";
 import { HiDocumentText, HiBriefcase } from "react-icons/hi2";
 import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
 
@@ -30,11 +30,12 @@ const socialLinks = [
     icon: <SiGmail aria-hidden="true" size={18} />,
     url: `mailto:${EMAIL}`,
   },
-  {
-    name: "Peerlist",
-    icon: <SiPeerlist aria-hidden="true" size={18} />,
-    url: "https://peerlist.io/glitchy_moon",
-  },
+  // Peerlist hidden for now — uncomment to re-enable.
+  // {
+  //   name: "Peerlist",
+  //   icon: <SiPeerlist aria-hidden="true" size={18} />,
+  //   url: "https://peerlist.io/glitchy_moon",
+  // },
 ];
 
 const navigationLinks = [
