@@ -15,9 +15,9 @@ export interface SnakePoint {
   y: number;
 }
 
-export const SNAKE_WIDTH = 800;
+export const SNAKE_WIDTH = 760;
 export const ROW_HEIGHT = 200;
-export const SNAKE_AMPLITUDE = 0.2; // fraction of width
+export const SNAKE_AMPLITUDE = 0.18; // fraction of width
 export const EXIT_PADDING = 100; // extra space after the last dot
 
 export function getSnakeSide(index: number): "left" | "right" {

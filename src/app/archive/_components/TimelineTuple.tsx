@@ -21,7 +21,7 @@ interface TimelineTupleProps {
   reduced: boolean;
 }
 
-const TUPLE_MAX_WIDTH = 290;
+const TUPLE_MAX_WIDTH = 250;
 const DOT_TO_TUPLE_GAP = 32;
 
 /**
