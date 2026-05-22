@@ -82,10 +82,12 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* Profile + name block */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-8">
+        {/* Profile + name block — single row on every viewport. The display-1
+            type token scales down to 30px on narrow screens (see tokens.css)
+            so the name fits next to the avatar without wrapping. */}
+        <div className="flex flex-row items-end gap-4 sm:gap-8">
           <Reveal y={10} className="shrink-0">
-            <div className="relative">
+            <div className="relative h-14 w-14 sm:h-[84px] sm:w-[84px]">
               <div className="absolute -inset-0.5 rounded-full bg-accent opacity-30 blur-md" />
               <Image
                 src="/profile.png"
@@ -93,12 +95,12 @@ export default function Hero() {
                 width={84}
                 height={84}
                 priority
-                className="relative rounded-full ring-1 ring-cream/15"
+                className="relative h-full w-full rounded-full ring-1 ring-cream/15"
               />
             </div>
           </Reveal>
 
-          <div className="space-y-2">
+          <div className="min-w-0 flex-1 space-y-1.5 sm:space-y-2">
             {/* Letter-by-letter serif reveal of the name */}
             <h1
               aria-label={NAME}

@@ -21,7 +21,7 @@ import {
   SiSolana,
   SiAmazonwebservices,
 } from "react-icons/si";
-import { TbMathFunction } from "react-icons/tb";
+import { TbMathFunction, TbShieldLock } from "react-icons/tb";
 import { Reveal, SectionTitle } from "@/components/motion";
 
 interface TechItem {
@@ -66,6 +66,7 @@ const categories: Category[] = [
     items: [
       { name: "Solana", icon: SiSolana, color: "#9945FF" },
       { name: "Anchor", icon: SiRust, color: "#CE412B" },
+      { name: "Arcium", icon: TbShieldLock, color: "#14B8A6" },
       { name: "Circom", icon: TbMathFunction, color: "#A78BFA" },
       { name: "snarkjs", icon: TbMathFunction, color: "#60A5FA" },
     ],

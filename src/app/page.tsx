@@ -57,7 +57,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="mx-auto mt-16 max-w-3xl px-4 pb-8 sm:px-6">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-          <div className="mt-8 flex flex-col items-center justify-between gap-3 font-mono text-label tracking-wide text-tertiary sm:flex-row sm:gap-4">
+          <div className="mt-8 flex flex-col items-center justify-between gap-2 font-mono text-label tracking-wide text-tertiary sm:flex-row sm:gap-4">
             <p suppressHydrationWarning>
               {new Date().toLocaleDateString("en-US", {
                 weekday: "short",
@@ -65,10 +65,6 @@ export default function Home() {
                 day: "numeric",
                 year: "numeric",
               })}
-            </p>
-            <p className="flex items-center gap-2 uppercase tracking-[0.15em] text-tertiary">
-              <span aria-hidden="true" className="inline-block h-1 w-2 bg-accent" />
-              built in v6 noir · 2026
             </p>
             <p suppressHydrationWarning>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
           </div>
