@@ -5,12 +5,11 @@ import { useEffect } from "react";
 import { useReducedMotionSafe } from "./useReducedMotionSafe";
 
 /**
- * The page's ambient background — replaces the static blobs that used to
- * live inline in layout.tsx.
+ * Letterbox Noir backdrop. Single warm-amber blob (the "spotlight"), a warm
+ * film grain, hairline grid, and edge vignettes that letterbox the page.
  *
- * Two large blurred blobs drift in opposite organic loops. A faint pointer
- * parallax nudges them when the user moves their cursor. Under reduced-motion
- * the drift is killed and the parallax is disabled — the blobs become static.
+ * Naming kept as `AuroraBackdrop` for import compat across the codebase, but
+ * the visual is now warm noir, not cool aurora.
  */
 export function AuroraBackdrop() {
   const reduced = useReducedMotionSafe();
@@ -27,8 +26,8 @@ export function AuroraBackdrop() {
       frame = requestAnimationFrame(() => {
         const w = window.innerWidth || 1;
         const h = window.innerHeight || 1;
-        px.set((event.clientX / w - 0.5) * 40);
-        py.set((event.clientY / h - 0.5) * 40);
+        px.set((event.clientX / w - 0.5) * 32);
+        py.set((event.clientY / h - 0.5) * 32);
         frame = 0;
       });
     };
@@ -41,58 +40,62 @@ export function AuroraBackdrop() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-surface-0">
-      {/* Film grain — same SVG that used to live in layout.tsx. */}
+      {/* Warm film grain */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.07] mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          backgroundSize: "400px 400px",
+          backgroundSize: "380px 380px",
         }}
       />
 
-      {/* Subtle grid */}
+      {/* Hairline grid */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.018]"
+        className="absolute inset-0 opacity-[0.016]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+            linear-gradient(rgba(250,250,249,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(250,250,249,0.06) 1px, transparent 1px)
           `,
-          backgroundSize: "64px 64px",
+          backgroundSize: "72px 72px",
         }}
       />
 
-      {/* Blob A — violet, top-right */}
+      {/* Single warm spotlight blob (amber → crimson, very subtle) */}
       <motion.div
         aria-hidden="true"
         className={
-          "absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-purple-600 opacity-[0.10] blur-[120px] " +
-          (reduced ? "" : "animate-aurora-drift")
-        }
-        style={{ x: sx, y: sy }}
-      />
-
-      {/* Blob B — blue/cyan, bottom-left */}
-      <motion.div
-        aria-hidden="true"
-        className={
-          "absolute -left-[10%] top-1/2 h-[460px] w-[460px] rounded-full bg-blue-600 opacity-[0.09] blur-[120px] " +
+          "absolute -top-[8%] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full opacity-[0.18] blur-[140px] " +
           (reduced ? "" : "animate-aurora-drift")
         }
         style={{
-          x: reduced ? 0 : sx,
-          y: reduced ? 0 : sy,
-          animationDelay: "-7s",
-          animationDirection: "reverse",
+          x: sx,
+          y: sy,
+          background:
+            "radial-gradient(circle at center, #b45309 0%, #e11d48 45%, transparent 70%)",
         }}
       />
 
-      {/* Top-down gradient for depth */}
+      {/* Letterbox vignettes — top and bottom dim gradients that frame the page like a film */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent"
+        className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent"
+      />
+
+      {/* Soft side vignettes — narrow the visual field for the cinematic feel */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/35 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/35 to-transparent"
       />
     </div>
   );

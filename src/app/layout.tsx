@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import { JetBrains_Mono, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/SEO";
 import { Analytics } from "@vercel/analytics/next";
@@ -16,6 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
 });
 
 const SITE_URL = "https://glitchymoon.vercel.app";
@@ -136,7 +143,9 @@ export default function RootLayout({
         <head>
           <StructuredData />
         </head>
-        <body className={`${jetbrainsMono.variable} ${inter.variable}`}>
+        <body
+          className={`${jetbrainsMono.variable} ${inter.variable} ${instrumentSerif.variable}`}
+        >
           <AuroraBackdrop />
           <SoftCursor />
           <SmoothScroll />

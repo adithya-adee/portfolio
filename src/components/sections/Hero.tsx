@@ -2,22 +2,26 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Clock10 } from "lucide-react";
-import { Reveal, ScrambleText, TiltCard } from "@/components/motion";
+import { Reveal, ScrambleText, useReducedMotionSafe } from "@/components/motion";
 
 const ROLE_PHRASES = [
-  "Building Private Bridge for web apps",
-  "Engineering ZKP Phase 2 ceremony",
-  "Shipping production Rust services",
+  "building Private Bridge for web apps",
+  "engineering ZKP Phase 2 ceremony",
+  "shipping production Rust services",
 ];
 
 const HIGHLIGHTS = [
-  "Currently building Private Bridge & ZKP Phase 2 ceremony at Umbra Privacy",
-  "Shipped crab-clean (Rust CLI, 900+ downloads) & solana-indexer SDK on crates.io",
-  "Top 10% across 100+ contributors in IEEE Summer of Code 2025",
-];
+  { tag: "CURRENT", text: "Private Bridge & ZKP Phase 2 ceremony at Umbra Privacy" },
+  { tag: "SHIPPED", text: "crab-clean (900+ dl) and solana-indexer SDK on crates.io" },
+  { tag: "AWARDED", text: "Top 10% in IEEE Summer of Code 2025" },
+] as const;
+
+const NAME = "Adithya Anand";
 
 export default function Hero() {
+  const reduced = useReducedMotionSafe();
   const [currentTime, setCurrentTime] = useState("--:--:--");
 
   useEffect(() => {
@@ -39,94 +43,147 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="mx-auto mt-10 max-w-3xl px-4 sm:mt-16 sm:px-6">
-      <div className="space-y-6 sm:space-y-7">
-        {/* Profile row */}
-        <div className="flex items-start justify-between gap-4">
-          <Reveal y={12} className="flex items-center gap-4">
-            <TiltCard max={10} className="shrink-0">
-              <div className="relative">
-                <div className="absolute -inset-1 rounded-full bg-aurora opacity-50 blur-md" />
-                <Image
-                  src="/profile.png"
-                  alt="Adithya Anand"
-                  width={72}
-                  height={72}
-                  priority
-                  className="relative rounded-full ring-1 ring-white/15"
-                />
-              </div>
-            </TiltCard>
-
-            <div className="space-y-1">
-              <h1 className="bg-aurora animate-aurora-sweep bg-clip-text font-mono text-display-2 font-semibold text-transparent [background-size:200%_100%]">
-                Adithya Anand
-              </h1>
-              <p className="font-mono text-mono text-gray-500">@glitchy_moon_</p>
-            </div>
+    <section className="mx-auto mt-12 max-w-3xl px-4 sm:mt-20 sm:px-6">
+      <div className="space-y-8 sm:space-y-9">
+        {/* Top row — letterbox label + clock. Editorial chrome. */}
+        <div className="flex items-center justify-between">
+          <Reveal y={6} className="flex items-center gap-2">
+            <span aria-hidden="true" className="inline-block h-1 w-6 bg-crimson" />
+            <span className="font-mono text-label uppercase tracking-[0.25em] text-cream/60">
+              portfolio · 2026
+            </span>
           </Reveal>
 
-          <Reveal y={12} delay={0.1}>
+          <Reveal y={6} delay={0.05}>
             <div
-              className="flex items-center gap-2 rounded-md border border-soft bg-surface-1 px-3 py-1.5 shadow-elev-1 backdrop-blur-sm"
+              className="flex items-center gap-2 rounded-sm border border-soft bg-surface-1 px-3 py-1.5 shadow-elev-1 backdrop-blur-sm"
               style={{ fontVariantNumeric: "tabular-nums" }}
             >
               <Clock10
                 aria-hidden="true"
-                className="h-3.5 w-3.5 text-gray-400 sm:h-4 sm:w-4"
+                className="h-3.5 w-3.5 text-cream/60"
               />
               <p
-                className="m-0 text-label font-medium text-gray-300"
+                className="m-0 font-mono text-label font-medium text-cream/85"
                 suppressHydrationWarning
               >
-                {currentTime} <span className="text-gray-500">IST</span>
+                {currentTime} <span className="text-cream/40">IST</span>
               </p>
             </div>
           </Reveal>
         </div>
 
-        {/* Tagline + scramble line */}
-        <Reveal y={14} delay={0.18}>
-          <p className="text-body-1 leading-relaxed text-gray-200 sm:text-h2">
+        {/* Profile + name block */}
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-8">
+          <Reveal y={10} className="shrink-0">
+            <div className="relative">
+              <div className="absolute -inset-0.5 rounded-full bg-crimson opacity-30 blur-md" />
+              <Image
+                src="/profile.png"
+                alt="Adithya Anand"
+                width={84}
+                height={84}
+                priority
+                className="relative rounded-full ring-1 ring-cream/15"
+              />
+            </div>
+          </Reveal>
+
+          <div className="space-y-2">
+            {/* Letter-by-letter serif reveal of the name */}
+            <h1
+              aria-label={NAME}
+              className="relative inline-block font-serif text-display-1 font-normal leading-[0.95] tracking-tight text-cream"
+            >
+              <span aria-hidden="true" className="inline-block">
+                {NAME.split("").map((char, i) => (
+                  <motion.span
+                    key={`${char}-${i}`}
+                    initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: "0.5em" }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: reduced ? 0 : 0.7,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: reduced ? 0 : 0.15 + i * 0.04,
+                    }}
+                    className="inline-block"
+                    style={{ whiteSpace: char === " " ? "pre" : "normal" }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+
+              {/* Crimson underline that draws in below the name */}
+              <motion.span
+                aria-hidden="true"
+                initial={reduced ? { scaleX: 1 } : { scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{
+                  duration: reduced ? 0 : 1,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: reduced ? 0 : 0.9,
+                }}
+                className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left bg-crimson"
+              />
+            </h1>
+
+            <Reveal y={6} delay={0.95}>
+              <p className="font-mono text-mono text-cream/45">@glitchy_moon_</p>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Role + scramble line */}
+        <Reveal y={10} delay={1.1}>
+          <p className="text-h2 leading-snug text-cream/90">
             Backend &amp; ZK Engineer at{" "}
-            <span className="bg-aurora bg-clip-text font-medium text-transparent">
-              Umbra Privacy
-            </span>
+            <span className="font-serif italic text-crimson">Umbra Privacy</span>
           </p>
-          <p className="mt-1 font-mono text-mono text-gray-500">
-            <span className="text-gray-600">›</span>{" "}
-            <ScrambleText phrases={ROLE_PHRASES} className="text-gray-400" />
+          <p className="mt-2 font-mono text-mono text-cream/55">
+            <span className="text-crimson">›</span>{" "}
+            <ScrambleText phrases={ROLE_PHRASES} className="text-cream/75" />
           </p>
         </Reveal>
 
         {/* Bio */}
-        <Reveal y={14} delay={0.28}>
-          <p className="max-w-2xl text-body-2 leading-relaxed text-gray-400">
+        <Reveal y={10} delay={1.2}>
+          <p className="max-w-2xl text-body-1 leading-relaxed text-cream/70">
             I build privacy-preserving backend systems with{" "}
-            <span className="text-gray-200">Rust (Axum)</span>,{" "}
-            <span className="text-gray-200">Circom</span>, and{" "}
-            <span className="text-gray-200">Solana</span>. Comfortable across the stack — APIs,
+            <span className="text-cream">Rust (Axum)</span>,{" "}
+            <span className="text-cream">Circom</span>, and{" "}
+            <span className="text-cream">Solana</span>. Comfortable across the stack — APIs,
             distributed systems, smart contracts, and the cryptography that underpins them.
           </p>
         </Reveal>
 
-        {/* Highlights — staggered bullet reveals */}
-        <ul className="space-y-1.5">
+        {/* Highlights — editorial tag + text format */}
+        <ul className="space-y-3 border-t border-soft pt-6">
           {HIGHLIGHTS.map((highlight, i) => (
             <Reveal
-              key={highlight}
+              key={highlight.tag}
               as="li"
-              y={10}
-              delay={0.38 + i * 0.08}
-              className="flex gap-3 font-mono text-mono leading-relaxed text-gray-400"
+              y={8}
+              delay={1.3 + i * 0.08}
+              className="grid grid-cols-[auto_1fr] items-baseline gap-4 sm:grid-cols-[auto_auto_1fr] sm:gap-6"
             >
-              <span aria-hidden="true" className="select-none text-purple-400/70">
-                ▸
+              <span aria-hidden="true" className="block h-2 w-2 bg-crimson" />
+              <span className="font-mono text-label font-semibold uppercase tracking-[0.18em] text-crimson">
+                {highlight.tag}
               </span>
-              <span>{highlight}</span>
+              <span className="col-span-2 text-body-2 leading-relaxed text-cream/75 sm:col-span-1">
+                {highlight.text}
+              </span>
             </Reveal>
           ))}
         </ul>
+
+        {/* Scroll cue */}
+        <Reveal y={6} delay={1.7} className="flex justify-center pt-2">
+          <span className="font-mono text-label uppercase tracking-[0.3em] text-cream/30">
+            ──  scroll  ──
+          </span>
+        </Reveal>
       </div>
     </section>
   );
