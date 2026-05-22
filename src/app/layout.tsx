@@ -9,6 +9,7 @@ import { ViewTransitions } from "next-view-transitions";
 // SoftCursor temporarily unmounted — the dot felt like it was chasing the native
 // cursor. Keep the component file for an easy revert if we want it back.
 import { AuroraBackdrop, SmoothScroll, ThemeToggle } from "@/components/motion";
+import { CommandPaletteMount } from "@/components/motion/CommandPaletteMount";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -153,6 +154,7 @@ export default function RootLayout({
             <AuroraBackdrop />
             <SmoothScroll />
             <ThemeToggle />
+            <CommandPaletteMount />
             <Toaster position="top-right" richColors />
             <Analytics />
             <SpeedInsights />

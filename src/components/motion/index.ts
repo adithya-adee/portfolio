@@ -8,4 +8,5 @@ export { CountUp } from "./CountUp";
 export { SmoothScroll } from "./SmoothScroll";
 export { SectionTitle } from "./SectionTitle";
 export { ThemeToggle } from "./ThemeToggle";
+export { CommandPalette } from "./CommandPalette";
 export { useReducedMotionSafe } from "./useReducedMotionSafe";
