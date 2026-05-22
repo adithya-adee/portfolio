@@ -24,7 +24,7 @@ export default function StructuredData() {
     email: "mailto:adithya25905@gmail.com",
     jobTitle: "Backend Developer",
     description:
-      "Backend Developer at Umbra Privacy building zero-knowledge proof systems — the Private Bridge for web applications and the ZKP Phase 2 trusted-setup ceremony. Computer Science student at NITK Surathkal with production experience in Rust (Axum), Circom, Solana (Anchor), Node.js, NestJS, and AWS.",
+      "Backend & Blockchain Engineer at Umbra Privacy. Contributing to privacy-preserving infrastructure — the Private Bridge for web applications and the ZKP Phase 2 trusted-setup ceremony. Computer Science student at NITK Surathkal with production experience in Rust (Axum), Solana (Anchor), Node.js, NestJS, and AWS.",
 
     // Professional profiles
     sameAs: [
@@ -148,7 +148,7 @@ export default function StructuredData() {
     url: baseUrl,
     name: "Adithya Anand — Backend Developer Portfolio",
     description:
-      "Portfolio of Adithya Anand — Backend Developer specializing in zero-knowledge proofs, Rust (Axum), Solana, and full-stack engineering.",
+      "Portfolio of Adithya Anand — Backend & Blockchain Engineer specialising in Rust (Axum), Solana, and full-stack engineering.",
     publisher: { "@id": `${baseUrl}/#person` },
     inLanguage: "en-US",
     potentialAction: {

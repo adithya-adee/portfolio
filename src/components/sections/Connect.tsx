@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { Link } from "next-view-transitions";
-import { SiGithub, SiLinkedin, SiX, SiGmail } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { HiDocumentText, HiBriefcase } from "react-icons/hi2";
 import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
 
@@ -25,11 +25,8 @@ const socialLinks = [
     icon: <SiX aria-hidden="true" size={18} />,
     url: "https://x.com/glitchy_moon_",
   },
-  {
-    name: "Email",
-    icon: <SiGmail aria-hidden="true" size={18} />,
-    url: `mailto:${EMAIL}`,
-  },
+  // Email is intentionally not duplicated here — the big featured email card
+  // above already handles that affordance + Y-yank shortcut.
   // Peerlist hidden for now — uncomment to re-enable.
   // {
   //   name: "Peerlist",
@@ -85,7 +82,7 @@ export default function Connect() {
             <MagneticButton strength={0.15}>
               <a
                 href={`mailto:${EMAIL}`}
-                className="font-mono text-display-2 font-medium tracking-tight text-accent transition-opacity hover:opacity-90"
+                className="block break-all font-mono text-h2 font-medium tracking-tight text-accent transition-opacity hover:opacity-90 sm:text-display-2"
               >
                 {EMAIL}
               </a>

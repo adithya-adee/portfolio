@@ -17,14 +17,16 @@ interface RevealProps {
   as?: "div" | "span" | "li";
 }
 
+// Dropped the `filter: blur()` step — forcing repaints on every reveal was
+// the biggest jank source on low-end mobile GPUs. Opacity + transform stays.
 const variants: Variants = {
-  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const reducedVariants: Variants = {
-  hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0 },
 };
 
 export function Reveal({
