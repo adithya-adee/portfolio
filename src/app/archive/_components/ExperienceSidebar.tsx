@@ -92,8 +92,14 @@ export function ExperienceSidebar({ entry, onClose }: ExperienceSidebarProps) {
 
                 {/* Content cross-fade — keyed by slug so clicking a different
                     entry while the sidebar is open swaps content smoothly
-                    without closing+reopening the shell. */}
-                <div className="relative flex-1 overflow-y-auto px-6 pb-10 pt-12 md:px-8 md:pt-14">
+                    without closing+reopening the shell.
+                    `data-lenis-prevent` opts this element out of the global
+                    Lenis smooth-scroll so wheel events scroll the sidebar
+                    natively instead of being captured by the page. */}
+                <div
+                  data-lenis-prevent
+                  className="relative flex-1 overflow-y-auto overscroll-contain px-6 pb-10 pt-12 md:px-8 md:pt-14"
+                >
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={entry.slug}
