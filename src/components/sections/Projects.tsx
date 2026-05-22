@@ -1,10 +1,12 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import projectsData from "@/asset/projects.json";
 import { ChevronDown, ExternalLink, Filter } from "lucide-react";
 import { SiGithub } from "react-icons/si";
+import { MagneticButton, Reveal, SectionTitle, TiltCard } from "@/components/motion";
+import { cn } from "@/lib/utils";
 
 interface Project {
   name: string;
@@ -20,9 +22,10 @@ interface Project {
 
 type FilterCategory = "web3" | "full-stack" | "open-source";
 
-const FILTER_OPTIONS: FilterCategory[] = ["full-stack", "web3", "open-source"];
+const FILTER_OPTIONS: FilterCategory[] = ["web3", "full-stack", "open-source"];
 
-const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
+const SKILL_CHIP =
+  "rounded-md bg-violet-500/10 px-3 py-1 text-label tracking-wide text-violet-200 ring-1 ring-inset ring-violet-500/25";
 
 const getYoutubeEmbedUrl = (url: string): string => {
   if (url.includes("youtube.com/watch")) {
@@ -31,8 +34,7 @@ const getYoutubeEmbedUrl = (url: string): string => {
       const videoId = urlObj.searchParams.get("v");
       if (videoId) return `https://www.youtube.com/embed/${videoId}`;
     } catch (e) {
-      console.log(e);
-      // ignore invalid URLs
+      console.warn("Invalid YouTube URL", e);
     }
   }
   return url;
@@ -44,29 +46,27 @@ const getCategoryLabel = (category: FilterCategory): string => {
   return "Full Stack";
 };
 
-const getCategoryStyles = (category: string) => {
+const getCategoryBadgeStyles = (category: string) => {
   if (category === "web3")
-    return "bg-purple-500/10 text-purple-400 ring-1 ring-inset ring-purple-500/20";
+    return "bg-purple-500/10 text-purple-300 ring-1 ring-inset ring-purple-500/30";
   if (category === "open-source")
-    return "bg-emerald-500/10 text-emerald-400 ring-1 ring-inset ring-emerald-500/20";
-  return "bg-blue-500/10 text-blue-400 ring-1 ring-inset ring-blue-500/20";
+    return "bg-emerald-500/10 text-emerald-300 ring-1 ring-inset ring-emerald-500/30";
+  return "bg-blue-500/10 text-blue-300 ring-1 ring-inset ring-blue-500/30";
 };
 
-export default function ProjectsPage() {
+export default function Projects() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [activeFilter, setActiveFilter] = useState<FilterCategory>("full-stack");
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>("web3");
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const projects = projectsData as Project[];
-
-  // Use useMemo to avoid unnecessary recalculations
   const filteredProjects = useMemo(
     () => projects.filter((project) => project.category === activeFilter),
     [activeFilter, projects]
@@ -74,185 +74,214 @@ export default function ProjectsPage() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <h2 className="mb-6 border-l-2 border-blue-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
+      <SectionTitle
+        meta={`${filteredProjects.length} ${filteredProjects.length === 1 ? "project" : "projects"}`}
+      >
         Projects I&apos;ve Built
-      </h2>
+      </SectionTitle>
 
-      {/* Filter Buttons */}
-      <div className="mb-6 flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-2 text-sm text-gray-500">
-          <Filter size={16} />
-          <span className="hidden sm:inline">Filter:</span>
+      {/* Filter row */}
+      <Reveal y={10} className="mb-6 flex flex-wrap items-center gap-3">
+        <div className="flex items-center gap-2 text-label text-gray-500">
+          <Filter aria-hidden="true" size={14} />
+          <span className="hidden sm:inline uppercase tracking-wider">Filter</span>
         </div>
 
-        {FILTER_OPTIONS.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveFilter(category)}
-            className={`relative overflow-hidden rounded-lg px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 ease-out ${
-              activeFilter === category
-                ? "border border-neutral-600/50 bg-gradient-to-r from-neutral-700/60 to-neutral-800/60 text-white shadow-lg shadow-neutral-900/50 hover:border-purple-500/60 hover:shadow-purple-500/20"
-                : "border border-neutral-800/50 bg-neutral-900/30 text-gray-400 hover:border-purple-500/60 hover:bg-neutral-800/40 hover:text-gray-300 hover:shadow-lg hover:shadow-purple-500/20"
-            } `}
-          >
-            <span className="relative z-10">{getCategoryLabel(category)}</span>
-            {activeFilter === category && (
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-transparent" />
-            )}
-          </button>
-        ))}
-
-        <span className="ml-auto hidden text-xs text-gray-600 sm:block">
-          {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}
-        </span>
-      </div>
-
-      {/* Projects List */}
-      <div className="space-y-4 sm:space-y-6">
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              layout={!isMobile}
-              initial={!isMobile ? { opacity: 0, y: 10 } : undefined}
-              animate={!isMobile ? { opacity: 1, y: 0 } : undefined}
-              exit={!isMobile ? { opacity: 0, y: -10 } : undefined}
-              transition={!isMobile ? { duration: 0.25, ease: "easeOut" } : { duration: 0 }}
-              key={project.name}
-              className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
-            >
-              {/* Collapsed View */}
+        {FILTER_OPTIONS.map((category) => {
+          const isActive = activeFilter === category;
+          return (
+            <MagneticButton key={category} strength={0.25}>
               <button
-                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
-              >
-                <div className="flex-1 space-y-3">
-                  <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
-                        {project.name}
-                      </h3>
-                      {/* Category Badge */}
-                      <span
-                        className={`inline-flex items-center rounded-full px-2.5 text-xs font-medium tracking-wide ${getCategoryStyles(
-                          project.category
-                        )}`}
-                      >
-                        {getCategoryLabel(project.category as FilterCategory)}
-                      </span>
-                    </div>
-                    <span className="whitespace-nowrap text-xs uppercase tracking-wider text-gray-500 sm:text-sm">
-                      {project.timeline}
-                    </span>
-                  </div>
-                  <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-                    {project.short_description}
-                  </p>
-
-                  {/* Links */}
-                  <div className="flex flex-wrap gap-4 pt-2 sm:gap-6">
-                    {project.live_url && (
-                      <a
-                        href={project.live_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
-                      >
-                        Visit <ExternalLink size={14} />
-                      </a>
-                    )}
-                    {project.github_url && (
-                      <a
-                        href={project.github_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
-                      >
-                        GitHub <SiGithub size={14} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={`ml-4 transition-all duration-300 ease-in-out sm:ml-6 ${
-                    expandedIndex === index ? "rotate-180" : "rotate-0"
-                  }`}
-                >
-                  <ChevronDown className="h-5 w-5 text-gray-500 transition-colors duration-200 group-hover:text-gray-300" />
-                </div>
-              </button>
-
-              {/* Expanded View */}
-              <div
-                className={`overflow-hidden ${
-                  isMobile
-                    ? expandedIndex === index
-                      ? "max-h-none opacity-100"
-                      : "max-h-0 opacity-0"
-                    : expandedIndex === index
-                      ? "max-h-[2000px] opacity-100 transition-all duration-500 ease-in-out"
-                      : "max-h-0 opacity-0 transition-all duration-500 ease-in-out"
-                }`}
-              >
-                <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
-                  <ul className="space-y-2">
-                    {project.detailed_description.map((point, i) => (
-                      <li
-                        key={i}
-                        className={`flex gap-3 transition-all duration-300 ${
-                          expandedIndex === index
-                            ? "translate-x-0 opacity-100"
-                            : "-translate-x-4 opacity-0"
-                        }`}
-                        style={{ transitionDelay: isMobile ? "0ms" : `${i * 50}ms` }}
-                      >
-                        <span className="mt-2 text-gray-600">•</span>
-                        <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
-                          {point}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Skills */}
-                  {project.skills && project.skills.length > 0 && (
-                    <div className="mt-5 space-y-3 border-t border-neutral-800/50 pt-4">
-                      <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
-                        Skills
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.skills.map((skill, i) => (
-                          <span
-                            key={i}
-                            className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Video Embed */}
-                {expandedIndex === index && project.video_url && (
-                  <div className="border-t border-neutral-800/50 bg-neutral-900/40 p-4 sm:p-6">
-                    <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700/50 shadow-lg">
-                      <iframe
-                        src={getYoutubeEmbedUrl(project.video_url)}
-                        title={`${project.name} video overview`}
-                        className="h-full w-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
-                      ></iframe>
-                    </div>
-                  </div>
+                onClick={() => setActiveFilter(category)}
+                className={cn(
+                  "relative overflow-hidden rounded-lg border px-4 py-2 text-label font-medium tracking-wide transition-colors duration-base ease-out-soft",
+                  isActive
+                    ? "border-strong bg-surface-2 text-white shadow-elev-2"
+                    : "border-soft bg-surface-1 text-gray-400 hover:border-strong hover:text-gray-100"
                 )}
-              </div>
-            </motion.div>
-          ))}
+              >
+                <span className="relative z-10">{getCategoryLabel(category)}</span>
+                {isActive ? (
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-aurora-soft opacity-100"
+                  />
+                ) : null}
+              </button>
+            </MagneticButton>
+          );
+        })}
+      </Reveal>
+
+      {/* Projects list */}
+      <div className="space-y-4 sm:space-y-5">
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, index) => {
+            const isOpen = expandedIndex === index;
+            return (
+              <motion.div
+                key={project.name}
+                layout={!isMobile}
+                initial={!isMobile ? { opacity: 0, y: 14 } : undefined}
+                animate={!isMobile ? { opacity: 1, y: 0 } : undefined}
+                exit={!isMobile ? { opacity: 0, y: -10 } : undefined}
+                transition={{ duration: isMobile ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <TiltCard max={4}>
+                  <div
+                    className={cn(
+                      "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 backdrop-blur-sm",
+                      "shadow-elev-1 transition-shadow duration-base ease-out-soft",
+                      "hover:border-strong hover:shadow-elev-2"
+                    )}
+                  >
+                    {/* Aurora bar on hover */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
+                    />
+
+                    <button
+                      onClick={() => setExpandedIndex(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      aria-controls={`project-panel-${index}`}
+                      className="flex w-full items-center justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
+                    >
+                      <div className="flex-1 space-y-2.5">
+                        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <h3 className="text-h3 font-semibold tracking-tight text-white">
+                              {project.name}
+                            </h3>
+                            <span
+                              className={cn(
+                                "inline-flex items-center rounded-full px-2.5 py-0.5 text-label font-medium tracking-wide",
+                                getCategoryBadgeStyles(project.category)
+                              )}
+                            >
+                              {getCategoryLabel(project.category as FilterCategory)}
+                            </span>
+                          </div>
+                          <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-gray-400">
+                            {project.timeline}
+                          </span>
+                        </div>
+                        <p className="text-body-2 leading-relaxed tracking-wide text-gray-300">
+                          {project.short_description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-4 pt-1 sm:gap-6">
+                          {project.live_url ? (
+                            <a
+                              href={project.live_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                            >
+                              Visit <ExternalLink aria-hidden="true" size={14} />
+                            </a>
+                          ) : null}
+                          {project.github_url ? (
+                            <a
+                              href={project.github_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                            >
+                              GitHub <SiGithub aria-hidden="true" size={14} />
+                            </a>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div
+                        className={cn(
+                          "ml-4 transition-transform duration-base ease-out-soft sm:ml-6",
+                          isOpen ? "rotate-180" : "rotate-0"
+                        )}
+                        aria-hidden="true"
+                      >
+                        <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-gray-200" />
+                      </div>
+                    </button>
+
+                    {/* Expanded */}
+                    <div
+                      id={`project-panel-${index}`}
+                      className={cn(
+                        "overflow-hidden",
+                        isMobile
+                          ? isOpen
+                            ? "max-h-none opacity-100"
+                            : "max-h-0 opacity-0"
+                          : isOpen
+                            ? "max-h-[2000px] opacity-100 transition-all duration-slow ease-out-soft"
+                            : "max-h-0 opacity-0 transition-all duration-slow ease-out-soft"
+                      )}
+                    >
+                      <div className="border-t border-soft bg-surface-2/30 px-4 pb-5 pt-4 sm:px-6">
+                        <ul className="space-y-2">
+                          {project.detailed_description.map((point, i) => (
+                            <li
+                              key={i}
+                              className={cn(
+                                "flex gap-3 transition-all duration-base ease-out-soft",
+                                isOpen
+                                  ? "translate-x-0 opacity-100"
+                                  : "-translate-x-3 opacity-0"
+                              )}
+                              style={{
+                                transitionDelay:
+                                  isMobile || !isOpen ? "0ms" : `${i * 40}ms`,
+                              }}
+                            >
+                              <span aria-hidden="true" className="mt-2 text-purple-400/70">
+                                ▸
+                              </span>
+                              <span className="text-body-2 leading-relaxed tracking-wide text-gray-300">
+                                {point}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {project.skills?.length ? (
+                          <div className="mt-5 space-y-3 border-t border-soft pt-4">
+                            <p className="text-label font-medium uppercase tracking-[0.15em] text-gray-500">
+                              Skills
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.skills.map((skill, i) => (
+                                <span key={i} className={SKILL_CHIP}>
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+
+                      {isOpen && project.video_url ? (
+                        <div className="border-t border-soft bg-surface-2/40 p-4 sm:p-6">
+                          <div className="aspect-video w-full overflow-hidden rounded-lg border border-soft shadow-elev-2">
+                            <iframe
+                              src={getYoutubeEmbedUrl(project.video_url)}
+                              title={`${project.name} video overview`}
+                              className="h-full w-full"
+                              allow="autoplay; encrypted-media; picture-in-picture"
+                              allowFullScreen
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </TiltCard>
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </div>
     </section>

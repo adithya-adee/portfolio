@@ -2,6 +2,9 @@
 
 import blogsData from "@/asset/blog.json";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { Link } from "next-view-transitions";
+import { Reveal, SectionTitle, MagneticButton } from "@/components/motion";
+import { cn } from "@/lib/utils";
 
 interface Blog {
   id: number;
@@ -16,8 +19,8 @@ interface Blog {
 
 const getCategoryStyles = (category: string) => {
   return category === "Tech"
-    ? "bg-sky-500/10 text-sky-400 border border-sky-500/30"
-    : "bg-purple-500/10 text-purple-400 border border-purple-500/30";
+    ? "bg-sky-500/10 text-sky-300 ring-1 ring-inset ring-sky-500/30"
+    : "bg-purple-500/10 text-purple-300 ring-1 ring-inset ring-purple-500/30";
 };
 
 export default function Blogs() {
@@ -26,63 +29,74 @@ export default function Blogs() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <div className="mb-4 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-        <h2 className="mb-4 border-l-2 border-sky-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
-          Recent Articles
-        </h2>
-        <a
-          href="/blog"
-          className="flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-colors hover:text-gray-200"
-        >
-          View All
-          <ArrowUpRight className="h-4 w-4" />
-        </a>
-      </div>
-
-      {/* Blogs List */}
-      <div className="space-y-2 sm:space-y-3">
-        {highlightedBlogs.map((blog) => (
-          <div
-            key={blog.id}
-            className="card-accent group rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-800/50 hover:shadow-lg hover:shadow-sky-500/10 sm:px-6 sm:py-4"
+      <SectionTitle
+        meta={
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1.5 text-label uppercase tracking-wider text-gray-400 transition-colors hover:text-white"
           >
-            <div className="space-y-2">
-              {/* Title and Date on same line */}
+            View all
+            <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
+          </Link>
+        }
+      >
+        Recent Articles
+      </SectionTitle>
+
+      <div className="space-y-3">
+        {highlightedBlogs.map((blog, i) => (
+          <Reveal
+            key={blog.id}
+            y={12}
+            delay={i * 0.06}
+            className={cn(
+              "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 px-4 py-4 backdrop-blur-sm sm:px-6 sm:py-5",
+              "shadow-elev-1 transition-shadow duration-base ease-out-soft",
+              "hover:border-strong hover:shadow-elev-2"
+            )}
+          >
+            <span
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
+            />
+
+            <div className="space-y-2.5">
               <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                 <div className="flex flex-wrap items-center gap-2">
                   <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${getCategoryStyles(
-                      blog.category
-                    )}`}
+                    className={cn(
+                      "rounded-full px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider",
+                      getCategoryStyles(blog.category)
+                    )}
                   >
                     {blog.category}
                   </span>
-                  <h3 className="font-base font-medium leading-relaxed tracking-wide text-white transition-colors group-hover:text-gray-200">
+                  <h3 className="text-body-1 font-medium tracking-tight text-white">
                     {blog.title}
                   </h3>
                 </div>
-                <div>
-                  <span className="whitespace-nowrap text-xs tracking-wide text-gray-500 sm:text-sm">
-                    {new Date(blog.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
-                </div>
+                <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-gray-400">
+                  {new Date(blog.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
               </div>
 
-              {/* Read Article Link */}
-              <a
-                href={blog.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-all duration-200 hover:scale-105 hover:text-white hover:underline hover:underline-offset-4"
-              >
-                Read Article <ExternalLink size={14} />
-              </a>
+              <MagneticButton strength={0.2}>
+                <a
+                  href={blog.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                >
+                  Read article
+                  <ExternalLink aria-hidden="true" size={14} />
+                </a>
+              </MagneticButton>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

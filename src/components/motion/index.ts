@@ -6,4 +6,5 @@ export { AuroraBackdrop } from "./AuroraBackdrop";
 export { SoftCursor } from "./SoftCursor";
 export { CountUp } from "./CountUp";
 export { SmoothScroll } from "./SmoothScroll";
+export { SectionTitle } from "./SectionTitle";
 export { useReducedMotionSafe } from "./useReducedMotionSafe";
