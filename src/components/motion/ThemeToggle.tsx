@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -41,17 +42,22 @@ export function ThemeToggle() {
     return () => window.removeEventListener("keydown", handler);
   }, [toggle]);
 
-  // SSR placeholder — same physical footprint so layout doesn't shift on mount.
+  // SSR placeholder — square on mobile, full chip on sm+.
   if (!mounted) {
     return (
       <div
         aria-hidden="true"
-        className="fixed right-4 top-4 z-50 h-[34px] w-[124px] rounded-sm border border-soft bg-surface-1 shadow-elev-1 backdrop-blur-sm sm:right-6 sm:top-6"
+        className="fixed right-4 top-4 z-50 h-[34px] w-[34px] rounded-sm border border-soft bg-surface-1 shadow-elev-1 backdrop-blur-sm sm:right-6 sm:top-6 sm:w-[124px]"
       />
     );
   }
 
   const isDark = resolvedTheme === "dark";
+  const buttonBase = cn(
+    "group fixed right-4 top-4 z-50 flex items-center rounded-sm border border-soft bg-surface-1 shadow-elev-1 backdrop-blur-sm transition-colors duration-base ease-out-soft sm:right-6 sm:top-6",
+    "hover:border-strong hover:bg-surface-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+  );
 
   return (
     <button
@@ -61,32 +67,43 @@ export function ThemeToggle() {
       aria-pressed={isDark}
       title="Cmd/Ctrl + Shift + L"
       className={cn(
-        "group fixed right-4 top-4 z-50 flex items-center gap-2 rounded-sm border border-soft bg-surface-1 px-3 py-1.5 shadow-elev-1 backdrop-blur-sm transition-colors duration-base ease-out-soft sm:right-6 sm:top-6",
-        "hover:border-strong hover:bg-surface-2",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+        buttonBase,
+        // Mobile: square icon button. Desktop: full chip.
+        "h-[34px] w-[34px] justify-center sm:w-auto sm:gap-2 sm:px-3 sm:py-1.5"
       )}
     >
+      {/* Mobile icon — Sun in light mode (showing what you'll switch FROM),
+          Moon in dark mode. Pattern matches GitHub/most apps. */}
+      <span aria-hidden="true" className="sm:hidden">
+        {isDark ? (
+          <Moon className="h-4 w-4 text-primary" />
+        ) : (
+          <Sun className="h-4 w-4 text-accent" />
+        )}
+      </span>
+
+      {/* Desktop chip */}
       <span
         aria-hidden="true"
         className={cn(
-          "h-1.5 w-1.5 rounded-full transition-colors duration-base",
+          "hidden h-1.5 w-1.5 rounded-full transition-colors duration-base sm:block",
           isDark ? "bg-accent" : "bg-primary/40"
         )}
       />
       <span
         className={cn(
-          "font-mono text-label font-medium uppercase tracking-[0.15em] transition-colors duration-base",
+          "hidden font-mono text-label font-medium uppercase tracking-[0.15em] transition-colors duration-base sm:inline",
           isDark ? "text-primary" : "text-muted"
         )}
       >
         Dark
       </span>
-      <span aria-hidden="true" className="text-muted">
+      <span aria-hidden="true" className="hidden text-muted sm:inline">
         ·
       </span>
       <span
         className={cn(
-          "font-mono text-label font-medium uppercase tracking-[0.15em] transition-colors duration-base",
+          "hidden font-mono text-label font-medium uppercase tracking-[0.15em] transition-colors duration-base sm:inline",
           isDark ? "text-muted" : "text-primary"
         )}
       >
@@ -95,7 +112,7 @@ export function ThemeToggle() {
       <span
         aria-hidden="true"
         className={cn(
-          "h-1.5 w-1.5 rounded-full transition-colors duration-base",
+          "hidden h-1.5 w-1.5 rounded-full transition-colors duration-base sm:block",
           isDark ? "bg-primary/40" : "bg-accent"
         )}
       />
