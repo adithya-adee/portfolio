@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import blogsData from "@/asset/blog.json";
 import { ExternalLink, Calendar, ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
+import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -25,72 +27,98 @@ interface Blog {
   url: string;
 }
 
+const getCategoryStyles = (category: string) =>
+  category === "Tech"
+    ? "bg-sky-500/10 text-sky-300 ring-1 ring-inset ring-sky-500/30"
+    : "bg-purple-500/10 text-purple-300 ring-1 ring-inset ring-purple-500/30";
+
 export default function BlogPage() {
   const blogs = blogsData as Blog[];
 
   return (
     <div className="min-h-screen">
-      <section className="mx-auto mt-8 max-w-3xl px-4 py-6 sm:mt-12 sm:px-6 sm:py-8">
-        {/* Back Button */}
-        <Link
-          href="/"
-          className="mb-6 inline-flex items-center gap-2 text-sm tracking-wide text-gray-400 transition-colors hover:text-white"
-        >
-          <ArrowLeft size={16} />
-          Back to Home
-        </Link>
+      <section className="mx-auto mt-10 max-w-3xl px-4 py-6 sm:mt-16 sm:px-6 sm:py-8">
+        {/* Back link */}
+        <Reveal y={8} className="mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-400 transition-colors hover:text-white"
+          >
+            <ArrowLeft aria-hidden="true" size={14} />
+            Back to home
+          </Link>
+        </Reveal>
 
-        {/* Header */}
-        <div className="mb-6 space-y-1">
-          <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            Blog Posts
-          </h1>
-          <p className="text-sm tracking-wide text-gray-400 sm:text-base">
-            Thoughts on code, tech, and building products
+        <SectionTitle meta={`${blogs.length} ${blogs.length === 1 ? "post" : "posts"}`}>
+          Blog Posts
+        </SectionTitle>
+
+        <Reveal y={10} delay={0.05}>
+          <p className="mb-6 text-body-2 leading-relaxed tracking-wide text-gray-400">
+            Thoughts on backend engineering, zero-knowledge proofs, Rust, and shipping
+            privacy-preserving systems.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Blog List */}
-        <div className="space-y-2 sm:space-y-3">
-          {blogs.map((blog) => (
-            <article
+        {/* Blog list */}
+        <div className="space-y-3">
+          {blogs.map((blog, i) => (
+            <Reveal
               key={blog.title}
-              className="group rounded-lg border border-neutral-700/40 bg-neutral-900/50 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-lg sm:p-5"
+              y={12}
+              delay={0.08 + i * 0.05}
+              className={cn(
+                "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 px-4 py-4 backdrop-blur-sm sm:px-6 sm:py-5",
+                "shadow-elev-1 transition-shadow duration-base ease-out-soft",
+                "hover:border-strong hover:shadow-elev-2"
+              )}
             >
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
+              />
+
               <div className="space-y-3">
-                {/* Title and Date */}
+                {/* Header row: title + date */}
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <h2 className="text-base font-medium leading-snug tracking-wide text-white transition-colors group-hover:text-gray-200 sm:text-lg">
+                  <h2 className="text-h3 font-semibold leading-snug tracking-tight text-white transition-colors group-hover:text-gray-50">
                     {blog.title}
                   </h2>
-                  <span className="flex shrink-0 items-center gap-2 text-sm tracking-wide text-gray-500">
-                    <Calendar size={14} />
+                  <span className="flex shrink-0 items-center gap-2 font-mono text-label uppercase tracking-wider text-gray-400">
+                    <Calendar aria-hidden="true" size={13} />
                     {blog.date}
                   </span>
                 </div>
 
-                {/* Category */}
-                <span className="inline-block rounded bg-neutral-800/50 px-3 py-1.5 text-xs uppercase tracking-wider text-gray-400">
+                {/* Category badge */}
+                <span
+                  className={cn(
+                    "inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider",
+                    getCategoryStyles(blog.category)
+                  )}
+                >
                   {blog.category}
                 </span>
 
                 {/* Description */}
-                <p className="line-clamp-2 text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
+                <p className="line-clamp-2 text-body-2 leading-relaxed tracking-wide text-gray-400">
                   {blog.description}
                 </p>
 
-                {/* Read Link */}
-                <a
-                  href={blog.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm tracking-wide text-gray-500 transition-colors hover:text-white"
-                >
-                  Read article
-                  <ExternalLink size={14} />
-                </a>
+                {/* Read link */}
+                <MagneticButton strength={0.2}>
+                  <a
+                    href={blog.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                  >
+                    Read article
+                    <ExternalLink aria-hidden="true" size={14} />
+                  </a>
+                </MagneticButton>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>

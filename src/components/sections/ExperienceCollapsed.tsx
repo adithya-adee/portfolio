@@ -3,8 +3,11 @@
 import experienceData from "@/asset/experience.json";
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import { Reveal, SectionTitle } from "@/components/motion";
+import { cn } from "@/lib/utils";
 
-const SKILL_COLOR = "bg-violet-500/10 text-violet-300 ring-violet-500/20";
+const SKILL_CHIP =
+  "rounded-md bg-surface-2 px-3 py-1 text-label tracking-wide text-gray-300 ring-1 ring-inset ring-soft";
 
 export interface ExperienceItem {
   slug: string;
@@ -22,13 +25,13 @@ export interface ExperienceItem {
   display?: boolean;
 }
 
-export default function Experience() {
+export default function ExperienceCollapsed() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -37,118 +40,140 @@ export default function Experience() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <h2 className="mb-6 border-l-2 border-purple-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
-        Where I&apos;ve Worked
-      </h2>
+      <SectionTitle meta={`${experience.length} roles`}>Where I&apos;ve Worked</SectionTitle>
 
-      <div className="space-y-4 sm:space-y-6">
-        {experience.map((exp, index) => (
-          <div
-            key={exp.company}
-            className="card-accent group overflow-hidden rounded-lg border border-neutral-700/40 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:shadow-xl hover:shadow-purple-500/10"
-          >
-            {/* Collapsed View */}
-            <button
-              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-              className="flex w-full items-center justify-between px-4 py-4 text-left transition-all duration-200 sm:px-6 sm:py-5"
+      <div className="space-y-4 sm:space-y-5">
+        {experience.map((exp, index) => {
+          const isCurrent = exp.endDate.toLowerCase() === "present";
+          const isOpen = expandedIndex === index;
+          return (
+            <Reveal
+              key={exp.company}
+              y={14}
+              delay={index * 0.06}
+              className={cn(
+                "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 backdrop-blur-sm",
+                "shadow-elev-1 transition-shadow duration-base ease-out-soft",
+                "hover:border-strong hover:shadow-elev-2"
+              )}
             >
-              <div className="flex-1 space-y-3">
-                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-base font-medium tracking-wide text-white transition-colors duration-200 group-hover:text-gray-100 sm:text-lg">
-                      {exp.position}
-                    </h3>
-                    {/* Location Badge */}
-                    <span className="inline-flex items-center rounded-full bg-neutral-800/60 px-2.5 py-0.5 text-xs font-medium tracking-wide text-gray-400 ring-1 ring-inset ring-neutral-700/50">
-                      {exp.location}
+              {/* Aurora bar that fades in on hover */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
+              />
+
+              {/* Collapsed view (clickable trigger) */}
+              <button
+                onClick={() => setExpandedIndex(isOpen ? null : index)}
+                aria-expanded={isOpen}
+                aria-controls={`exp-panel-${index}`}
+                className="flex w-full items-center justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
+              >
+                <div className="flex-1 space-y-2.5">
+                  <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-h3 font-semibold tracking-tight text-white">
+                        {exp.position}
+                      </h3>
+                      <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-gray-300 ring-1 ring-inset ring-soft">
+                        {exp.location}
+                      </span>
+                      {isCurrent ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-label font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                          </span>
+                          Active
+                        </span>
+                      ) : null}
+                    </div>
+                    <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-gray-400">
+                      {exp.startDate} – {exp.endDate}
                     </span>
                   </div>
-                  <span className="whitespace-nowrap text-xs uppercase tracking-wider text-gray-500 sm:text-sm">
-                    {exp.startDate} – {exp.endDate}
-                  </span>
+
+                  {exp.url ? (
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="bg-aurora bg-clip-text text-body-2 font-medium tracking-wide text-transparent transition-opacity hover:opacity-80"
+                    >
+                      {exp.company}
+                    </a>
+                  ) : (
+                    <p className="text-body-2 tracking-wide text-gray-300">{exp.company}</p>
+                  )}
                 </div>
 
-                {exp.url ? (
-                  <a
-                    href={exp.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-sm leading-relaxed tracking-wide text-gray-400 transition-colors hover:text-purple-300 hover:underline hover:underline-offset-4 sm:text-base"
-                  >
-                    {exp.company}
-                  </a>
-                ) : (
-                  <p className="text-sm leading-relaxed tracking-wide text-gray-400 sm:text-base">
-                    {exp.company}
-                  </p>
-                )}
-              </div>
+                <div
+                  className={cn(
+                    "ml-4 transition-transform duration-base ease-out-soft sm:ml-6",
+                    isOpen ? "rotate-180" : "rotate-0"
+                  )}
+                  aria-hidden="true"
+                >
+                  <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-gray-200" />
+                </div>
+              </button>
 
+              {/* Expanded view */}
               <div
-                className={`ml-4 transition-all duration-300 ease-in-out sm:ml-6 ${
-                  expandedIndex === index ? "rotate-180" : "rotate-0"
-                }`}
-              >
-                <ChevronDown className="h-5 w-5 text-gray-500 transition-colors duration-200 group-hover:text-gray-300" />
-              </div>
-            </button>
-
-            {/* Expanded View */}
-            <div
-              className={`overflow-hidden ${
-                isMobile
-                  ? expandedIndex === index
-                    ? "max-h-none opacity-100"
-                    : "max-h-0 opacity-0"
-                  : expandedIndex === index
-                    ? "max-h-[2000px] opacity-100 transition-all duration-500 ease-in-out"
-                    : "max-h-0 opacity-0 transition-all duration-500 ease-in-out"
-              }`}
-            >
-              <div className="border-t border-neutral-800/50 bg-neutral-900/20 px-4 pb-5 pt-4 sm:px-6">
-                {/* Highlights */}
-                <ul className="space-y-2">
-                  {exp.highlights?.map((highlight, i) => (
-                    <li
-                      key={i}
-                      className={`flex gap-3 transition-all duration-300 ${
-                        expandedIndex === index
-                          ? "translate-x-0 opacity-100"
-                          : "-translate-x-4 opacity-0"
-                      }`}
-                      style={{ transitionDelay: isMobile ? "0ms" : `${i * 50}ms` }}
-                    >
-                      <span className="mt-2 text-gray-600">•</span>
-                      <span className="text-sm leading-relaxed tracking-wide text-gray-300 sm:text-base">
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Skills */}
-                {exp.skills && exp.skills.length > 0 && (
-                  <div className="mt-5 space-y-3 border-t border-neutral-800/50 pt-4">
-                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-gray-500">
-                      Skills
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className={`rounded-md px-3 py-1.5 text-xs tracking-wide ring-1 ring-inset ${SKILL_COLOR}`}
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                id={`exp-panel-${index}`}
+                className={cn(
+                  "overflow-hidden",
+                  isMobile
+                    ? isOpen
+                      ? "max-h-none opacity-100"
+                      : "max-h-0 opacity-0"
+                    : isOpen
+                      ? "max-h-[2000px] opacity-100 transition-all duration-slow ease-out-soft"
+                      : "max-h-0 opacity-0 transition-all duration-slow ease-out-soft"
                 )}
+              >
+                <div className="border-t border-soft bg-surface-2/30 px-4 pb-5 pt-4 sm:px-6">
+                  <ul className="space-y-2">
+                    {exp.highlights?.map((highlight, i) => (
+                      <li
+                        key={i}
+                        className={cn(
+                          "flex gap-3 transition-all duration-base ease-out-soft",
+                          isOpen ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
+                        )}
+                        style={{ transitionDelay: isMobile || !isOpen ? "0ms" : `${i * 40}ms` }}
+                      >
+                        <span aria-hidden="true" className="mt-2 text-purple-400/70">
+                          ▸
+                        </span>
+                        <span className="text-body-2 leading-relaxed tracking-wide text-gray-300">
+                          {highlight}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {exp.skills?.length ? (
+                    <div className="mt-5 space-y-3 border-t border-soft pt-4">
+                      <p className="text-label font-medium uppercase tracking-[0.15em] text-gray-500">
+                        Skills
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.map((skill, i) => (
+                          <span key={i} className={SKILL_CHIP}>
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );

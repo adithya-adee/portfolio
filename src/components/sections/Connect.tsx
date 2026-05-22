@@ -2,34 +2,37 @@
 
 import { useEffect } from "react";
 import { toast } from "sonner";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { SiGithub, SiLinkedin, SiX, SiGmail, SiPeerlist } from "react-icons/si";
 import { HiDocumentText, HiBriefcase } from "react-icons/hi2";
+import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
+
+const EMAIL = "adithya25905@gmail.com";
 
 const socialLinks = [
   {
     name: "LinkedIn",
-    icon: <SiLinkedin size={18} />,
+    icon: <SiLinkedin aria-hidden="true" size={18} />,
     url: "https://linkedin.com/in/adithya-a-8bb28128a",
   },
   {
     name: "GitHub",
-    icon: <SiGithub size={18} />,
+    icon: <SiGithub aria-hidden="true" size={18} />,
     url: "https://github.com/adithya-adee",
   },
   {
     name: "X (Twitter)",
-    icon: <SiX size={18} />,
+    icon: <SiX aria-hidden="true" size={18} />,
     url: "https://x.com/glitchy_moon_",
   },
   {
     name: "Email",
-    icon: <SiGmail size={18} />,
-    url: "mailto:adithya25905@gmail.com",
+    icon: <SiGmail aria-hidden="true" size={18} />,
+    url: `mailto:${EMAIL}`,
   },
   {
     name: "Peerlist",
-    icon: <SiPeerlist size={18} />,
+    icon: <SiPeerlist aria-hidden="true" size={18} />,
     url: "https://peerlist.io/glitchy_moon",
   },
 ];
@@ -37,98 +40,106 @@ const socialLinks = [
 const navigationLinks = [
   {
     name: "Blog",
-    icon: <HiDocumentText size={18} />,
+    icon: <HiDocumentText aria-hidden="true" size={18} />,
     url: "/blog",
-    description: "Read my thoughts on tech and development",
   },
   {
     name: "Archive",
-    icon: <HiBriefcase size={18} />,
+    icon: <HiBriefcase aria-hidden="true" size={18} />,
     url: "/archive",
-    description: "Full work experience details",
   },
 ];
 
-export default function ConnectWithMe() {
-  // Email yank shortcut
+export default function Connect() {
   useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement ||
+        (event.target instanceof HTMLElement && event.target.isContentEditable)
+      ) {
         return;
       }
-
-      if (e.key.toLowerCase() === "y") {
-        navigator.clipboard.writeText("adithya25905@gmail.com");
+      if (event.key.toLowerCase() === "y") {
+        navigator.clipboard.writeText(EMAIL);
         toast.success("Email yanked to clipboard!", {
-          description: "adithya25905@gmail.com",
+          description: EMAIL,
           duration: 2000,
         });
       }
     };
-
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, []);
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-4 sm:px-6 sm:py-6">
-      <h2 className="mb-4 border-l-2 border-blue-500/50 pl-3 text-xl font-medium tracking-wide text-gray-300 sm:text-2xl">
-        Connect with Me
-      </h2>
+      <SectionTitle>Connect with Me</SectionTitle>
 
-      <div className="space-y-3 sm:space-y-4">
-        {/* Email with keyboard hint */}
-        <div className="space-y-2">
-          <a
-            href="mailto:adithya25905@gmail.com"
-            className="inline-block text-base tracking-wide text-gray-300 transition-colors hover:text-white sm:text-lg"
-          >
-            adithya25905@gmail.com
-          </a>
-          <p className="text-sm tracking-wide text-gray-500">
-            Press{" "}
-            <kbd className="rounded border border-neutral-700/50 bg-neutral-800/50 px-2 tracking-wider text-gray-400">
-              Y
-            </kbd>{" "}
-            to yank my email
-          </p>
-        </div>
-
-        {/* Navigation Links */}
-        <div>
-          <p className="mb-2 text-sm tracking-wide text-gray-500">More</p>
-          <div className="flex flex-wrap gap-3 sm:gap-4">
-            {navigationLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.url}
-                className="flex items-center gap-2.5 rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:text-white hover:shadow-lg hover:shadow-blue-500/10"
-              >
-                {link.icon}
-                <span>{link.name}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Social Links */}
-        <div>
-          <p className="mb-2 text-sm tracking-wide text-gray-500">Social Links</p>
-          <div className="flex flex-wrap gap-3 pt-2 sm:gap-4">
-            {socialLinks.map((link) => (
+      <div className="space-y-6">
+        {/* Email hero element */}
+        <Reveal y={14}>
+          <div className="rounded-2xl border border-soft bg-surface-1 p-5 shadow-elev-1 sm:p-6">
+            <p className="mb-2 text-label uppercase tracking-[0.15em] text-gray-500">Email</p>
+            <MagneticButton strength={0.15}>
               <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-lg border border-neutral-700/40 bg-neutral-900/50 px-4 py-3 text-sm tracking-wide text-gray-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600/60 hover:bg-neutral-800/50 hover:text-white hover:shadow-lg hover:shadow-blue-500/10"
+                href={`mailto:${EMAIL}`}
+                className="bg-aurora bg-clip-text font-mono text-display-2 font-medium tracking-tight text-transparent transition-opacity hover:opacity-90"
               >
-                {link.icon}
-                <span>{link.name}</span>
+                {EMAIL}
               </a>
+            </MagneticButton>
+            <p className="mt-3 text-label tracking-wide text-gray-400">
+              Press{" "}
+              <kbd className="rounded-md border border-soft bg-surface-2 px-2 py-0.5 font-mono text-[12px] font-medium tracking-wider text-gray-200 shadow-elev-1">
+                Y
+              </kbd>{" "}
+              anywhere to yank to clipboard
+            </p>
+          </div>
+        </Reveal>
+
+        {/* More section */}
+        <Reveal y={12} delay={0.08}>
+          <p className="mb-2 text-label uppercase tracking-[0.15em] text-gray-500">More</p>
+          <div className="flex flex-wrap gap-3">
+            {navigationLinks.map((link) => (
+              <MagneticButton key={link.name} strength={0.25}>
+                <Link
+                  href={link.url}
+                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-gray-300 transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-white hover:shadow-elev-2"
+                >
+                  <span className="text-gray-400 transition-colors group-hover/btn:text-purple-300">
+                    {link.icon}
+                  </span>
+                  {link.name}
+                </Link>
+              </MagneticButton>
             ))}
           </div>
-        </div>
+        </Reveal>
+
+        {/* Socials */}
+        <Reveal y={12} delay={0.16}>
+          <p className="mb-2 text-label uppercase tracking-[0.15em] text-gray-500">Social</p>
+          <div className="flex flex-wrap gap-3">
+            {socialLinks.map((link) => (
+              <MagneticButton key={link.name} strength={0.25}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-gray-300 transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-white hover:shadow-elev-2"
+                >
+                  <span className="text-gray-400 transition-colors group-hover/btn:text-purple-300">
+                    {link.icon}
+                  </span>
+                  {link.name}
+                </a>
+              </MagneticButton>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
