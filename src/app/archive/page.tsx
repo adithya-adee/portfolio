@@ -2,6 +2,7 @@ import experienceData from "@/asset/experience.json";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { Reveal, SectionTitle } from "@/components/motion";
+import { ArchiveTimelineDesktop } from "./_components/ArchiveTimelineDesktop";
 import { ArchiveTimelineMobile } from "./_components/ArchiveTimelineMobile";
 
 const experienceCount = (experienceData as unknown[]).length;
@@ -30,9 +31,15 @@ export default function ArchivePage() {
           </p>
         </Reveal>
 
-        {/* Timeline — Phase 1 renders the mobile/year-grouped layout at every
-            viewport. Phase 2 will swap in a cinematic desktop variant at md+. */}
-        <ArchiveTimelineMobile />
+        {/* Timeline — mobile gets the grouped accordion list, desktop (md+) gets
+            the rail variant with the cinematic draw-in choreography. Both are
+            rendered; CSS picks which is visible. */}
+        <div className="md:hidden">
+          <ArchiveTimelineMobile />
+        </div>
+        <div className="hidden md:block">
+          <ArchiveTimelineDesktop />
+        </div>
       </section>
     </div>
   );

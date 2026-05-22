@@ -1,78 +1,31 @@
 "use client";
 
-import experienceData from "@/asset/experience.json";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/motion";
 import { cn } from "@/lib/utils";
+import { getYearGroups, isCurrentRole } from "./timeline-data";
 
 const SKILL_CHIP =
   "rounded-md bg-surface-2 px-3 py-1 text-label tracking-wide text-primary/80 ring-1 ring-inset ring-soft";
 
-export interface ExperienceItem {
-  slug: string;
-  company: string;
-  position: string;
-  description: string;
-  responsibilities: string[];
-  highlights: string[];
-  skills: string[];
-  location: string;
-  startDate: string;
-  endDate: string;
-  url: string;
-  logo: string;
-}
-
-interface YearGroup {
-  year: number;
-  entries: ExperienceItem[];
-}
-
-function parseStartYear(startDate: string): number {
-  // "APR 2026" → 2026, "AUG 2025" → 2025
-  const year = parseInt(startDate.split(" ").at(-1) ?? "", 10);
-  return Number.isFinite(year) ? year : 0;
-}
-
-function groupByYear(experiences: ExperienceItem[]): YearGroup[] {
-  // Sort newest-first by start year, preserving order within the same year.
-  const sorted = [...experiences].sort(
-    (a, b) => parseStartYear(b.startDate) - parseStartYear(a.startDate)
-  );
-  const groups: YearGroup[] = [];
-  let current: YearGroup | null = null;
-  for (const exp of sorted) {
-    const year = parseStartYear(exp.startDate);
-    if (!current || current.year !== year) {
-      current = { year, entries: [] };
-      groups.push(current);
-    }
-    current.entries.push(exp);
-  }
-  return groups;
-}
-
 /**
- * Mobile-first timeline view for /archive. Renders experiences grouped under
- * year headings with a horizontal rule, each entry as the standard noir card.
- * The bullet dot to the left of the company name pulses for the currently-
- * active role (endDate === "Present").
+ * Mobile timeline view for /archive. Year-grouped stacked accordion list.
+ * The bullet dot prefix on each title pulses for the current role.
  *
- * Phase 1 of the timeline build — Phase 2 will add a desktop-specific
- * `ArchiveTimelineDesktop` with a rail + dots layout; this component will
- * then be gated to `< md` viewports.
+ * Active at every viewport at the time of this writing; once the desktop
+ * variant ships behind a `md:` gate this component will be `< md` only.
  */
 export function ArchiveTimelineMobile() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const groups = groupByYear(experienceData as ExperienceItem[]);
+  const groups = getYearGroups();
 
   return (
     <div className="space-y-10">
       {groups.map((group, groupIndex) => (
         <section
           key={group.year}
-          aria-labelledby={`year-${group.year}`}
+          aria-labelledby={`year-m-${group.year}`}
           className="space-y-4"
         >
           {/* Year heading — accent year + hairline rule extending across */}
@@ -82,7 +35,7 @@ export function ArchiveTimelineMobile() {
             className="flex items-center gap-3"
           >
             <h2
-              id={`year-${group.year}`}
+              id={`year-m-${group.year}`}
               className="font-mono text-h2 font-semibold tracking-tight text-accent"
             >
               {group.year}
@@ -93,8 +46,8 @@ export function ArchiveTimelineMobile() {
           {/* Cards under this year */}
           <div className="space-y-3 sm:space-y-4">
             {group.entries.map((exp, entryIndex) => {
-              const isCurrent = exp.endDate.toLowerCase() === "present";
-              const cardId = `${exp.slug}-${entryIndex}`;
+              const isCurrent = isCurrentRole(exp);
+              const cardId = `m-${exp.slug}-${entryIndex}`;
               const isOpen = expandedId === cardId;
 
               return (
