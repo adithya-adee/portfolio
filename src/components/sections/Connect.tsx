@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { Link } from "next-view-transitions";
+import { Copy } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { HiDocumentText, HiBriefcase } from "react-icons/hi2";
 import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
@@ -49,6 +50,14 @@ const navigationLinks = [
 ];
 
 export default function Connect() {
+  const copyEmail = useCallback(() => {
+    navigator.clipboard.writeText(EMAIL);
+    toast.success("Email yanked to clipboard!", {
+      description: EMAIL,
+      duration: 2000,
+    });
+  }, []);
+
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (
@@ -59,16 +68,12 @@ export default function Connect() {
         return;
       }
       if (event.key.toLowerCase() === "y") {
-        navigator.clipboard.writeText(EMAIL);
-        toast.success("Email yanked to clipboard!", {
-          description: EMAIL,
-          duration: 2000,
-        });
+        copyEmail();
       }
     };
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, []);
+  }, [copyEmail]);
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-4 sm:px-6 sm:py-6">
@@ -87,7 +92,18 @@ export default function Connect() {
                 {EMAIL}
               </a>
             </MagneticButton>
-            <p className="mt-3 text-label tracking-wide text-secondary">
+            {/* Mobile gets a tap-friendly copy button; desktop keeps the
+                keyboard shortcut hint since there's a physical Y key there. */}
+            <button
+              type="button"
+              onClick={copyEmail}
+              aria-label="Copy email to clipboard"
+              title="Copy email"
+              className="mt-3 inline-flex h-9 w-9 items-center justify-center rounded-md border border-soft bg-surface-2 text-secondary transition-colors duration-base ease-out-soft hover:border-strong hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1 sm:hidden"
+            >
+              <Copy aria-hidden="true" size={16} />
+            </button>
+            <p className="mt-3 hidden text-label tracking-wide text-secondary sm:block">
               Press{" "}
               <kbd className="rounded-md border border-soft bg-surface-2 px-2 py-0.5 font-mono text-[12px] font-medium tracking-wider text-primary shadow-elev-1">
                 Y
