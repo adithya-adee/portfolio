@@ -8,25 +8,39 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        cream: "var(--text-cream)",
+        crimson: {
+          DEFAULT: "var(--crimson)",
+          bright: "var(--crimson-bright)",
+          deep: "var(--crimson-deep)",
+        },
+      },
       backgroundColor: {
         "surface-0": "var(--surface-0)",
         "surface-1": "var(--surface-1)",
         "surface-2": "var(--surface-2)",
         "surface-3": "var(--surface-3)",
+        "crimson-soft": "var(--crimson-soft)",
       },
       borderColor: {
         hairline: "var(--border-hairline)",
         soft: "var(--border-soft)",
         strong: "var(--border-strong)",
+        crimson: "var(--crimson)",
       },
       backgroundImage: {
         aurora: "var(--gradient-aurora)",
         "aurora-soft": "var(--gradient-aurora-soft)",
+        crimson: "var(--gradient-crimson)",
       },
       boxShadow: {
         "elev-1": "var(--elev-1)",
         "elev-2": "var(--elev-2)",
         "elev-3": "var(--elev-3)",
+      },
+      fontFamily: {
+        serif: ["var(--font-instrument-serif)", "Georgia", "serif"],
       },
       transitionTimingFunction: {
         "out-soft": "var(--ease-out-soft)",
@@ -60,10 +74,15 @@ module.exports = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        "underline-draw": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
       },
       animation: {
         "aurora-drift": "aurora-drift 22s ease-in-out infinite",
         "aurora-sweep": "aurora-sweep 8s ease-in-out infinite",
+        "underline-draw": "underline-draw 1s ease-out-expo forwards 0.8s",
       },
     },
   },
