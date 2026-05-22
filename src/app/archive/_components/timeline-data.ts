@@ -1,7 +1,15 @@
 import experienceData from "@/asset/experience.json";
 
+export type ExperienceType =
+  | "Full-time"
+  | "Internship"
+  | "Freelance"
+  | "Open Source"
+  | "Mentorship";
+
 export interface ExperienceItem {
   slug: string;
+  type: ExperienceType;
   company: string;
   position: string;
   description: string;
@@ -13,6 +21,21 @@ export interface ExperienceItem {
   endDate: string;
   url: string;
   logo: string;
+}
+
+/**
+ * Primary career path = roles you'd put on a resume as "the job". Freelance,
+ * open-source, and mentorship are real work but not the main chronological
+ * spine — used to render hollow dots on the timeline rail to set them apart
+ * visually from the primary roles.
+ */
+const PRIMARY_TYPES: ReadonlySet<ExperienceType> = new Set([
+  "Full-time",
+  "Internship",
+]);
+
+export function isPrimaryRole(exp: ExperienceItem): boolean {
+  return PRIMARY_TYPES.has(exp.type);
 }
 
 export interface YearGroup {

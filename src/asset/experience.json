@@ -1,6 +1,7 @@
 [
   {
     "slug": "UmbraPrivacy",
+    "type": "Full-time",
     "company": "Umbra Privacy",
     "position": "Backend Developer",
     "location": "Remote",
@@ -42,6 +43,7 @@
   },
   {
     "slug": "ODPay",
+    "type": "Internship",
     "company": "ODPay (OkieDokie)",
     "position": "Backend Developer Intern",
     "location": "Remote",
@@ -80,6 +82,7 @@
   },
   {
     "slug": "FootballSolana",
+    "type": "Freelance",
     "company": "Football Solana (Freelance)",
     "position": "Blockchain Developer",
     "location": "Dubai, UAE (Remote)",
@@ -120,6 +123,7 @@
   },
   {
     "slug": "IEEESoC",
+    "type": "Open Source",
     "company": "IEEE Summer of Code",
     "position": "Open Source Contributor",
     "location": "Remote",
@@ -156,6 +160,7 @@
   },
   {
     "slug": "YHills",
+    "type": "Mentorship",
     "company": "YHILLS Ed.Tech",
     "position": "Full Stack Developer (Mentorship)",
     "location": "Remote",
