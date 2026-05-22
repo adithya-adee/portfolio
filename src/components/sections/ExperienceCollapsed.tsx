@@ -7,7 +7,7 @@ import { Reveal, SectionTitle } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 const SKILL_CHIP =
-  "rounded-md bg-surface-2 px-3 py-1 text-label tracking-wide text-gray-300 ring-1 ring-inset ring-soft";
+  "rounded-md bg-surface-2 px-3 py-1 text-label tracking-wide text-primary/80 ring-1 ring-inset ring-soft";
 
 export interface ExperienceItem {
   slug: string;
@@ -40,7 +40,9 @@ export default function ExperienceCollapsed() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <SectionTitle meta={`${experience.length} roles`}>Where I&apos;ve Worked</SectionTitle>
+      <SectionTitle index={1} meta={`${experience.length} roles`}>
+        Where I&apos;ve Worked
+      </SectionTitle>
 
       <div className="space-y-4 sm:space-y-5">
         {experience.map((exp, index) => {
@@ -73,23 +75,23 @@ export default function ExperienceCollapsed() {
                 <div className="flex-1 space-y-2.5">
                   <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
                     <div className="flex flex-wrap items-center gap-3">
-                      <h3 className="text-h3 font-semibold tracking-tight text-white">
+                      <h3 className="font-serif text-h2 font-normal tracking-tight text-primary">
                         {exp.position}
                       </h3>
-                      <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-gray-300 ring-1 ring-inset ring-soft">
+                      <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">
                         {exp.location}
                       </span>
                       {isCurrent ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-label font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-label font-medium text-accent ring-1 ring-inset ring-accent/30">
                           <span className="relative flex h-1.5 w-1.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
                           </span>
                           Active
                         </span>
                       ) : null}
                     </div>
-                    <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-gray-400">
+                    <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
                       {exp.startDate} – {exp.endDate}
                     </span>
                   </div>
@@ -100,12 +102,12 @@ export default function ExperienceCollapsed() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="bg-aurora bg-clip-text text-body-2 font-medium tracking-wide text-transparent transition-opacity hover:opacity-80"
+                      className="text-body-2 font-medium tracking-wide text-accent transition-opacity hover:opacity-80"
                     >
                       {exp.company}
                     </a>
                   ) : (
-                    <p className="text-body-2 tracking-wide text-gray-300">{exp.company}</p>
+                    <p className="text-body-2 tracking-wide text-primary/80">{exp.company}</p>
                   )}
                 </div>
 
@@ -116,7 +118,7 @@ export default function ExperienceCollapsed() {
                   )}
                   aria-hidden="true"
                 >
-                  <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-gray-200" />
+                  <ChevronDown className="h-5 w-5 text-tertiary group-hover:text-primary" />
                 </div>
               </button>
 
@@ -145,10 +147,10 @@ export default function ExperienceCollapsed() {
                         )}
                         style={{ transitionDelay: isMobile || !isOpen ? "0ms" : `${i * 40}ms` }}
                       >
-                        <span aria-hidden="true" className="mt-2 text-purple-400/70">
+                        <span aria-hidden="true" className="mt-2 text-accent/70">
                           ▸
                         </span>
-                        <span className="text-body-2 leading-relaxed tracking-wide text-gray-300">
+                        <span className="text-body-2 leading-relaxed tracking-wide text-primary/85">
                           {highlight}
                         </span>
                       </li>
@@ -157,7 +159,7 @@ export default function ExperienceCollapsed() {
 
                   {exp.skills?.length ? (
                     <div className="mt-5 space-y-3 border-t border-soft pt-4">
-                      <p className="text-label font-medium uppercase tracking-[0.15em] text-gray-500">
+                      <p className="text-label font-medium uppercase tracking-[0.15em] text-tertiary">
                         Skills
                       </p>
                       <div className="flex flex-wrap gap-2">

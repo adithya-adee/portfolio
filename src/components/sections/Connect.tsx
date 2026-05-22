@@ -74,24 +74,24 @@ export default function Connect() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-4 sm:px-6 sm:py-6">
-      <SectionTitle>Connect with Me</SectionTitle>
+      <SectionTitle index={5}>Connect with Me</SectionTitle>
 
       <div className="space-y-6">
         {/* Email hero element */}
         <Reveal y={14}>
           <div className="rounded-2xl border border-soft bg-surface-1 p-5 shadow-elev-1 sm:p-6">
-            <p className="mb-2 text-label uppercase tracking-[0.15em] text-gray-500">Email</p>
+            <p className="mb-2 text-label uppercase tracking-[0.15em] text-tertiary">Email</p>
             <MagneticButton strength={0.15}>
               <a
                 href={`mailto:${EMAIL}`}
-                className="bg-aurora bg-clip-text font-mono text-display-2 font-medium tracking-tight text-transparent transition-opacity hover:opacity-90"
+                className="font-mono text-display-2 font-medium tracking-tight text-accent transition-opacity hover:opacity-90"
               >
                 {EMAIL}
               </a>
             </MagneticButton>
-            <p className="mt-3 text-label tracking-wide text-gray-400">
+            <p className="mt-3 text-label tracking-wide text-secondary">
               Press{" "}
-              <kbd className="rounded-md border border-soft bg-surface-2 px-2 py-0.5 font-mono text-[12px] font-medium tracking-wider text-gray-200 shadow-elev-1">
+              <kbd className="rounded-md border border-soft bg-surface-2 px-2 py-0.5 font-mono text-[12px] font-medium tracking-wider text-primary shadow-elev-1">
                 Y
               </kbd>{" "}
               anywhere to yank to clipboard
@@ -101,15 +101,15 @@ export default function Connect() {
 
         {/* More section */}
         <Reveal y={12} delay={0.08}>
-          <p className="mb-2 text-label uppercase tracking-[0.15em] text-gray-500">More</p>
+          <p className="mb-2 text-label uppercase tracking-[0.15em] text-tertiary">More</p>
           <div className="flex flex-wrap gap-3">
             {navigationLinks.map((link) => (
               <MagneticButton key={link.name} strength={0.25}>
                 <Link
                   href={link.url}
-                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-gray-300 transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-white hover:shadow-elev-2"
+                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-secondary transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-primary hover:shadow-elev-2"
                 >
-                  <span className="text-gray-400 transition-colors group-hover/btn:text-purple-300">
+                  <span className="text-tertiary transition-colors group-hover/btn:text-accent">
                     {link.icon}
                   </span>
                   {link.name}
@@ -121,7 +121,7 @@ export default function Connect() {
 
         {/* Socials */}
         <Reveal y={12} delay={0.16}>
-          <p className="mb-2 text-label uppercase tracking-[0.15em] text-gray-500">Social</p>
+          <p className="mb-2 text-label uppercase tracking-[0.15em] text-tertiary">Social</p>
           <div className="flex flex-wrap gap-3">
             {socialLinks.map((link) => (
               <MagneticButton key={link.name} strength={0.25}>
@@ -129,9 +129,9 @@ export default function Connect() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-gray-300 transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-white hover:shadow-elev-2"
+                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-secondary transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-primary hover:shadow-elev-2"
                 >
-                  <span className="text-gray-400 transition-colors group-hover/btn:text-purple-300">
+                  <span className="text-tertiary transition-colors group-hover/btn:text-accent">
                     {link.icon}
                   </span>
                   {link.name}

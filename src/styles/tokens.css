@@ -1,58 +1,140 @@
 /**
- * V6 design tokens — Letterbox Noir.
+ * V6.1 design tokens — Letterbox Noir (dark) + Editorial Print (light).
  *
  * Single source of truth. Consumed by tailwind.config.js via theme.extend
  * and by raw CSS in globals.css.
  *
- * Mood: A24 / Letterboxd editorial cinema. Warm noir. One chromatic
- * moment (crimson) against cream-on-warm-black. Restraint over decoration.
+ * Mood:
+ *   Dark  — A24 / Letterboxd cinema. Warm charcoal, flame-red, cream.
+ *   Light — Editorial print. Cream paper, warm ink, deeper red.
+ *
+ * Both share: serif display, mono accents, single chromatic moment.
+ *
+ * Token names are SEMANTIC (`--text-primary`, `--accent`) rather than literal
+ * — `--text-primary` is cream in dark and warm-ink in light, but always
+ * means "the foreground text colour" to the consumer.
+ *
+ * Tailwind alpha modifiers (`text-primary/60`) work via color-mix() since
+ * Tailwind 3.4.
  */
 
-:root {
-  /* ─── Surfaces (warm, not cool) ────────────────────────────── */
-  --surface-0: hsl(24 12% 4%);
-  --surface-1: hsl(24 9% 8% / 0.7);
-  --surface-2: hsl(24 9% 12% / 0.8);
-  --surface-3: hsl(24 9% 16% / 0.92);
+:root,
+[data-theme="dark"] {
+  /* ─── Surfaces — warm charcoal at 8% lightness (lifted from 4%) ────── */
+  --surface-0: hsl(20 10% 8%);
+  --surface-1: hsl(20 9% 12% / 0.7);
+  --surface-2: hsl(20 9% 17% / 0.8);
+  --surface-3: hsl(20 9% 22% / 0.92);
 
-  /* ─── Borders ──────────────────────────────────────────────── */
-  --border-hairline: hsl(36 18% 90% / 0.06);
-  --border-soft: hsl(36 18% 90% / 0.12);
-  --border-strong: hsl(36 18% 90% / 0.22);
+  /* ─── Borders — brighter so they read against the lifted surfaces ─── */
+  --border-hairline: hsl(36 18% 90% / 0.08);
+  --border-soft: hsl(36 18% 90% / 0.16);
+  --border-strong: hsl(36 18% 90% / 0.28);
 
-  /* ─── Text ─────────────────────────────────────────────────── */
-  --text-cream: hsl(36 30% 96%); /* primary — warm white */
-  --text-secondary: hsl(30 8% 72%);
-  --text-tertiary: hsl(30 6% 52%);
-  --text-muted: hsl(30 4% 38%);
+  /* ─── Text — warm cream + the secondary tiers ──────────────────── */
+  --text-primary: hsl(40 30% 95%);
+  --text-secondary: hsl(36 14% 75%);
+  --text-tertiary: hsl(30 10% 56%);
+  --text-muted: hsl(30 6% 40%);
 
-  /* ─── The single chromatic moment: crimson ─────────────────── */
-  --crimson: #e11d48; /* rose-600 */
-  --crimson-bright: #f43f5e; /* rose-500 */
-  --crimson-deep: #be123c; /* rose-700 */
-  --crimson-glow: hsl(347 77% 50% / 0.22);
-  --crimson-soft: hsl(347 77% 50% / 0.10);
+  /* ─── Accent — flame red (rose-500), brighter than blood-red rose-600 */
+  --accent: #f43f5e;
+  --accent-bright: #fb7185;
+  --accent-deep: #be123c;
+  --accent-soft: hsl(347 87% 60% / 0.14);
+  --accent-glow: hsl(347 87% 60% / 0.30);
 
-  /* Replacement gradient — used wherever bg-aurora was. Cream sweeps
-     to crimson. Reads as a single chromatic moment, not a rainbow. */
+  /* ─── Gradients — cream sweeps into accent for display moments ───── */
+  --gradient-accent: linear-gradient(115deg, var(--accent) 0%, var(--accent-bright) 100%);
   --gradient-aurora: linear-gradient(
     115deg,
-    var(--text-cream) 0%,
-    var(--text-cream) 55%,
-    var(--crimson) 100%
+    var(--text-primary) 0%,
+    var(--text-primary) 55%,
+    var(--accent) 100%
   );
   --gradient-aurora-soft: linear-gradient(
     115deg,
-    hsl(36 30% 96% / 0.04) 0%,
-    hsl(347 77% 50% / 0.14) 100%
-  );
-  --gradient-crimson: linear-gradient(
-    115deg,
-    var(--crimson) 0%,
-    var(--crimson-bright) 100%
+    hsl(40 30% 95% / 0.04) 0%,
+    hsl(347 87% 60% / 0.16) 100%
   );
 
-  /* ─── Motion ──────────────────────────────────────────────── */
+  /* ─── Backdrop spotlight (theme-aware) ──────────────────────────── */
+  --backdrop-spotlight-color-1: #b45309;
+  --backdrop-spotlight-color-2: #f43f5e;
+  --backdrop-vignette-strength: 0.6;
+  --backdrop-grain-opacity: 0.07;
+
+  /* ─── Elevation — warm shadows tinted with the accent ──────────── */
+  --elev-1: 0 1px 2px hsl(0 0% 0% / 0.5), 0 0 0 1px var(--border-hairline);
+  --elev-2:
+    0 6px 18px -4px hsl(0 0% 0% / 0.6),
+    0 0 28px -10px hsl(347 87% 60% / 0.18),
+    0 0 0 1px var(--border-soft);
+  --elev-3:
+    0 14px 36px -10px hsl(0 0% 0% / 0.7),
+    0 0 52px -14px hsl(347 87% 60% / 0.24),
+    0 0 0 1px var(--border-strong);
+}
+
+[data-theme="light"] {
+  /* ─── Surfaces — warm cream paper ─────────────────────────────── */
+  --surface-0: hsl(36 30% 96%);
+  --surface-1: hsl(36 22% 92% / 0.78);
+  --surface-2: hsl(36 20% 88% / 0.88);
+  --surface-3: hsl(36 18% 84% / 0.95);
+
+  /* ─── Borders — warm dark hairlines on light bg ───────────────── */
+  --border-hairline: hsl(20 18% 14% / 0.08);
+  --border-soft: hsl(20 18% 14% / 0.16);
+  --border-strong: hsl(20 18% 14% / 0.28);
+
+  /* ─── Text — warm ink, never pure black ───────────────────────── */
+  --text-primary: hsl(20 18% 14%);
+  --text-secondary: hsl(20 12% 32%);
+  --text-tertiary: hsl(20 8% 48%);
+  --text-muted: hsl(20 6% 60%);
+
+  /* ─── Accent — deeper red for contrast on cream ───────────────── */
+  --accent: #be123c;
+  --accent-bright: #e11d48;
+  --accent-deep: #9f1239;
+  --accent-soft: hsl(347 77% 45% / 0.10);
+  --accent-glow: hsl(347 77% 45% / 0.20);
+
+  /* ─── Gradients — ink sweeps into accent ──────────────────────── */
+  --gradient-accent: linear-gradient(115deg, var(--accent) 0%, var(--accent-bright) 100%);
+  --gradient-aurora: linear-gradient(
+    115deg,
+    var(--text-primary) 0%,
+    var(--text-primary) 55%,
+    var(--accent) 100%
+  );
+  --gradient-aurora-soft: linear-gradient(
+    115deg,
+    hsl(20 18% 14% / 0.04) 0%,
+    hsl(347 77% 45% / 0.10) 100%
+  );
+
+  /* ─── Backdrop spotlight — much subtler on cream ──────────────── */
+  --backdrop-spotlight-color-1: #fed7aa;
+  --backdrop-spotlight-color-2: #fda4af;
+  --backdrop-vignette-strength: 0;
+  --backdrop-grain-opacity: 0.03;
+
+  /* ─── Elevation — warm dark shadows on cream ──────────────────── */
+  --elev-1: 0 1px 2px hsl(20 18% 14% / 0.08), 0 0 0 1px var(--border-hairline);
+  --elev-2:
+    0 6px 18px -4px hsl(20 18% 14% / 0.10),
+    0 0 28px -10px hsl(347 77% 45% / 0.10),
+    0 0 0 1px var(--border-soft);
+  --elev-3:
+    0 14px 36px -10px hsl(20 18% 14% / 0.14),
+    0 0 52px -14px hsl(347 77% 45% / 0.16),
+    0 0 0 1px var(--border-strong);
+}
+
+/* ─── Motion (theme-agnostic) ─────────────────────────────────────── */
+:root {
   --dur-fast: 180ms;
   --dur-base: 280ms;
   --dur-slow: 520ms;
@@ -62,27 +144,16 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 
-  /* ─── Type scale (fluid) ──────────────────────────────────── */
-  --text-display-1: clamp(2.75rem, 7vw, 5rem); /* 44–80, serif */
-  --text-display-2: clamp(2.25rem, 5vw, 3.25rem); /* 36–52 */
-  --text-h1: clamp(1.75rem, 3.2vw, 2.25rem); /* 28–36 */
-  --text-h2: clamp(1.375rem, 2.4vw, 1.625rem); /* 22–26 */
-  --text-h3: clamp(1.125rem, 1.7vw, 1.25rem); /* 18–20 */
-  --text-body-1: 1.0625rem; /* 17 */
-  --text-body-2: 1rem; /* 16 */
-  --text-label: 0.875rem; /* 14 */
-  --text-mono: 0.9375rem; /* 15 */
-
-  /* ─── Elevation (warm-tinted) ─────────────────────────────── */
-  --elev-1: 0 1px 2px hsl(0 0% 0% / 0.5), 0 0 0 1px var(--border-hairline);
-  --elev-2:
-    0 6px 18px -4px hsl(0 0% 0% / 0.6),
-    0 0 28px -10px hsl(347 77% 50% / 0.16),
-    0 0 0 1px var(--border-soft);
-  --elev-3:
-    0 14px 36px -10px hsl(0 0% 0% / 0.7),
-    0 0 52px -14px hsl(347 77% 50% / 0.22),
-    0 0 0 1px var(--border-strong);
+  /* ─── Type scale (theme-agnostic) ───────────────────────────── */
+  --text-display-1: clamp(2.75rem, 7vw, 5rem);
+  --text-display-2: clamp(2.25rem, 5vw, 3.25rem);
+  --text-h1: clamp(1.75rem, 3.2vw, 2.25rem);
+  --text-h2: clamp(1.375rem, 2.4vw, 1.625rem);
+  --text-h3: clamp(1.125rem, 1.7vw, 1.25rem);
+  --text-body-1: 1.0625rem;
+  --text-body-2: 1rem;
+  --text-label: 0.875rem;
+  --text-mono: 0.9375rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

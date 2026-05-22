@@ -19,8 +19,8 @@ interface Blog {
 
 const getCategoryStyles = (category: string) => {
   return category === "Tech"
-    ? "bg-sky-500/10 text-sky-300 ring-1 ring-inset ring-sky-500/30"
-    : "bg-purple-500/10 text-purple-300 ring-1 ring-inset ring-purple-500/30";
+    ? "bg-accent-soft text-accent ring-1 ring-inset ring-accent/30"
+    : "bg-surface-2 text-primary/80 ring-1 ring-inset ring-strong";
 };
 
 export default function Blogs() {
@@ -30,10 +30,11 @@ export default function Blogs() {
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
       <SectionTitle
+        index={4}
         meta={
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-label uppercase tracking-wider text-gray-400 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-label uppercase tracking-wider text-tertiary transition-colors hover:text-primary"
           >
             View all
             <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
@@ -71,11 +72,11 @@ export default function Blogs() {
                   >
                     {blog.category}
                   </span>
-                  <h3 className="text-body-1 font-medium tracking-tight text-white">
+                  <h3 className="font-serif text-h2 font-normal tracking-tight text-primary">
                     {blog.title}
                   </h3>
                 </div>
-                <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-gray-400">
+                <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
                   {new Date(blog.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
@@ -89,7 +90,7 @@ export default function Blogs() {
                   href={blog.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
                 >
                   Read article
                   <ExternalLink aria-hidden="true" size={14} />

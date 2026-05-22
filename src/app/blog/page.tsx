@@ -29,8 +29,8 @@ interface Blog {
 
 const getCategoryStyles = (category: string) =>
   category === "Tech"
-    ? "bg-sky-500/10 text-sky-300 ring-1 ring-inset ring-sky-500/30"
-    : "bg-purple-500/10 text-purple-300 ring-1 ring-inset ring-purple-500/30";
+    ? "bg-accent-soft text-accent ring-1 ring-inset ring-accent/30"
+    : "bg-surface-2 text-primary/80 ring-1 ring-inset ring-strong";
 
 export default function BlogPage() {
   const blogs = blogsData as Blog[];
@@ -42,7 +42,7 @@ export default function BlogPage() {
         <Reveal y={8} className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-400 transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-tertiary transition-colors hover:text-primary"
           >
             <ArrowLeft aria-hidden="true" size={14} />
             Back to home
@@ -54,7 +54,7 @@ export default function BlogPage() {
         </SectionTitle>
 
         <Reveal y={10} delay={0.05}>
-          <p className="mb-6 text-body-2 leading-relaxed tracking-wide text-gray-400">
+          <p className="mb-6 text-body-2 leading-relaxed tracking-wide text-secondary">
             Thoughts on backend engineering, zero-knowledge proofs, Rust, and shipping
             privacy-preserving systems.
           </p>
@@ -81,10 +81,10 @@ export default function BlogPage() {
               <div className="space-y-3">
                 {/* Header row: title + date */}
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <h2 className="text-h3 font-semibold leading-snug tracking-tight text-white transition-colors group-hover:text-gray-50">
+                  <h2 className="font-serif text-h2 font-normal leading-snug tracking-tight text-primary transition-colors">
                     {blog.title}
                   </h2>
-                  <span className="flex shrink-0 items-center gap-2 font-mono text-label uppercase tracking-wider text-gray-400">
+                  <span className="flex shrink-0 items-center gap-2 font-mono text-label uppercase tracking-wider text-tertiary">
                     <Calendar aria-hidden="true" size={13} />
                     {blog.date}
                   </span>
@@ -101,7 +101,7 @@ export default function BlogPage() {
                 </span>
 
                 {/* Description */}
-                <p className="line-clamp-2 text-body-2 leading-relaxed tracking-wide text-gray-400">
+                <p className="line-clamp-2 text-body-2 leading-relaxed tracking-wide text-secondary">
                   {blog.description}
                 </p>
 
@@ -111,7 +111,7 @@ export default function BlogPage() {
                     href={blog.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                    className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
                   >
                     Read article
                     <ExternalLink aria-hidden="true" size={14} />

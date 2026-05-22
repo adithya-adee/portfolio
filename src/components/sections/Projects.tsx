@@ -25,7 +25,7 @@ type FilterCategory = "web3" | "full-stack" | "open-source";
 const FILTER_OPTIONS: FilterCategory[] = ["web3", "full-stack", "open-source"];
 
 const SKILL_CHIP =
-  "rounded-md bg-violet-500/10 px-3 py-1 text-label tracking-wide text-violet-200 ring-1 ring-inset ring-violet-500/25";
+  "rounded-md bg-accent-soft px-3 py-1 text-label tracking-wide text-accent ring-1 ring-inset ring-accent/25";
 
 const getYoutubeEmbedUrl = (url: string): string => {
   if (url.includes("youtube.com/watch")) {
@@ -48,10 +48,10 @@ const getCategoryLabel = (category: FilterCategory): string => {
 
 const getCategoryBadgeStyles = (category: string) => {
   if (category === "web3")
-    return "bg-purple-500/10 text-purple-300 ring-1 ring-inset ring-purple-500/30";
+    return "bg-accent-soft text-accent ring-1 ring-inset ring-accent/30";
   if (category === "open-source")
-    return "bg-emerald-500/10 text-emerald-300 ring-1 ring-inset ring-emerald-500/30";
-  return "bg-blue-500/10 text-blue-300 ring-1 ring-inset ring-blue-500/30";
+    return "bg-surface-2 text-primary/80 ring-1 ring-inset ring-strong";
+  return "bg-surface-2 text-secondary ring-1 ring-inset ring-soft";
 };
 
 export default function Projects() {
@@ -75,6 +75,7 @@ export default function Projects() {
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
       <SectionTitle
+        index={2}
         meta={`${filteredProjects.length} ${filteredProjects.length === 1 ? "project" : "projects"}`}
       >
         Projects I&apos;ve Built
@@ -82,7 +83,7 @@ export default function Projects() {
 
       {/* Filter row */}
       <Reveal y={10} className="mb-6 flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-2 text-label text-gray-500">
+        <div className="flex items-center gap-2 text-label text-tertiary">
           <Filter aria-hidden="true" size={14} />
           <span className="hidden sm:inline uppercase tracking-wider">Filter</span>
         </div>
@@ -96,8 +97,8 @@ export default function Projects() {
                 className={cn(
                   "relative overflow-hidden rounded-lg border px-4 py-2 text-label font-medium tracking-wide transition-colors duration-base ease-out-soft",
                   isActive
-                    ? "border-strong bg-surface-2 text-white shadow-elev-2"
-                    : "border-soft bg-surface-1 text-gray-400 hover:border-strong hover:text-gray-100"
+                    ? "border-strong bg-surface-2 text-primary shadow-elev-2"
+                    : "border-soft bg-surface-1 text-secondary hover:border-strong hover:text-primary"
                 )}
               >
                 <span className="relative z-10">{getCategoryLabel(category)}</span>
@@ -150,7 +151,7 @@ export default function Projects() {
                       <div className="flex-1 space-y-2.5">
                         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
                           <div className="flex flex-wrap items-center gap-3">
-                            <h3 className="text-h3 font-semibold tracking-tight text-white">
+                            <h3 className="font-serif text-h2 font-normal tracking-tight text-primary">
                               {project.name}
                             </h3>
                             <span
@@ -162,11 +163,11 @@ export default function Projects() {
                               {getCategoryLabel(project.category as FilterCategory)}
                             </span>
                           </div>
-                          <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-gray-400">
+                          <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
                             {project.timeline}
                           </span>
                         </div>
-                        <p className="text-body-2 leading-relaxed tracking-wide text-gray-300">
+                        <p className="text-body-2 leading-relaxed tracking-wide text-primary/80">
                           {project.short_description}
                         </p>
 
@@ -177,7 +178,7 @@ export default function Projects() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
                             >
                               Visit <ExternalLink aria-hidden="true" size={14} />
                             </a>
@@ -188,7 +189,7 @@ export default function Projects() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-gray-300 transition-colors hover:text-white"
+                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
                             >
                               GitHub <SiGithub aria-hidden="true" size={14} />
                             </a>
@@ -202,7 +203,7 @@ export default function Projects() {
                         )}
                         aria-hidden="true"
                       >
-                        <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-gray-200" />
+                        <ChevronDown className="h-5 w-5 text-tertiary group-hover:text-primary" />
                       </div>
                     </button>
 
@@ -236,10 +237,10 @@ export default function Projects() {
                                   isMobile || !isOpen ? "0ms" : `${i * 40}ms`,
                               }}
                             >
-                              <span aria-hidden="true" className="mt-2 text-purple-400/70">
+                              <span aria-hidden="true" className="mt-2 text-accent/70">
                                 ▸
                               </span>
-                              <span className="text-body-2 leading-relaxed tracking-wide text-gray-300">
+                              <span className="text-body-2 leading-relaxed tracking-wide text-primary/85">
                                 {point}
                               </span>
                             </li>
@@ -248,7 +249,7 @@ export default function Projects() {
 
                         {project.skills?.length ? (
                           <div className="mt-5 space-y-3 border-t border-soft pt-4">
-                            <p className="text-label font-medium uppercase tracking-[0.15em] text-gray-500">
+                            <p className="text-label font-medium uppercase tracking-[0.15em] text-tertiary">
                               Skills
                             </p>
                             <div className="flex flex-wrap gap-2">

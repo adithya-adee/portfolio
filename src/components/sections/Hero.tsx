@@ -48,8 +48,8 @@ export default function Hero() {
         {/* Top row — letterbox label + clock. Editorial chrome. */}
         <div className="flex items-center justify-between">
           <Reveal y={6} className="flex items-center gap-2">
-            <span aria-hidden="true" className="inline-block h-1 w-6 bg-crimson" />
-            <span className="font-mono text-label uppercase tracking-[0.25em] text-cream/60">
+            <span aria-hidden="true" className="inline-block h-1 w-6 bg-accent" />
+            <span className="font-mono text-label uppercase tracking-[0.25em] text-primary/60">
               portfolio · 2026
             </span>
           </Reveal>
@@ -61,13 +61,13 @@ export default function Hero() {
             >
               <Clock10
                 aria-hidden="true"
-                className="h-3.5 w-3.5 text-cream/60"
+                className="h-3.5 w-3.5 text-primary/60"
               />
               <p
-                className="m-0 font-mono text-label font-medium text-cream/85"
+                className="m-0 font-mono text-label font-medium text-primary/85"
                 suppressHydrationWarning
               >
-                {currentTime} <span className="text-cream/40">IST</span>
+                {currentTime} <span className="text-primary/40">IST</span>
               </p>
             </div>
           </Reveal>
@@ -77,7 +77,7 @@ export default function Hero() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-8">
           <Reveal y={10} className="shrink-0">
             <div className="relative">
-              <div className="absolute -inset-0.5 rounded-full bg-crimson opacity-30 blur-md" />
+              <div className="absolute -inset-0.5 rounded-full bg-accent opacity-30 blur-md" />
               <Image
                 src="/profile.png"
                 alt="Adithya Anand"
@@ -93,7 +93,7 @@ export default function Hero() {
             {/* Letter-by-letter serif reveal of the name */}
             <h1
               aria-label={NAME}
-              className="relative inline-block font-serif text-display-1 font-normal leading-[0.95] tracking-tight text-cream"
+              className="relative inline-block font-serif text-display-1 font-normal leading-[0.95] tracking-tight text-primary"
             >
               <span aria-hidden="true" className="inline-block">
                 {NAME.split("").map((char, i) => (
@@ -124,35 +124,35 @@ export default function Hero() {
                   ease: [0.16, 1, 0.3, 1],
                   delay: reduced ? 0 : 0.9,
                 }}
-                className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left bg-crimson"
+                className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left bg-accent"
               />
             </h1>
 
             <Reveal y={6} delay={0.95}>
-              <p className="font-mono text-mono text-cream/45">@glitchy_moon_</p>
+              <p className="font-mono text-mono text-primary/45">@glitchy_moon_</p>
             </Reveal>
           </div>
         </div>
 
         {/* Role + scramble line */}
         <Reveal y={10} delay={1.1}>
-          <p className="text-h2 leading-snug text-cream/90">
+          <p className="text-h2 leading-snug text-primary/90">
             Backend &amp; ZK Engineer at{" "}
-            <span className="font-serif italic text-crimson">Umbra Privacy</span>
+            <span className="font-serif italic text-accent">Umbra Privacy</span>
           </p>
-          <p className="mt-2 font-mono text-mono text-cream/55">
-            <span className="text-crimson">›</span>{" "}
-            <ScrambleText phrases={ROLE_PHRASES} className="text-cream/75" />
+          <p className="mt-2 font-mono text-mono text-primary/55">
+            <span className="text-accent">›</span>{" "}
+            <ScrambleText phrases={ROLE_PHRASES} className="text-primary/75" />
           </p>
         </Reveal>
 
         {/* Bio */}
         <Reveal y={10} delay={1.2}>
-          <p className="max-w-2xl text-body-1 leading-relaxed text-cream/70">
+          <p className="max-w-2xl text-body-1 leading-relaxed text-primary/70">
             I build privacy-preserving backend systems with{" "}
-            <span className="text-cream">Rust (Axum)</span>,{" "}
-            <span className="text-cream">Circom</span>, and{" "}
-            <span className="text-cream">Solana</span>. Comfortable across the stack — APIs,
+            <span className="text-primary">Rust (Axum)</span>,{" "}
+            <span className="text-primary">Circom</span>, and{" "}
+            <span className="text-primary">Solana</span>. Comfortable across the stack — APIs,
             distributed systems, smart contracts, and the cryptography that underpins them.
           </p>
         </Reveal>
@@ -167,11 +167,11 @@ export default function Hero() {
               delay={1.3 + i * 0.08}
               className="grid grid-cols-[auto_1fr] items-baseline gap-4 sm:grid-cols-[auto_auto_1fr] sm:gap-6"
             >
-              <span aria-hidden="true" className="block h-2 w-2 bg-crimson" />
-              <span className="font-mono text-label font-semibold uppercase tracking-[0.18em] text-crimson">
+              <span aria-hidden="true" className="block h-2 w-2 bg-accent" />
+              <span className="font-mono text-label font-semibold uppercase tracking-[0.18em] text-accent">
                 {highlight.tag}
               </span>
-              <span className="col-span-2 text-body-2 leading-relaxed text-cream/75 sm:col-span-1">
+              <span className="col-span-2 text-body-2 leading-relaxed text-primary/75 sm:col-span-1">
                 {highlight.text}
               </span>
             </Reveal>
@@ -180,7 +180,7 @@ export default function Hero() {
 
         {/* Scroll cue */}
         <Reveal y={6} delay={1.7} className="flex justify-center pt-2">
-          <span className="font-mono text-label uppercase tracking-[0.3em] text-cream/30">
+          <span className="font-mono text-label uppercase tracking-[0.3em] text-primary/30">
             ──  scroll  ──
           </span>
         </Reveal>

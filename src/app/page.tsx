@@ -48,8 +48,8 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="mx-auto mt-16 max-w-3xl px-4 pb-8 sm:px-6">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
-          <div className="mt-8 flex flex-col items-center justify-between gap-2 text-sm tracking-wide text-gray-500 sm:flex-row sm:gap-4">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+          <div className="mt-8 flex flex-col items-center justify-between gap-2 font-mono text-label tracking-wide text-tertiary sm:flex-row sm:gap-4">
             <p suppressHydrationWarning>
               {new Date().toLocaleDateString("en-US", {
                 weekday: "short",

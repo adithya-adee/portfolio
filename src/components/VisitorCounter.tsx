@@ -47,8 +47,8 @@ export default function VisitorCounter() {
     return (
       <div className="mx-auto mb-8 flex max-w-3xl items-center justify-center px-4 sm:px-6">
         <div className="flex items-center gap-2 rounded-full border border-soft bg-surface-1 px-4 py-2 backdrop-blur-sm">
-          <div className="h-4 w-4 animate-pulse rounded-full bg-gray-700" />
-          <div className="h-4 w-16 animate-pulse rounded bg-gray-700" />
+          <div className="h-4 w-4 animate-pulse rounded-full bg-surface-3" />
+          <div className="h-4 w-16 animate-pulse rounded bg-surface-3" />
         </div>
       </div>
     );
@@ -63,19 +63,19 @@ export default function VisitorCounter() {
           className="group flex items-center gap-3 rounded-full border border-soft bg-surface-1 px-5 py-2.5 shadow-elev-1 backdrop-blur-sm transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:shadow-elev-2"
           title={`${visitData.totalVisits.toLocaleString()} total visits`}
         >
-          <Eye aria-hidden="true" className="h-4 w-4 text-gray-400" />
+          <Eye aria-hidden="true" className="h-4 w-4 text-tertiary" />
 
           <div className="flex items-baseline gap-1.5 font-mono text-mono">
-            <span className="text-gray-500">You&apos;re visitor</span>
+            <span className="text-tertiary">You&apos;re visitor</span>
             <CountUp
               value={visitData.totalVisits}
-              className="font-semibold tabular-nums text-gray-100"
+              className="font-semibold tabular-nums text-primary"
             />
           </div>
 
           <span className="relative flex h-2 w-2" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
         </div>
       </Reveal>

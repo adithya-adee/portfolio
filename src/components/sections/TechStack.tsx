@@ -94,7 +94,7 @@ const categories: Category[] = [
 export default function TechStack() {
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
-      <SectionTitle>Technology &amp; Tools I Use</SectionTitle>
+      <SectionTitle index={3}>Technology &amp; Tools I Use</SectionTitle>
 
       <div className="space-y-4">
         {categories.map((category, categoryIndex) => (
@@ -105,7 +105,7 @@ export default function TechStack() {
             className="flex flex-col gap-3 rounded-xl border border-soft bg-surface-1 p-4 sm:flex-row sm:items-start sm:gap-6 sm:p-5"
           >
             <div className="flex items-center gap-2 sm:min-w-[120px]">
-              <p className="text-label font-semibold uppercase tracking-[0.15em] text-gray-400">
+              <p className="text-label font-semibold uppercase tracking-[0.15em] text-tertiary">
                 {category.name}
               </p>
             </div>
@@ -123,7 +123,7 @@ export default function TechStack() {
                       className="text-base transition-transform duration-base ease-out-soft group-hover/chip:scale-110"
                       style={{ color: tech.color }}
                     />
-                    <span className="text-label font-medium tracking-wide text-gray-200 transition-colors duration-base group-hover/chip:text-white">
+                    <span className="text-label font-medium tracking-wide text-primary/85 transition-colors duration-base group-hover/chip:text-primary">
                       {tech.name}
                     </span>
                   </div>
