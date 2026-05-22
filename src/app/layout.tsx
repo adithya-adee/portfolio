@@ -114,15 +114,8 @@ export const metadata: Metadata = {
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/profile.png",
-        width: 1200,
-        height: 630,
-        alt: "Adithya Anand — Backend Developer building zero-knowledge proof systems with Rust, Circom, and Solana",
-        type: "image/png",
-      },
-    ],
+    // The OG image comes from the `opengraph-image.tsx` file convention
+    // (src/app/opengraph-image.tsx + per-route variants).
   },
   twitter: {
     card: "summary_large_image",
@@ -131,7 +124,7 @@ export const metadata: Metadata = {
       "Backend Developer at Umbra Privacy. Private Bridge for web apps · ZKP Phase 2 ceremony · Rust (Axum) · Circom · Solana · AWS.",
     creator: "@glitchy_moon_",
     site: "@glitchy_moon_",
-    images: ["/profile.png"],
+    // Twitter image inherits from openGraph (Next reuses the OG image route).
   },
   category: "technology",
 };
