@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { Fragment, useState } from "react";
 import { useReducedMotionSafe } from "@/components/motion";
 import { cn } from "@/lib/utils";
+import { DateCapsule } from "./DateCapsule";
 import {
   getYearGroups,
   isCurrentRole,
@@ -151,16 +152,26 @@ function YearChipRow({
 }) {
   return (
     <div className="relative my-6 flex items-center justify-center py-2">
-      {/* Horizontal hairline runs across; chip's bg-surface-0 punches a gap */}
-      <span
+      {/* Horizontal hairline runs across the row; chip's bg-surface-0 punches
+          a gap behind itself. The line draws in from the centre outward when
+          the year chip enters view — no more static stray line during load. */}
+      <motion.span
         aria-hidden="true"
-        className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-soft"
+        className="absolute inset-x-0 top-1/2 h-px origin-center -translate-y-1/2 bg-soft"
+        initial={reduced ? { scaleX: 1 } : { scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: reduced ? 0 : 0.7, ease: [0.16, 1, 0.3, 1], delay }}
       />
       <motion.span
         initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: reduced ? 0 : 0.45, ease: [0.16, 1, 0.3, 1], delay }}
+        transition={{
+          duration: reduced ? 0 : 0.45,
+          ease: [0.16, 1, 0.3, 1],
+          delay: reduced ? 0 : delay + 0.15,
+        }}
         className="relative rounded-full border border-soft bg-surface-0 px-4 py-1.5 font-mono text-label font-semibold uppercase tracking-[0.2em] text-accent shadow-elev-1"
       >
         {year}
@@ -279,38 +290,41 @@ function CardSlot({
           onClick={onToggle}
           aria-expanded={isOpen}
           aria-controls={`archive-d-panel-${cardId}`}
-          className="flex w-full items-start justify-between px-6 py-5 text-left"
+          className="flex w-full items-start justify-between gap-3 px-6 py-5 text-left"
         >
           <div className="flex-1 space-y-3">
-            <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-              <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+            {/* Title row — company name on its own line so it never wraps with
+                a stranded "·" separator. Role drops to a secondary line. Date
+                capsule sits on the right of the title block. */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1">
                 {exp.url ? (
                   <a
                     href={exp.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="transition-opacity hover:opacity-80"
+                    className="inline-block transition-opacity hover:opacity-80"
                   >
-                    <h3 className="text-h2 font-semibold tracking-tight text-primary">
+                    <h3 className="text-h2 font-semibold leading-tight tracking-tight text-primary">
                       {exp.company}
                     </h3>
                   </a>
                 ) : (
-                  <h3 className="text-h2 font-semibold tracking-tight text-primary">
+                  <h3 className="text-h2 font-semibold leading-tight tracking-tight text-primary">
                     {exp.company}
                   </h3>
                 )}
-                <span aria-hidden="true" className="text-tertiary">
-                  ·
-                </span>
-                <span className="text-body-2 font-medium tracking-wide text-secondary">
+                <p className="mt-1.5 text-body-2 font-medium tracking-wide text-secondary">
                   {exp.position}
-                </span>
+                </p>
               </div>
-              <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
-                {exp.startDate} – {exp.endDate}
-              </span>
+
+              <DateCapsule
+                startDate={exp.startDate}
+                endDate={exp.endDate}
+                isCurrent={isCurrent}
+              />
             </div>
 
             {/* Badge row — location, optional non-primary type, active pulse */}
