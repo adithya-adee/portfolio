@@ -1,11 +1,14 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import projectsData from "@/asset/projects.json";
-import { ChevronDown, ChevronsDown, ChevronsUp, ExternalLink, Filter } from "lucide-react";
-import { SiGithub } from "react-icons/si";
+import { ArrowUpRight, ChevronsDown, ChevronsUp, Filter } from "lucide-react";
 import { MagneticButton, Reveal, SectionTitle, TiltCard } from "@/components/motion";
+import {
+  CaseStudyOverlay,
+  type CaseStudyData,
+  type CaseStudyProject,
+} from "@/components/CaseStudyOverlay";
 import { cn } from "@/lib/utils";
 
 const VISIBLE_PROJECT_COUNT = 3;
@@ -20,6 +23,7 @@ interface Project {
   github_url: string;
   video_url?: string;
   skills?: string[];
+  case_study?: CaseStudyData;
 }
 
 type FilterCategory = "web3" | "full-stack" | "open-source";
@@ -27,20 +31,7 @@ type FilterCategory = "web3" | "full-stack" | "open-source";
 const FILTER_OPTIONS: FilterCategory[] = ["web3", "full-stack", "open-source"];
 
 const SKILL_CHIP =
-  "rounded-md bg-accent-soft px-3 py-1 text-label tracking-wide text-accent ring-1 ring-inset ring-accent/25";
-
-const getYoutubeEmbedUrl = (url: string): string => {
-  if (url.includes("youtube.com/watch")) {
-    try {
-      const urlObj = new URL(url);
-      const videoId = urlObj.searchParams.get("v");
-      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
-    } catch (e) {
-      console.warn("Invalid YouTube URL", e);
-    }
-  }
-  return url;
-};
+  "rounded-md bg-surface-2 px-2.5 py-0.5 text-label tracking-wide text-secondary ring-1 ring-inset ring-soft";
 
 const getCategoryLabel = (category: FilterCategory): string => {
   if (category === "web3") return "Web3";
@@ -57,22 +48,13 @@ const getCategoryBadgeStyles = (category: string) => {
 };
 
 export default function Projects() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("web3");
   const [showAll, setShowAll] = useState(false);
-  const [isMobile, setIsMobile] = useState(true);
+  const [dossierProject, setDossierProject] = useState<CaseStudyProject | null>(null);
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Collapse + reset expanded card whenever the filter changes.
+  // Reset pagination when the filter changes.
   useEffect(() => {
     setShowAll(false);
-    setExpandedIndex(null);
   }, [activeFilter]);
 
   const projects = projectsData as Project[];
@@ -151,171 +133,81 @@ export default function Projects() {
         })}
       </Reveal>
 
-      {/* Projects list */}
+      {/* Project grid — each card is the trigger, no accordion, no nested buttons */}
       <div className="space-y-4 sm:space-y-5">
-        <AnimatePresence mode="popLayout">
-          {visibleProjects.map((project, index) => {
-            const isOpen = expandedIndex === index;
-            return (
-              <motion.div
-                key={project.name}
-                layout={!isMobile}
-                initial={!isMobile ? { opacity: 0, y: 14 } : undefined}
-                animate={!isMobile ? { opacity: 1, y: 0 } : undefined}
-                exit={!isMobile ? { opacity: 0, y: -10 } : undefined}
-                transition={{ duration: isMobile ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <TiltCard max={4}>
-                  <div
-                    className={cn(
-                      "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 backdrop-blur-sm",
-                      "shadow-elev-1 transition-shadow duration-base ease-out-soft",
-                      "hover:border-strong hover:shadow-elev-2"
-                    )}
-                  >
-                    {/* Aurora bar on hover */}
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
-                    />
+        {visibleProjects.map((project) => (
+          <TiltCard key={project.name} max={3}>
+            <button
+              type="button"
+              onClick={() => setDossierProject(project as CaseStudyProject)}
+              aria-label={`Open dossier for ${project.name}`}
+              className={cn(
+                "group/card relative block w-full overflow-hidden rounded-xl border border-soft bg-surface-1 px-4 py-4 text-left backdrop-blur-sm sm:px-6 sm:py-5",
+                "shadow-elev-1 transition-[border-color,box-shadow,transform] duration-base ease-out-soft",
+                "hover:-translate-y-0.5 hover:border-strong hover:shadow-elev-2",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+              )}
+            >
+              {/* Accent left bar — visible on hover + focus */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover/card:opacity-100 group-focus-visible/card:opacity-100"
+              />
 
-                    <button
-                      onClick={() => setExpandedIndex(isOpen ? null : index)}
-                      aria-expanded={isOpen}
-                      aria-controls={`project-panel-${index}`}
-                      className="flex w-full items-center justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
-                    >
-                      <div className="flex-1 space-y-2.5">
-                        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                          <div className="flex flex-wrap items-center gap-3">
-                            <h3 className="text-h2 font-semibold tracking-tight text-primary">
-                              {project.name}
-                            </h3>
-                            <span
-                              className={cn(
-                                "inline-flex items-center rounded-full px-2.5 py-0.5 text-label font-medium tracking-wide",
-                                getCategoryBadgeStyles(project.category)
-                              )}
-                            >
-                              {getCategoryLabel(project.category as FilterCategory)}
-                            </span>
-                          </div>
-                          <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
-                            {project.timeline}
-                          </span>
-                        </div>
-                        <p className="text-body-2 leading-relaxed tracking-wide text-primary/80">
-                          {project.short_description}
-                        </p>
+              {/* Top row — category + timeline + arrow hint */}
+              <div className="flex items-center justify-between gap-3">
+                <span
+                  className={cn(
+                    "inline-flex items-center rounded-full px-2.5 py-0.5 text-label font-medium tracking-wide",
+                    getCategoryBadgeStyles(project.category)
+                  )}
+                >
+                  {getCategoryLabel(project.category as FilterCategory)}
+                </span>
+                <div className="flex items-center gap-3">
+                  <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
+                    {project.timeline}
+                  </span>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    size={16}
+                    className="text-tertiary transition-all duration-base ease-out-soft group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-accent"
+                  />
+                </div>
+              </div>
 
-                        <div className="flex flex-wrap gap-4 pt-1 sm:gap-6">
-                          {project.live_url ? (
-                            <a
-                              href={project.live_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
-                            >
-                              Visit <ExternalLink aria-hidden="true" size={14} />
-                            </a>
-                          ) : null}
-                          {project.github_url ? (
-                            <a
-                              href={project.github_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
-                            >
-                              GitHub <SiGithub aria-hidden="true" size={14} />
-                            </a>
-                          ) : null}
-                        </div>
-                      </div>
-                      <div
-                        className={cn(
-                          "ml-4 transition-transform duration-base ease-out-soft sm:ml-6",
-                          isOpen ? "rotate-180" : "rotate-0"
-                        )}
-                        aria-hidden="true"
-                      >
-                        <ChevronDown className="h-5 w-5 text-tertiary group-hover:text-primary" />
-                      </div>
-                    </button>
+              {/* Project name + short description */}
+              <div className="mt-3 space-y-2">
+                <h3 className="font-serif text-h2 font-normal italic tracking-tight text-primary">
+                  {project.name}
+                </h3>
+                <p className="text-body-2 leading-relaxed tracking-wide text-primary/75">
+                  {project.short_description}
+                </p>
+              </div>
 
-                    {/* Expanded — grid-rows trick animates the true content height. */}
-                    <div
-                      id={`project-panel-${index}`}
-                      className={cn(
-                        "grid overflow-hidden transition-[grid-template-rows,opacity] duration-slow ease-out-soft",
-                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                      )}
-                    >
-                      <div className="min-h-0 border-t border-soft bg-surface-2/30 px-4 pb-5 pt-4 sm:px-6">
-                        <ul className="space-y-2">
-                          {project.detailed_description.map((point, i) => (
-                            <li
-                              key={i}
-                              className={cn(
-                                "flex gap-3 transition-all duration-base ease-out-soft",
-                                isOpen
-                                  ? "translate-x-0 opacity-100"
-                                  : "-translate-x-3 opacity-0"
-                              )}
-                              style={{
-                                transitionDelay:
-                                  isMobile || !isOpen ? "0ms" : `${i * 40}ms`,
-                              }}
-                            >
-                              <span aria-hidden="true" className="mt-2 text-accent/70">
-                                ▸
-                              </span>
-                              <span className="text-body-2 leading-relaxed tracking-wide text-primary/85">
-                                {point}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        {project.skills?.length ? (
-                          <div className="mt-5 space-y-3 border-t border-soft pt-4">
-                            <p className="text-label font-medium uppercase tracking-[0.15em] text-tertiary">
-                              Skills
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              {project.skills.map((skill, i) => (
-                                <span key={i} className={SKILL_CHIP}>
-                                  {skill}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ) : null}
-                      </div>
-
-                      {isOpen && project.video_url ? (
-                        <div className="border-t border-soft bg-surface-2/40 p-4 sm:p-6">
-                          <div className="aspect-video w-full overflow-hidden rounded-lg border border-soft shadow-elev-2">
-                            <iframe
-                              src={getYoutubeEmbedUrl(project.video_url)}
-                              title={`${project.name} video overview`}
-                              className="h-full w-full"
-                              allow="autoplay; encrypted-media; picture-in-picture"
-                              allowFullScreen
-                              loading="lazy"
-                            />
-                          </div>
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
-                </TiltCard>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+              {/* Skill chips (max 4 visible; "+N more" if exceeded) */}
+              {project.skills?.length ? (
+                <div className="mt-4 flex flex-wrap items-center gap-1.5">
+                  {project.skills.slice(0, 4).map((skill) => (
+                    <span key={skill} className={SKILL_CHIP}>
+                      {skill}
+                    </span>
+                  ))}
+                  {project.skills.length > 4 ? (
+                    <span className="font-mono text-label text-tertiary">
+                      +{project.skills.length - 4} more
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
+            </button>
+          </TiltCard>
+        ))}
       </div>
+
+      {/* Case-study overlay — opened by clicking any project card */}
+      <CaseStudyOverlay project={dossierProject} onClose={() => setDossierProject(null)} />
 
       {/* Show all / show less */}
       {hasMore ? (
@@ -323,10 +215,7 @@ export default function Projects() {
           <MagneticButton strength={0.2}>
             <button
               type="button"
-              onClick={() => {
-                setShowAll((prev) => !prev);
-                setExpandedIndex(null);
-              }}
+              onClick={() => setShowAll((prev) => !prev)}
               className="group/expand inline-flex items-center gap-2 rounded-full border border-soft bg-surface-1 px-5 py-2.5 font-mono text-label uppercase tracking-[0.18em] text-secondary shadow-elev-1 transition-colors duration-base ease-out-soft hover:border-strong hover:bg-surface-2 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
             >
               {showAll ? (

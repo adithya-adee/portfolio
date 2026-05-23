@@ -2,10 +2,8 @@
 
 import { useCallback, useEffect } from "react";
 import { toast } from "sonner";
-import { Link } from "next-view-transitions";
 import { Copy } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
-import { HiDocumentText, HiBriefcase } from "react-icons/hi2";
 import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
 
 const EMAIL = "adithya25905@gmail.com";
@@ -34,19 +32,6 @@ const socialLinks = [
   //   icon: <SiPeerlist aria-hidden="true" size={18} />,
   //   url: "https://peerlist.io/glitchy_moon",
   // },
-];
-
-const navigationLinks = [
-  {
-    name: "Blog",
-    icon: <HiDocumentText aria-hidden="true" size={18} />,
-    url: "/blog",
-  },
-  {
-    name: "Archive",
-    icon: <HiBriefcase aria-hidden="true" size={18} />,
-    url: "/archive",
-  },
 ];
 
 export default function Connect() {
@@ -115,28 +100,8 @@ export default function Connect() {
           </div>
         </Reveal>
 
-        {/* More section */}
-        <Reveal y={12} delay={0.08}>
-          <p className="mb-2 text-label uppercase tracking-[0.15em] text-tertiary">More</p>
-          <div className="flex flex-wrap gap-3">
-            {navigationLinks.map((link) => (
-              <MagneticButton key={link.name} strength={0.25}>
-                <Link
-                  href={link.url}
-                  className="group/btn flex items-center gap-2.5 rounded-lg border border-soft bg-surface-1 px-4 py-3 text-label font-medium tracking-wide text-secondary transition-all duration-base ease-out-soft hover:-translate-y-0.5 hover:border-strong hover:bg-surface-2 hover:text-primary hover:shadow-elev-2"
-                >
-                  <span className="text-tertiary transition-colors group-hover/btn:text-accent">
-                    {link.icon}
-                  </span>
-                  {link.name}
-                </Link>
-              </MagneticButton>
-            ))}
-          </div>
-        </Reveal>
-
         {/* Socials */}
-        <Reveal y={12} delay={0.16}>
+        <Reveal y={12} delay={0.08}>
           <p className="mb-2 text-label uppercase tracking-[0.15em] text-tertiary">Social</p>
           <div className="flex flex-wrap gap-3">
             {socialLinks.map((link) => (
