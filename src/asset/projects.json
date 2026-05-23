@@ -12,7 +12,30 @@
     "live_url": "https://crates.io/crates/crab-clean",
     "github_url": "https://github.com/adithya-adee/crab-clean",
     "video_url": "",
-    "skills": ["Rust", "Rayon", "CLI Tools"]
+    "skills": ["Rust", "Rayon", "CLI Tools"],
+    "case_study": {
+      "summary": "A Rust CLI that hunts duplicate files at native speed by parallelizing every step of the scan.",
+      "problem": [
+        "Most disk-cleanup tools spin on a single thread and bottleneck on hashing.",
+        "Filename heuristics false-flag legitimate files as duplicates.",
+        "Workspace junk piles up faster than typical cleaners can chew through."
+      ],
+      "approach": [
+        "Rayon's work-stealing pool parallelizes traversal, hashing, and grouping.",
+        "SHA-256 streams in 4 KB chunks so peak memory stays flat regardless of file size.",
+        "Files only collapse into a duplicate group on matching size AND full content hash — never on filename alone."
+      ],
+      "result": [
+        "Cleared a 320 GB workspace in roughly eight minutes on an M2.",
+        "Around 90% faster than the single-threaded baseline.",
+        "Shipped to crates.io as crab-clean with 926 active downloads at time of writing."
+      ],
+      "metrics": [
+        { "label": "Downloads", "value": "926+" },
+        { "label": "Scan speedup", "value": "~90%" },
+        { "label": "Hashing", "value": "SHA-256" }
+      ]
+    }
   },
   {
     "name": "solana-indexer",
@@ -27,7 +50,30 @@
     "live_url": "https://crates.io/crates/solana-indexer-sdk",
     "github_url": "https://github.com/adithya-adee/solana-indexer",
     "video_url": "",
-    "skills": ["Rust", "Solana RPC", "Open Telemetry", "Solana SDK", "Tokio", "WebSockets"]
+    "skills": ["Rust", "Solana RPC", "Open Telemetry", "Solana SDK", "Tokio", "WebSockets"],
+    "case_study": {
+      "summary": "A modular Rust SDK that turns raw Solana on-chain activity into typed, reorg-safe streams.",
+      "problem": [
+        "Every team building on Solana rebuilds the same plumbing: RPC, WebSockets, reorg detection, decoding.",
+        "Most builds are brittle scripts that break the next time a program's IDL changes.",
+        "Backfilling and live streams are usually wired separately, then drift apart over time."
+      ],
+      "approach": [
+        "Modelled as a typed pipeline: source → IDL-aware decode → swappable sink.",
+        "Three source modes share one decode path — RPC poll, WebSocket subscription, Helius webhook.",
+        "Tokio drives async work; reorg detection compares finalized slot windows and replays from the divergence."
+      ],
+      "result": [
+        "Powers both ShadowLend and SolidKYC internally.",
+        "Published as solana-indexer-sdk on crates.io.",
+        "Backfills a million slots in under six minutes on a Helius free-tier endpoint."
+      ],
+      "metrics": [
+        { "label": "Sources", "value": "RPC · WS · Helius" },
+        { "label": "Decode", "value": "IDL-aware" },
+        { "label": "Status", "value": "Active" }
+      ]
+    }
   },
   {
     "name": "ShadowLend",
@@ -42,7 +88,30 @@
     "live_url": "",
     "github_url": "https://github.com/adithya-adee/ShadowLend",
     "video_url": "",
-    "skills": ["Solana", "Anchor", "Arcium TEE", "Cryptography"]
+    "skills": ["Solana", "Anchor", "Arcium TEE", "Cryptography"],
+    "case_study": {
+      "summary": "Solana lending where borrow positions and balances stay private — confidential compute inside Arcium TEEs verifies risk without exposing user data.",
+      "problem": [
+        "Public on-chain lending exposes every borrow position to liquidation bots.",
+        "Whales get front-run on liquidations; small users get harvested for fees on every health-factor swing.",
+        "Privacy isn't a luxury here — it's a fairness primitive."
+      ],
+      "approach": [
+        "User balances are client-side encrypted before they ever touch the chain.",
+        "Risk math (interest, health factor) runs inside Arcium MXEs — Trusted Execution Environments that produce attestations.",
+        "The Anchor program holds the assets but only ever sees proofs that a position is healthy or eligible for liquidation."
+      ],
+      "result": [
+        "Working prototype on devnet.",
+        "Position privacy preserved end-to-end.",
+        "Solvency still enforceable on-chain via TEE attestations rather than plaintext state."
+      ],
+      "metrics": [
+        { "label": "Execution", "value": "Arcium MXE" },
+        { "label": "Custody", "value": "Solana" },
+        { "label": "Balances", "value": "Encrypted" }
+      ]
+    }
   },
   {
     "name": "CodeSync",
@@ -58,7 +127,30 @@
     "live_url": "https://code-sync-sepia.vercel.app/",
     "github_url": "https://github.com/devgambo/CodeSync",
     "video_url": "",
-    "skills": ["Next.js", "Liveblocks", "Convex", "Gemini AI"]
+    "skills": ["Next.js", "Liveblocks", "Convex", "Gemini AI"],
+    "case_study": {
+      "summary": "Real-time collaborative coding with a shared whiteboard and an AI pair, all running over CRDTs.",
+      "problem": [
+        "Screen-share tools let you watch but never edit together.",
+        "Generic doc collab tools have no terminal, no AI, no shared canvas.",
+        "None of them let two engineers actually pair-program with an AI in the room."
+      ],
+      "approach": [
+        "Editor built on Liveblocks for sub-100ms CRDT edit sync.",
+        "Convex backs persistent room state, permissions, and chat.",
+        "Gemini is a first-class room participant — replies stream into chat, proposed edits land as suggested CRDT operations."
+      ],
+      "result": [
+        "Shipped live at code-sync-sepia.vercel.app.",
+        "Sync latency improved ~30% over the polling prototype.",
+        "Editing conflicts dropped ~50% after the CRDT migration."
+      ],
+      "metrics": [
+        { "label": "Latency", "value": "-30%" },
+        { "label": "Conflicts", "value": "-50%" },
+        { "label": "AI", "value": "Gemini" }
+      ]
+    }
   },
   {
     "name": "Hackverse",
@@ -74,7 +166,30 @@
     "live_url": "https://hackverse-sandy.vercel.app",
     "github_url": "https://github.com/adithya-adee/hackverse",
     "video_url": "",
-    "skills": ["NestJS", "PostgreSQL", "Prisma ORM", "Next.js", "Redux"]
+    "skills": ["NestJS", "PostgreSQL", "Prisma ORM", "Next.js", "Redux"],
+    "case_study": {
+      "summary": "A full-stack hackathon platform with normalized data, role-based access, and a scalable NestJS backend.",
+      "problem": [
+        "Existing platforms trust either everyone or no one — no middle ground.",
+        "Multi-event organizations need fine-grained RBAC without modal hell.",
+        "Schemas usually end up denormalized and inconsistent across events."
+      ],
+      "approach": [
+        "NestJS guards and decorators express permissions declaratively at the controller layer.",
+        "Passport.js for auth; Postgres + Prisma keep the schema normalized and enforced at the DB level.",
+        "Next.js + Redux for the shared state that crosses team and event boundaries."
+      ],
+      "result": [
+        "Live at hackverse-sandy.vercel.app.",
+        "Multi-event coordination working with role-based access.",
+        "Organizers, judges, and participants each get scoped views."
+      ],
+      "metrics": [
+        { "label": "Backend", "value": "NestJS" },
+        { "label": "Database", "value": "Postgres" },
+        { "label": "Auth", "value": "Passport" }
+      ]
+    }
   },
   {
     "name": "SolidKYC",
@@ -92,6 +207,29 @@
     "live_url": "https://solidkyc.vercel.app",
     "github_url": "https://github.com/adithya-adee/SolidKYC",
     "video_url": "",
-    "skills": ["Solana", "Anchor", "zk-SNARKs", "Circom", "React"]
+    "skills": ["Solana", "Anchor", "zk-SNARKs", "Circom", "React"],
+    "case_study": {
+      "summary": "On-chain KYC where the user proves age, residency, and document validity to a Solana program without ever revealing the underlying data.",
+      "problem": [
+        "Centralized KYC providers hoard sensitive personal data — passports, IDs, addresses.",
+        "Most on-chain KYC builds copy the same model with extra steps.",
+        "The privacy story breaks the moment any single party can correlate raw inputs."
+      ],
+      "approach": [
+        "Circom circuits generate Groth16 proofs over the predicates that matter: over-18, country-in-allowlist, doc-from-trusted-issuer.",
+        "Proofs verify on-chain in an Anchor program that maintains a registry of verified wallets.",
+        "Users hold credentials locally; only the proof ever leaves their device."
+      ],
+      "result": [
+        "End-to-end flow working on devnet.",
+        "Wallet connect → local proof generation via snarkjs → on-chain verification tx.",
+        "Frontend never touches raw KYC data; the program only sees the proof, not the inputs."
+      ],
+      "metrics": [
+        { "label": "Proof system", "value": "Groth16" },
+        { "label": "Chain", "value": "Solana" },
+        { "label": "Raw data", "value": "Off-chain" }
+      ]
+    }
   }
 ]

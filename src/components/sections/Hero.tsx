@@ -6,9 +6,13 @@ import { motion } from "framer-motion";
 import { Reveal, ScrambleText, ThemeToggle, useReducedMotionSafe } from "@/components/motion";
 
 const ROLE_PHRASES = [
-  "building Private Bridge for web apps",
-  "engineering ZKP Phase 2 ceremony",
   "shipping production Rust services",
+  "engineering Solana programs in Anchor",
+  "writing Circom + zk-SNARK circuits",
+  "designing async backend architecture",
+  "parallelizing systems with Tokio",
+  "modeling cryptographic protocols",
+  "scaling distributed backends",
 ];
 
 const HIGHLIGHTS = [
@@ -174,7 +178,12 @@ export default function Hero() {
           </p>
           <p className="mt-2 font-mono text-mono text-primary/55">
             <span className="text-accent">›</span>{" "}
-            <ScrambleText phrases={ROLE_PHRASES} className="text-primary/75" />
+            <ScrambleText
+              phrases={ROLE_PHRASES}
+              interval={2600}
+              duration={600}
+              className="text-primary/75"
+            />
           </p>
         </Reveal>
 

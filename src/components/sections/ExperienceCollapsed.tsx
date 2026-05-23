@@ -1,42 +1,43 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "framer-motion";
 import experienceData from "@/asset/experience.json";
-import { useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
-import { Reveal, SectionNavLink, SectionTitle } from "@/components/motion";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal, SectionNavLink, SectionTitle, useReducedMotionSafe } from "@/components/motion";
+import { ExperienceSidebar } from "@/app/archive/_components/ExperienceSidebar";
+import {
+  isCurrentRole,
+  isPrimaryRole,
+  type ExperienceItem,
+} from "@/app/archive/_components/timeline-data";
 import { cn } from "@/lib/utils";
 
-const SKILL_CHIP =
-  "rounded-md bg-surface-2 px-3 py-1 text-label tracking-wide text-primary/80 ring-1 ring-inset ring-soft";
+// experience.json has a `display` field that controls home visibility.
+// Strip mentorship-style entries from the home view but keep them on /archive.
+type HomeExperience = ExperienceItem & { display?: boolean };
 
-export interface ExperienceItem {
-  slug: string;
-  company: string;
-  position: string;
-  description: string;
-  responsibilities: string[];
-  highlights: string[];
-  skills: string[];
-  location: string;
-  startDate: string;
-  endDate: string;
-  url: string;
-  logo: string;
-  display?: boolean;
-}
-
+/**
+ * Home Experience section — narrow vertical-rail timeline.
+ *
+ * Aesthetic borrowed from /archive's snake timeline:
+ *   - Animated rail that strokes in on scroll (CSS scaleY transform, masked at
+ *     top/bottom so it fades rather than starts/ends abruptly).
+ *   - Solid dot for primary roles (Full-time / Internship), hollow ring for
+ *     secondary (Freelance / Open Source / Mentorship). Active role pulses.
+ *   - Each entry is a single clickable button; click opens the same
+ *     ExperienceSidebar /archive uses, so the deep-view lives in one place.
+ *
+ * Distinct from /archive's snake-curve so the home page doesn't duplicate the
+ * archive — same vocabulary (rail + dots + sidebar), different choreography.
+ */
 export default function ExperienceCollapsed() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
-  const [isMobile, setIsMobile] = useState(true);
+  const reduced = useReducedMotionSafe();
+  const [selectedEntry, setSelectedEntry] = useState<ExperienceItem | null>(null);
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const experience = (experienceData as ExperienceItem[]).filter((exp) => exp.display !== false);
+  const experience = (experienceData as HomeExperience[]).filter(
+    (exp) => exp.display !== false
+  );
 
   return (
     <section className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -47,145 +48,122 @@ export default function ExperienceCollapsed() {
         Where I&apos;ve Worked
       </SectionTitle>
 
-      <div className="space-y-4 sm:space-y-5">
-        {experience.map((exp, index) => {
-          const isCurrent = exp.endDate.toLowerCase() === "present";
-          const isOpen = expandedIndex === index;
-          return (
-            <Reveal
-              key={exp.company}
-              y={14}
-              delay={index * 0.06}
-              className={cn(
-                "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 backdrop-blur-sm",
-                "shadow-elev-1 transition-shadow duration-base ease-out-soft",
-                "hover:border-strong hover:shadow-elev-2"
-              )}
-            >
-              {/* Aurora bar that fades in on hover */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
-              />
+      <div className="relative pl-7 sm:pl-12">
+        {/* Animated vertical rail. transformOrigin: top + scaleY 0→1 strokes
+            the rail in from the top as it enters the viewport. Mask fades the
+            ends so it doesn't look chopped against the section padding. */}
+        <motion.div
+          aria-hidden="true"
+          initial={reduced ? { scaleY: 1 } : { scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: reduced ? 0 : 1.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            transformOrigin: "top",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%)",
+          }}
+          className="absolute left-[7px] top-2 bottom-2 w-px bg-accent/45 sm:left-[19px]"
+        />
 
-              {/* Collapsed view (clickable trigger) */}
-              <button
-                onClick={() => setExpandedIndex(isOpen ? null : index)}
-                aria-expanded={isOpen}
-                aria-controls={`exp-panel-${index}`}
-                className="flex w-full items-start justify-between px-4 py-4 text-left sm:px-6 sm:py-5"
-              >
-                <div className="flex-1 space-y-3">
-                  {/* Company · Role + dates row */}
-                  <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                    <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-                      {exp.url ? (
-                        <a
-                          href={exp.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="transition-opacity hover:opacity-80"
-                        >
-                          <h3 className="text-h2 font-semibold tracking-tight text-primary">
-                            {exp.company}
-                          </h3>
-                        </a>
-                      ) : (
-                        <h3 className="text-h2 font-semibold tracking-tight text-primary">
+        <ol className="space-y-6 sm:space-y-8">
+          {experience.map((exp, index) => {
+            const isCurrent = isCurrentRole(exp);
+            const isPrimary = isPrimaryRole(exp);
+
+            return (
+              <li key={exp.slug} className="relative">
+                {/* Dot — anchored to the rail, vertically aligned with the
+                    company-name baseline. Solid for primary roles, hollow ring
+                    for secondary. Active role gets a slow ping behind it. */}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute top-[18px] inline-flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:top-[22px]",
+                    "left-[7px] sm:left-[19px]"
+                  )}
+                >
+                  {isCurrent ? (
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                  ) : null}
+                  <span
+                    className={cn(
+                      "relative inline-flex h-3 w-3 rounded-full",
+                      isPrimary
+                        ? "bg-accent ring-2 ring-surface-0"
+                        : "border-[1.5px] border-accent bg-surface-0"
+                    )}
+                  />
+                </span>
+
+                <Reveal y={10} delay={index * 0.06}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedEntry(exp)}
+                    aria-label={`Open details for ${exp.company}`}
+                    className={cn(
+                      "group/entry block w-full rounded-lg px-3 py-2 text-left transition-colors duration-base ease-out-soft -ml-3 sm:-ml-4 sm:px-4 sm:py-3",
+                      "hover:bg-surface-1/70",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
+                    )}
+                  >
+                    {/* Top row — company + role | dates + arrow */}
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                        <h3 className="font-serif text-h2 font-normal italic tracking-tight text-primary transition-colors group-hover/entry:text-accent-bright">
                           {exp.company}
                         </h3>
-                      )}
-                      <span aria-hidden="true" className="text-tertiary">
-                        ·
-                      </span>
-                      <span className="text-body-2 font-medium tracking-wide text-secondary">
-                        {exp.position}
-                      </span>
-                    </div>
-                    <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
-                      {exp.startDate} – {exp.endDate}
-                    </span>
-                  </div>
-
-                  {/* Location + active badge row */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">
-                      {exp.location}
-                    </span>
-                    {isCurrent ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-label font-medium text-accent ring-1 ring-inset ring-accent/30">
-                        <span className="relative flex h-1.5 w-1.5">
-                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                        <span aria-hidden="true" className="text-tertiary">
+                          ·
                         </span>
-                        Active
-                      </span>
-                    ) : null}
-                  </div>
-                </div>
-
-                <div
-                  className={cn(
-                    "ml-4 transition-transform duration-base ease-out-soft sm:ml-6",
-                    isOpen ? "rotate-180" : "rotate-0"
-                  )}
-                  aria-hidden="true"
-                >
-                  <ChevronDown className="h-5 w-5 text-tertiary group-hover:text-primary" />
-                </div>
-              </button>
-
-              {/* Expanded view — grid-rows trick animates the true content height
-                  on both mobile and desktop without the brittle max-h-[2000px] hack. */}
-              <div
-                id={`exp-panel-${index}`}
-                className={cn(
-                  "grid overflow-hidden transition-[grid-template-rows,opacity] duration-slow ease-out-soft",
-                  isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                )}
-              >
-                <div className="min-h-0 border-t border-soft bg-surface-2/30 px-4 pb-5 pt-4 sm:px-6">
-                  <ul className="space-y-2">
-                    {exp.highlights?.map((highlight, i) => (
-                      <li
-                        key={i}
-                        className={cn(
-                          "flex gap-3 transition-all duration-base ease-out-soft",
-                          isOpen ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
-                        )}
-                        style={{ transitionDelay: isMobile || !isOpen ? "0ms" : `${i * 40}ms` }}
-                      >
-                        <span aria-hidden="true" className="mt-2 text-accent/70">
-                          ▸
+                        <span className="text-body-2 font-medium tracking-wide text-secondary">
+                          {exp.position}
                         </span>
-                        <span className="text-body-2 leading-relaxed tracking-wide text-primary/85">
-                          {highlight}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
+                          {exp.startDate} – {exp.endDate}
                         </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {exp.skills?.length ? (
-                    <div className="mt-5 space-y-3 border-t border-soft pt-4">
-                      <p className="text-label font-medium uppercase tracking-[0.15em] text-tertiary">
-                        Skills
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.skills.map((skill, i) => (
-                          <span key={i} className={SKILL_CHIP}>
-                            {skill}
-                          </span>
-                        ))}
+                        <ArrowUpRight
+                          aria-hidden="true"
+                          size={16}
+                          className="text-tertiary transition-all duration-base ease-out-soft group-hover/entry:-translate-y-0.5 group-hover/entry:translate-x-0.5 group-hover/entry:text-accent"
+                        />
                       </div>
                     </div>
-                  ) : null}
-                </div>
-              </div>
-            </Reveal>
-          );
-        })}
+
+                    {/* Badge row — location, type (non-primary), active pulse */}
+                    <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                      <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 text-label font-medium text-secondary ring-1 ring-inset ring-soft">
+                        {exp.location}
+                      </span>
+                      {!isPrimary ? (
+                        <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-0.5 font-mono text-label font-semibold uppercase tracking-wider text-tertiary ring-1 ring-inset ring-soft">
+                          {exp.type}
+                        </span>
+                      ) : null}
+                      {isCurrent ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-label font-medium text-accent ring-1 ring-inset ring-accent/30">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                          </span>
+                          Active
+                        </span>
+                      ) : null}
+                    </div>
+                  </button>
+                </Reveal>
+              </li>
+            );
+          })}
+        </ol>
       </div>
+
+      {/* Sidebar — same component /archive uses, deep view in one place */}
+      <ExperienceSidebar entry={selectedEntry} onClose={() => setSelectedEntry(null)} />
     </section>
   );
 }

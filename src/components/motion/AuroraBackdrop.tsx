@@ -20,15 +20,23 @@ export function AuroraBackdrop() {
   const reduced = useReducedMotionSafe();
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isFinePointer, setIsFinePointer] = useState(false);
   const px = useMotionValue(0);
   const py = useMotionValue(0);
   const sx = useSpring(px, { stiffness: 40, damping: 20, mass: 0.6 });
   const sy = useSpring(py, { stiffness: 40, damping: 20, mass: 0.6 });
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    if (typeof window === "undefined") return;
+    setIsFinePointer(window.matchMedia("(pointer: fine)").matches);
+  }, []);
 
   useEffect(() => {
-    if (reduced) return;
+    // Touch devices don't generate continuous pointermove and can't really
+    // benefit from a follow-the-cursor spotlight. Skipping the listener saves
+    // a rAF tick per move + spring work on mobile.
+    if (reduced || !isFinePointer) return;
     let frame = 0;
     const handler = (event: PointerEvent) => {
       if (frame) return;
@@ -45,22 +53,31 @@ export function AuroraBackdrop() {
       window.removeEventListener("pointermove", handler);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [reduced, px, py]);
+  }, [reduced, isFinePointer, px, py]);
 
   const isDark = mounted ? resolvedTheme === "dark" : true;
+  // Infinite compositor animations are expensive on mobile GPUs — drift only
+  // runs on fine-pointer devices (i.e. with a real mouse) and only when the
+  // user hasn't requested reduced motion.
+  const driftEnabled = !reduced && isFinePointer;
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-surface-0">
-      {/* Film grain — opacity from the active theme token */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 mix-blend-overlay"
-        style={{
-          opacity: "var(--backdrop-grain-opacity)",
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          backgroundSize: "380px 380px",
-        }}
-      />
+      {/* Film grain — SVG feTurbulence is heavy on mobile GPUs (the noise filter
+          rasterizes every layer-promotion). Render it only on fine-pointer
+          devices; mobile/touch falls back to the cleaner palette without
+          noticeably losing the noir feel. */}
+      {isFinePointer ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 mix-blend-overlay"
+          style={{
+            opacity: "var(--backdrop-grain-opacity)",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: "380px 380px",
+          }}
+        />
+      ) : null}
 
       {/* Hairline grid — visible in both themes. Opacity tokenized so the
           light-mode ink lines on cream get enough alpha to actually register. */}
@@ -84,7 +101,7 @@ export function AuroraBackdrop() {
         aria-hidden="true"
         className={
           "absolute -top-[6%] left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full blur-[70px] sm:-top-[8%] sm:h-[600px] sm:w-[600px] sm:blur-[140px] " +
-          (reduced ? "" : "animate-aurora-drift")
+          (driftEnabled ? "animate-aurora-drift" : "")
         }
         style={{
           x: sx,

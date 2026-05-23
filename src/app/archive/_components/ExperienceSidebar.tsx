@@ -65,8 +65,9 @@ export function ExperienceSidebar({ entry, onClose }: ExperienceSidebarProps) {
                   "fixed z-50 flex flex-col border-soft bg-surface-1 shadow-elev-3 backdrop-blur-md",
                   // Mobile bottom sheet
                   "bottom-0 left-0 right-0 max-h-[90vh] rounded-t-2xl border-t",
-                  // Desktop right panel — width adapts to viewport per Q3
-                  "md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-screen md:w-full md:max-w-md md:rounded-t-none md:border-l md:border-t-0 lg:max-w-[40vw] xl:max-w-[560px]"
+                  // Desktop right panel — wider on bigger viewports so the
+                  // rail no longer feels constrained on 1920px+ screens.
+                  "md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-screen md:w-full md:max-w-[70vw] md:rounded-t-none md:border-l md:border-t-0 lg:max-w-[62vw] xl:max-w-[880px] 2xl:max-w-[960px]"
                 )}
               >
                 {/* A11y — required by Radix even if not visible */}
