@@ -136,21 +136,16 @@ export default function ExperienceCollapsed() {
                 </div>
               </button>
 
-              {/* Expanded view */}
+              {/* Expanded view — grid-rows trick animates the true content height
+                  on both mobile and desktop without the brittle max-h-[2000px] hack. */}
               <div
                 id={`exp-panel-${index}`}
                 className={cn(
-                  "overflow-hidden",
-                  isMobile
-                    ? isOpen
-                      ? "max-h-none opacity-100"
-                      : "max-h-0 opacity-0"
-                    : isOpen
-                      ? "max-h-[2000px] opacity-100 transition-all duration-slow ease-out-soft"
-                      : "max-h-0 opacity-0 transition-all duration-slow ease-out-soft"
+                  "grid overflow-hidden transition-[grid-template-rows,opacity] duration-slow ease-out-soft",
+                  isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                 )}
               >
-                <div className="border-t border-soft bg-surface-2/30 px-4 pb-5 pt-4 sm:px-6">
+                <div className="min-h-0 border-t border-soft bg-surface-2/30 px-4 pb-5 pt-4 sm:px-6">
                   <ul className="space-y-2">
                     {exp.highlights?.map((highlight, i) => (
                       <li
