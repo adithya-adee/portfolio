@@ -19,8 +19,8 @@ const HIGHLIGHTS = [
 
 const NAME = "Adithya Anand";
 
-export default function Hero() {
-  const reduced = useReducedMotionSafe();
+// Isolated island — keeps the 1Hz re-render out of the Hero subtree.
+function Clock() {
   const [currentTime, setCurrentTime] = useState("--:--:--");
 
   useEffect(() => {
@@ -40,6 +40,21 @@ export default function Hero() {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  return (
+    <p
+      className="m-0 font-mono text-label font-medium text-primary/85"
+      suppressHydrationWarning
+    >
+      <span className="sm:hidden">{currentTime.slice(0, 5)}</span>
+      <span className="hidden sm:inline">{currentTime}</span>
+      <span className="text-primary/40"> IST</span>
+    </p>
+  );
+}
+
+export default function Hero() {
+  const reduced = useReducedMotionSafe();
 
   return (
     <section className="mx-auto mt-12 max-w-3xl px-4 sm:mt-20 sm:px-6">
@@ -74,15 +89,7 @@ export default function Hero() {
                 </span>
               </span>
 
-              <p
-                className="m-0 font-mono text-label font-medium text-primary/85"
-                suppressHydrationWarning
-              >
-                {/* Short clock (HH:MM) on mobile, full clock with seconds on desktop */}
-                <span className="sm:hidden">{currentTime.slice(0, 5)}</span>
-                <span className="hidden sm:inline">{currentTime}</span>
-                <span className="text-primary/40"> IST</span>
-              </p>
+              <Clock />
             </div>
 
             {/* Theme toggle sits inline with the clock so they read as one
@@ -101,12 +108,13 @@ export default function Hero() {
             <div className="relative h-14 w-14 sm:h-[84px] sm:w-[84px]">
               <div className="absolute -inset-0.5 rounded-full bg-accent opacity-30 blur-md" />
               <Image
-                src="/profile.png"
+                src="/profile.webp"
                 alt="Adithya Anand"
                 width={84}
                 height={84}
                 priority
-                className="relative h-full w-full rounded-full ring-1 ring-cream/15"
+                sizes="(max-width: 640px) 56px, 84px"
+                className="relative h-full w-full rounded-full ring-1 ring-primary/15"
               />
             </div>
           </Reveal>
