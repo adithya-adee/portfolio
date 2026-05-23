@@ -1,13 +1,17 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { ExternalLink, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useReducedMotionSafe } from "@/components/motion";
 import { cn } from "@/lib/utils";
 import { DateCapsule } from "./DateCapsule";
 import { isCurrentRole, isPrimaryRole, type ExperienceItem } from "./timeline-data";
+
+// Drag-to-close thresholds. Either condition triggers dismissal.
+const DRAG_CLOSE_OFFSET = 120;
+const DRAG_CLOSE_VELOCITY = 500;
 
 interface ExperienceSidebarProps {
   entry: ExperienceItem | null;
@@ -29,11 +33,14 @@ interface ExperienceSidebarProps {
 export function ExperienceSidebar({ entry, onClose }: ExperienceSidebarProps) {
   const reduced = useReducedMotionSafe();
   const isDesktop = useIsDesktopUp();
+  const dragControls = useDragControls();
   const open = entry !== null;
 
   // Slide axis depends on layout: right panel on desktop, bottom sheet on mobile.
   const closedTransform = isDesktop ? { x: "100%" } : { y: "100%" };
   const openTransform = isDesktop ? { x: 0 } : { y: 0 };
+  // Drag-to-close is mobile-only (bottom sheet); desktop right-rail uses click-outside / Esc / X.
+  const dragEnabled = !isDesktop && !reduced;
 
   return (
     <Dialog.Root open={open} onOpenChange={(o) => !o && onClose()}>
@@ -61,6 +68,19 @@ export function ExperienceSidebar({ entry, onClose }: ExperienceSidebarProps) {
                   duration: reduced ? 0 : 0.34,
                   ease: [0.22, 1, 0.36, 1],
                 }}
+                drag={dragEnabled ? "y" : false}
+                dragControls={dragControls}
+                dragListener={false}
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={0.18}
+                onDragEnd={(_, info) => {
+                  if (
+                    info.offset.y > DRAG_CLOSE_OFFSET ||
+                    info.velocity.y > DRAG_CLOSE_VELOCITY
+                  ) {
+                    onClose();
+                  }
+                }}
                 className={cn(
                   "fixed z-50 flex flex-col border-soft bg-surface-1 shadow-elev-3 backdrop-blur-md",
                   // Mobile bottom sheet
@@ -76,8 +96,18 @@ export function ExperienceSidebar({ entry, onClose }: ExperienceSidebarProps) {
                   {entry.position} at {entry.company}, {entry.startDate} — {entry.endDate}
                 </Dialog.Description>
 
-                {/* Mobile drag handle (visual only — for v1 we don't wire drag-to-close) */}
-                <div className="flex justify-center pt-3 md:hidden" aria-hidden="true">
+                {/* Mobile drag handle — pointerdown on this strip starts the
+                    sheet's drag. The body scroll inside `data-lenis-prevent`
+                    keeps working because dragListener={false} on the shell
+                    means drags only initiate from this handle. */}
+                <div
+                  className="flex cursor-grab justify-center pt-3 active:cursor-grabbing md:hidden"
+                  aria-hidden="true"
+                  onPointerDown={(event) => {
+                    if (dragEnabled) dragControls.start(event);
+                  }}
+                  style={{ touchAction: "none" }}
+                >
                   <span className="h-1 w-10 rounded-full bg-strong" />
                 </div>
 

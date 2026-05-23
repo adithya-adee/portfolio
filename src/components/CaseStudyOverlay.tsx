@@ -1,12 +1,15 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { ExternalLink, X } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { useEffect, useState } from "react";
 import { useReducedMotionSafe } from "@/components/motion";
 import { cn } from "@/lib/utils";
+
+const DRAG_CLOSE_OFFSET = 120;
+const DRAG_CLOSE_VELOCITY = 500;
 
 export interface CaseStudyMetric {
   label: string;
@@ -49,10 +52,13 @@ interface CaseStudyOverlayProps {
 export function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayProps) {
   const reduced = useReducedMotionSafe();
   const isDesktop = useIsDesktopUp();
+  const dragControls = useDragControls();
   const open = project !== null;
 
   const closedTransform = isDesktop ? { x: "100%" } : { y: "100%" };
   const openTransform = isDesktop ? { x: 0 } : { y: 0 };
+  // Drag-to-close is mobile-only (bottom sheet); desktop right-rail uses click-outside / Esc / X.
+  const dragEnabled = !isDesktop && !reduced;
 
   return (
     <Dialog.Root open={open} onOpenChange={(o) => !o && onClose()}>
@@ -75,6 +81,19 @@ export function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayProps) {
                 animate={openTransform}
                 exit={closedTransform}
                 transition={{ duration: reduced ? 0 : 0.34, ease: [0.22, 1, 0.36, 1] }}
+                drag={dragEnabled ? "y" : false}
+                dragControls={dragControls}
+                dragListener={false}
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={0.18}
+                onDragEnd={(_, info) => {
+                  if (
+                    info.offset.y > DRAG_CLOSE_OFFSET ||
+                    info.velocity.y > DRAG_CLOSE_VELOCITY
+                  ) {
+                    onClose();
+                  }
+                }}
                 className={cn(
                   "fixed z-50 flex flex-col border-soft bg-surface-1 shadow-elev-3 backdrop-blur-md",
                   // Mobile bottom sheet
@@ -89,8 +108,15 @@ export function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayProps) {
                   {project.case_study?.summary ?? project.short_description ?? project.name}
                 </Dialog.Description>
 
-                {/* Mobile drag handle */}
-                <div className="flex justify-center pt-3 md:hidden" aria-hidden="true">
+                {/* Mobile drag handle — initiates the sheet's drag-to-close */}
+                <div
+                  className="flex cursor-grab justify-center pt-3 active:cursor-grabbing md:hidden"
+                  aria-hidden="true"
+                  onPointerDown={(event) => {
+                    if (dragEnabled) dragControls.start(event);
+                  }}
+                  style={{ touchAction: "none" }}
+                >
                   <span className="h-1 w-10 rounded-full bg-strong" />
                 </div>
 

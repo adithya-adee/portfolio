@@ -23,14 +23,8 @@ export function CommandPaletteMount() {
   const loadingRef = useRef(false);
 
   useEffect(() => {
-    const handler = (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() !== "k") return;
-      if (!(event.metaKey || event.ctrlKey)) return;
-      event.preventDefault();
-      if (Comp) {
-        // Component already mounted — its own listener will handle toggle.
-        return;
-      }
+    const lazyOpen = () => {
+      if (Comp) return; // Already mounted; its own listener handles toggle.
       if (loadingRef.current) return;
       loadingRef.current = true;
       import("./CommandPalette").then((mod) => {
@@ -38,8 +32,24 @@ export function CommandPaletteMount() {
         setComp(() => mod.CommandPalette);
       });
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+
+    const keyHandler = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() !== "k") return;
+      if (!(event.metaKey || event.ctrlKey)) return;
+      event.preventDefault();
+      lazyOpen();
+    };
+
+    // The CommandPaletteHint chip and any other UI affordance dispatches this
+    // custom event to open the palette without simulating a keystroke.
+    const customHandler = () => lazyOpen();
+
+    window.addEventListener("keydown", keyHandler);
+    window.addEventListener("portfolio:open-palette", customHandler);
+    return () => {
+      window.removeEventListener("keydown", keyHandler);
+      window.removeEventListener("portfolio:open-palette", customHandler);
+    };
   }, [Comp]);
 
   if (!Comp) return null;
