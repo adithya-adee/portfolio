@@ -2,7 +2,8 @@
 
 import { Command } from "cmdk";
 import { useTheme } from "next-themes";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import {
@@ -53,7 +54,7 @@ type CommandEntry = NavCommand | ExternalCommand | ActionCommand;
 interface PaletteContext {
   setTheme: (theme: string) => void;
   resolvedTheme: string | undefined;
-  router: ReturnType<typeof useRouter>;
+  router: ReturnType<typeof useTransitionRouter>;
   close: () => void;
 }
 
@@ -74,7 +75,7 @@ interface CommandPaletteProps {
 export function CommandPalette({ initialOpen = false }: CommandPaletteProps = {}) {
   const [open, setOpen] = useState(initialOpen);
   const { resolvedTheme, setTheme } = useTheme();
-  const router = useRouter();
+  const router = useTransitionRouter();
   const pathname = usePathname();
   const isHome = pathname === "/";
 

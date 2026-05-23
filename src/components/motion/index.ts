@@ -10,4 +10,5 @@ export { SectionTitle } from "./SectionTitle";
 export { SectionNavLink } from "./SectionNavLink";
 export { ThemeToggle } from "./ThemeToggle";
 export { CommandPalette } from "./CommandPalette";
+export { CommandPaletteHint } from "./CommandPaletteHint";
 export { useReducedMotionSafe } from "./useReducedMotionSafe";

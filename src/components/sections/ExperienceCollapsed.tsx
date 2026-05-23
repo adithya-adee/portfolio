@@ -48,10 +48,13 @@ export default function ExperienceCollapsed() {
         Where I&apos;ve Worked
       </SectionTitle>
 
-      <div className="relative pl-7 sm:pl-12">
-        {/* Animated vertical rail. transformOrigin: top + scaleY 0→1 strokes
-            the rail in from the top as it enters the viewport. Mask fades the
-            ends so it doesn't look chopped against the section padding. */}
+      {/* Two-column timeline: a narrow rail/dot column on the left, content
+          on the right. Using CSS grid means dots and rail share the same x
+          origin no matter how content reflows. */}
+      <div className="relative">
+        {/* Animated vertical rail — sits in the center of the 24px (mobile) /
+            40px (desktop) gutter column. scaleY 0→1 strokes it in from the
+            top on viewport-enter, masked at the ends so it fades cleanly. */}
         <motion.div
           aria-hidden="true"
           initial={reduced ? { scaleY: 1 } : { scaleY: 0 }}
@@ -65,39 +68,42 @@ export default function ExperienceCollapsed() {
             WebkitMaskImage:
               "linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%)",
           }}
-          className="absolute left-[7px] top-2 bottom-2 w-px bg-accent/45 sm:left-[19px]"
+          className="pointer-events-none absolute left-[11px] top-2 bottom-2 w-px bg-accent/45 sm:left-[19px]"
         />
 
-        <ol className="space-y-6 sm:space-y-8">
+        <ol className="space-y-7 sm:space-y-10">
           {experience.map((exp, index) => {
             const isCurrent = isCurrentRole(exp);
             const isPrimary = isPrimaryRole(exp);
 
             return (
-              <li key={exp.slug} className="relative">
-                {/* Dot — anchored to the rail, vertically aligned with the
-                    company-name baseline. Solid for primary roles, hollow ring
-                    for secondary. Active role gets a slow ping behind it. */}
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "absolute top-[18px] inline-flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:top-[22px]",
-                    "left-[7px] sm:left-[19px]"
-                  )}
-                >
-                  {isCurrent ? (
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                  ) : null}
+              <li
+                key={exp.slug}
+                className="grid grid-cols-[24px_1fr] gap-x-4 sm:grid-cols-[40px_1fr] sm:gap-x-6"
+              >
+                {/* Rail column — purely a spacer that gives the dot a fixed
+                    track. The dot is centered within this column so it always
+                    lands on the rail regardless of content width. */}
+                <div className="relative">
                   <span
-                    className={cn(
-                      "relative inline-flex h-3 w-3 rounded-full",
-                      isPrimary
-                        ? "bg-accent ring-2 ring-surface-0"
-                        : "border-[1.5px] border-accent bg-surface-0"
-                    )}
-                  />
-                </span>
+                    aria-hidden="true"
+                    className="absolute left-1/2 top-[12px] inline-flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:top-[16px]"
+                  >
+                    {isCurrent ? (
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                    ) : null}
+                    <span
+                      className={cn(
+                        "relative inline-flex h-3 w-3 rounded-full",
+                        isPrimary
+                          ? "bg-accent ring-2 ring-surface-0"
+                          : "border-[1.5px] border-accent bg-surface-0"
+                      )}
+                    />
+                  </span>
+                </div>
 
+                {/* Content column — clickable entry */}
                 <Reveal y={10} delay={index * 0.06}>
                   <button
                     type="button"

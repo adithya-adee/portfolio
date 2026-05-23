@@ -3,7 +3,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Reveal, ScrambleText, ThemeToggle, useReducedMotionSafe } from "@/components/motion";
+import {
+  CommandPaletteHint,
+  Reveal,
+  ScrambleText,
+  ThemeToggle,
+  useReducedMotionSafe,
+} from "@/components/motion";
 
 const ROLE_PHRASES = [
   "shipping production Rust services",
@@ -96,9 +102,10 @@ export default function Hero() {
               <Clock />
             </div>
 
-            {/* Theme toggle sits inline with the clock so they read as one
-                control group at the top of the Hero. On subpages the fixed
-                ThemeToggle in layout.tsx takes over. */}
+            {/* Command palette hint + theme toggle sit inline with the clock
+                so they read as one control group at the top of the Hero. On
+                subpages the fixed instances in layout.tsx take over. */}
+            <CommandPaletteHint placement="inline" />
             <ThemeToggle placement="inline" />
           </Reveal>
         </div>
