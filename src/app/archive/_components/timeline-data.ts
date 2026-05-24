@@ -13,6 +13,12 @@ export interface ExperienceItem {
   company: string;
   position: string;
   description: string;
+  /**
+   * Short technical one-liner rendered on the home rail timeline. Lean,
+   * engineer-speak — role + stack + the verb. Falls back to highlights[0]
+   * when absent (legacy entries / drafts).
+   */
+  short_summary?: string;
   responsibilities: string[];
   highlights: string[];
   skills: string[];
