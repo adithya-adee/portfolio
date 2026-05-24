@@ -11,6 +11,9 @@ import { ViewTransitions } from "next-view-transitions";
 import {
   AuroraBackdrop,
   CommandPaletteHint,
+  KonamiCode,
+  ResumeLink,
+  ScrollProgressRail,
   SmoothScroll,
   ThemeToggle,
 } from "@/components/motion";
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     template: "%s | Adithya Anand",
   },
   description:
-    "Backend & Blockchain Engineer at Umbra Privacy, contributing to privacy infrastructure — Private Bridge for web apps and the ZKP Phase 2 trusted-setup ceremony. Production Rust (Axum), Solana (Anchor), Node.js, NestJS, PostgreSQL, Redis, and AWS. See projects, work history, and writing.",
+    "Adithya Anand — Backend & Blockchain Engineer specializing in zero-knowledge proofs, Rust (Axum), Solana, and distributed systems. Computer Science at NITK Surathkal, currently at Umbra Privacy. Portfolio of shipped open-source projects, work history, and writing.",
   applicationName: "Adithya Anand Portfolio",
   authors: [{ name: "Adithya Anand", url: "https://github.com/adithya-adee" }],
   creator: "Adithya Anand",
@@ -114,7 +117,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Adithya Anand | Backend & Blockchain Engineer",
     description:
-      "Backend & Blockchain Engineer at Umbra Privacy. Contributing to Private Bridge for web apps and the ZKP Phase 2 trusted-setup ceremony with Rust (Axum), Solana, and AWS.",
+      "Adithya Anand — Backend & Blockchain Engineer specializing in zero-knowledge proofs, Rust (Axum), and Solana. Portfolio of shipped open-source projects, work history, and writing.",
     url: SITE_URL,
     siteName: "Adithya Anand Portfolio",
     locale: "en_US",
@@ -126,7 +129,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Adithya Anand | Backend & Blockchain Engineer",
     description:
-      "Backend & Blockchain Engineer at Umbra Privacy. Private Bridge for web apps · ZKP Phase 2 ceremony · Rust (Axum) · Solana · AWS.",
+      "Adithya Anand — Backend & Blockchain Engineer · Rust (Axum) · Zero-Knowledge Proofs · Solana · NITK Surathkal.",
     creator: "@glitchy_moon_",
     site: "@glitchy_moon_",
     // Twitter image inherits from openGraph (Next reuses the OG image route).
@@ -151,9 +154,12 @@ export default function RootLayout({
           <ThemeProvider>
             <AuroraBackdrop />
             <SmoothScroll />
-            <ThemeToggle />
+            <ScrollProgressRail />
+            <ResumeLink />
             <CommandPaletteHint />
+            <ThemeToggle />
             <CommandPaletteMount />
+            <KonamiCode />
             <Toaster position="top-right" richColors />
             <Analytics />
             <SpeedInsights />

@@ -13,7 +13,9 @@ export default function StructuredData() {
     "@type": "Person",
     "@id": `${baseUrl}/#person`,
     name: "Adithya Anand",
-    alternateName: ["@glitchy_moon", "Adithya A"],
+    givenName: "Adithya",
+    familyName: "Anand",
+    alternateName: ["@glitchy_moon", "glitchy_moon", "Adithya A"],
     url: baseUrl,
     image: {
       "@type": "ImageObject",
@@ -22,9 +24,9 @@ export default function StructuredData() {
       height: "400",
     },
     email: "mailto:adithya25905@gmail.com",
-    jobTitle: "Backend Developer",
+    jobTitle: "Backend & Blockchain Engineer",
     description:
-      "Backend & Blockchain Engineer at Umbra Privacy. Contributing to privacy-preserving infrastructure — the Private Bridge for web applications and the ZKP Phase 2 trusted-setup ceremony. Computer Science student at NITK Surathkal with production experience in Rust (Axum), Solana (Anchor), Node.js, NestJS, and AWS.",
+      "Adithya Anand — Backend & Blockchain Engineer specializing in zero-knowledge proofs, Rust (Axum), and Solana. Computer Science at NITK Surathkal, currently at Umbra Privacy. Production experience in distributed systems, cryptography, and full-stack engineering.",
 
     // Professional profiles
     sameAs: [

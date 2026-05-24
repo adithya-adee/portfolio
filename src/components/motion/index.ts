@@ -11,4 +11,8 @@ export { SectionNavLink } from "./SectionNavLink";
 export { ThemeToggle } from "./ThemeToggle";
 export { CommandPalette } from "./CommandPalette";
 export { CommandPaletteHint } from "./CommandPaletteHint";
+export { ResumeLink } from "./ResumeLink";
+export { SectionDivider } from "./SectionDivider";
+export { ScrollProgressRail } from "./ScrollProgressRail";
+export { KonamiCode } from "./KonamiCode";
 export { useReducedMotionSafe } from "./useReducedMotionSafe";

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import {
   CommandPaletteHint,
   Reveal,
+  ResumeLink,
   ScrambleText,
   ThemeToggle,
   useReducedMotionSafe,
@@ -102,9 +103,12 @@ export default function Hero() {
               <Clock />
             </div>
 
-            {/* Command palette hint + theme toggle sit inline with the clock
-                so they read as one control group at the top of the Hero. On
-                subpages the fixed instances in layout.tsx take over. */}
+            {/* Resume CV + command palette hint + theme toggle sit inline
+                with the clock so they read as one control group at the top
+                of the Hero. On subpages the fixed instances in layout.tsx
+                take over. ResumeLink renders null when public/resume.pdf
+                doesn't exist (build-time check). */}
+            <ResumeLink placement="inline" />
             <CommandPaletteHint placement="inline" />
             <ThemeToggle placement="inline" />
           </Reveal>

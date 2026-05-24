@@ -87,7 +87,7 @@ export default function ExperienceCollapsed() {
                 <div className="relative">
                   <span
                     aria-hidden="true"
-                    className="absolute left-1/2 top-[12px] inline-flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:top-[16px]"
+                    className="absolute left-1/2 top-[22px] inline-flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:top-[28px]"
                   >
                     {isCurrent ? (
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
@@ -103,18 +103,26 @@ export default function ExperienceCollapsed() {
                   </span>
                 </div>
 
-                {/* Content column — clickable entry */}
+                {/* Content column — clickable entry, styled as a card to match
+                    Projects / Blogs / TechStack while the rail keeps its
+                    timeline role in the gutter to the left. */}
                 <Reveal y={10} delay={index * 0.06}>
                   <button
                     type="button"
                     onClick={() => setSelectedEntry(exp)}
                     aria-label={`Open details for ${exp.company}`}
                     className={cn(
-                      "group/entry block w-full rounded-lg px-3 py-2 text-left transition-colors duration-base ease-out-soft -ml-3 sm:-ml-4 sm:px-4 sm:py-3",
-                      "hover:bg-surface-1/70",
+                      "group/entry relative block w-full overflow-hidden rounded-xl border border-soft bg-surface-1 px-4 py-4 text-left backdrop-blur-sm sm:px-6 sm:py-5",
+                      "shadow-elev-1 transition-[border-color,box-shadow,transform] duration-base ease-out-soft",
+                      "hover:-translate-y-0.5 hover:border-strong hover:shadow-elev-2",
                       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
                     )}
                   >
+                    {/* Accent left bar on hover / focus — matches Projects + Blogs cards */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover/entry:opacity-100 group-focus-visible/entry:opacity-100"
+                    />
                     {/* Top row — company + role | dates + arrow */}
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                       <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
@@ -160,6 +168,19 @@ export default function ExperienceCollapsed() {
                         </span>
                       ) : null}
                     </div>
+
+                    {/* Inline highlight — the punchiest bullet rendered without
+                        a click, so scanners get the value-add of the role at
+                        a glance. Full highlight list still available in the
+                        sidebar on click. */}
+                    {exp.highlights?.[0] ? (
+                      <p className="mt-3 flex gap-2.5 text-body-2 leading-relaxed text-primary/65">
+                        <span aria-hidden="true" className="mt-1.5 shrink-0 text-accent/60">
+                          ▸
+                        </span>
+                        <span>{exp.highlights[0]}</span>
+                      </p>
+                    ) : null}
                   </button>
                 </Reveal>
               </li>
