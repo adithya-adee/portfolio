@@ -2,11 +2,11 @@
  * SEO Component with JSON-LD Structured Data
  * Implements schema.org best practices for search engine optimization.
  *
- * Canonical site URL is `https://glitchymoon.vercel.app` — every URL emitted here
+ * Canonical site URL is `https://glitchymoon.dev` — every URL emitted here
  * must use that host so JSON-LD, OG, and the Next metadata API agree.
  */
 export default function StructuredData() {
-  const baseUrl = "https://glitchymoon.vercel.app";
+  const baseUrl = "https://glitchymoon.dev";
 
   const personSchema = {
     "@context": "https://schema.org",

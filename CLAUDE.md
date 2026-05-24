@@ -12,7 +12,7 @@ Current focus reflected in the copy: backend / zero-knowledge engineering at **U
 Rust (Axum), Circom, Solana, and AWS — but Hero copy and metadata avoid product-specific names per
 user preference.
 
-Canonical URL: **https://glitchymoon.vercel.app**.
+Canonical URL: **https://glitchymoon.dev** (the `glitchymoon.vercel.app` deployment alias still resolves but is not canonical).
 
 ## Stack
 
@@ -163,7 +163,7 @@ for `next/image`. Add new external hosts there before referencing them.
 
 ## SEO surface
 
-Every SEO surface points at **`https://glitchymoon.vercel.app`** — keep them aligned.
+Every SEO surface points at **`https://glitchymoon.dev`** — keep them aligned.
 
 - `layout.tsx` — Next Metadata API (title template, description, OG, Twitter, robots,
   `metadataBase`). `SITE_URL` is defined once at the top.

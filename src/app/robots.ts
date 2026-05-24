@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://glitchymoon.vercel.app/sitemap.xml",
-    host: "https://glitchymoon.vercel.app",
+    sitemap: "https://glitchymoon.dev/sitemap.xml",
+    host: "https://glitchymoon.dev",
   };
 }

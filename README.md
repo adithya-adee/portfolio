@@ -2,7 +2,7 @@
 
 Personal portfolio of **Adithya Anand** — Backend & Blockchain Engineer working on privacy infrastructure, zero-knowledge proofs, Rust (Axum), and Solana.
 
-**Live:** [glitchymoon.vercel.app](https://glitchymoon.vercel.app)
+**Live:** [glitchymoon.dev](https://glitchymoon.dev)
 
 ## What this is
 
@@ -65,7 +65,7 @@ Drop a `public/resume.pdf` at the repo root → `pnpm build` picks it up via `ne
 
 ## SEO
 
-Metadata, OG, Twitter, JSON-LD `@graph` (Person · WebSite · ProfilePage · ItemList · BreadcrumbList), sitemap, and robots are all wired and aligned on `https://glitchymoon.vercel.app`. See `src/components/SEO.tsx`, `src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`.
+Metadata, OG, Twitter, JSON-LD `@graph` (Person · WebSite · ProfilePage · ItemList · BreadcrumbList), sitemap, and robots are all wired and aligned on `https://glitchymoon.dev`. See `src/components/SEO.tsx`, `src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`.
 
 ## License
 
