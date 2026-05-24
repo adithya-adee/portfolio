@@ -9,6 +9,7 @@
     "endDate": "Present",
     "duration": "Ongoing",
     "display": true,
+    "short_summary": "Lead backend engineer — learning Circom and writing Solana programs in Pinocchio, shipping Axum services that back the prover.",
     "description": "Backend engineer building privacy-preserving infrastructure. Designing zero-knowledge proof systems and secure cross-chain primitives for production-grade privacy products.",
     "responsibilities": [
       "Building the Private Bridge for web applications — a privacy-preserving cross-chain bridge using zk-SNARKs to hide source, destination, and amount metadata.",
@@ -51,6 +52,7 @@
     "endDate": "APR 2026",
     "duration": "8 months",
     "display": true,
+    "short_summary": "Backend engineer optimizing queries with deep database knowledge; built blazing-fast RESTful APIs on Node + Express.",
     "description": "Backend developer intern building and scaling production systems for a campus automation and payments platform, with a strong focus on performance, reliability, and observability.",
     "responsibilities": [
       "Engineered and optimized 50+ REST APIs using Node.js and Express.js, reducing response times by 50–80% through Redis caching, request batching, and MongoDB aggregation pipelines.",
@@ -90,6 +92,7 @@
     "endDate": "JAN 2026",
     "duration": "2 months",
     "display": true,
+    "short_summary": "Solana smart-contract dev — shipped token presale and staking in Anchor, wired treasury management through Helius RPC.",
     "description": "Developed a complete token presale and staking platform on Solana blockchain for a Dubai-based client, handling smart contracts, frontend integration, and backend infrastructure.",
     "responsibilities": [
       "Architected and deployed production-grade Solana smart contracts using Anchor framework for token presale, staking, and referral systems with multi-tier APY calculations.",
@@ -131,6 +134,7 @@
     "endDate": "JUN 2025",
     "duration": "2 months",
     "display": true,
+    "short_summary": "Open-source contributor — migrated Rust internals to TypeScript, shipped a full-stack FinTech module end to end.",
     "description": "Selected for IEEE Summer of Code as an open-source contributor; worked across multiple production-grade codebases spanning backend, frontend, and infrastructure.",
     "responsibilities": [
       "Ranked in the top 10% nationwide among 100+ contributors based on contribution quality, consistency, and impact.",
@@ -168,6 +172,7 @@
     "endDate": "AUG 2024",
     "duration": "4 months",
     "display": false,
+    "short_summary": "Full-stack mentee — MERN apps, JWT auth, Express APIs, React Context-driven state.",
     "description": "Worked as a full-stack developer under mentorship, building and optimizing MERN-based web applications with a focus on real-world product features.",
     "responsibilities": [
       "Architected and developed a MERN-stack restaurant discovery platform supporting cuisine categorization, search, and filtering.",

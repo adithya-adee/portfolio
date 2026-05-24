@@ -164,16 +164,17 @@ export default function ExperienceCollapsed() {
                       ) : null}
                     </div>
 
-                    {/* Inline highlight — the punchiest bullet rendered without
-                        a click, so scanners get the value-add of the role at
-                        a glance. Full highlight list still available in the
-                        sidebar on click. */}
-                    {exp.highlights?.[0] ? (
+                    {/* Inline role summary — tight technical one-liner so
+                        scanners get the role + stack at a glance. Prefers the
+                        dedicated short_summary field; falls back to the first
+                        highlight bullet for legacy entries. Full highlights
+                        list still available in the sidebar on click. */}
+                    {exp.short_summary || exp.highlights?.[0] ? (
                       <p className="mt-3 flex gap-2.5 text-body-2 leading-relaxed text-primary/65">
                         <span aria-hidden="true" className="mt-1.5 shrink-0 text-accent/60">
                           ▸
                         </span>
-                        <span>{exp.highlights[0]}</span>
+                        <span>{exp.short_summary ?? exp.highlights?.[0]}</span>
                       </p>
                     ) : null}
                   </button>
