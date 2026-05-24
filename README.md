@@ -51,7 +51,7 @@ pnpm format:check    # CI-style check
 All site content is JSON, no CMS:
 
 - `src/asset/projects.json` — projects + per-project case studies
-- `src/asset/experience.json` — roles, highlights, skills, location, dates
+- `src/asset/experience.json` — roles + highlights + skills + location + dates. Each entry takes an optional `short_summary` (the tight technical one-liner rendered on the home rail) and a `display: false` flag to hide from the home view (still shown on `/archive`).
 - `src/asset/blog.json` — blog post metadata pointing at dev.to articles
 - `src/app/uses/page.tsx` — daily-driver stack (edit the `SECTIONS` array)
 
@@ -65,7 +65,15 @@ Drop a `public/resume.pdf` at the repo root → `pnpm build` picks it up via `ne
 
 ## SEO
 
-Metadata, OG, Twitter, JSON-LD `@graph` (Person · WebSite · ProfilePage · ItemList · BreadcrumbList), sitemap, and robots are all wired and aligned on `https://glitchymoon.dev`. See `src/components/SEO.tsx`, `src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`.
+Metadata, OG, Twitter, JSON-LD `@graph` (Person · WebSite · ProfilePage · ItemList · BreadcrumbList), sitemap, and robots are all wired and aligned on `https://glitchymoon.dev`. Per-route OG images exist for `/`, `/blog`, `/archive`, and `/uses`. See `src/components/SEO.tsx`, `src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`, and each route's `opengraph-image.tsx`.
+
+Google Search Console verification is handled via `public/googlef8d9672eb822ee1c.html` (file-method).
+
+## Security
+
+`next.config.ts` ships baseline security headers across every route — `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and a `Permissions-Policy` locking camera/microphone/geolocation/FLoC. Strict CSP is intentionally deferred until inline JSON-LD scripts are hashed.
+
+`/api/visits` enforces a same-origin POST guard (allows `glitchymoon.dev`, `www.glitchymoon.dev`, `*.vercel.app`, localhost) plus a per-IP rate limit (5 POSTs / minute) backed by Upstash, with a `Retry-After` header on 429.
 
 ## License
 
