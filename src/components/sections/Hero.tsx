@@ -30,7 +30,7 @@ const HIGHLIGHTS = [
   { tag: "SHIPPED", text: "crab-clean (900+ dl) and solana-indexer SDK on crates.io" },
   {
     tag: "AWARDED",
-    text: "Hack to the Future 4.0 DevOps winner · Top 10% IEEE Summer of Code 2025",
+    text: "Hack to the Future 4.0 DevOps winner · Top 10% IEEE SoC 2025",
   },
 ] as const;
 
