@@ -28,7 +28,10 @@ const HIGHLIGHTS = [
     text: "Learning Circom + abstract algebra to strengthen cryptography and ZKP",
   },
   { tag: "SHIPPED", text: "crab-clean (900+ dl) and solana-indexer SDK on crates.io" },
-  { tag: "AWARDED", text: "Top 10% in IEEE Summer of Code 2025" },
+  {
+    tag: "AWARDED",
+    text: "Hack to the Future 4.0 DevOps winner · Top 10% IEEE Summer of Code 2025",
+  },
 ] as const;
 
 const NAME = "Adithya Anand";
