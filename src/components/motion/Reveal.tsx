@@ -45,7 +45,7 @@ export function Reveal({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: 0.2, margin: "0px 0px -10% 0px" }}
+      viewport={{ once, amount: 0.35, margin: "0px 0px -10% 0px" }}
       variants={reduced ? reducedVariants : { ...variants, hidden: { ...variants.hidden, y } }}
       transition={{
         duration: reduced ? 0 : 0.55,

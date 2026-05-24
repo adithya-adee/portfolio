@@ -59,8 +59,13 @@ function isOriginAllowed(origin: string | null, referer: string | null): boolean
     try {
       const u = new URL(url);
       return (
+        // Canonical custom domain (post-Cloudflare cutover).
+        u.host === "glitchymoon.dev" ||
+        u.host === "www.glitchymoon.dev" ||
+        // Vercel deployment aliases (production + preview branches).
         u.host === "vercel.app" ||
         u.host.endsWith(".vercel.app") ||
+        // Local development.
         u.host === "localhost" ||
         u.host.startsWith("localhost:") ||
         u.host === "127.0.0.1" ||
@@ -113,7 +118,10 @@ export async function POST() {
     if (await isRateLimited(ip)) {
       return NextResponse.json(
         { totalVisits: await getTotalVisits() } as VisitsResponse,
-        { status: 429 }
+        {
+          status: 429,
+          headers: { "Retry-After": String(RATE_LIMIT_WINDOW_SEC) },
+        }
       );
     }
 
