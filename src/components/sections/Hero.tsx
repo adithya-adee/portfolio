@@ -23,7 +23,10 @@ const ROLE_PHRASES = [
 ];
 
 const HIGHLIGHTS = [
-  { tag: "CURRENT", text: "Private Bridge & ZKP Phase 2 ceremony at Umbra Privacy" },
+  {
+    tag: "CURRENT",
+    text: "Learning Circom + abstract algebra to strengthen cryptography and ZKP",
+  },
   { tag: "SHIPPED", text: "crab-clean (900+ dl) and solana-indexer SDK on crates.io" },
   { tag: "AWARDED", text: "Top 10% in IEEE Summer of Code 2025" },
 ] as const;
