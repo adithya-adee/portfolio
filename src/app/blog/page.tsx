@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import blogsData from "@/asset/blog.json";
-import { ExternalLink, Calendar, ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Link } from "next-view-transitions";
-import { MagneticButton, Reveal, SectionTitle } from "@/components/motion";
+import { Reveal, SectionTitle } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -25,6 +25,7 @@ interface Blog {
   date: string;
   category: string;
   url: string;
+  posted_in: string;
 }
 
 const getCategoryStyles = (category: string) =>
@@ -36,92 +37,107 @@ export default function BlogPage() {
   const blogs = blogsData as Blog[];
 
   return (
-    <div className="min-h-screen">
-      <section className="mx-auto mt-10 max-w-3xl px-4 py-6 sm:mt-16 sm:px-6 sm:py-8">
-        {/* Back link */}
-        <Reveal y={8} className="mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-tertiary transition-colors hover:text-primary"
-          >
-            <ArrowLeft aria-hidden="true" size={14} />
-            Back to home
-          </Link>
-        </Reveal>
+    <main className="mx-auto max-w-3xl px-4 pb-24 pt-20 sm:px-6 sm:pt-28">
+      {/* Back link */}
+      <Reveal y={8}>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 font-mono text-label uppercase tracking-[0.18em] text-tertiary transition-colors duration-base ease-out-soft hover:text-primary"
+        >
+          <ArrowLeft aria-hidden="true" size={14} />
+          Back to home
+        </Link>
+      </Reveal>
 
-        <SectionTitle meta={`${blogs.length} ${blogs.length === 1 ? "post" : "posts"}`}>
-          Blog Posts
-        </SectionTitle>
+      {/* Header */}
+      <header className="mt-10 space-y-4">
+        <p className="font-mono text-label uppercase tracking-[0.25em] text-tertiary">
+          Field notes · {blogs.length} {blogs.length === 1 ? "post" : "posts"}
+        </p>
+        <h1 className="font-serif text-display-2 font-normal italic leading-[1.05] tracking-tight text-primary">
+          Writing
+        </h1>
+        <p className="max-w-2xl text-body-1 leading-relaxed text-primary/80">
+          Notes on backend engineering, zero-knowledge proofs, Rust, and the things I learn while
+          shipping privacy-preserving systems.
+        </p>
+      </header>
 
-        <Reveal y={10} delay={0.05}>
-          <p className="mb-6 text-body-2 leading-relaxed tracking-wide text-secondary">
-            Thoughts on backend engineering, zero-knowledge proofs, Rust, and shipping
-            privacy-preserving systems.
-          </p>
-        </Reveal>
+      <div className="my-10 h-px bg-accent/30" />
 
-        {/* Blog list */}
-        <div className="space-y-3">
-          {blogs.map((blog, i) => (
-            <Reveal
-              key={blog.title}
-              y={12}
-              delay={0.08 + i * 0.05}
+      {/* Blog list */}
+      <SectionTitle meta="cross-posted to dev.to">All posts</SectionTitle>
+
+      <div className="space-y-4 sm:space-y-5">
+        {blogs.map((blog, i) => (
+          <Reveal key={blog.title} y={12} delay={0.08 + i * 0.05}>
+            <a
+              href={blog.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read article: ${blog.title} (opens in new tab)`}
               className={cn(
-                "group relative overflow-hidden rounded-xl border border-soft bg-surface-1 px-4 py-4 backdrop-blur-sm sm:px-6 sm:py-5",
-                "shadow-elev-1 transition-shadow duration-base ease-out-soft",
-                "hover:border-strong hover:shadow-elev-2"
+                "group/blog relative block w-full overflow-hidden rounded-xl border border-soft bg-surface-1 px-4 py-4 backdrop-blur-sm sm:px-6 sm:py-5",
+                "shadow-elev-1 transition-[border-color,box-shadow,transform] duration-base ease-out-soft",
+                "hover:-translate-y-0.5 hover:border-strong hover:shadow-elev-2",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0"
               )}
             >
               <span
                 aria-hidden="true"
-                className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover:opacity-100"
+                className="absolute inset-y-0 left-0 w-[2px] bg-aurora opacity-0 transition-opacity duration-base group-hover/blog:opacity-100 group-focus-visible/blog:opacity-100"
               />
 
-              <div className="space-y-3">
-                {/* Header row: title + date */}
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <h2 className="text-h2 font-semibold leading-snug tracking-tight text-primary transition-colors">
-                    {blog.title}
-                  </h2>
-                  <span className="flex shrink-0 items-center gap-2 font-mono text-label uppercase tracking-wider text-tertiary">
-                    <Calendar aria-hidden="true" size={13} />
-                    {blog.date}
-                  </span>
-                </div>
-
-                {/* Category badge */}
+              <div className="flex items-center justify-between gap-3">
                 <span
                   className={cn(
-                    "inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider",
+                    "inline-flex items-center rounded-full px-2.5 py-0.5 text-label font-medium tracking-wide",
                     getCategoryStyles(blog.category)
                   )}
                 >
                   {blog.category}
                 </span>
-
-                {/* Description */}
-                <p className="line-clamp-2 text-body-2 leading-relaxed tracking-wide text-secondary">
-                  {blog.description}
-                </p>
-
-                {/* Read link */}
-                <MagneticButton strength={0.2}>
-                  <a
-                    href={blog.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-label font-medium tracking-wide text-secondary transition-colors hover:text-primary"
-                  >
-                    Read article
-                    <ExternalLink aria-hidden="true" size={14} />
-                  </a>
-                </MagneticButton>
+                <div className="flex items-center gap-3">
+                  <span className="whitespace-nowrap font-mono text-label uppercase tracking-wider text-tertiary">
+                    {new Date(blog.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    size={16}
+                    className="text-tertiary transition-all duration-base ease-out-soft group-hover/blog:-translate-y-0.5 group-hover/blog:translate-x-0.5 group-hover/blog:text-accent"
+                  />
+                </div>
               </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-    </div>
+
+              <h2 className="mt-3 font-serif text-h2 font-normal italic leading-snug tracking-tight text-primary transition-colors group-hover/blog:text-accent-bright">
+                {blog.title}
+              </h2>
+
+              <p
+                className="mt-2 text-body-2 leading-relaxed tracking-wide text-primary/70"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {blog.description}
+              </p>
+
+              {blog.posted_in ? (
+                <p className="mt-3 font-mono text-label uppercase tracking-[0.18em] text-tertiary/70">
+                  — {blog.posted_in}
+                </p>
+              ) : null}
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </main>
   );
 }

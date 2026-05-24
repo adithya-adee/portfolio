@@ -8,6 +8,7 @@ import TechStack from "@/components/sections/TechStack";
 import Blogs from "@/components/sections/Blogs";
 import ExperienceCollapsed from "@/components/sections/ExperienceCollapsed";
 import Connect from "@/components/sections/Connect";
+import { SectionDivider } from "@/components/motion";
 
 // VisitorCounter sits below the fold + hits an API on mount. Lazy-load it so
 // it doesn't block initial JS or fire the request until the user actually
@@ -26,25 +27,35 @@ export default function Home() {
           <Hero />
         </section>
 
+        <SectionDivider />
+
         {/* Experience Section - Collapsed */}
         <section id="experience">
           <ExperienceCollapsed />
         </section>
+
+        <SectionDivider />
 
         {/* Projects Section */}
         <section id="projects">
           <Projects />
         </section>
 
+        <SectionDivider />
+
         {/* Tech Stack Section */}
         <section id="stack">
           <TechStack />
         </section>
 
+        <SectionDivider />
+
         {/* Blogs Section */}
         <section id="blogs">
           <Blogs />
         </section>
+
+        <SectionDivider />
 
         {/* Connect with Me Section */}
         <section id="contact">
