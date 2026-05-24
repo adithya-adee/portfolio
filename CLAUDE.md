@@ -65,8 +65,9 @@ src/
       opengraph-image.tsx
     uses/
       page.tsx        # daily-driver stack — server-rendered, edit the SECTIONS array
-    api/visits/route.ts          # GET/POST visit counter, hits Upstash REST API
-    _og/              # OG image utilities
+      opengraph-image.tsx        # per-route OG
+    api/visits/route.ts          # GET/POST visit counter — Upstash REST + same-origin guard + rate limit
+    _og/              # OG image utilities (shared OGTemplate + font loader)
   components/
     SEO.tsx           # JSON-LD structured data (Person/WebSite/ProfilePage/ItemList/Breadcrumb)
     VisitorCounter.tsx# client component; sessionStorage to dedupe per-tab
@@ -123,7 +124,9 @@ experience entry, edit the JSON files. Shape lives inline in the consumer compon
   absent. `video_url` field exists in schema but is currently unused (no inline embeds).
 - `experience.json` — `display: false` hides an entry from the home rail timeline but
   `/archive` shows everything. `type` controls dot style (Full-time/Internship → solid;
-  Freelance/Open Source/Mentorship → hollow ring).
+  Freelance/Open Source/Mentorship → hollow ring). Optional `short_summary` field renders
+  as the tight technical one-liner under each rail entry; falls back to `highlights[0]`
+  when absent.
 - `blog.json` — `highlight: true` surfaces it on the home page `Blogs` section; `/blog` lists
   everything. Sitemap uses `blogs[0].date` as `lastModified` for `/blog`.
 
@@ -133,7 +136,8 @@ experience entry, edit the JSON files. Shape lives inline in the consumer compon
   `className="dark"` and don't reach for `dark:` Tailwind variants without making sure the
   config selector matches the `data-theme` attribute (it does — `tailwind.config.js:3`).
 - **Section components are `"use client"`** when they need state/effects (Hero clock island,
-  Projects filter, Connect Y-yank, Experience rail). `Blogs.tsx` is now a **server component**.
+  Projects filter, Connect Y-yank, Experience rail). `Blogs.tsx` and `TechStack.tsx` are
+  **server components** — leave them that way.
 - **Design tokens** are CSS variables in `src/styles/tokens.css`. Prefer them over hardcoded
   values in new styles.
 - **External links** always get `target="_blank" rel="noopener noreferrer"`.
@@ -141,6 +145,9 @@ experience entry, edit the JSON files. Shape lives inline in the consumer compon
   cross-fade fires. Programmatic nav uses `useTransitionRouter`.
 - **`suppressHydrationWarning`** is used on date/time/timezone text where it's computed
   client-side.
+- **`backdrop-blur-*`** utilities are auto-disabled on touch devices via a `@media (pointer:
+  coarse)` rule in `globals.css`. Use them freely on desktop; don't expect them to render on
+  mobile. The opaque surface tokens already give enough visual separation there.
 - Prettier with `prettier-plugin-tailwindcss` sorts classes — let it.
 
 ## Resume PDF — conditional chip
@@ -160,6 +167,14 @@ repo widely.
 
 `next.config.ts` whitelists `www.ieeesoc.xyz`, `yhills.com`, `youtube.com`, `img.youtube.com`
 for `next/image`. Add new external hosts there before referencing them.
+
+## Security headers
+
+`next.config.ts` exports `headers()` shipping `X-Frame-Options: DENY`,
+`X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and a
+restrictive `Permissions-Policy`. Strict CSP is intentionally **not** set — inline JSON-LD
+scripts + Vercel's speed-insights boot would break under it without hashing. If you add CSP
+later, do it via middleware so per-deploy nonces work.
 
 ## SEO surface
 
@@ -186,7 +201,9 @@ Every SEO surface points at **`https://glitchymoon.dev`** — keep them aligned.
   See `CommandPalette.tsx` for the canonical example.
 - **`VisitorCounter` dedupes per-tab via `sessionStorage`**, not per-IP. Refreshing in a new tab
   counts again. Intentional, lightweight; don't "fix" without checking. POST is rate-limited
-  (5/min/IP) and origin-checked.
+  (5/min/IP, `Retry-After` on 429) and the same-origin allowlist covers `glitchymoon.dev`,
+  `www.glitchymoon.dev`, `*.vercel.app`, and localhost — update `isOriginAllowed` in
+  `route.ts` if you change the canonical hostname.
 - **Smooth scroll opt-out**: any element with `data-lenis-prevent` is skipped by Lenis. Both
   `ExperienceSidebar` and `CaseStudyOverlay` content containers use this so wheel/touch scrolls
   the panel, not the page underneath.
@@ -201,6 +218,9 @@ Every SEO surface points at **`https://glitchymoon.dev`** — keep them aligned.
   in the sibling `app/archive/layout.tsx` server file.
 - **Konami code** ignores keypresses while focus is on inputs / textareas / contenteditable so
   it doesn't trigger inside forms.
+- **`TimelineDot` pulses are mutually exclusive** — `isCurrent` pulse only runs when the entry
+  is *not* currently selected; the brighter `isSelected` pulse takes over otherwise. Don't
+  stack them; two infinite animations on the same SVG circle thrash the compositor.
 
 ## What not to do
 
