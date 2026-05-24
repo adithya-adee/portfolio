@@ -53,7 +53,7 @@ export function CommandPaletteHint({ placement = "fixed" }: CommandPaletteHintPr
     placement === "fixed"
       ? // Sits to the left of ThemeToggle (which is at right-4 top-4 / sm:right-6 sm:top-6).
         // Theme toggle is ~124px wide on sm+; this offset clears it + a small gap.
-        "fixed right-[140px] top-4 z-50 sm:right-[148px] sm:top-6"
+        "fixed right-[140px] top-4 z-50 sm:right-[160px] sm:top-6"
       : "";
 
   // SSR placeholder — hide until mounted so we don't flash the wrong glyph.

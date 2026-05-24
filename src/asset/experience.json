@@ -137,7 +137,7 @@
     "short_summary": "Open-source contributor — migrated Rust internals to TypeScript, shipped a full-stack FinTech module end to end.",
     "description": "Selected for IEEE Summer of Code as an open-source contributor; worked across multiple production-grade codebases spanning backend, frontend, and infrastructure.",
     "responsibilities": [
-      "Ranked in the top 10% nationwide among 100+ contributors based on contribution quality, consistency, and impact.",
+      "Ranked in the top 3% nationwide (11th of 500+ contributors) based on contribution quality, consistency, and impact.",
       "Migrated and refactored core infrastructure modules from Rust to TypeScript for the TensorZero LLM platform, improving maintainability and onboarding speed.",
       "Designed and built a complete full-stack FinTech education module for FinTechForge using React, Express.js, and PostgreSQL.",
       "Established a clean, scalable base architecture for the DebateMate platform following SOLID principles and clean code practices."
@@ -154,7 +154,7 @@
       "CI/CD"
     ],
     "highlights": [
-      "Top 10% contributor nationwide in IEEE Summer of Code",
+      "Top 3% nationwide — 11th of 500+ contributors in IEEE Summer of Code",
       "End-to-end ownership of a full-stack FinTech module",
       "Improved long-term maintainability of LLM infrastructure",
       "Defined foundational architecture for a multi-user platform"

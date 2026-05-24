@@ -34,7 +34,7 @@ export default function StructuredData() {
       "https://www.linkedin.com/in/adithya-a-8bb28128a",
       "https://x.com/glitchy_moon_",
       "https://peerlist.io/glitchy_moon",
-      "https://www.reddit.com/user/Glithcy_moon_69/",
+      "https://www.reddit.com/user/Glitchy_moon_69/",
     ],
 
     // Education
@@ -110,7 +110,10 @@ export default function StructuredData() {
     ],
 
     // Awards and achievements
-    award: ["Top 10% contributor — IEEE Summer of Code (May–June 2025)"],
+    award: [
+      "Hack to the Future 4.0 — DevOps theme winner",
+      "Top 3% (11th of 500+) — IEEE Summer of Code (May–June 2025)",
+    ],
 
     // Work experience
     hasOccupation: [

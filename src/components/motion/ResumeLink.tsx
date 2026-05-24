@@ -29,11 +29,12 @@ export function ResumeLink({ placement = "fixed" }: ResumeLinkProps = {}) {
   if (shouldHide) return null;
 
   // Position: sits to the LEFT of CommandPaletteHint (which sits left of ThemeToggle).
-  // ThemeToggle ~124px @ right-4 / sm:right-6.  CommandPaletteHint ~80px at right-[140-148].
-  // ResumeLink (~80px) lands at right-[228px] / sm:right-[244px].
+  // ThemeToggle ~124px @ sm:right-6 → left edge near W-148. CommandPaletteHint
+  // sits at sm:right-[160px] (~12px clearance from ThemeToggle's left). ResumeLink
+  // lands at sm:right-[252px] keeping the same clearance from CmdK's left edge.
   const positionClasses =
     placement === "fixed"
-      ? "fixed right-[228px] top-4 z-50 sm:right-[244px] sm:top-6"
+      ? "fixed right-[228px] top-4 z-50 sm:right-[252px] sm:top-6"
       : "";
 
   return (
