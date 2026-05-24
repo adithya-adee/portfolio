@@ -37,8 +37,10 @@ export function TimelineDot({
 }: TimelineDotProps) {
   return (
     <g style={{ pointerEvents: "none" }}>
-      {/* Active-role pulse — always on for the currently-active role */}
-      {isCurrent ? (
+      {/* Active-role pulse — runs only when the role is current AND not
+          currently selected. The selected-state pulse below takes over so
+          two infinite animations don't stack on the same dot. */}
+      {isCurrent && !isSelected ? (
         <motion.circle
           cx={cx}
           cy={cy}

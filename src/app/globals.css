@@ -355,6 +355,17 @@ a {
   }
 }
 
+/* Touch devices: drop backdrop-filter blur entirely. backdrop-filter triggers
+   GPU layer promotion + per-frame composite work on mobile, and the visual
+   difference is barely perceptible at the alpha values we use. The opaque
+   surface tokens already give enough separation against the page background. */
+@media (pointer: coarse) {
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 /* Custom Card Accent */
 .card-accent {
   border-left-width: 2px !important;
