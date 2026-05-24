@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import blogsData from "@/asset/blog.json";
 
-const BASE_URL = "https://glitchymoon.vercel.app";
+const BASE_URL = "https://glitchymoon.dev";
 
 interface Blog {
   id: number;

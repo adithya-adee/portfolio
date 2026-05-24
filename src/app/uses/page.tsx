@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import { ArrowLeft } from "lucide-react";
 
-const SITE_URL = "https://glitchymoon.vercel.app";
+const SITE_URL = "https://glitchymoon.dev";
 
 export const metadata: Metadata = {
   title: "Uses",

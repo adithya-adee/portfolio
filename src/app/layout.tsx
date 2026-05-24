@@ -37,7 +37,7 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
-const SITE_URL = "https://glitchymoon.vercel.app";
+const SITE_URL = "https://glitchymoon.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
